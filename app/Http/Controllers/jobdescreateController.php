@@ -27,6 +27,7 @@ use App\jobdescreate_conditions;
 use App\jobdescreate_materials;
 use App\jobdescreate_pen;
 use App\jobdescreate_penga;
+use App\abrevation;
 
 
 
@@ -452,5 +453,24 @@ class jobdescreateController extends Controller
         }
         return Redirect::back()->withErrors(['msg', 'Error']);
     } 
-                
+    
+    public function abrevationno (Request $request)
+    {   
+        $arr = [];
+        $ret = [];
+        $data = abrevation::where('abrevationno','like','%'.$request->q.'%')->get();
+        foreach ($data as $key => $value) {
+            array_push($arr,['id'=>$value->abrevationno,'text'=>$value->abrevationno.""] );
+        }
+        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        return $ret;
+    } 
+
+    public function abb ($fropil)
+    {   
+        $data = abrevation::where('abrevationno', $fropil)
+        ->groupBy('abrevationno')
+        ->first();       
+        return $data;
+    }
 }

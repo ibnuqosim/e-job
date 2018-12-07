@@ -54,6 +54,12 @@
             dataType: 'json',
         }
     });
+      $('#abrevationno').select2({
+        ajax: {
+            url: '{{ url('AdminAnalystOD/formjobdescreate/abrevationno') }}',
+            dataType: 'json',
+        }
+    });
     $('#AbbrPosition').on('select2:select', function (e) {
         var data = e.params.data;
         selectPosition(data);
@@ -376,6 +382,21 @@
     }
     function hapuspenga(penga) {
         $('#kolompenga'+penga).remove();
+    }
+
+     $('#abrevationno').on('select2:select', function (e) {
+        var data = e.params.data;
+        selectPosition(data);
+    });
+    function selectPosition(data) {
+        $.get('{{ url('AdminAnalystOD/formjobdescreate/abb') }}/'+data.id,function(no){
+            console.log(no);
+            $('#namaposisi').val(no.namaposisi);                                       
+            $('#golongan ').val(no.golongan);                              
+            $('#nojabatan').val(no.nojabatan);                  
+            $('#unitkerja').val(no.unitkerja);                 
+            $('#jobgroup').val(no.jobgroup);   
+        });                                                                       
     }
 
 </script>
@@ -760,28 +781,40 @@
                                     <table border="1" width="100%"  class="table table-bordered table-hover">
                                 {{-- <table border="50" cellpadding="50" class="table table-bordered table-hover"> --}}
                                         <tr>
-                                            <td>Nama Jabatan<td>
+                                            <td>Nama Jabatan</td>
                                             <td>:</td>
-                                            <td>Supervisor Werehouse 1</td>
+                                            <td>
+                                                <input type="text" readonly class="form-control" id="namaposisi" placeholder="Otomatis Jabatan" name="namaposisi">
+                                            </td>
                                             <td>NO.ORG</td>
-                                            <td>:<td>
-                                            <td>22304</td>
+                                            <td>:</td>
+                                            <td>
+                                                <select class="js-data-example-ajax form-control" id="abrevationno" name="abb"></select>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>Golongan<td>
+                                            <td>Golongan</td>
                                             <td>:</td>
-                                            <td>DS</td>
+                                            <td>
+                                                <input type="text" readonly class="form-control" id="golongan" placeholder="Otomatis Golongan" name="golongan">
+                                            </td>
                                             <td>Unit Kerja</td>
-                                            <td>:<td>
-                                            <td>Seksi Warehouse 1</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input type="text" readonly class="form-control" id="unitkerja" placeholder="Otomatis untit kerja" name="unitkerja">
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>No Jabatan<td>
+                                            <td>No Jabatan</td>
                                             <td>:</td>
-                                            <td>22304020000</td>
-                                            <td>JOB</td>
-                                            <td>:<td>
-                                            <td>Logistik 10</td>
+                                            <td>
+                                                <input type="text" readonly class="form-control" id="nojabatan" placeholder="Otomatis nomer jabatan" name="nojabatan">
+                                            </td>
+                                            <td>JOB GROUP</td>
+                                            <td>:</td>
+                                            <td>
+                                                <input type="text" readonly class="form-control" id="jobgroup" placeholder="Otomatis job group" name="jobgroup">
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
@@ -861,7 +894,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <h5>sESUAI LOGIN ANALIS</h5>
+                                            <h5>SESUAI LOGIN ANALIS</h5>
                                             <input type="text" class="form-control" class="form-control"readonly  placeholder="Sr. Spec.Organization Design ">      
                                         </td>
                                         <td>
@@ -879,14 +912,9 @@
                                         </td>
                                         <td>
                                             <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}"/>
-                                            {{-- <h5>Otomatis</h5> --}}
-                                            {{-- <select class="js-data-example-ajax form-control" id="jabatan" name="no_jabatan"></select> --}}  
                                         </td>
                                         <td>
                                             <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}"/>
-                                            {{-- <h5>Otomatis</h5> --}}
-                                            {{-- <select class="js-data-example-ajax form-control" id="jabatan" name="no_jabatan"></select> --}}
-                                            
                                         </td>
                                     </td>
                                 </tr>
