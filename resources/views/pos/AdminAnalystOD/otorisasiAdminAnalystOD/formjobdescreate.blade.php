@@ -755,35 +755,57 @@
                                 </div>
                                 <div class="form-group">
                                     <label>4. Profil Jabatan</label>
-                                    <select class="js-data-example-ajax form-control" id="profil" name="profil_jabatan"></select>
                                 </div>
                                 <div class="form-group">
-                                        <table border="1" width="100%"  class="table table-bordered table-hover">
-                                    {{-- <table border="50" cellpadding="50" class="table table-bordered table-hover"> --}}
-                                            <tr>
-                                                <td>Nama Jabatan<td>
-                                                <td>:</td>
-                                                <td>Supervisor Werehouse 1</td>
-                                                <td>NO.ORG</td>
-                                                <td>:<td>
-                                                <td>22304</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Golongan<td>
-                                                <td>:</td>
-                                                <td>DS</td>
-                                                <td>Unit Kerja</td>
-                                                <td>:<td>
-                                                <td>Seksi Warehouse 1</td>
-                                            </tr>
-                                            <tr>
-                                                <td>No Jabatan<td>
-                                                <td>:</td>
-                                                <td>22304020000</td>
-                                                <td>JOB</td>
-                                                <td>:<td>
-                                                <td>Logistik 10</td>
-                                            </tr>
+                                    <table border="1" width="100%"  class="table table-bordered table-hover">
+                                {{-- <table border="50" cellpadding="50" class="table table-bordered table-hover"> --}}
+                                        <tr>
+                                            <td>Nama Jabatan<td>
+                                            <td>:</td>
+                                            <td>Supervisor Werehouse 1</td>
+                                            <td>NO.ORG</td>
+                                            <td>:<td>
+                                            <td>22304</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Golongan<td>
+                                            <td>:</td>
+                                            <td>DS</td>
+                                            <td>Unit Kerja</td>
+                                            <td>:<td>
+                                            <td>Seksi Warehouse 1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>No Jabatan<td>
+                                            <td>:</td>
+                                            <td>22304020000</td>
+                                            <td>JOB</td>
+                                            <td>:<td>
+                                            <td>Logistik 10</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="form-group">
+                                    <table border="1" width="100%"  class="table table-bordered table-hover">
+                                        <tr>
+                                            <td align="center">Nama Jabatan<td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="form-group">
+                                    <table border="1" width="100%"  class="table table-bordered table-hover">
+                                        <tr>
+                                            <td>NO</td>
+                                            <td>GROUP ASPEK</td>
+                                            <td>NAMA KOMPETENSI</td>
+                                            <td>PROFISIENSI</td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>01</td>
+                                            <td>1</td>
+                                            <td>1</td>
+                                        </tr>
                                     </table>
                                 </div>
                             </div>
