@@ -108,6 +108,7 @@ Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
             Route::get('/formjobdescreate/getjab/{jabatan}','jobdescreateController@getjab');
             Route::get('/formjobdescreate/abrevationno','jobdescreateController@abrevationno');
             Route::get('/formjobdescreate/abb/{fropil}','jobdescreateController@abb');
+            Route::get('/formjobdescreate/abbdeletail/{detail}','jobdescreateController@abbdeletail');
             Route::get('/pdf/{id?}','jobdescreateController@pdf');
             Route::get('/konfirmasi/{id?}','jobdescreateController@konfirmasi');
 

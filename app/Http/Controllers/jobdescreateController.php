@@ -28,6 +28,7 @@ use App\jobdescreate_materials;
 use App\jobdescreate_pen;
 use App\jobdescreate_penga;
 use App\abrevation;
+use App\abrevation_detail;
 
 
 
@@ -470,7 +471,19 @@ class jobdescreateController extends Controller
     {   
         $data = abrevation::where('abrevationno', $fropil)
         ->groupBy('abrevationno')
-        ->first();       
+        ->with('abrevation_detail')
+        ->get();
+
+        // $detail = $this->abbdetail($data->id);
+
+        // $ret = collect($data,$detail);
+        return $data;
+    }
+    public function abbdetail ($detail)
+    {   
+        $data = abrevation_detail::where('abrevation_id', $detail)
+        ->groupBy('abrevation_id')
+        ->get();       
         return $data;
     }
 }

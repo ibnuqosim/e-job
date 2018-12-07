@@ -390,12 +390,23 @@
     });
     function selectPosition(data) {
         $.get('{{ url('AdminAnalystOD/formjobdescreate/abb') }}/'+data.id,function(no){
-            console.log(no);
-            $('#namaposisi').val(no.namaposisi);                                       
-            $('#golongan ').val(no.golongan);                              
-            $('#nojabatan').val(no.nojabatan);                  
-            $('#unitkerja').val(no.unitkerja);                 
-            $('#jobgroup').val(no.jobgroup);   
+            console.log(no[0].abrevation_detail);
+            var abb = no[0];
+            $('#namaposisi').val(abb.namaposisi);                                       
+            $('#golongan ').val(abb.golongan);                              
+            $('#nojabatan').val(abb.nojabatan);                  
+            $('#unitkerja').val(abb.unitkerja);                 
+            $('#jobgroup').val(abb.jobgroup);   
+            
+            var detail = no[0].abrevation_detail;
+            var i;
+            var tbl;
+            for (i = 0; i < detail.length; i++) { 
+                console.log(detail[i]);
+                tbl = tbl+"<tr><td>"+ (i+1) +"</td> <td>"+detail[i].groupaspek+"</td> <td>"+detail[i].namakompetensi+"</td> <td>"+detail[i].profisiensi+"</td></tr>";
+            }
+            $('#abb').html(tbl);
+
         });                                                                       
     }
 
@@ -827,18 +838,16 @@
                                 </div>
                                 <div class="form-group">
                                     <table border="1" width="100%"  class="table table-bordered table-hover">
-                                        <tr>
-                                            <td>NO</td>
-                                            <td>GROUP ASPEK</td>
-                                            <td>NAMA KOMPETENSI</td>
-                                            <td>PROFISIENSI</td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>01</td>
-                                            <td>1</td>
-                                            <td>1</td>
-                                        </tr>
+                                        <thead>
+                                            <th>
+                                                <td>NO</td>
+                                                <td>GROUP ASPEK</td>
+                                                <td>NAMA KOMPETENSI</td>
+                                                <td>PROFISIENSI</td>
+                                            </th>
+                                        </thead>
+                                        <tbody id="abb">
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
