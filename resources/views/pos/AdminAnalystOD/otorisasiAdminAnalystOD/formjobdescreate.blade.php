@@ -404,7 +404,7 @@
             var tbl;
             for (i = 0; i < detail.length; i++) { 
                 console.log(detail[i]);
-                tbl = tbl+"<tr><td>"+ (i+1) +"</td> <td>"+detail[i].groupaspek+"</td> <td>"+detail[i].namakompetensi+"</td><td>"+detail[i].profisiensi+"</td></tr>";
+                tbl = tbl+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+detail[i].groupaspek+"' size='30px' readonly /></td> <td><input type='text' value='"+detail[i].namakompetensi+"' size='30px' id='namakompetensi' readonly/></td><td><input type='text' value='"+detail[i].profisiensi+"' size='30px' readonly /></td></tr>";
             }
             $('#abb').html(tbl);
 
@@ -905,11 +905,11 @@
                                     <tr>
                                         <td>
                                             <h5>SESUAI LOGIN ANALIS</h5>
-                                            <input type="text" class="form-control" class="form-control"readonly  placeholder="Sr. Spec.Organization Design ">      
+                                            <input type="text" class="form-control" class="form-control" readonly  placeholder="Sr. Spec.Organization Design ">      
                                         </td>
                                         <td>
                                             <h5>Hasri Suryani </h5>
-                                            <input type="text" class="form-control" class="form-control"readonly  placeholder="Manager OD&HCP"> 
+                                            <input type="text" class="form-control" class="form-control" readonly  placeholder="Manager OD&HCP"> 
                                         </div>
                                         <td>
                                             <h5>Input name User</h5>

@@ -506,7 +506,7 @@
                             </tr>
                         </table>
                     </td>
-                     <td width="40%">
+                    <td width="40%">
                         <table>
                             <tr>
                                 <td>PROFISIENSI</td>

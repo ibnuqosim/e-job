@@ -107,6 +107,13 @@
                                         <h4 class="modal-title">Konfirmasi</h4>
                                     </div>
                                 </div>
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span></button>
+                                        <h1 class="modal-title">text</h1>
+                                    </div>
+                                </div>
                                 <div class="modal-body">
                                     <form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
                                         <button type="submit" class="btn btn-sm btn-success">OK</button>
