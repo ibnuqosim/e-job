@@ -420,6 +420,94 @@
                     </td>
                 </table>
             </div>
+            <br><br><br><br><br><br><br><br>
+            <h3>PROFIL JABATAN</h3>
+            <div class="form-group">
+                <table border="1" width="100%" celladding="0" cellspacing="0" class="table table-bordered table-hover">
+                    <td width="50%">
+                        <table>
+                            <tr>
+                                <td>NAMA POSIS</td>
+                                <td>:</td>
+                                <td>Technician QualityControl WRM</td>
+                            </tr>
+                            <tr>
+                                <td>GOLONGAN</td>
+                                <td>:</td>
+                                <td>EF</td>
+                            </tr>
+                            <tr>
+                                <td>NO. JABATAN</td>
+                                <td>:</td>
+                                <td>3240402100</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="50%">
+                        <table>
+                            <tr>
+                                <td>ABREVATION NO.</td>
+                                <td>:</td>
+                                <td>3202</td>
+                            </tr>
+                            <tr>
+                                <td>UNIT KERJA</td>
+                                <td>:</td>
+                                <td>Seksi Quality Control WRM</td>
+                            </tr>
+                            <tr>
+                                <td>JOB GROUP</td>
+                                <td>:</td>
+                                <td>Spesialis Pengendalian kualitas 12</td>
+                        </table>
+                    </td>
+                </table>
+            </div>
+            <div class="form-group">
+                <table border="1" width="100%" celladding="0" cellspacing="0" class="table table-bordered table-hover">
+                    <td width="40%">
+                        <table align="center">
+                            <tr>
+                                <td>K O M P E T E N S I</td>
+                            </tr>
+                        </table>
+                    </td>
+                </table>
+            </div>
+            <div class="form-group">
+                <table border="1" width="100%" celladding="0" cellspacing="0" class="table table-bordered table-hover">
+                    <td width="10%">
+                        <table>
+                            <tr>
+                                <tr>No</tr>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="40%">
+                        <table>
+                            <tr>
+                                <tr>GROUP ASPEK</tr>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="40%">
+                        <table>
+                            <tr>
+                                <tr>NAMA KOMPETENSI</tr>
+                            </tr>
+                        </table>
+                    </td>
+                     <td width="40%">
+                        <table>
+                            <tr>
+                                <tr>PROFISIENSI</tr>
+                            </tr>
+                        </table>
+                    </td>
+                </table>
+                    </td>
+                </table>
+            </div>
         </body>
     </div>
 @endforeach

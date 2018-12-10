@@ -54,12 +54,6 @@
             dataType: 'json',
         }
     });
-      $('#abrevationno').select2({
-        ajax: {
-            url: '{{ url('AdminAnalystOD/formjobdescreate/abrevationno') }}',
-            dataType: 'json',
-        }
-    });
     $('#AbbrPosition').on('select2:select', function (e) {
         var data = e.params.data;
         selectPosition(data);
@@ -384,11 +378,18 @@
         $('#kolompenga'+penga).remove();
     }
 
-     $('#abrevationno').on('select2:select', function (e) {
-        var data = e.params.data;
-        selectPosition(data);
+
+    $('#abrevationno').select2({
+    ajax: {
+        url: '{{ url('AdminAnalystOD/formjobdescreate/abrevationno') }}',
+        dataType: 'json',
+    }
     });
-    function selectPosition(data) {
+     $('#abrevationno').on('select2:select', function (f) {
+        var data = f.params.data;
+        selectabr(data);
+    });
+    function selectabr(data) {
         $.get('{{ url('AdminAnalystOD/formjobdescreate/abb') }}/'+data.id,function(no){
             console.log(no[0].abrevation_detail);
             var abb = no[0];
@@ -403,7 +404,7 @@
             var tbl;
             for (i = 0; i < detail.length; i++) { 
                 console.log(detail[i]);
-                tbl = tbl+"<tr><td>"+ (i+1) +"</td> <td>"+detail[i].groupaspek+"</td> <td>"+detail[i].namakompetensi+"</td> <td>"+detail[i].profisiensi+"</td></tr>";
+                tbl = tbl+"<tr><td>"+ (i+1) +"</td> <td>"+detail[i].groupaspek+"</td> <td>"+detail[i].namakompetensi+"</td><td>"+detail[i].profisiensi+"</td></tr>";
             }
             $('#abb').html(tbl);
 
