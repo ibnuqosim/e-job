@@ -404,7 +404,7 @@
             var tbl;
             for (i = 0; i < detail.length; i++) { 
                 console.log(detail[i]);
-                tbl = tbl+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+detail[i].groupaspek+"' size='30px' readonly /></td> <td><input type='text' value='"+detail[i].namakompetensi+"' size='30px' id='namakompetensi' readonly/></td><td><input type='text' value='"+detail[i].profisiensi+"' size='30px' readonly /></td></tr>";
+                tbl = tbl+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+detail[i].groupaspek+"' size='30px' readonly class='form-control'/></td> <td><input type='text' value='"+detail[i].namakompetensi+"' size='30px' id='namakompetensi' readonly class='form-control'/></td><td><input type='text' value='"+detail[i].profisiensi+"' size='30px' readonly class='form-control'/></td></tr>";
             }
             $('#abb').html(tbl);
 
