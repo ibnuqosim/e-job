@@ -479,32 +479,42 @@
                     <td width="10%">
                         <table>
                             <tr>
-                                <tr>No</tr>
+                                <td>No</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
                             </tr>
                         </table>
                     </td>
                     <td width="40%">
                         <table>
                             <tr>
-                                <tr>GROUP ASPEK</tr>
+                                <td>GROUP ASPEK</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
                             </tr>
                         </table>
                     </td>
                     <td width="40%">
                         <table>
                             <tr>
-                                <tr>NAMA KOMPETENSI</tr>
+                                <td>NAMA KOMPETENSI</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
                             </tr>
                         </table>
                     </td>
                      <td width="40%">
                         <table>
                             <tr>
-                                <tr>PROFISIENSI</tr>
+                                <td>PROFISIENSI</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
                             </tr>
                         </table>
-                    </td>
-                </table>
                     </td>
                 </table>
             </div>
