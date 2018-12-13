@@ -16,13 +16,16 @@ class ZHROM0012 extends Migration
         Schema::create('ZHROM0012', function (Blueprint $table) {
             $table->increments('id');
             $table->string('noorg');
+            $table->string('unitkerja');
+            $table->string('nojabatan');
             $table->string('namajabatan');
-            $table->string('nojabatanatasanlangsung');
-            $table->string('jabatanatasanlangsung');
-            $table->string('nojabatanbawahanlangsung');
-            $table->string('abatanbawahanlangsung');
-            $table->string('jumlah');
+            $table->string('gol');
+            $table->string('job');
+            $table->string('groupaspek');
+            $table->string('namakompetensi');
+            $table->string('proficiency');
             $table->timestamps();
+        });
     }
 
     /**
@@ -32,6 +35,6 @@ class ZHROM0012 extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ZHROM0012');
     }
 }
