@@ -43,4 +43,3 @@ class Zhrom0007 extends Migration
     {
         Schema::dropIfExists('zhrom0007');
     }
-}
