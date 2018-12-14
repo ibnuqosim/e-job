@@ -536,13 +536,6 @@
                             <input type="text" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="(Directly Responsible to)" name="AbbrOrgUnitDivisi">
                         </td>
                     </tr> 
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td>
-                            {{-- <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" name="AbbrOrgUnitDivisi"> --}}
-                        </td>
-                    </tr> 
                     @endforeach
                 </table>
             </div>

@@ -438,10 +438,17 @@ class jobdescreateController extends Controller
 
     public function getjab ($jabatan)
     {   
-        // $data = structdisp::where('no','1')->where('empjobstext','like','%'.$request->q.'%')->get();
         $data = ZHROM0007::where('AbbrPosition', $jabatan)
         ->groupBy('AbbrPosition')
         ->first();       
+        return $data;
+    }
+
+    public function abbdetail ($detail)
+    {   
+        $data = abrevation_detail::where('abrevation_id', $detail)
+        ->groupBy('abrevation_id')
+        ->get();       
         return $data;
     }
 
