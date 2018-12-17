@@ -106,16 +106,19 @@ Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
             Route::get('/formjobdescreate/AbbrPosition','jobdescreateController@AbbrPosition');
             Route::get('/formjobdescreate/getposition','jobdescreateController@GetPosition');
             Route::get('/formjobdescreate/getjab/{jabatan}','jobdescreateController@getjab');
-            Route::get('/formjobdescreate/abrevationno','jobdescreateController@abrevationno');
+
+            Route::get('/formjobdescreate/nojabatan/{jbt}','jobdescreateController@nojabatan');
+
             Route::get('/formjobdescreate/abb/{fropil}','jobdescreateController@abb');
             Route::get('/formjobdescreate/abbdeletail/{detail}','jobdescreateController@abbdeletail');
             Route::get('/pdf/{id?}','jobdescreateController@pdf');
             Route::get('/konfirmasi/{id?}','jobdescreateController@konfirmasi');
 
-        });
+            Route::get('/formjobdescreate/abbdetail/{dbl}','jobdescreateController@abbdetail');
+            Route::get('/formjobdescreate/detail/{un}','jobdescreateController@detail');
 
-        
-    });
+        });
+    });  
 
     Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
         

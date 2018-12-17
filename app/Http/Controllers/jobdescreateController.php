@@ -29,6 +29,8 @@ use App\jobdescreate_pen;
 use App\jobdescreate_penga;
 use App\abrevation;
 use App\abrevation_detail;
+use App\zhrom0013;
+use App\zhrom0012;
 
 
 
@@ -444,13 +446,34 @@ class jobdescreateController extends Controller
         return $data;
     }
 
-    public function abbdetail ($detail)
+    public function nojabatan (Request $request,$kode = null)
     {   
-        $data = abrevation_detail::where('abrevation_id', $detail)
-        ->groupBy('abrevation_id')
-        ->get();       
+        $arr = [];
+        $ret = [];
+        $data = zhrom0013::where('jabatanatasanlangsung','like','%'.$request->q.'%')
+                ->where('nojabatan',$kode)
+                ->get();
+        return $data;
+    } 
+
+    public function detail ($un)
+    {   
+        $data = zhrom0012::where('nojabatan', $un)
+        ->groupBy('nojabatan')
+        ->first();       
         return $data;
     }
+
+    public function abbdetail (Request $request,$kode = null)
+    {   
+        $arr = [];
+        $ret = [];
+        $data = zhrom0012::where('namakompetensi','like','%'.$request->q.'%')
+                ->where('nojabatan',$kode)
+                ->get();
+        return $data;
+    } 
+
 
     public function konfirmasi($id)
     {   
@@ -474,23 +497,23 @@ class jobdescreateController extends Controller
         return $ret;
     } 
 
-    public function abb ($fropil)
-    {   
-        $data = abrevation::where('abrevationno', $fropil)
-        ->groupBy('abrevationno')
-        ->with('abrevation_detail')
-        ->get();
+    // public function abb ($fropil)
+    // {   
+    //     $data = abrevation::where('abrevationno', $fropil)
+    //     ->groupBy('abrevationno')
+    //     ->with('abrevation_detail')
+    //     ->get();
 
-        // $detail = $this->abbdetail($data->id);
+    //     // $detail = $this->abbdetail($data->id);
 
-        // $ret = collect($data,$detail);
-        return $data;
-    }
-    public function abbdetail ($detail)
-    {   
-        $data = abrevation_detail::where('abrevation_id', $detail)
-        ->groupBy('abrevation_id')
-        ->get();       
-        return $data;
-    }
+    //     // $ret = collect($data,$detail);
+    //     return $data;
+    // }
+    // public function abbdetail ($detail)
+    // {   
+    //     $data = abrevation_detail::where('abrevation_id', $detail)
+    //     ->groupBy('abrevation_id')
+    //     ->get();       
+    //     return $data;
+    // }
 }

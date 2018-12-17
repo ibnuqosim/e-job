@@ -56,22 +56,68 @@
     });
     $('#AbbrPosition').on('select2:select', function (e) {
         var data = e.params.data;
-        selectPosition(data);
+        selectPosition(data); 
+        nojabatan(data);
+        abbdetail(data);
+        detail(data);
     });
+
     function selectPosition(data) {
+
         $.get('{{ url('AdminAnalystOD/formjobdescreate/getjab') }}/'+data.id,function(jab){
-            console.log(jab);
             $('#LvlOrg').val(jab.LvlOrg);                                           //Gol. Jabatan (Job Level):                     
             $('#NameofPosition ').val(jab.NameofPosition);                          //name Jabatan (Job Name)          
             $('#NameofOrgUnitDinas').val(jab.NameofOrgUnitDinas);                   //Dinas (Official)
             $('#NameofOrgUnitDivisi').val(jab.NameofOrgUnitDivisi);                 //Divisi (Division)
             $('#NameofOrgUnitSubDirektorat').val(jab.NameofOrgUnitSubDirektorat);   //Subdirektorat(Subdirectorate)
             $('#NameofOrgUnitDirektorat').val(jab.NameofOrgUnitDirektorat);         //Direktorat (Directorate)
-            $('#NameofPosition').val(jab.NameofPosition);                           //Bertangung Jawab Langsung
-            $('#AbbrOrgUnitDivisi').val(jab.AbbrOrgUnitDivisi);                     //(Directly Responsible to)
+            $('#NameofPosition').val(jab.NameofPosition);   
+            $('#AbbrOrgUnitDivisi').val(jab.AbbrOrgUnitDivisi);   
+            //$('#jabatanatasanlangsung').val(jab.jabatanatasanlangsung);              
         });                                                                       
     }
-    
+
+    function nojabatan(kode) {
+        $.get('{{ url('AdminAnalystOD/formjobdescreate/nojabatan') }}/'+kode.id,function(jbt){
+            
+            var no = $('#jbt').val();
+            var gol =  $('#AbbrPosition').val();
+            var ret = '';
+            for (i = 0; i < jbt.length; i++) { 
+                ret = ret+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+jbt[i].jabatanatasanlangsung+"' size='30px' readonly class='form-control'/><td><input type='text' value='"+jbt[i].jabatanbawahanlangsung+"' size='30px' readonly class='form-control'/>";
+            }
+            $('#jbt').html(ret);
+            console.log(ret);
+        });   
+    }
+
+    function detail(data) {
+        $.get('{{ url('AdminAnalystOD/formjobdescreate/detail') }}/'+data.id,function(un){
+            $('#noorg ').val(un.noorg);                                
+            $('#unitkerja').val(un.unitkerja);  
+            $('#nojabatan ').val(un.nojabatan);                                
+            $('#namajabatan').val(un.namajabatan);        
+            $('#gol ').val(un.gol);                                
+            $('#job').val(un.job);                         
+        });                                                                       
+     }
+
+    function abbdetail(kode) {
+        $.get('{{ url('AdminAnalystOD/formjobdescreate/abbdetail') }}/'+kode.id,function(dbl){
+
+            var no = $('#dbl').val();
+            var gol =  $('#AbbrPosition').val();
+            var ret = '';
+            for (i = 0; i < dbl.length; i++)
+            { 
+             ret = ret+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+dbl[i].groupaspek+"' size='30px' readonly class='form-control'/></td> <td><input type='text' value='"+dbl[i].namakompetensi+"' size='30px' id='namakompetensi' readonly class='form-control'/></td><td><input type='text' value='"+dbl[i].proficiency+"' size='30px' readonly class='form-control'/></td></tr>";
+            }
+
+            $('#dbl').html(ret);
+            console.log(ret);
+        });   
+    }
+
     function resjabatan() {
         var res = $('#res').val();
         var stre;
@@ -378,39 +424,6 @@
         $('#kolompenga'+penga).remove();
     }
 
-
-    $('#abrevationno').select2({
-    ajax: {
-        url: '{{ url('AdminAnalystOD/formjobdescreate/abrevationno') }}',
-        dataType: 'json',
-    }
-    });
-     $('#abrevationno').on('select2:select', function (f) {
-        var data = f.params.data;
-        selectabr(data);
-    });
-    function selectabr(data) {
-        $.get('{{ url('AdminAnalystOD/formjobdescreate/abb') }}/'+data.id,function(no){
-            console.log(no[0].abrevation_detail);
-            var abb = no[0];
-            $('#namaposisi').val(abb.namaposisi);                                       
-            $('#golongan ').val(abb.golongan);                              
-            $('#nojabatan').val(abb.nojabatan);                  
-            $('#unitkerja').val(abb.unitkerja);                 
-            $('#jobgroup').val(abb.jobgroup);   
-            
-            var detail = no[0].abrevation_detail;
-            var i;
-            var tbl;
-            for (i = 0; i < detail.length; i++) { 
-                console.log(detail[i]);
-                tbl = tbl+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+detail[i].groupaspek+"' size='30px' readonly class='form-control'/></td> <td><input type='text' value='"+detail[i].namakompetensi+"' size='30px' id='namakompetensi' readonly class='form-control'/></td><td><input type='text' value='"+detail[i].profisiensi+"' size='30px' readonly class='form-control'/></td></tr>";
-            }
-            $('#abb').html(tbl);
-
-        });                                                                       
-    }
-
 </script>
 
 
@@ -516,28 +529,25 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Direktorat (Directorate)</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" readonly class="form-control"  id="NameofOrgUnitDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitDirektorat">
+                        <td> 
+                            <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="Otomatis pilih table" name="AbbrOrgUnitDivisi" >
                         </td>
                     </tr>
-                    <tr>
-                        <td>Bertangung Jawab Langsung</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" readonly class="form-control" id="NameofPosition" placeholder="Bertangung Jawab Langsung" name="NameofPosition">
-                        </td>
-                    </tr> 
-                    <tr>
-                        <td>(Directly Responsible to)</td>
-                        <td>:</td>
-                        <td>
-                            <input type="text" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="(Directly Responsible to)" name="AbbrOrgUnitDivisi">
-                        </td>
-                    </tr> 
                     @endforeach
                 </table>
+                <div class="form-group">
+                    <table border="1" width="100%"  class="table table-bordered table-hover">
+                        <thead>
+                            <th>
+                                <td>jumlah</td>
+                                <td>Direktorat (Directorate)</td>
+                                <td>(Directly Responsible to)</td>
+                            </th>
+                        </thead>
+                        <tbody id="jbt">
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section> 
@@ -789,19 +799,20 @@
                                             <td>Nama Jabatan</td>
                                             <td>:</td>
                                             <td>
-                                                <input type="text" readonly class="form-control" id="namaposisi" placeholder="Otomatis Jabatan" name="namaposisi">
+                                                <input type="text" readonly class="form-control" id="namajabatan" placeholder="Otomatis Jabatan" name="namajabatan">
                                             </td>
                                             <td>NO.ORG</td>
                                             <td>:</td>
                                             <td>
-                                                <select class="js-data-example-ajax form-control" id="abrevationno" name="abb"></select>
+                                                {{-- <select class="js-data-example-ajax form-control" id="noorg" name="noorg"></select> --}}
+                                                <input type="text" readonly class="form-control" id="noorg" placeholder="Otomatis Golongan" name="noorg">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td>Golongan</td>
                                             <td>:</td>
                                             <td>
-                                                <input type="text" readonly class="form-control" id="golongan" placeholder="Otomatis Golongan" name="golongan">
+                                                <input type="text" readonly class="form-control" id="gol" placeholder="Otomatis Golongan" name="golongan">
                                             </td>
                                             <td>Unit Kerja</td>
                                             <td>:</td>
@@ -840,7 +851,7 @@
                                                 <td>PROFISIENSI</td>
                                             </th>
                                         </thead>
-                                        <tbody id="abb">
+                                        <tbody id="dbl">
                                         </tbody>
                                     </table>
                                 </div>
