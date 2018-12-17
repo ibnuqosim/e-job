@@ -84,7 +84,7 @@
             var gol =  $('#AbbrPosition').val();
             var ret = '';
             for (i = 0; i < jbt.length; i++) { 
-                ret = ret+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+jbt[i].jabatanatasanlangsung+"' size='30px' readonly class='form-control'/><td><input type='text' value='"+jbt[i].jabatanbawahanlangsung+"' size='30px' readonly class='form-control'/>";
+                ret = ret+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+jbt[i].jabatanatasanlangsung+"' size='30px' readonly class='form-control'/><td><input type='text' value='"+jbt[i].jabatanbawahanlangsung+"' size='30px' readonly class='form-control'/><td><input type='text' value='"+jbt[i].jumlah+"' size='30px' readonly class='form-control'/>";
             }
             $('#jbt').html(ret);
             console.log(ret);
@@ -539,9 +539,10 @@
                     <table border="1" width="100%"  class="table table-bordered table-hover">
                         <thead>
                             <th>
-                                <td>jumlah</td>
+                                <td>no</td>
                                 <td>Direktorat (Directorate)</td>
                                 <td>(Directly Responsible to)</td>
+                                <td>jumlah</td>
                             </th>
                         </thead>
                         <tbody id="jbt">
@@ -794,7 +795,6 @@
                                 </div>
                                 <div class="form-group">
                                     <table border="1" width="100%"  class="table table-bordered table-hover">
-                                {{-- <table border="50" cellpadding="50" class="table table-bordered table-hover"> --}}
                                         <tr>
                                             <td>Nama Jabatan</td>
                                             <td>:</td>
@@ -804,7 +804,6 @@
                                             <td>NO.ORG</td>
                                             <td>:</td>
                                             <td>
-                                                {{-- <select class="js-data-example-ajax form-control" id="noorg" name="noorg"></select> --}}
                                                 <input type="text" readonly class="form-control" id="noorg" placeholder="Otomatis Golongan" name="noorg">
                                             </td>
                                         </tr>
@@ -829,7 +828,7 @@
                                             <td>JOB GROUP</td>
                                             <td>:</td>
                                             <td>
-                                                <input type="text" readonly class="form-control" id="jobgroup" placeholder="Otomatis job group" name="jobgroup">
+                                                <input type="text" readonly class="form-control" id="job" placeholder="Otomatis job group" name="job">
                                             </td>
                                         </tr>
                                     </table>

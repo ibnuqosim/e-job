@@ -78,8 +78,6 @@ class jobdescreateController extends Controller
 
         $persyaratan_fisik                          = $request->persyaratan_fisik;
         $gambar                                     = $request->gambar;
-        // $uploadFile = $request->file('gambar');
-        // $path = $uploadFile->store('public/files');
 
         $data = new jobdescreate();
         // I. URAIAN JABATAN (Job Description)
@@ -99,8 +97,8 @@ class jobdescreateController extends Controller
         $data->nonfinansial                         = $nonfinansial;
         $data->persyaratan_fisik                    = $persyaratan_fisik;
 
-        // $file->gambar                               = $gambar;
-        $data->gambar                    = $gambar;
+        // $file->gambar                            = $gambar;
+        $data->gambar                               = $gambar;
 
         
         $data->save();
@@ -120,12 +118,12 @@ class jobdescreateController extends Controller
                     $jobdescreate_res->id_kata_kerja    = isset($request->res[$i])?$request->res[$i]:NULL;
                     $jobdescreate_res->id_met_object    = isset($request->divresk[$i])?$request->divresk[$i]:NULL;
                     $jobdescreate_res->id_met_indikator = isset($request->divindi[$i])?$request->divindi[$i]:NULL;
-                    // echo $jobdescreate_res->id_met_indikator;
-                    // die();
+
                     $jobdescreate_res->id_met_kewenangan = isset($request->divwew[$i])?$request->divwew[$i]:NULL;
                     $jobdescreate_res->save();
                 }
             }
+
             if($request->work || $request->divhal || $request->divhalk || $request->divhalks){
                 
                 $count_work = count($request->work);
