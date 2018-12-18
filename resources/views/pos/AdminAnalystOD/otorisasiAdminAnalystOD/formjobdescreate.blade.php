@@ -65,15 +65,13 @@
     function selectPosition(data) {
 
         $.get('{{ url('AdminAnalystOD/formjobdescreate/getjab') }}/'+data.id,function(jab){
-            $('#LvlOrg').val(jab.LvlOrg);                                           //Gol. Jabatan (Job Level):                     
-            $('#NameofPosition ').val(jab.NameofPosition);                          //name Jabatan (Job Name)          
-            $('#NameofOrgUnitDinas').val(jab.NameofOrgUnitDinas);                   //Dinas (Official)
-            $('#NameofOrgUnitDivisi').val(jab.NameofOrgUnitDivisi);                 //Divisi (Division)
-            $('#NameofOrgUnitSubDirektorat').val(jab.NameofOrgUnitSubDirektorat);   //Subdirektorat(Subdirectorate)
-            $('#NameofOrgUnitDirektorat').val(jab.NameofOrgUnitDirektorat);         //Direktorat (Directorate)
-            $('#NameofPosition').val(jab.NameofPosition);   
-            $('#AbbrOrgUnitDivisi').val(jab.AbbrOrgUnitDivisi);   
-            //$('#jabatanatasanlangsung').val(jab.jabatanatasanlangsung);              
+            $('#LvlOrg').val(jab.LvlOrg);                                           //No jabatan:                     
+            $('#NameofPosition ').val(jab.NameofPosition);                          //gol jabatan          
+            $('#NameofOrgUnitDinas').val(jab.NameofOrgUnitDinas);                 	//dinas
+            $('#NameofOrgUnitDivisi').val(jab.NameofOrgUnitDivisi);   		//divisi
+            $('#NameofOrgUnitSubDirektorat').val(jab.NameofOrgUnitSubDirektorat);      //subdirketorat (Directorate)
+            $('#NameofOrgUnitDirektorat').val(jab.NameofOrgUnitDirektorat);         //direktorat
+            $('#AbbrOrgUnitDivisi').val(jab.AbbrOrgUnitDivisi);               
         });                                                                       
     }
 
@@ -84,7 +82,7 @@
             var gol =  $('#AbbrPosition').val();
             var ret = '';
             for (i = 0; i < jbt.length; i++) { 
-                ret = ret+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+jbt[i].jabatanatasanlangsung+"' size='30px' readonly class='form-control'/><td><input type='text' value='"+jbt[i].jabatanbawahanlangsung+"' size='30px' readonly class='form-control'/><td><input type='text' value='"+jbt[i].jumlah+"' size='30px' readonly class='form-control'/>";
+                ret = ret+"<tr><td></td><td>"+ (i+1) +"</td><td><input type='text' value='"+jbt[i].jabatanatasanlangsung+"' size='30px' readonly class='form-control' name='jabatanatasanlangsung["+i+"]' id='jabatanatasanlangsung'/><td><input type='text' value='"+jbt[i].jabatanbawahanlangsung+"' size='30px' readonly class='form-control' name='jabatanbawahanlangsung["+i+"]' id='jabatanbawahanlangsung'/> <td><input type='text' value='"+jbt[i].jumlah+"' size='30px' readonly class='form-control' name='jumlah["+i+"]' id='jumlah'/>";
             }
             $('#jbt').html(ret);
             console.log(ret);
@@ -529,6 +527,13 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Direktorat(Directorate)</td>
+                        <td>:</td>
+                        <td> 
+                            <input type="text" readonly class="form-control" id="NameofOrgUnitDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitDirektorat" >
+                        </td>
+                    </tr>
+                    <tr>
                         <td> 
                             <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="Otomatis pilih table" name="AbbrOrgUnitDivisi" >
                         </td>
@@ -584,20 +589,20 @@
                             <button type="button" class="btn btn-primary" onclick="resjabatan();">Tambah Data</button>
                         </div>
                         <div class="form-group" id="divres">
-                            <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" />
+                            <input class="js-data-example-ajax form-control" name="id_kata_kerja['+1+']" id="res" value="1" type="hidden" />
                         </div>
 
                         <div class="form-group">
                             <label>Tanggung Jawab Duties & Responsibilities </label><br>
                         </div>
                         <div class="form-group" id="divresk">
-                            <input class="js-data-example-ajax form-control"  name="id_met_object" id="divresk" value="1" type="hidden" />
+                            <input class="js-data-example-ajax form-control"  name="id_met_object['+1+']" id="divresk" value="1" type="hidden" />
                         </div>
                         <div class="form-group">
                             <label>Indikator Capaian (Performance Indicators) </label><br>
                         </div>
                         <div class="form-group" id="divindi">
-                            <input class="form-control" name="id_met_indikatorvalue"  id="divresk" value="1" type="hidden" />
+                            <input class="form-control" name="id_met_indikatorvalue['+i+']"  id="divresk" value="1" type="hidden" />
                         </div>
                         <label>
                             <h6>

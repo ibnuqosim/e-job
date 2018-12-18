@@ -31,6 +31,7 @@ use App\abrevation;
 use App\abrevation_detail;
 use App\zhrom0013;
 use App\zhrom0012;
+use App\job;
 
 
 
@@ -67,8 +68,6 @@ class jobdescreateController extends Controller
         $NameofOrgUnitDivisi                        = $request->NameofOrgUnitDivisi;
         $NameofOrgUnitSubDirektorat                 = $request->NameofOrgUnitSubDirektorat;
         $NameofOrgUnitDirektorat                    = $request->NameofOrgUnitDirektorat;
-        $NameofPosition                             = $request->NameofPosition;
-        $AbbrOrgUnitDivisi                          = $request->AbbrOrgUnitDivisi;
         
         // II. TUJUAN JABATAN (Primary Job Role)
         $jobrole                                    = $request->jobrole;
@@ -88,8 +87,6 @@ class jobdescreateController extends Controller
         $data->divisi                               = $NameofOrgUnitDivisi;
         $data->subdirektorat                        = $NameofOrgUnitSubDirektorat;
         $data->direktorat                           = $NameofOrgUnitDirektorat;
-        $data->pertangung                           = $NameofPosition;
-        $data->directly                             = $AbbrOrgUnitDivisi;
         // II. TUJUAN JABATAN (Primary Job Role)
         $data->jobrole                              = $jobrole;
         // IV. DIMENSI (Dimensions)
@@ -105,6 +102,32 @@ class jobdescreateController extends Controller
         
         $data_id = jobdescreate::orderBy('id','DESC')->first();
         if($data){
+            //print_r("jabatan=".$request->jabatanatasanlangsung."-".$request->jabatanbawahanlangsung);
+           // die();
+            if($request->jabatanatasanlangsung || $request->jabatanbawahanlangsung || $request->jumlah){
+
+                //print_r(count($request->jabatanatasanlangsung));
+                //die();
+                $count_jbt      = count($request->jabatanatasanlangsung);
+                $resjabatan     = count($request->jabatanbawahanlangsung);
+                $count_jumlah   = count($request->jumlah);
+                $max            = max($count_jbt,$resjabatan,$count_jumlah);
+        
+                for ($i=0; $i < $max; $i++) { 
+                    $job = new job();
+                    $job->jobdescreate_id  = $data_id->id;
+                    $job->jabatanatasanlangsung     = isset($request->jabatanatasanlangsung[$i])?$request->jabatanatasanlangsung[$i]:NULL;
+                    $job->jabatanbawahanlangsung    = isset($request->jabatanbawahanlangsung[$i])?$request->jabatanbawahanlangsung[$i]:NULL;
+                    $job->jumlah                    = isset($request->jumlah[$i])?$request->jumlah[$i]:NULL;
+                    $job->save();
+                }
+            }else{
+                echo "list kosong";
+                die();
+
+            }
+
+
             if($request->res || $request->divindi || $request->divresk || $request->divwew){
                 $count_res = count($request->res);
                 $resunit = count($request->divresk);
