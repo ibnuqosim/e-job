@@ -32,6 +32,8 @@ use App\abrevation_detail;
 use App\zhrom0013;
 use App\zhrom0012;
 use App\job;
+use App\profil;
+use App\profil_detail;
 
 
 
@@ -225,6 +227,58 @@ class jobdescreateController extends Controller
                     $jobdescreate_penga->save();
                 }
             }
+
+             if($request->penga){
+                
+                $count_penga = count($request->penga);
+
+                for ($i=0; $i < $count_pen; $i++) { 
+                    $jobdescreate_penga = new jobdescreate_penga();
+                    $jobdescreate_penga->jobdescreate_id = $data_id->id;
+                    $jobdescreate_penga->id_keterangan = isset($request->penga[$i])?$request->penga[$i]:NULL;
+                    $jobdescreate_penga->save();
+                }
+            }
+
+            if($request->namajabatan || $request->noorg || $request->golongan || $request->unitkerja || $request->nojabatan || $request->job ){
+                $namajabatan    = $request->namajabatan;
+                $noorg          = $request->noorg;
+                $golongan       = $request->golongan;
+                $unitkerja      = $request->unitkerja;
+                $nojabatan      = $request->nojabatan;
+                $jobgroup       = $request->jobgroup;
+                
+                $profil = new profil();
+
+
+                $profil->namajabatan      = $namajabatan;
+                $profil->noorg            = $noorg;
+                $profil->golongan         = $golongan;
+                $profil->unitkerja        = $unitkerja;
+                $profil->nojabatan        = $nojabatan;
+                $profil->jobgroup         = $jobgroup;
+                
+                $profil->save();
+            }
+
+            if($request->groupaspek || $request->namakompetensi || $request->proficiency ){
+                
+                $count_grup = count($request->groupaspek);
+                $count_nama = count($request->namakompetensi);
+                $count_pro = count($request->proficiency);
+                $max = max($count_grup,$count_nama,$count_pro);
+                
+                for ($i=0; $i < $max; $i++) { 
+                    $profil_detail = new profil_detail();
+                    $profil_detail->jobdescreate_id = $data_id->id;
+                    $profil_detail->groupaspek = isset($request->groupaspek[$i])?$request->groupaspek[$i]:NULL;
+                    $profil_detail->namakompetensi = isset($request->namakompetensi[$i])?$request->namakompetensi[$i]:NULL;
+                    $profil_detail->proficiency = isset($request->proficiency[$i])?$request->proficiency[$i]:NULL;
+                    $profil_detail->save();
+                }
+            }
+            
+            
             return redirect('/AdminAnalystOD/listjobdescreate');
         }
     }

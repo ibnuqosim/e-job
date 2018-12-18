@@ -108,7 +108,7 @@
             var ret = '';
             for (i = 0; i < dbl.length; i++)
             { 
-             ret = ret+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+dbl[i].groupaspek+"' size='30px' readonly class='form-control'/></td> <td><input type='text' value='"+dbl[i].namakompetensi+"' size='30px' id='namakompetensi' readonly class='form-control'/></td><td><input type='text' value='"+dbl[i].proficiency+"' size='30px' readonly class='form-control'/></td></tr>";
+             ret = ret+"<tr><td></td><td>"+ (i+1) +"</td> <td><input type='text' value='"+dbl[i].groupaspek+"' size='30px' readonly class='form-control' name='groupaspek["+i+"]' id='groupaspek'/></td> <td><input type='text' value='"+dbl[i].namakompetensi+"' size='30px' readonly class='form-control' name='namakompetensi["+i+"]' id='namakompetensi'/></td><td><input type='text' value='"+dbl[i].proficiency+"' size='30px' readonly class='form-control' name='proficiency["+i+"]' id='proficiency'/></td></tr>";
             }
 
             $('#dbl').html(ret);
@@ -833,7 +833,7 @@
                                             <td>JOB GROUP</td>
                                             <td>:</td>
                                             <td>
-                                                <input type="text" readonly class="form-control" id="job" placeholder="Otomatis job group" name="job">
+                                                <input type="text" readonly class="form-control" id="jobgroup" placeholder="Otomatis job group" name="jobgroup">
                                             </td>
                                         </tr>
                                     </table>
