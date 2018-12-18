@@ -1,3 +1,3 @@
 
-    <li><a href="/AdminAnalystOD/listjobdescreate"><i class="fa fa-circle-o"></i>List Joblist</a></li>
-    <li><a href="/AdminAnalystOD/list_responsibility"><i class="fa fa-circle-o"></i>Admin otorisasi menu</a></li>
+    <li><a href="{{ url('AdminAnalystOD/listjobdescreate') }}"><i class="fa fa-circle-o"></i>List Joblist</a></li>
+    <li><a href="{{ url('AdminAnalystOD/list_responsibility') }}"><i class="fa fa-circle-o"></i>Admin otorisasi menu</a></li>
