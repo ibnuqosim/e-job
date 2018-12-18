@@ -589,20 +589,20 @@
                             <button type="button" class="btn btn-primary" onclick="resjabatan();">Tambah Data</button>
                         </div>
                         <div class="form-group" id="divres">
-                            <input class="js-data-example-ajax form-control" name="id_kata_kerja['+1+']" id="res" value="1" type="hidden" />
+                            <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" />
                         </div>
 
                         <div class="form-group">
                             <label>Tanggung Jawab Duties & Responsibilities </label><br>
                         </div>
                         <div class="form-group" id="divresk">
-                            <input class="js-data-example-ajax form-control"  name="id_met_object['+1+']" id="divresk" value="1" type="hidden" />
+                            <input class="js-data-example-ajax form-control"  name="id_met_object" id="divresk" value="1" type="hidden" />
                         </div>
                         <div class="form-group">
                             <label>Indikator Capaian (Performance Indicators) </label><br>
                         </div>
                         <div class="form-group" id="divindi">
-                            <input class="form-control" name="id_met_indikatorvalue['+i+']"  id="divresk" value="1" type="hidden" />
+                            <input class="form-control" name="id_met_indikatorvalue"  id="divresk" value="1" type="hidden" />
                         </div>
                         <label>
                             <h6>
