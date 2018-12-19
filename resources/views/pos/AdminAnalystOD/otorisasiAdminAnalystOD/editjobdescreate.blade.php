@@ -54,6 +54,9 @@
             dataType: 'json',
         }
     });
+
+    var dcdc = $('#SelectedAbbrPosition').html();
+    $('#select2-AbbrPosition-container').html(dcdc);
     $('#AbbrPosition').on('select2:select', function (e) {
         var data = e.params.data;
         selectPosition(data); 
@@ -65,12 +68,12 @@
     function selectPosition(data) {
 
         $.get('{{ url('AdminAnalystOD/formjobdescreate/getjab') }}/'+data.id,function(jab){
-            $('#LvlOrg').val(jab.LvlOrg);                                           //No jabatan:                     
-            $('#NameofPosition').val(jab.NameofPosition);                          //gol jabatan          
-            $('#NameofOrgUnitDinas').val(jab.NameofOrgUnitDinas);                 	//dinas
-            $('#NameofOrgUnitDivisi').val(jab.NameofOrgUnitDivisi);   		//divisi
-            $('#NameofOrgUnitSubDirektorat').val(jab.NameofOrgUnitSubDirektorat);      //subdirketorat (Directorate)
-            $('#NameofOrgUnitDirektorat').val(jab.NameofOrgUnitDirektorat);         //direktorat
+            $('#LvlOrg').val(jab.LvlOrg);                                               //No jabatan:                     
+            $('#NameofPosition').val(jab.NameofPosition);                               //gol jabatan          
+            $('#NameofOrgUnitDinas').val(jab.NameofOrgUnitDinas);                 	    //dinas
+            $('#NameofOrgUnitDivisi').val(jab.NameofOrgUnitDivisi);   		            //divisi
+            $('#NameofOrgUnitSubDirektorat').val(jab.NameofOrgUnitSubDirektorat);       //subdirketorat (Directorate)
+            $('#NameofOrgUnitDirektorat').val(jab.NameofOrgUnitDirektorat);             //direktorat
             $('#AbbrOrgUnitDivisi').val(jab.AbbrOrgUnitDivisi);               
         });                                                                       
     }
@@ -227,7 +230,6 @@
             
             $('.workint-ajax').select2({
                 ajax: {
-                    // url: '{{ url('AdminAnalystOD/formjobdescreate/Workinternal') }}/'+kode,
                     url: '{{ url('AdminAnalystOD/formjobdescreate/Workinternal') }}',
                     dataType: 'json'
                 }
@@ -428,6 +430,11 @@
 @endsection
 
 @section('content')
+
+{{-- @foreach ($item as $value)
+    {{ $value }}
+@endforeach
+{{ dd() }} --}}
 <section class="content-header">
     <h1>
         EDIT JOBDES
@@ -487,50 +494,54 @@
                     <tr>
                         <td width=50%>No. Jabatan (Job No.)</td>
                         <td>:</td>
-                        <td width=50%>    
-                            <select class="js-data-example-ajax form-control" id="AbbrPosition"  name="getjab" value="{{ $datas->AbbrPosition }}"></select>
+                        <td width=50%>  
+                        <span id="SelectedAbbrPosition" style="display:none">{{ $datas->no_jabatan }}</span>
+                            <select class="js-data-example-ajax form-control" 
+                                    id="AbbrPosition"  name="getjab" 
+                                    value="{{ $datas->no_jabatan }}">
+                            </select>
                         </td>
                     </tr>
                     <tr>
                         <td>Gol. Jabatan (Job Level):</td>
                         <td>:</td>
                         <td>
-                            <input type="text" readonly class="form-control" id="LvlOrg" name="LvlOrg" value="{{ $datas->LvlOrg }}">
+                            <input type="text" readonly class="form-control" id="LvlOrg" name="LvlOrg" value="{{ $datas->gol_jabatan }}" >
                         </td>
                     </tr>
                     <tr>
                         <td>name Jabatan (Job Name)</td>
                         <td>:</td>
                         <td>
-                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" placeholder="name Jabatan (Job Name)" name="NameofPosition">
+                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" name="NameofPosition" value="{{ $datas->name_jabatan }}" >
                         </td>
                     </tr>
                     <tr>
                         <td>Dinas (Official)</td>
                         <td>:</td>
                         <td>                         
-                            <input type="text" readonly class="form-control" id="NameofOrgUnitDinas"  placeholder="Otomatis pilih table" name="NameofOrgUnitDinas">
+                            <input type="text" readonly class="form-control" id="NameofOrgUnitDinas" name="NameofOrgUnitDinas" value="{{ $datas->dinas }}" >
                         </td>
                     </tr>
                     <tr>
                         <td>Divisi (Division)</td>
                         <td>:</td>
                         <td>    
-                            <input type="text" readonly class="form-control" id="NameofOrgUnitDivisi"  placeholder="Otomatis pilih table" name="NameofOrgUnitDivisi">
+                            <input type="text" readonly class="form-control" id="NameofOrgUnitDivisi" name="NameofOrgUnitDivisi" value="{{ $datas->divisi }}" >
                         </td>
                     </tr>
                     <tr>
                         <td>Subdirektorat(Subdirectorate)</td>
                         <td>:</td>
                         <td> 
-                            <input type="text" readonly class="form-control" id="NameofOrgUnitSubDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitSubDirektorat" >
+                            <input type="text" readonly class="form-control" id="NameofOrgUnitSubDirektorat" name="NameofOrgUnitSubDirektorat" value="{{ $datas->subdirektorat }}" >
                         </td>
                     </tr>
                     <tr>
                         <td>Direktorat(Directorate)</td>
                         <td>:</td>
                         <td> 
-                            <input type="text" readonly class="form-control" id="NameofOrgUnitDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitDirektorat" >
+                            <input type="text" readonly class="form-control" id="NameofOrgUnitDirektorat" name="NameofOrgUnitDirektorat" value="{{ $datas->direktorat }}" >
                         </td>
                     </tr>
                     <tr>
@@ -538,7 +549,6 @@
                             <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="Otomatis pilih table" name="AbbrOrgUnitDivisi" >
                         </td>
                     </tr>
-                    @endforeach
                 </table>
                 <div class="form-group">
                     <table border="1" width="100%"  class="table table-bordered table-hover">
@@ -570,7 +580,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label></label><br>
-                        <textarea class="form-control" rows="3" id="jobrole" name="jobrole" placeholder="Isi Data ..."></textarea>
+                        <textarea class="form-control" rows="3" id="jobrole" name="jobrole" value="{{ $datas->jobrole }}" ></textarea>
                     </div>
                 </div>
             </div>
@@ -940,7 +950,7 @@
                         </div>
                     </div>
                 </section>
-                
+                @endforeach
                 <div class="box-footer">
                     <button type="submit" class="btn btn-default">Cancel</button>
                     <button type="submit" class="btn btn-info pull-right">Save</button>
