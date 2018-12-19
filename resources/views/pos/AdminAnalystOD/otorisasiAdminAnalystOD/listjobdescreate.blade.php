@@ -91,7 +91,7 @@
                             <td>Hasri Suryani</td>
                             <td>{{$item->verifikasi}}</td>
                             <td>
-                                <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
+                                <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
@@ -189,28 +189,22 @@
                                                             <input type="text" readonly class="form-control"  id="NameofOrgUnitDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitDirektorat">
                                                         </td>
                                                     </tr>
+                                                </thead>
+                                            </table>
+                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
+                                                <thead>
                                                     <tr>
-                                                        <td>Bertangung Jawab Langsung</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <input type="text" readonly class="form-control" id="NameofPosition" placeholder="Bertangung Jawab Langsung" name="NameofPosition">
-                                                        </td>
-                                                    </tr> 
-                                                    <tr>
+                                                        <td>no</td>
+                                                        <td>Direktorat (Directorate)</td>
                                                         <td>(Directly Responsible to)</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <input type="text" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="(Directly Responsible to)" name="AbbrOrgUnitDivisi">
-                                                        </td>
-                                                    </tr> 
+                                                        <td>jumlah</td>
+                                                    </tr>
                                                     <tr>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td>
-                                                            {{-- <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" name="AbbrOrgUnitDivisi"> --}}
-                                                        </td>
-                                                    </tr> 
-                                            </thead>
+                                                        <td>{{$item->jabatanatasanlangsung}}</td>
+                                                        <td>{{$item->jabatanbawahanlangsung}}</td>
+                                                        <td>{{$item->jumlah}}</td>
+                                                    </tr>
+                                                </thead>
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>II. TUJUAN JABATAN (Primary Job Role)</h5>

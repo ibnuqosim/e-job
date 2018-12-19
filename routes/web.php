@@ -71,6 +71,7 @@ Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
             Route::get('/listjobdescreate','jobdescreateController@index');
             Route::get('/formjobdescreate','jobdescreateController@fromAdd');
             Route::post('/storejobdescreate','jobdescreateController@store');
+            Route::get('/editjobdescreate/{id?}','jobdescreateController@edit');
             
             Route::get('/formjobdescreate/resjabatan/{gol?}','jobdescreateController@resjabatan');
             Route::get('/formjobdescreate/resunitkerja/{gol?}','jobdescreateController@resunitkerja');

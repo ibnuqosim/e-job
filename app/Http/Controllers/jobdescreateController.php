@@ -572,23 +572,9 @@ class jobdescreateController extends Controller
         return $ret;
     } 
 
-    // public function abb ($fropil)
-    // {   
-    //     $data = abrevation::where('abrevationno', $fropil)
-    //     ->groupBy('abrevationno')
-    //     ->with('abrevation_detail')
-    //     ->get();
-
-    //     // $detail = $this->abbdetail($data->id);
-
-    //     // $ret = collect($data,$detail);
-    //     return $data;
-    // }
-    // public function abbdetail ($detail)
-    // {   
-    //     $data = abrevation_detail::where('abrevation_id', $detail)
-    //     ->groupBy('abrevation_id')
-    //     ->get();       
-    //     return $data;
-    // }
+    public function edit(Request $request, $id)
+    {
+        $item = jobdescreate::where('id',$id)->get();
+        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['item'=>$item]);
+    }
 }
