@@ -575,9 +575,7 @@ class jobdescreateController extends Controller
     public function edit(Request $request, $id)
     {
         $item = jobdescreate::where('id',$id)->get();
+        
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['item'=>$item]);
-
-        $int = job::where('id',$id)->get();
-        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['int'=>$int]);
     }
 }

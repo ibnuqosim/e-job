@@ -57,17 +57,19 @@
 
     var dcdc = $('#SelectedAbbrPosition').html();
     $('#select2-AbbrPosition-container').html(dcdc);
+   
     $('#AbbrPosition').on('select2:select', function (e) {
-        var data = e.params.data;
+        var data = $('#SelectedAbbrPosition').html();
         selectPosition(data); 
         nojabatan(data);
         abbdetail(data);
         detail(data);
+        resjabatan(data);
     });
 
     function selectPosition(data) {
 
-        $.get('{{ url('AdminAnalystOD/formjobdescreate/getjab') }}/'+data.id,function(jab){
+        $.get('{{ url('AdminAnalystOD/formjobdescreate/getjab') }}/'+data,function(jab){
             $('#LvlOrg').val(jab.LvlOrg);                                               //No jabatan:                     
             $('#NameofPosition').val(jab.NameofPosition);                               //gol jabatan          
             $('#NameofOrgUnitDinas').val(jab.NameofOrgUnitDinas);                 	    //dinas
@@ -78,8 +80,8 @@
         });                                                                       
     }
 
-    function nojabatan(kode) {
-        $.get('{{ url('AdminAnalystOD/formjobdescreate/nojabatan') }}/'+kode.id,function(jbt){
+    function nojabatan(kode) {        
+        $.get('{{ url('AdminAnalystOD/formjobdescreate/nojabatan') }}/'+kode,function(jbt){
             
             var no = $('#jbt').val();
             var gol =  $('#AbbrPosition').val();
@@ -88,12 +90,11 @@
                 ret = ret+"<tr><td></td><td>"+ (i+1) +"</td><td><input type='text' value='"+jbt[i].jabatanatasanlangsung+"' size='30px' readonly class='form-control' name='jabatanatasanlangsung["+i+"]' id='jabatanatasanlangsung'/><td><input type='text' value='"+jbt[i].jabatanbawahanlangsung+"' size='30px' readonly class='form-control' name='jabatanbawahanlangsung["+i+"]' id='jabatanbawahanlangsung'/> <td><input type='text' value='"+jbt[i].jumlah+"' size='30px' readonly class='form-control' name='jumlah["+i+"]' id='jumlah'/>";
             }
             $('#jbt').html(ret);
-            console.log(ret);
         });   
     }
 
     function detail(data) {
-        $.get('{{ url('AdminAnalystOD/formjobdescreate/detail') }}/'+data.id,function(un){
+        $.get('{{ url('AdminAnalystOD/formjobdescreate/detail') }}/'+data,function(un){
             $('#noorg ').val(un.noorg);                                
             $('#unitkerja').val(un.unitkerja);  
             $('#nojabatan ').val(un.nojabatan);                                
@@ -104,7 +105,7 @@
      }
 
     function abbdetail(kode) {
-        $.get('{{ url('AdminAnalystOD/formjobdescreate/abbdetail') }}/'+kode.id,function(dbl){
+        $.get('{{ url('AdminAnalystOD/formjobdescreate/abbdetail') }}/'+kode,function(dbl){
 
             var no = $('#dbl').val();
             var gol =  $('#AbbrPosition').val();
@@ -115,7 +116,6 @@
             }
 
             $('#dbl').html(ret);
-            console.log(ret);
         });   
     }
 
@@ -124,10 +124,10 @@
         var stre;
 
         var gol =  $('#LvlOrg').val();
-        var kode = $('#AbbrOrgUnitDivisi').val(); 
-        
+        var kode = $('#AbbrOrgUnitDivisi').val();
+        console.log();
         if('gol','kode'){
-            stre = "<div id='kolom"+res+"' >"+
+            stre = "<div id='kolom"+res+"'>"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<select class='js-data-example-ajax form-control res-ajax' name='res[]'></select>"+
                         "</div>"+
@@ -136,7 +136,7 @@
                         "</div>"+
                     "</div>";
 
-            ok =  "<div id='okkolom"+res+"' >"+
+            ok =  "<div id='okkolom"+res+"'>"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<select class='js-data-example-ajax form-control divresk-ajax' name='divresk[]'></select>"+
                         "</div>"+
@@ -163,13 +163,16 @@
                     url: '{{ url('AdminAnalystOD/formjobdescreate/resjabatan') }}/'+gol,
                     dataType: 'json'
                 }
+               
             });
+
             $('.divresk-ajax').select2({
                 ajax: {
                     url: '{{ url('AdminAnalystOD/formjobdescreate/resunitindikator') }}/'+kode,
                     dataType: 'json'
                 }
             });
+
             $('.divresk-ajax').on('select2:select',function (e){
                 $( ".kolomindi"+(res-1).toString() ).val(e.params.data.indikator);
             });
@@ -420,9 +423,19 @@
             $('penga').val(penga);
         }
     }
+
     function hapuspenga(penga) {
         $('#kolompenga'+penga).remove();
     }
+
+    $(document).ready(function(){
+        var data = $('#SelectedAbbrPosition').html();
+        selectPosition(data); 
+        nojabatan(data);
+        abbdetail(data);
+        detail(data);
+        resjabatan();
+    })
 
 </script>
 
@@ -434,7 +447,8 @@
 {{-- @foreach ($item as $value)
     {{ $value }}
 @endforeach
-{{ dd() }} --}}
+{{ dd($item) }} --}}
+
 <section class="content-header">
     <h1>
         EDIT JOBDES
@@ -506,7 +520,7 @@
                         <td>Gol. Jabatan (Job Level):</td>
                         <td>:</td>
                         <td>
-                            <input type="text" readonly class="form-control" id="LvlOrg" name="LvlOrg" value="{{ $datas->gol_jabatan }}" >
+                            <input type="text" readonly class="form-control" id="LvlOrg" name="LvlOrg" value="{{ $datas->name_jabatan }}" >
                         </td>
                     </tr>
                     <tr>
@@ -546,7 +560,7 @@
                     </tr>
                     <tr>
                         <td> 
-                            <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="Otomatis pilih table" name="AbbrOrgUnitDivisi" >
+                            <input type="text" class="form-control" id="AbbrOrgUnitDivisi" value="x" name="AbbrOrgUnitDivisi" >
                         </td>
                     </tr>
                 </table>
@@ -580,7 +594,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label></label><br>
-                        <textarea class="form-control" rows="3" id="jobrole" name="jobrole" value="{{ $datas->jobrole }}" ></textarea>
+                        <textarea class="form-control" rows="3" id="jobrole" name="jobrole">{{$datas->jobrole}}</textarea>
                     </div>
                 </div>
             </div>
@@ -599,9 +613,8 @@
                             <button type="button" class="btn btn-primary" onclick="resjabatan();">Tambah Data</button>
                         </div>
                         <div class="form-group" id="divres">
-                            <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" />
+                            <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" />                 
                         </div>
-
                         <div class="form-group">
                             <label>Tanggung Jawab Duties & Responsibilities </label><br>
                         </div>
@@ -657,13 +670,13 @@
                             <label> a. Finansial (Financial) </label>
                         </div>
                         <div class="form-group">
-                            <textarea type="text" class="form-control" class="form-control" id="finansial" name="finansial" placeholder="Isi Data ..."></textarea>
+                            <textarea type="text" class="form-control" class="form-control" id="finansial" name="finansial">{{ $datas->finansial }}</textarea>
                         </div>
                         <div class="form-group">
                             <label> b. Non Finansial (Non Financial) </label>
                         </div>
                         <div class="form-group">
-                            <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial" placeholder="Isi Data ..."></textarea>
+                            <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial">{{ $datas->nonfinansial }}</textarea>
                         </div>
                     </div>
                 </div>
