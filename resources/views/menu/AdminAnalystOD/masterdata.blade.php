@@ -3,3 +3,5 @@
 <li><a href="{{ url('AdminAnalystOD/list_katakerja') }}"><i class="fa fa-circle-o"></i>Kata Kerja</a></li>
 <li><a href="{{ url('AdminAnalystOD/list_pengalamankerja') }}"><i class="fa fa-circle-o"></i>pengalaman kerja</a></li>
 <li><a href="{{ url('AdminAnalystOD/list_pendidikan') }}"><i class="fa fa-circle-o"></i>Pendidikan</a></li>
+<li><a href="{{ url('AdminAnalystOD/list_alatkerja') }}"><i class="fa fa-circle-o"></i>Alat Kerja</a></li>
+<li><a href="{{ url('AdminAnalystOD/list_lingkungankerja') }}"><i class="fa fa-circle-o"></i>Lingkungan Kerja</a></li>

@@ -55,6 +55,20 @@ Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
             Route::get('/deletematrikindikator/{id?}','matrikindikatorController@delete');
             Route::get('/editmatrikindikator/{id?}','matrikindikatorController@edit'); 
             Route::post('/updatematrikindikator/{id?}','matrikindikatorController@update'); 
+
+            Route::get('/list_alatkerja','alatkerjaController@index');
+            Route::get('/fromAddalatkerja','alatkerjaController@fromAdd');
+            Route::post('/storealatkerja','alatkerjaController@store'); 
+            Route::get('/deletealatkerja/{id?}','alatkerjaController@delete');
+            Route::get('/editalatkerja/{id?}','alatkerjaController@edit'); 
+            Route::post('/updatealatkerja/{id?}','alatkerjaController@update');
+
+            Route::get('/list_lingkungankerja','lingkungankerjaController@index');
+            Route::get('/fromAddlingkungankerja','lingkungankerjaController@fromAdd');
+            Route::post('/storelingkungankerja','lingkungankerjaController@store'); 
+            Route::get('/deletelingkungankerja/{id?}','lingkungankerjaController@delete');
+            Route::get('/editlingkungankerja/{id?}','lingkungankerjaController@edit'); 
+            Route::post('/updatelingkungankerja/{id?}','lingkungankerjaController@update'); 
             
         });
         

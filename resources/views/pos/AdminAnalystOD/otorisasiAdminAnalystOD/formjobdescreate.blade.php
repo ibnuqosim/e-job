@@ -545,8 +545,10 @@
                         <thead>
                             <th>
                                 <td>no</td>
-                                <td>Direktorat (Directorate)</td>
-                                <td>(Directly Responsible to)</td>
+                                <td>Bertanggung jawab langsung kepada:<br>
+                                Direktorat (Directorate)</td>
+                                <td>Jabatan yang diawasi langsung <br>        :
+                                (Directly Responsible to)</td>
                                 <td>jumlah</td>
                             </th>
                         </thead>
@@ -593,7 +595,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Tanggung Jawab Duties & Responsibilities </label><br>
+                            <label>Tanggung Jawab (Duties & Responsibilities)</label><br>
                         </div>
                         <div class="form-group" id="divresk">
                             <input class="js-data-example-ajax form-control"  name="id_met_object" id="divresk" value="1" type="hidden" />
@@ -833,7 +835,7 @@
                                             <td>JOB GROUP</td>
                                             <td>:</td>
                                             <td>
-                                                <input type="text" readonly class="form-control" id="jobgroup" placeholder="Otomatis job group" name="jobgroup">
+                                                <input type="text" readonly class="form-control" id="job" placeholder="Otomatis job group" name="jobgroup">
                                             </td>
                                         </tr>
                                     </table>
