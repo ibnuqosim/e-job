@@ -54,7 +54,8 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Level</th>
+                            <th>Alat Kerja</th>
+                            <th>ACT</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,7 +64,7 @@
                             <td>{{$item->id}}</td>
                             <td>{{$item->deskripsi}}</td>
                             <td>
-                                <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editalatkerja',['id'=>$item->id]) }}"></a>
+                                <a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modal-info{{ $item->id }}"></a>
                                 <a class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#modal-delete{{ $item->id }}"></a>
                             </td>
                         </tr>
@@ -77,7 +78,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ url('AdminAnalystOD/deletekatakerja/'.$item->id) }}" method="get">
+                                    <form action="{{ url('AdminAnalystOD/deletealatkerja/'.$item->id) }}" method="get">
                                         <button type="submit" class="btn btn-sm btn-success">OK</button>
                                         <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
                                     </form>
