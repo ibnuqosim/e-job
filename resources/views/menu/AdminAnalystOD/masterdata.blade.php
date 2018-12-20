@@ -5,3 +5,4 @@
 <li><a href="{{ url('AdminAnalystOD/list_pendidikan') }}"><i class="fa fa-circle-o"></i>Pendidikan</a></li>
 <li><a href="{{ url('AdminAnalystOD/list_alatkerja') }}"><i class="fa fa-circle-o"></i>Alat Kerja</a></li>
 <li><a href="{{ url('AdminAnalystOD/list_lingkungankerja') }}"><i class="fa fa-circle-o"></i>Lingkungan Kerja</a></li>
+<li><a href="{{ url('AdminAnalystOD/list_persyaratan') }}"><i class="fa fa-circle-o"></i>persyaratan_fisik</a></li>

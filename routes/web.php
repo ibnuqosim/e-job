@@ -68,7 +68,14 @@ Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
             Route::post('/storelingkungankerja','lingkungankerjaController@store'); 
             Route::get('/deletelingkungankerja/{id?}','lingkungankerjaController@delete');
             Route::get('/editlingkungankerja/{id?}','lingkungankerjaController@edit'); 
-            Route::post('/updatelingkungankerja/{id?}','lingkungankerjaController@update'); 
+            Route::post('/updatelingkungankerja/{id?}','lingkungankerjaController@update');
+            
+            Route::get('/list_persyaratan','persyaratanController@index');
+            Route::get('/fromAddpersyaratan','persyaratanController@fromAdd');
+            Route::post('/storepersyaratan','persyaratanController@store'); 
+            Route::get('/deletepersyaratan/{id?}','persyaratanController@delete');
+            Route::get('/editpersyaratan/{id?}','persyaratanController@edit'); 
+            Route::post('/updatepersyaratan/{id?}','persyaratanController@update'); 
             
         });
         
