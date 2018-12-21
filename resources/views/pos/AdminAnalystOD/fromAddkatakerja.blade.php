@@ -10,16 +10,23 @@
 <section class="content-header">
     <div class="box box-info">
       <div class="box-header with-border">
-        <h3 class="box-title">from Add Kata Kerja</h3>
+        <h3 class="box-title">from Add (Main Responsibility)</h3>
       </div>
       <form class="form-horizontal" action="{{ url('AdminAnalystOD/storekatakerja') }}" method="post">
         <input name="_token" value="{{ csrf_token() }}" type="hidden">
-        <div class="box-body">
+          <div class="box-body">
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">level</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="IsiData" name="level">
-            </div>
+              <label for="inputEmail3" class="col-sm-2 control-label">level</label>
+              <div class="col-sm-10">
+                <select class="form-control" id="inputEmail3" placeholder="IsiData" name="level">
+                    <option>A</option>
+                    <option>B</option>
+                    <option>C</option>
+                    <option>D</option>
+                    <option>E</option>
+                    <option>F</option>
+                  </select>
+              </div>
           </div>
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">keterangan</label>
