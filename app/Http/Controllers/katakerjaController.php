@@ -31,13 +31,13 @@ class katakerjaController extends Controller
         $data->save();
         
         if($data){
-            return redirect('/AdminAnalystOD/list_katakerja');
+            return redirect('/AdminAnalystOD/list_katakerja')->with('status', 'Berhasil di Simpan');
         }
     }
     public function delete($id)
     {
         kata_kerja::find($id)->delete();
-        return redirect('/AdminAnalystOD/list_katakerja');
+        return redirect('/AdminAnalystOD/list_katakerja')->with('status', 'Berhasil di Delete');
     }
 
     public function edit(Request $request, $id)
@@ -54,6 +54,6 @@ class katakerjaController extends Controller
         $flight->keterangan = $request->keterangan;
         
         $flight->save();
-        return redirect('/AdminAnalystOD/list_katakerja');
+        return redirect('/AdminAnalystOD/list_katakerja')->with('status', 'Berhasil di Update');
     }
 }

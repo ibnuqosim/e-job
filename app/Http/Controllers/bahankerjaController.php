@@ -29,13 +29,13 @@ class bahankerjaController extends Controller
         $data->save();
         
         if($data){
-            return redirect('/AdminAnalystOD/list_bahankerja');
+            return redirect('/AdminAnalystOD/list_bahankerja')->with('status', 'Berhasil di Simpan');
         }
     }
     public function delete($id)
     {
         bahan_kerja::find($id)->delete();
-        return redirect('/AdminAnalystOD/list_bahankerja');
+        return redirect('/AdminAnalystOD/list_bahankerja')->with('status', 'Berhasil di delete');
     }
 
     public function edit(Request $request, $id)
@@ -51,7 +51,7 @@ class bahankerjaController extends Controller
         $flight->deskripsi = $request->deskripsi;
         
         $flight->save();
-        return redirect('/AdminAnalystOD/list_bahankerja');
+        return redirect('/AdminAnalystOD/list_bahankerja')->with('status', 'Berhasil di update');;
     }
     
 }
