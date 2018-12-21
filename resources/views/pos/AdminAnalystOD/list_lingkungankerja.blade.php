@@ -22,6 +22,11 @@
 @endsection
 
 @section('content')
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
 <section class="content-header">
     <h1>
         Data Tables
@@ -65,9 +70,27 @@
                             <td>{{$item->deskripsi}}</td>
                             <td>
                                 <a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modal-info{{ $item->id }}"></a>
+                                {{-- <a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modal-info{{ $item->id }}"></a> --}}
                                 <a class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#modal-delete{{ $item->id }}"></a>
                             </td>
                         </tr>
+                        <div class="modal modal-info fade" id="modal-info{{ $item->id }}">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title">Yakin Ingin Melakukan Update</h4>
+                                        </div>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{ url('AdminAnalystOD/editlingkungankerja/'.$item->id) }}" method="get">
+                                            <button type="submit" class="btn btn-sm btn-success">OK</button>
+                                            <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         <div class="modal modal-info fade" id="modal-delete{{ $item->id }}">
                             <div class="modal-dialog">
                                 <div class="modal-content">

@@ -29,13 +29,13 @@ class pendidikanController extends Controller
         $data->save();
         
         if($data){
-            return redirect('/AdminAnalystOD/list_pendidikan');
+            return redirect('/AdminAnalystOD/list_pendidikan')->with('status', 'Berhasil di Simpan');
         }
     }
     public function delete($id)
     {
         pendidikan::find($id)->delete();
-        return redirect('/AdminAnalystOD/list_pendidikan');
+        return redirect('/AdminAnalystOD/list_pendidikan')->with('status', 'Berhasil di Delete');
     }
 
     public function edit(Request $request, $id)
@@ -51,7 +51,7 @@ class pendidikanController extends Controller
         $flight->jenjang = $request->jenjang;
         $flight->save();
 
-        return redirect('/AdminAnalystOD/list_pendidikan');
+        return redirect('/AdminAnalystOD/list_pendidikan')->with('status', 'Berhasil di Update');
     }
 }
 

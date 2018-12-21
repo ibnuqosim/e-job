@@ -30,13 +30,13 @@ class lingkungankerjaController extends Controller
         $data->save();
         
         if($data){
-            return redirect('/AdminAnalystOD/list_lingkungankerja');
+            return redirect('/AdminAnalystOD/list_lingkungankerja')->with('status', 'Berhasil di Simpan');
         }
     }
     public function delete($id)
     {
         lingkungan_kerja::find($id)->delete();
-        return redirect('/AdminAnalystOD/list_lingkungankerja');
+        return redirect('/AdminAnalystOD/list_lingkungankerja')->with('status', 'Berhasil di Delete');
     }
 
     public function edit(Request $request, $id)
@@ -52,6 +52,6 @@ class lingkungankerjaController extends Controller
         $flight->deskripsi = $request->deskripsi;
         
         $flight->save();
-        return redirect('/AdminAnalystOD/list_lingkungankerja');
+        return redirect('/AdminAnalystOD/list_lingkungankerja')->with('status', 'Berhasil di Update');
     }
 }

@@ -29,13 +29,13 @@ class persyaratanController extends Controller
         $data->save();
         
         if($data){
-            return redirect('/AdminAnalystOD/list_persyaratan');
+            return redirect('/AdminAnalystOD/list_persyaratan')->with('status', 'Berhasil di Simpan');
         }
     }
     public function delete($id)
     {
         persyaratan_fisik::find($id)->delete();
-        return redirect('/AdminAnalystOD/list_persyaratan');
+        return redirect('/AdminAnalystOD/list_persyaratan')->with('status', 'Berhasil di Delete');
     }
 
     public function edit(Request $request, $id)
@@ -51,6 +51,6 @@ class persyaratanController extends Controller
         $flight->persyaratan = $request->persyaratan;
         
         $flight->save();
-        return redirect('/AdminAnalystOD/list_persyaratan');
+        return redirect('/AdminAnalystOD/list_persyaratan')->with('status', 'Berhasil di Update');
     }
 }

@@ -30,13 +30,13 @@ class alatkerjaController extends Controller
         $data->save();
         
         if($data){
-            return redirect('/AdminAnalystOD/list_alatkerja');
+            return redirect('/AdminAnalystOD/list_alatkerja')->with('status', 'Berhasil di Simpan');
         }
     }
     public function delete($id)
     {
         alat_kerja::find($id)->delete();
-        return redirect('/AdminAnalystOD/list_alatkerja');
+        return redirect('/AdminAnalystOD/list_alatkerja')->with('status', 'Berhasil di Delete');
     }
 
     public function edit(Request $request, $id)
@@ -52,6 +52,6 @@ class alatkerjaController extends Controller
         $flight->deskripsi = $request->deskripsi;
         
         $flight->save();
-        return redirect('/AdminAnalystOD/list_alatkerja');
+        return redirect('/AdminAnalystOD/list_alatkerja')->with('status', 'Berhasil di Update');
     }
 }

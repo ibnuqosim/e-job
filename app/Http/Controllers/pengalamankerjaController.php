@@ -29,13 +29,13 @@ class pengalamankerjaController extends Controller
         $data->save();
         
         if($data){
-            return redirect('/AdminAnalystOD/list_pengalamankerja');
+            return redirect('/AdminAnalystOD/list_pengalamankerja')->with('status', 'Berhasil di Simpan');
         }
     }
     public function delete($id)
     {
         pengalaman_kerja::find($id)->delete();
-        return redirect('/AdminAnalystOD/list_pengalamankerja');
+        return redirect('/AdminAnalystOD/list_pengalamankerja')->with('status', 'Berhasil di Delete');
     }
 
     public function edit(Request $request, $id)
@@ -51,6 +51,6 @@ class pengalamankerjaController extends Controller
         $flight->keterangan = $request->keterangan;
         
         $flight->save();
-        return redirect('/AdminAnalystOD/list_pengalamankerja');
+        return redirect('/AdminAnalystOD/list_pengalamankerja')->with('status', 'Berhasil di Update');;
     }
 }
