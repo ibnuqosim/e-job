@@ -42,14 +42,14 @@ public function index(Request $request)
         $data->save();
 
         if($data){
-            return redirect('/AdminAnalystOD/list_matrikindikator');
+            return redirect('/AdminAnalystOD/list_matrikindikator')->with('status', 'Berhasil di Simpan');
         }
     }
 
     public function delete($id)
     {
         matrikindikator::find($id)->delete();
-        return redirect('/AdminAnalystOD/list_matrikindikator');
+        return redirect('/AdminAnalystOD/list_matrikindikator')->with('status', 'Berhasil di Update');
     }
 
     public function edit(Request $request, $id)
@@ -68,6 +68,6 @@ public function index(Request $request)
         $item->kewenangan   = $request->kewenangan;
         
         $item->save();
-        return redirect('/AdminAnalystOD/list_matrikindikator');
+        return redirect('/AdminAnalystOD/list_matrikindikator')->with('status', 'Berhasil di Hapus');
     }
 }
