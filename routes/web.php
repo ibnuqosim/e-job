@@ -10,15 +10,22 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('auth.login');
-});
 Auth::routes();
+
+Route::get('/', function () {
+    if(!Auth::user()){
+        return view('auth.login');
+    }else{
+        return redirect('/home');
+    }
+});
+
 Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
-        Route::prefix('AdminAnalystOD')->group(function(){
+
+Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']], function () {
+        
             Route::get('/', function(){
-                echo  "masterdata";
+                return redirect('AdminAnalystOD/listjobdescreate');
             });
             Route::get('/list_bahankerja','bahankerjaController@index');
             Route::get('/fromAddbahankerja','bahankerjaController@fromAdd');
@@ -48,7 +55,7 @@ Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
             Route::get('/deletependidikan/{id?}','pendidikanController@delete'); 
             Route::get('/editpendidikan/{id?}','pendidikanController@edit');
             Route::post('/updatependidikan/{id?}','pendidikanController@update');
-                       
+
             Route::get('/list_matrikindikator','matrikindikatorController@index');
             Route::get('/fromaddmatrikindikator','matrikindikatorController@fromAdd');
             Route::post('/storeresponsibility','matrikindikatorController@store'); 
@@ -76,19 +83,15 @@ Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
             Route::get('/deletepersyaratan/{id?}','persyaratanController@delete');
             Route::get('/editpersyaratan/{id?}','persyaratanController@edit'); 
             Route::post('/updatepersyaratan/{id?}','persyaratanController@update'); 
-            
-        });
-        
-    });
-    
-    Route::group(['middleware'=>['auth', 'role:AdminAnalystOD|ManagerOD']], function () {
-        
-        Route::prefix('AdminAnalystOD')->group(function(){
-            
-            Route::get('/', function(){
-                echo  "menujobdesk";
-            });
-            
+
+            //pengaturan
+            Route::get('/listpengaturan','pengaturanController@index');
+            Route::get('/formpengaturan','pengaturanController@fromAdd');
+            Route::get('/listmasteremail','masteremailController@index');
+            Route::get('/formmasteremail','masteremailController@fromAdd');
+            Route::post('/storemasteremail','masteremailController@store');
+
+            //list jobs create
             Route::get('/listjobdescreate','jobdescreateController@index');
             Route::get('/formjobdescreate','jobdescreateController@fromAdd');
             Route::post('/storejobdescreate','jobdescreateController@store');
@@ -96,7 +99,7 @@ Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
             
             Route::get('/formjobdescreate/resjabatan/{gol?}','jobdescreateController@resjabatan');
             Route::get('/formjobdescreate/resunitkerja/{gol?}','jobdescreateController@resunitkerja');
-         
+            
             Route::get('/formjobdescreate/resunitindikator/{kode?}','jobdescreateController@resunitindikator');
 			Route::get('/formjobdescreate/indikator/{kode?}','jobdescreateController@indikator');
 
@@ -138,27 +141,6 @@ Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
 
             Route::get('/formjobdescreate/abbdetail/{dbl}','jobdescreateController@abbdetail');
             Route::get('/formjobdescreate/detail/{un}','jobdescreateController@detail');
-
-        });
-    });  
-
-    Route::group(['middleware'=>['auth', 'role:AdminAnalystOD']], function () {
-        
-        Route::prefix('AdminAnalystOD')->group(function(){
-            
-            Route::get('/', function(){
-                echo  "pengaturan";
-            });
-            
-            Route::get('/listpengaturan','pengaturanController@index');
-            Route::get('/formpengaturan','pengaturanController@fromAdd');
-
-            Route::get('/listmasteremail','masteremailController@index');
-            Route::get('/formmasteremail','masteremailController@fromAdd');
-            Route::post('/storemasteremail','masteremailController@store');
-
-        });
-        
     });
     
     Route::group(['middleware'=>['auth', 'role:ManagerOD']], function () {
