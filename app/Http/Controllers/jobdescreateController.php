@@ -111,15 +111,15 @@ class jobdescreateController extends Controller
 
                 //print_r(count($request->jabatanatasanlangsung));
                 //die();
-                $count_jbt      = count($request->jabatanatasanlangsung);
+                // $count_jbt      = count($request->jabatanatasanlangsung);
                 $resjabatan     = count($request->jabatanbawahanlangsung);
                 $count_jumlah   = count($request->jumlah);
-                $max            = max($count_jbt,$resjabatan,$count_jumlah);
+                $max            = max($resjabatan,$count_jumlah);
         
                 for ($i=0; $i < $max; $i++) { 
                     $job = new job();
                     $job->jobdescreate_id  = $data_id->id;
-                    $job->jabatanatasanlangsung     = isset($request->jabatanatasanlangsung[$i])?$request->jabatanatasanlangsung[$i]:NULL;
+                    $job->jabatanatasanlangsung     = isset($request->jabatanatasanlangsung)?$request->jabatanatasanlangsung:NULL;
                     $job->jabatanbawahanlangsung    = isset($request->jabatanbawahanlangsung[$i])?$request->jabatanbawahanlangsung[$i]:NULL;
                     $job->jumlah                    = isset($request->jumlah[$i])?$request->jumlah[$i]:NULL;
                     $job->save();

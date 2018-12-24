@@ -1,8 +1,7 @@
-@extends('layouts.adminLTE')
-
+@extends('layouts.adminLTE') 
 @section('style')
 @endsection
-
+ 
 @section('script')
 <script src="{{ url('adminlte/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 <script>
@@ -78,17 +77,22 @@
 
     function nojabatan(kode) {
         $.get('{{ url('AdminAnalystOD/formjobdescreate/nojabatan') }}/'+kode.id,function(jbt){
-           ;   
+            console.log(jbt);
             var no = $('#jbt').val();
             var gol =  $('#AbbrPosition').val();
             var ret = '';
-            
+            var JbtAtasanLangsung = '';
             for (i = 0; i < jbt.length; i++) { 
-                ret = ret+"<tr><td></td><td>"+ (i+1) +"</td><td><input type='text' value='"+jbt[i].jabatanatasanlangsung+"' size='30px' readonly class='form-control' name='jabatanatasanlangsung["+i+"]' id='jabatanatasanlangsung'/><td><input type='text' value='"+jbt[i].jabatanbawahanlangsung+"' size='30px' readonly class='form-control' name='jabatanbawahanlangsung["+i+"]' id='jabatanbawahanlangsung'/> <td><input type='text' value='"+jbt[i].jumlah+"' size='30px' readonly class='form-control' name='jumlah["+i+"]' id='jumlah'/>";
+                ret = ret+"<tr>"+
+                            "<td></td>"+
+                            "<td>"+(i+1) +"</td>"+
+                            "<td><input type='text' value='"+jbt[i].jabatanbawahanlangsung+"' size='30px' readonly class='form-control' name='jabatanbawahanlangsung["+i+"]' id='jabatanbawahanlangsung'/></td>"+
+                            "<td><input type='text' value='"+jbt[i].jumlah+"' size='30px' readonly class='form-control' name='jumlah["+i+"]' id='jumlah'/></td>"+
+                        "</tr>";
+                JbtAtasanLangsung = jbt[i].jabatanatasanlangsung;
             }           
+            $('#JbtAtasanLangsung').val(JbtAtasanLangsung);
             $('#jbt').html(ret);
-            console.log(ret);
-            $('#jabatanatasanlangsung ').val(gol.jabatanatasanlangsung)
         });   
     }
 
@@ -117,7 +121,6 @@
             }
 
             $('#dbl').html(ret);
-            console.log(ret);
         });   
     }
 
@@ -428,10 +431,8 @@
     }
 
 </script>
-
-
 @endsection
-
+ 
 @section('content')
 <section class="content-header">
     <h1>
@@ -478,11 +479,11 @@
             </table>
         </div>
     </div>
-</section> 
+</section>
 <form class="form-horizontal" action="{{ url('AdminAnalystOD/storejobdescreate') }}" method="post" enctype="multipart/form-data">
-    <input name="_token" value="{{ csrf_token() }}" type="hidden">  
+    <input name="_token" value="{{ csrf_token() }}" type="hidden">
     <section class="content">
-        <div class="box box-warning">   
+        <div class="box box-warning">
             <div class="box-header with-border">
                 <h3 class="box-title">I. IDENTIFIKASI JABATAN (Job Identification)</h3>
             </div>
@@ -492,8 +493,8 @@
                     <tr>
                         <td width=50%>No. Jabatan (Job No.)</td>
                         <td>:</td>
-                        <td width=50%>    
-                            <select class="js-data-example-ajax form-control" id="AbbrPosition"  name="getjab"></select>
+                        <td width=50%>
+                            <select class="js-data-example-ajax form-control" id="AbbrPosition" name="getjab"></select>
                         </td>
                     </tr>
                     <tr>
@@ -507,61 +508,59 @@
                         <td>name Jabatan (Job Name)</td>
                         <td>:</td>
                         <td>
-                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" placeholder="name Jabatan (Job Name)" name="NameofPosition">
+                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" placeholder="name Jabatan (Job Name)"
+                                name="NameofPosition">
                         </td>
                     </tr>
                     <tr>
                         <td>Dinas (Official)</td>
                         <td>:</td>
-                        <td>                         
-                            <input type="text" readonly class="form-control" id="NameofOrgUnitDinas"  placeholder="Otomatis pilih table" name="NameofOrgUnitDinas">
+                        <td>
+                            <input type="text" readonly class="form-control" id="NameofOrgUnitDinas" placeholder="Otomatis pilih table" name="NameofOrgUnitDinas">
                         </td>
                     </tr>
                     <tr>
                         <td>Divisi (Division)</td>
                         <td>:</td>
-                        <td>    
-                            <input type="text" readonly class="form-control" id="NameofOrgUnitDivisi"  placeholder="Otomatis pilih table" name="NameofOrgUnitDivisi">
+                        <td>
+                            <input type="text" readonly class="form-control" id="NameofOrgUnitDivisi" placeholder="Otomatis pilih table" name="NameofOrgUnitDivisi">
                         </td>
                     </tr>
                     <tr>
                         <td>Subdirektorat(Subdirectorate)</td>
                         <td>:</td>
-                        <td> 
-                            <input type="text" readonly class="form-control" id="NameofOrgUnitSubDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitSubDirektorat" >
+                        <td>
+                            <input type="text" readonly class="form-control" id="NameofOrgUnitSubDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitSubDirektorat">
                         </td>
                     </tr>
                     <tr>
                         <td>Direktorat(Directorate)</td>
                         <td>:</td>
-                        <td> 
-                            <input type="text" readonly class="form-control" id="NameofOrgUnitDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitDirektorat" >
+                        <td>
+                            <input type="text" readonly class="form-control" id="NameofOrgUnitDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitDirektorat">
                         </td>
                     </tr>
                     <tr>
-                        <td>Prosess</td>
+                        <td>Prosess </td>
                         <td>:</td>
-                        <td> 
-                            <input type="text" readonly class="form-control" id="jabatanatasanlangsung" placeholder="Otomatis pilih table" name="jabatanatasanlangsung" >
+                        <td>
+                            <input type="text" readonly class="form-control" id="JbtAtasanLangsung" placeholder="Otomatis pilih table" name="jabatanatasanlangsung" value="">
                         </td>
                     </tr>
                     <tr>
-                        <td> 
-                            <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="Otomatis pilih table" name="AbbrOrgUnitDivisi" >
+                        <td>
+                            <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="Otomatis pilih table" name="AbbrOrgUnitDivisi">
                         </td>
-                    </tr> 
+                    </tr>
                     @endforeach
-                    
+
                 </table>
                 <div class="form-group">
-                    <table border="1" width="100%"  class="table table-bordered table-hover">
+                    <table border="1" width="100%" class="table table-bordered table-hover">
                         <thead>
                             <th>
                                 <td>no</td>
-                                <td>Bertanggung jawab langsung kepada:<br>
-                                Direktorat (Directorate)</td>
-                                <td>Jabatan yang diawasi langsung <br>        :
-                                (Directly Responsible to)</td>
+                                <td>Jabatan yang diawasi langsung (Directly Responsible to)</td>
                                 <td>jumlah</td>
                             </th>
                         </thead>
@@ -571,7 +570,7 @@
                 </div>
             </div>
         </div>
-    </section> 
+    </section>
     <section class="content">
         <div class="box box-default">
             <div class="box-header with-border">
@@ -579,7 +578,7 @@
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                </div> 
+                </div>
             </div>
             <div class="box-body">
                 <div class="col-md-12">
@@ -611,13 +610,13 @@
                             <label>Tanggung Jawab (Duties & Responsibilities)</label><br>
                         </div>
                         <div class="form-group" id="divresk">
-                            <input class="js-data-example-ajax form-control"  name="id_met_object" id="divresk" value="1" type="hidden" />
+                            <input class="js-data-example-ajax form-control" name="id_met_object" id="divresk" value="1" type="hidden" />
                         </div>
                         <div class="form-group">
                             <label>Indikator Capaian (Performance Indicators) </label><br>
                         </div>
                         <div class="form-group" id="divindi">
-                            <input class="form-control" name="id_met_indikatorvalue"  id="divresk" value="1" type="hidden" />
+                            <input class="form-control" name="id_met_indikatorvalue" id="divresk" value="1" type="hidden" />
                         </div>
                         <label>
                             <h6>
@@ -632,7 +631,7 @@
                                 (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja yang tinggi dan memenuhi 
                                 standar yang ditetapkan.
                             </h6>
-                        </label> 
+                        </label>
                         <label>
                             <h6>
                                 Penghematan Unit Kerja
@@ -646,60 +645,60 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="content">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">IV. DIMENSI (Dimensions)</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                    </div> 
+    </section>
+    <section class="content">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">IV. DIMENSI (Dimensions)</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
                 </div>
-                <div class="box-body">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label> a. Finansial (Financial) </label>
-                        </div>
-                        <div class="form-group">
-                            <textarea type="text" class="form-control" class="form-control" id="finansial" name="finansial" placeholder="Isi Data ..."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label> b. Non Finansial (Non Financial) </label>
-                        </div>
-                        <div class="form-group">
-                            <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial" placeholder="Isi Data ..."></textarea>
-                        </div>
+            </div>
+            <div class="box-body">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label> a. Finansial (Financial) </label>
+                    </div>
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" class="form-control" id="finansial" name="finansial" placeholder="Isi Data ..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label> b. Non Finansial (Non Financial) </label>
+                    </div>
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial" placeholder="Isi Data ..."></textarea>
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="content">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">V. WEWENANG (Authorities)</h3>
-                    <div class="box-tools pull-right"></div> 
-                </div>
-                <div class="box-body">
-                    <div class="form-group" id="divwew">
-                        <input class="form-control" id="divwew" name="id_met_kewenangan" value="1" type="hidden" />
-                    </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">V. WEWENANG (Authorities)</h3>
+                <div class="box-tools pull-right"></div>
+            </div>
+            <div class="box-body">
+                <div class="form-group" id="divwew">
+                    <input class="form-control" id="divwew" name="id_met_kewenangan" value="1" type="hidden" />
                 </div>
             </div>
-        </section>
-        <section class="content">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">VI. HUBUNGAN KERJA (Work Relationship)</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                    </div> 
+        </div>
+    </section>
+    <section class="content">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">VI. HUBUNGAN KERJA (Work Relationship)</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
                 </div>
-                <div class="box-body">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>Unit Kerja (Work Unit)</label>
+            </div>
+            <div class="box-body">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>Unit Kerja (Work Unit)</label>
                         </select>
                     </div>
                     <div class="form-group">
@@ -711,12 +710,12 @@
                     <div class="form-group" id="divdworkint">
                         <input class="js-data-example-ajax form-control" id="workint" name="id_emp_cskt_ltext" value="1" type="hidden" />
                     </div>
-					<div class="form-group">
+                    <div class="form-group">
                         <label>Dalam Hal (Keterangan Internal):</label>
                     </div>
                     <div class="form-group" id="divhal">
-                            <input class="js-data-example-ajax form-control" id="divhal" name="id_hal_internal" value="1" type="hidden" />
-                        </div>
+                        <input class="js-data-example-ajax form-control" id="divhal" name="id_hal_internal" value="1" type="hidden" />
+                    </div>
                     <div class="form-group">
                         <label>b. Eksternal (External)</label>
                     </div>
@@ -731,238 +730,255 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section class="content">
-            <div class="box box-default">
-                <div class="box-header with-border">
-                    <h3 class="box-title">VII. ALAT,BAHAN,DAN LINGKUNGAN KERJA (Tools, Materials, and Conditions)</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                    </div> 
+    </section>
+    <section class="content">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">VII. ALAT,BAHAN,DAN LINGKUNGAN KERJA (Tools, Materials, and Conditions)</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
                 </div>
-                <div class="box-body">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>1. Alat Kerja (Tools)</label>
-                        </div>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-primary" onclick="tmcalatkerja();">Tambah Data</button>
-                        </div>
-                        <div class="form-group" id="divdtools">
-                            <input class="js-data-example-ajax form-control" id="tools" value="1" name="id_deskripsi" type="hidden" />
-                        </div>
-                        <div class="form-group">
-                            <label>2. Bahan Kerja (Materials)</label>
-                        </div>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-primary" onclick="tmcbahankerja();">Tambah Data</button>
-                        </div>
-                        <div class="form-group" id="divdmaterials">
-                            <input class="js-data-example-ajax form-control" id="materials" name="id_deskripsi" value="1" type="hidden" />
-                        </div>
-                        <div class="form-group">
-                            <label>3. Lingk. Kerja (Conditions)</label>
-                        </div>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-primary" onclick="tmclingkkerja();">Tambah Data</button>
-                        </div>
-                        <div class="form-group" id="divdconditions">
-                            <input class="js-data-example-ajax form-control" id="conditions" name="id_deskripsi" value="1" type="hidden" />
-                        </div>
+            </div>
+            <div class="box-body">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>1. Alat Kerja (Tools)</label>
                     </div>
-                    <div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" onclick="tmcalatkerja();">Tambah Data</button>
                     </div>
-                </section>
-                <section class="content">
-                    <div class="box box-default">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">VIII. PERSYARATAN JABATAN (Job Spesifications)</h3>
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                            </div> 
-                        </div>
-                        <div class="box-body">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>1. Pendidikan</label>
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-primary" onclick="pendidikan();">Tambah Data</button>
-                                </div>
-                                <div class="form-group" id="divdpen">
-                                    <input class="js-data-example-ajax form-control" id="pen" name="id_jenjang" value="1" type="hidden" />
-                                </div>
-                                
-                                <div class="form-group">
-                                    <label>2. Pengalaman Kerja</label>
-                                </div>
-                                <div class="form-group">
-                                    <button type="button" class="btn btn-primary" onclick="pengalaman();">Tambah Data</button>
-                                </div>
-                                <div class="form-group" id="divdpenga">
-                                    <input class="js-data-example-ajax form-control" id="penga" name="id_keterangan" value="1" type="hidden" />
-                                </div>
-                                <div class="form-group">
-                                    <label>3. Persyaratan Fisik</label>
-                                </div>
-                                <div class="form-group">
-                                    <select class="js-data-example-ajax form-control" id="fisik" name="persyaratan_fisik"></select>
-                                </div>
-                                <div class="form-group">
-                                    <label>4. Profil Jabatan</label>
-                                </div>
-                                <div class="form-group">
-                                    <table border="1" width="100%"  class="table table-bordered table-hover">
-                                        <tr>
-                                            <td>Nama Jabatan</td>
-                                            <td>:</td>
-                                            <td>
-                                                <input type="text" readonly class="form-control" id="namajabatan" placeholder="Otomatis Jabatan" name="namajabatan">
-                                            </td>
-                                            <td>NO.ORG</td>
-                                            <td>:</td>
-                                            <td>
-                                                <input type="text" readonly class="form-control" id="noorg" placeholder="Otomatis Golongan" name="noorg">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Golongan</td>
-                                            <td>:</td>
-                                            <td>
-                                                <input type="text" readonly class="form-control" id="gol" placeholder="Otomatis Golongan" name="golongan">
-                                            </td>
-                                            <td>Unit Kerja</td>
-                                            <td>:</td>
-                                            <td>
-                                                <input type="text" readonly class="form-control" id="unitkerja" placeholder="Otomatis untit kerja" name="unitkerja">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>No Jabatan</td>
-                                            <td>:</td>
-                                            <td>
-                                                <input type="text" readonly class="form-control" id="nojabatan" placeholder="Otomatis nomer jabatan" name="nojabatan">
-                                            </td>
-                                            <td>JOB GROUP</td>
-                                            <td>:</td>
-                                            <td>
-                                                <input type="text" readonly class="form-control" id="job" placeholder="Otomatis job group" name="jobgroup">
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="form-group">
-                                    <table border="1" width="100%"  class="table table-bordered table-hover">
-                                        <tr>
-                                            <td align="center">Nama Jabatan<td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <div class="form-group">
-                                    <table border="1" width="100%"  class="table table-bordered table-hover">
-                                        <thead>
-                                            <th>
-                                                <td>NO</td>
-                                                <td>GROUP ASPEK</td>
-                                                <td>NAMA KOMPETENSI</td>
-                                                <td>PROFISIENSI</td>
-                                            </th>
-                                        </thead>
-                                        <tbody id="dbl">
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="form-group" id="divdtools">
+                        <input class="js-data-example-ajax form-control" id="tools" value="1" name="id_deskripsi" type="hidden" />
                     </div>
-                </section>
-                <section class="content">
-                    <div class="box box-default">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">IX. POSISI JABATAN DALAM STRUKTUR ORGANISASI (Organizational Structure)</h3>
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                            </div> 
-                        </div>
-                        <div class="box-body">
-                            <label for="exampleInputFile">File input</label>
-                            <input type="file" id="gambar" name="gambar">
-                        </div>
+                    <div class="form-group">
+                        <label>2. Bahan Kerja (Materials)</label>
                     </div>
-                </section>
-                <section class="content">
-                    <div class="box box-default">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">VIII. PERSYARATAN JABATAN (Job Spesifications)</h3>
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-                            </div> 
-                        </div>
-                        <div class="box-body">
-                            <div class="col-md-12">
-                                <table id="example2" class="table table-bordered table-hover">
-                                    <tr>
-                                        <td width=30%>DIANALISIS OLEH: (Analyzed By):</td>
-                                        <td width=30% class="center">MENYETUJUI (Approved By)</td>
-                                        <td width=30%></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Issue Date</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Holder</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <h5>SESUAI LOGIN ANALIS</h5>
-                                            <input type="text" class="form-control" class="form-control" readonly  placeholder="Sr. Spec.Organization Design ">      
-                                        </td>
-                                        <td>
-                                            <h5>Hasri Suryani </h5>
-                                            <input type="text" class="form-control" class="form-control" readonly  placeholder="Manager OD&HCP"> 
-                                        </div>
-                                        <td>
-                                            <h5>Input name User</h5>
-                                            <select class="js-data-example-ajax form-control" id="namauser" name="namauser"></select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}"/>
-                                        </td>
-                                        <td>
-                                            <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}"/>
-                                        </td>
-                                        <td>
-                                            <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}"/>
-                                        </td>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" onclick="tmcbahankerja();">Tambah Data</button>
                     </div>
-                </section>
-                
-                <div class="box-footer">
-                    <button type="submit" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-info pull-right">Save</button>
+                    <div class="form-group" id="divdmaterials">
+                        <input class="js-data-example-ajax form-control" id="materials" name="id_deskripsi" value="1" type="hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label>3. Lingk. Kerja (Conditions)</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" onclick="tmclingkkerja();">Tambah Data</button>
+                    </div>
+                    <div class="form-group" id="divdconditions">
+                        <input class="js-data-example-ajax form-control" id="conditions" name="id_deskripsi" value="1" type="hidden" />
+                    </div>
+                </div>
+                <div>
+                </div>
+    </section>
+    <section class="content">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">VIII. PERSYARATAN JABATAN (Job Spesifications)</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label>1. Pendidikan</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" onclick="pendidikan();">Tambah Data</button>
+                    </div>
+                    <div class="form-group" id="divdpen">
+                        <input class="js-data-example-ajax form-control" id="pen" name="id_jenjang" value="1" type="hidden" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>2. Pengalaman Kerja</label>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" onclick="pengalaman();">Tambah Data</button>
+                    </div>
+                    <div class="form-group" id="divdpenga">
+                        <input class="js-data-example-ajax form-control" id="penga" name="id_keterangan" value="1" type="hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label>3. Persyaratan Fisik</label>
+                    </div>
+                    <div class="form-group">
+                        <select class="js-data-example-ajax form-control" id="fisik" name="persyaratan_fisik"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>4. Profil Jabatan</label>
+                    </div>
+                    <div class="form-group">
+                        <table border="1" width="100%" class="table table-bordered table-hover">
+                            <tr>
+                                <td>Nama Jabatan</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" readonly class="form-control" id="namajabatan" placeholder="Otomatis Jabatan" name="namajabatan">
+                                </td>
+                                <td>NO.ORG</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" readonly class="form-control" id="noorg" placeholder="Otomatis Golongan" name="noorg">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Golongan</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" readonly class="form-control" id="gol" placeholder="Otomatis Golongan" name="golongan">
+                                </td>
+                                <td>Unit Kerja</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" readonly class="form-control" id="unitkerja" placeholder="Otomatis untit kerja" name="unitkerja">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>No Jabatan</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" readonly class="form-control" id="nojabatan" placeholder="Otomatis nomer jabatan" name="nojabatan">
+                                </td>
+                                <td>JOB GROUP</td>
+                                <td>:</td>
+                                <td>
+                                    <input type="text" readonly class="form-control" id="job" placeholder="Otomatis job group" name="jobgroup">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <table border="1" width="100%" class="table table-bordered table-hover">
+                            <tr>
+                                <td align="center">Nama Jabatan
+                                    <td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <table border="1" width="100%" class="table table-bordered table-hover">
+                            <thead>
+                                <th>
+                                    <td>NO</td>
+                                    <td>GROUP ASPEK</td>
+                                    <td>NAMA KOMPETENSI</td>
+                                    <td>PROFISIENSI</td>
+                                </th>
+                            </thead>
+                            <tbody id="dbl">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+    <section class="content">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">IX. POSISI JABATAN DALAM STRUKTUR ORGANISASI (Organizational Structure)</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <label for="exampleInputFile">File input</label>
+                <input type="file" id="gambar" name="gambar">
+            </div>
+        </div>
+    </section>
+    <section class="content">
+        <div class="box box-default">
+            <div class="box-header with-border">
+                <h3 class="box-title">VIII. PERSYARATAN JABATAN (Job Spesifications)</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="col-md-12">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <tr>
+                            <td width=30%>DIANALISIS OLEH: (Analyzed By):</td>
+                            <td width=30% class="center">MENYETUJUI (Approved By)</td>
+                            <td width=30%></td>
+                        </tr>
+                        <tr>
+                            <td>Issue Date</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Holder</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h5>SESUAI LOGIN ANALIS</h5>
+                                <input type="text" class="form-control" class="form-control" readonly placeholder="Sr. Spec.Organization Design ">
+                            </td>
+                            <td>
+                                <h5>Hasri Suryani </h5>
+                                <input type="text" class="form-control" class="form-control" readonly placeholder="Manager OD&HCP">
+                </div>
+                <td>
+                    <h5>Input name User</h5>
+                    <select class="js-data-example-ajax form-control" id="namauser" name="namauser"></select>
+                </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}" />
+                    </td>
+                    <td>
+                        <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}" />
+                    </td>
+                    <td>
+                        <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}" />
+                    </td>
+                    </td>
+                </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <div class="box-footer">
+        <button type="submit" class="btn btn-default">Cancel</button>
+        <button type="submit" class="btn btn-info pull-right">Save</button>
+    </div>
+    </div>
+    </div>
+    </section>
 </form>
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </div>

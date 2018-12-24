@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,95 +18,94 @@
   <link rel="stylesheet" href="{{ url('adminlte/dist/css/AdminLTE.min.css') }}">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
     folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="{{ url('adminlte/dist/css/skins/_all-skins.min.css') }}">
-    <!-- Morris chart -->
-    <link rel="stylesheet" href="{{ url('adminlte/bower_components/morris.js/morris.css') }}">
-    <!-- jvectormap -->
-    <link rel="stylesheet" href="{{ url('adminlte/bower_components/jvectormap/jquery-jvectormap.css') }}">
-    <!-- Date Picker -->
-    <link rel="stylesheet" href="{{ url('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="{{ url('adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
-    <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" href="{{ url('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
-    @yield('style')
-    <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="{{ url('adminlte/plugins/iCheck/all.css') }}">
-    <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="{{ url('adminlte/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
-    <!-- Bootstrap time Picker -->
-    <link rel="stylesheet" href="{{ url('adminlte/plugins/timepicker/bootstrap-timepicker.min.css') }}">
-    <!-- Select2 -->
-    <link rel="stylesheet" href="{{ url('adminlte/bower_components/select2/dist/css/select2.min.css') }}">
-    
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{ url('adminlte/dist/css/AdminLTE.min.css') }}">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
+  <link rel="stylesheet" href="{{ url('adminlte/dist/css/skins/_all-skins.min.css') }}">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="{{ url('adminlte/bower_components/jvectormap/jquery-jvectormap.css') }}">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="{{ url('adminlte/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css') }}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="{{ url('adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.css') }}">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="{{ url('adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}"> @yield('style')
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="{{ url('adminlte/plugins/iCheck/all.css') }}">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="{{ url('adminlte/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="{{ url('adminlte/plugins/timepicker/bootstrap-timepicker.min.css') }}">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ url('adminlte/bower_components/select2/dist/css/select2.min.css') }}">
+
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{ url('adminlte/dist/css/AdminLTE.min.css') }}">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
       folder instead of downloading all of them to reduce the load. -->
-      <link rel="stylesheet" href="{{ url('adminlte/dist/css/skins/_all-skins.min.css') }}">
-      <!-- DataTables -->
-      <link rel="stylesheet" href="{{ url('adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
-    </head>
-    <body class="hold-transition skin-blue sidebar-mini">
-      <div class="wrapper">
-        
-        <header class="main-header">
-          <!-- Logo -->
-          <a href="{{ url('home/') }}" class="logo">
-            <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>E</b>_Job</span>
-            <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>App </b>E_job</span>
-          </a>
-          <!-- Header Navbar: style can be found in header.less -->
-          <nav class="navbar navbar-static-top">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+  <link rel="stylesheet" href="{{ url('adminlte/dist/css/skins/_all-skins.min.css') }}">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="{{ url('adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+
+    <header class="main-header">
+      <!-- Logo -->
+      <a href="{{ url('home/') }}" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>E</b>_Job</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>App </b>E_job</span>
+      </a>
+      <!-- Header Navbar: style can be found in header.less -->
+      <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
               <span class="sr-only">Toggle navigation</span>
             </a>
-            
-            <div class="navbar-custom-menu">
-              <ul class="nav navbar-nav">
-                <li class="dropdown messages-menu">
-                </li>
-                <li class="dropdown notifications-menu">
-                </li>
-                <li class="dropdown tasks-menu">
-                  
-                  <ul class="dropdown-menu">
+
+        <div class="navbar-custom-menu">
+          <ul class="nav navbar-nav">
+            <li class="dropdown messages-menu">
+            </li>
+            <li class="dropdown notifications-menu">
+            </li>
+            <li class="dropdown tasks-menu">
+
+              <ul class="dropdown-menu">
+                <li>
+                  <ul class="menu">
                     <li>
-                      <ul class="menu">
-                        <li><!-- Task item -->            
-                        </a>
-                      </li>
-                      <li><!-- Task item -->
-                        <a class="navbar-brand" href="{{ url('/') }}">
+                      <!-- Task item -->
+                      </a>
+                    </li>
+                    <li>
+                      <!-- Task item -->
+                      <a class="navbar-brand" href="{{ url('/') }}">
                           {{ config('app.name', 'Laravel') }}
                         </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <!-- User Account: style can be found in dropdown.less -->
-              <li class="dropdown user user-menu">
-                @guest
-                <li><a href="{{ route('login') }}">Login</a></li>
-                <li><a href="{{ route('register') }}">Register</a></li>
-                @else
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+              @guest
+              <li><a href="{{ route('login') }}">Login</a></li>
+              <li><a href="{{ route('register') }}">Register</a></li>
+              @else
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                     {{ Auth::user()->name }} <span class="caret"></span>
                   </a>
-                  
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="{{ route('logout') }}"
-                      onclick="event.preventDefault();
+
+                <ul class="dropdown-menu">
+                  <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
                       Logout
                     </a>
-                    
+
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                       {{ csrf_field() }}
                     </form>
@@ -159,7 +159,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.AdminAnalystOD.masterdata')      
+  @include('menu.AdminAnalystOD.masterdata')
             </ul>
             <a href="#">
               <i class="fa fa-rss-square"></i> <span>Menu</span>
@@ -168,7 +168,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.AdminAnalystOD.menujobdesk')      
+  @include('menu.AdminAnalystOD.menujobdesk')
             </ul>
             <a href="#">
               <i class="fa fa-legal"></i> <span>Pengaturan</span>
@@ -177,7 +177,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.AdminAnalystOD.pengaturan')      
+  @include('menu.AdminAnalystOD.pengaturan')
             </ul>
             @endrole
           </li>
@@ -190,7 +190,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.ManagerOD')      
+  @include('menu.ManagerOD')
             </ul>
             @endrole
           </li>
@@ -203,7 +203,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.UserSuptMgrGM')      
+  @include('menu.UserSuptMgrGM')
             </ul>
             @endrole
           </li>
@@ -216,7 +216,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.SpecialistHCD')      
+  @include('menu.SpecialistHCD')
             </ul>
             @endrole
           </li>
@@ -229,7 +229,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.InternalAuditor')      
+  @include('menu.InternalAuditor')
             </ul>
             @endrole
           </li>
@@ -242,7 +242,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.AdministratorSMKS')      
+  @include('menu.AdministratorSMKS')
             </ul>
             @endrole
           </li>
@@ -250,7 +250,7 @@
       </section>
       <!-- /.sidebar -->
     </aside>
-    
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       @yield('content')
@@ -260,10 +260,10 @@
       <div class="pull-right hidden-xs">
         <b>Version</b> 2.4.0
       </div>
-      <strong>Copyright &copy; 2018-2019 <a href="http://e-job.site/home">Krakatau information Technology</a>.</strong> All rights
-      reserved.
+      <strong>Copyright &copy; 2018-2019 <a href="http://e-job.site/home">Krakatau information Technology</a>.</strong> All
+      rights reserved.
     </footer>
-    
+
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Create the tabs -->
@@ -323,7 +323,7 @@
             </li>
           </ul>
           <!-- /.control-sidebar-menu -->
-          
+
           <h3 class="control-sidebar-heading">Tasks Progress</h3>
           <ul class="control-sidebar-menu">
             <li>
@@ -332,7 +332,7 @@
                   Custom Template Design
                   <span class="label label-danger pull-right">70%</span>
                 </h4>
-                
+
                 <div class="progress progress-xxs">
                   <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
                 </div>
@@ -344,7 +344,7 @@
                   Update Resume
                   <span class="label label-success pull-right">95%</span>
                 </h4>
-                
+
                 <div class="progress progress-xxs">
                   <div class="progress-bar progress-bar-success" style="width: 95%"></div>
                 </div>
@@ -356,7 +356,7 @@
                   Laravel Integration
                   <span class="label label-warning pull-right">50%</span>
                 </h4>
-                
+
                 <div class="progress progress-xxs">
                   <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
                 </div>
@@ -368,7 +368,7 @@
                   Back End Framework
                   <span class="label label-primary pull-right">68%</span>
                 </h4>
-                
+
                 <div class="progress progress-xxs">
                   <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
                 </div>
@@ -376,7 +376,7 @@
             </li>
           </ul>
           <!-- /.control-sidebar-menu -->
-          
+
         </div>
         <!-- /.tab-pane -->
         <!-- Stats tab content -->
@@ -386,45 +386,45 @@
         <div class="tab-pane" id="control-sidebar-settings-tab">
           <form method="post">
             <h3 class="control-sidebar-heading">General Settings</h3>
-            
+
             <div class="form-group">
               <label class="control-sidebar-subheading">
                 Report panel usage
                 <input type="checkbox" class="pull-right" checked>
               </label>
-              
+
               <p>
                 Some information about this general settings option
               </p>
             </div>
             <!-- /.form-group -->
-            
+
             <div class="form-group">
               <label class="control-sidebar-subheading">
                 Allow mail redirect
                 <input type="checkbox" class="pull-right" checked>
               </label>
-              
+
               <p>
                 Other sets of options are available
               </p>
             </div>
             <!-- /.form-group -->
-            
+
             <div class="form-group">
               <label class="control-sidebar-subheading">
                 Expose author name in posts
                 <input type="checkbox" class="pull-right" checked>
               </label>
-              
+
               <p>
                 Allow the user to show his name in blog posts
               </p>
             </div>
             <!-- /.form-group -->
-            
+
             <h3 class="control-sidebar-heading">Chat Settings</h3>
-            
+
             <div class="form-group">
               <label class="control-sidebar-subheading">
                 Show me as online
@@ -432,7 +432,7 @@
               </label>
             </div>
             <!-- /.form-group -->
-            
+
             <div class="form-group">
               <label class="control-sidebar-subheading">
                 Turn off notifications
@@ -440,7 +440,7 @@
               </label>
             </div>
             <!-- /.form-group -->
-            
+
             <div class="form-group">
               <label class="control-sidebar-subheading">
                 Delete chat history
@@ -465,9 +465,6 @@
   </script>
   <!-- Bootstrap 3.3.7 -->
   <script src="{{ url('adminlte/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-  <!-- Morris.js charts -->
-  <script src="{{ url('adminlte/bower_components/raphael/raphael.min.js') }}"></script>
-  <script src="{{ url('adminlte/bower_components/morris.js/morris.min.js') }}"></script>
   <!-- Sparkline -->
   <script src="{{ url('adminlte/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
   <!-- jvectormap -->
@@ -488,12 +485,10 @@
   <script src="{{ url('adminlte/bower_components/fastclick/lib/fastclick.js') }}"></script>
   <!-- AdminLTE App -->
   <script src="{{ url('adminlte/dist/js/adminlte.min.js') }}"></script>
-  <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-  <script src="{{ url('adminlte/dist/js/pages/dashboard.js') }}"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{ url('adminlte/dist/js/demo.js') }}"></script>
-  
-  
+
+
   {{-- =======================================Batasan================================= --}}
   <script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask.js') }}"></script>
   <script src="{{ url('adminlte/plugins/input-mask/jquery.inputmask.date.extensions.js') }}"></script>
@@ -504,7 +499,7 @@
   <script src="{{ url('adminlte/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>
   <!-- iCheck 1.0.1 -->
   <script src="{{ url('adminlte/plugins/iCheck/icheck.min.js') }}"></script>
-  
+
   {{-- batasan --}}
   <!-- DataTables -->
   <script src="{{ url('adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
@@ -512,9 +507,7 @@
   <!-- SlimScroll -->
   <!-- AdminLTE for demo purposes -->
   <!-- Page script -->
-  {{-- =============================================================================== --}}
-
-  @yield('script')
+  {{-- =============================================================================== --}} @yield('script')
   <script>
     $(function () {
       //Initialize Select2 Elements
@@ -583,4 +576,5 @@
     })
   </script>
 </body>
+
 </html>
