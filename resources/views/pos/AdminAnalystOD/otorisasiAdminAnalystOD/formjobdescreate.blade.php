@@ -928,7 +928,7 @@
                         <tr>
                             <td>
                                 <h5>SESUAI LOGIN ANALIS</h5>
-                            <input type="text" class="form-control" class="form-control" readonly value="{{ Auth::user()->username }}">
+                            <input type="text" class="form-control" class="form-control" id="analis" name="analis" readonly value="{{ Auth::user()->username }}">
                             </td>
                             <td>
                                 <h5>Hasri Suryani </h5>

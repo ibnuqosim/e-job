@@ -80,6 +80,10 @@ class jobdescreateController extends Controller
 
         $persyaratan_fisik                          = $request->persyaratan_fisik;
         $gambar                                     = $request->gambar;
+        //inpu analis
+        $analis                                     = $request->analis;
+
+        $namauser                                   = $request->namauser;
 
         $data = new jobdescreate();
         // I. URAIAN JABATAN (Job Description)
@@ -99,6 +103,11 @@ class jobdescreateController extends Controller
 
         // $file->gambar                            = $gambar;
         $data->gambar                               = $gambar;
+        // save analis
+        $data->analis                               = $analis;
+
+        $data->namauser                             = $namauser;
+
 
         
         $data->save();
