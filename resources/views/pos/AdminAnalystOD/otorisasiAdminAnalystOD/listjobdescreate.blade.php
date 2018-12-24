@@ -151,42 +151,42 @@
                                                         <td>Gol. Jabatan (Job Level):</td>
                                                         <td>:</td>
                                                         <td>
-                                                            <input type="text" readonly class="form-control" id="LvlOrg" placeholder="Otomatis pilih table" name="LvlOrg">
+                                                            <input type="text" readonly class="form-control" id="LvlOrg" name="LvlOrg"  value="{{$item->gol_jabatan}}">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>name Jabatan (Job Name)</td>
                                                         <td>:</td>
                                                         <td>
-                                                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" placeholder="name Jabatan (Job Name)" name="NameofPosition">
+                                                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" name="NameofPosition" value="{{$item->name_jabatan}}">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Dinas (Official)</td>
                                                         <td>:</td>
                                                         <td>                         
-                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitDinas"  placeholder="Otomatis pilih table" name="NameofOrgUnitDinas">
+                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitDinas" name="NameofOrgUnitDinas" value="{{$item->dinas}}">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Divisi (Division)</td>
                                                         <td>:</td>
                                                         <td>    
-                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitDivisi"  placeholder="Otomatis pilih table" name="NameofOrgUnitDivisi">
+                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitDivisi" name="NameofOrgUnitDivisi" value="{{$item->divisi}}">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Subdirektorat(Subdirectorate)</td>
                                                         <td>:</td>
                                                         <td> 
-                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitSubDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitSubDirektorat" >
+                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitSubDirektorat" name="NameofOrgUnitSubDirektorat" value="{{$item->subdirektorat}}">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Direktorat (Directorate)</td>
                                                         <td>:</td>
                                                         <td>
-                                                            <input type="text" readonly class="form-control"  id="NameofOrgUnitDirektorat" placeholder="Otomatis pilih table" name="NameofOrgUnitDirektorat">
+                                                            <input type="text" readonly class="form-control"  id="NameofOrgUnitDirektorat" name="NameofOrgUnitDirektorat" value="{{$item->direktorat}}">
                                                         </td>
                                                     </tr>
                                                 </thead>
@@ -245,6 +245,9 @@
                                                 <thead>
                                                     <tr>
                                                         <td>b. Non Finansial (Non Financial)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{$item->nonfinansial}}</td>
                                                     </tr>
                                                 </thead>
                                             </table>
@@ -378,8 +381,19 @@
                                                     
                                                 </thead>
                                             </table>
+                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
+                                                <h5>Tulis Pesan Untuk Analis</h5>
+                                                <thead>
+                                                    <tr>
+                                                        <td>
+                                                            <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial" placeholder="Isi Data ..."></textarea>
+                                                        </td>
+                                                    </tr>
+                                                </thead>
+                                            </table>
                                             <form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
-                                                <button type="submit" class="btn btn-sm btn-success">OK</button>
+                                                <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                                <button type="submit" class="btn btn-sm btn-success">Kirim Pesan</button>
                                                 <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
                                             </form>
                                         </div>

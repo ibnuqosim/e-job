@@ -65,6 +65,7 @@
         abbdetail(data);
         detail(data);
         resjabatan(data);
+        // tmcalatkerja(data);
     });
 
     function selectPosition(data) {
@@ -294,7 +295,7 @@
         {
             stre =  "<div id='kolom"+tools+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
-                            "<select class='js-data-example-ajax form-control tools-ajax' name='tools[]'></select>"+
+                            "<select class='js-data-example-ajax form-control tools-ajax' name='tools[]' value='{{'$datas->jabatan'}}'></select>"+
                         "</div>"+
                         "<div class='col-sm-1' style='margin-bottom:10px' >"+
                             "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapustools("+tools+")' >Hapus</a>"+
@@ -306,6 +307,8 @@
                 ajax: {
                     url: '{{ url('AdminAnalystOD/formjobdescreate/tmcalatkerja') }}',
                     dataType: 'json'
+                    // var data = $('#select2').html();
+                    // tmcalatkerja(tmcalatkerja);
                 }
             });
             tools = (tools-1) + 2;
@@ -757,7 +760,14 @@
                         <div class="form-group">
                             <button type="button" class="btn btn-primary" onclick="tmcalatkerja();">Tambah Data</button>
                         </div>
-                        <div class="form-group" id="divdtools">
+                        {{-- <div class="form-group" id="tools" value="1" name="id_deskripsi" >
+                            <span id="tools" style="display:none">{{ $datas->id_deskripsi }}</span>
+                                <select class="js-data-example-ajax form-control" 
+                                        {{-- id="AbbrPosition"  name="getjab"  --}}
+                                        {{-- value="{{ $datas->id_deskripsi }}"> --}}
+                                {{-- </select>
+                        </td> --}}
+                        <div class="form-group" id="divdtools" value="{{ $datas->jabatan }}">
                             <input class="js-data-example-ajax form-control" id="tools" value="1" name="id_deskripsi" type="hidden" />
                         </div>
                         <div class="form-group">

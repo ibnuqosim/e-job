@@ -71,23 +71,28 @@
             $('#NameofOrgUnitDivisi').val(jab.NameofOrgUnitDivisi);   		//divisi
             $('#NameofOrgUnitSubDirektorat').val(jab.NameofOrgUnitSubDirektorat);      //subdirketorat (Directorate)
             $('#NameofOrgUnitDirektorat').val(jab.NameofOrgUnitDirektorat);         //direktorat
-            $('#AbbrOrgUnitDivisi').val(jab.AbbrOrgUnitDivisi);               
+            $('#AbbrOrgUnitDivisi').val(jab.AbbrOrgUnitDivisi);         
+               
         });                                                                       
     }
 
     function nojabatan(kode) {
         $.get('{{ url('AdminAnalystOD/formjobdescreate/nojabatan') }}/'+kode.id,function(jbt){
-            
+           ;   
             var no = $('#jbt').val();
             var gol =  $('#AbbrPosition').val();
             var ret = '';
+            
             for (i = 0; i < jbt.length; i++) { 
                 ret = ret+"<tr><td></td><td>"+ (i+1) +"</td><td><input type='text' value='"+jbt[i].jabatanatasanlangsung+"' size='30px' readonly class='form-control' name='jabatanatasanlangsung["+i+"]' id='jabatanatasanlangsung'/><td><input type='text' value='"+jbt[i].jabatanbawahanlangsung+"' size='30px' readonly class='form-control' name='jabatanbawahanlangsung["+i+"]' id='jabatanbawahanlangsung'/> <td><input type='text' value='"+jbt[i].jumlah+"' size='30px' readonly class='form-control' name='jumlah["+i+"]' id='jumlah'/>";
-            }
+            }           
             $('#jbt').html(ret);
             console.log(ret);
+            $('#jabatanatasanlangsung ').val(gol.jabatanatasanlangsung)
         });   
     }
+
+  
 
     function detail(data) {
         $.get('{{ url('AdminAnalystOD/formjobdescreate/detail') }}/'+data.id,function(un){
@@ -534,11 +539,19 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>Prosess</td>
+                        <td>:</td>
+                        <td> 
+                            <input type="text" readonly class="form-control" id="jabatanatasanlangsung" placeholder="Otomatis pilih table" name="jabatanatasanlangsung" >
+                        </td>
+                    </tr>
+                    <tr>
                         <td> 
                             <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="Otomatis pilih table" name="AbbrOrgUnitDivisi" >
                         </td>
-                    </tr>
+                    </tr> 
                     @endforeach
+                    
                 </table>
                 <div class="form-group">
                     <table border="1" width="100%"  class="table table-bordered table-hover">

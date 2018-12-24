@@ -42,6 +42,7 @@ class jobdescreateController extends Controller
     public function index(Request $request)
     {
         $tj = jobdescreate::all();
+        $fisik = persyaratan_fisik::all();
         $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
     }
