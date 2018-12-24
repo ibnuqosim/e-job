@@ -936,7 +936,7 @@
                 </div>
                 <td>
                     <h5>Input name User</h5>
-                    <select class="js-data-example-ajax form-control"  name="namauser"></select>
+                    <select class="js-data-example-ajax form-control"  id="namauser" name="namauser"></select>
                 </td>
                 </tr>
                 <tr>
