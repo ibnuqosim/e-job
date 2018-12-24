@@ -18,11 +18,18 @@ class UserListJoblistController extends Controller
     }
     public function ShowAjax(Request $request)
     {
-        $job = jobdescreate::all();
         $return = [];
+        $namauser = Auth::user()->username;
+        $job = jobdescreate::where('namauser',$namauser)->get();
+
         foreach ($job as $key => $value) {
             array_push($return,
-                array('no_jabatan' => $value->no_jabatan)
+                array(
+                    'no' => $key+1,
+                    'no_jabatan' => $value->no_jabatan,
+                    'namauser' => $value->namauser,
+                    'analis' => $value->analis,
+                )
             );
                 
         }
