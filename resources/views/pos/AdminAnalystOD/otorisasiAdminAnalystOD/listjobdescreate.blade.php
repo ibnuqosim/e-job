@@ -73,7 +73,7 @@
                             <th>Jobdes</th>
                             <th>Analist</th>
                             <th>User Name</th>
-                            <th>Validasi by</th>
+                            {{-- <th>Validasi by</th> --}}
                             <th>Aprove by</th>
                             <th>Aproved by ODHCP</th>
                             <th>status</th>
@@ -88,9 +88,9 @@
                             <td>{{$item->no_jabatan}}</td>
                             <td>{{$item->analis}}</td>
                             <td>{{$item->namauser}}</td>
-                            <td>Validasi by</td>
-                            <td>Aprove by</td>
-                            <td>Aproved by ODHCP</td>
+                            {{-- <td>Validasi by</td> --}}
+                            <td>{{$item->atasan}}</td>
+                            <td>{{$item->approve}}</td>
                             <td>{{$item->verifikasi}}</td>
                             <td>
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
