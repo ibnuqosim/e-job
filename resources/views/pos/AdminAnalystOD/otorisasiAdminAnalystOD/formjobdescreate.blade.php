@@ -928,11 +928,11 @@
                         <tr>
                             <td>
                                 <h5>SESUAI LOGIN ANALIS</h5>
-                                <input type="text" class="form-control" class="form-control" readonly placeholder="Sr. Spec.Organization Design ">
+                            <input type="text" class="form-control" class="form-control" readonly value="{{ Auth::user()->username }}">
                             </td>
                             <td>
                                 <h5>Hasri Suryani </h5>
-                                <input type="text" class="form-control" class="form-control" readonly placeholder="Manager OD&HCP">
+                            <input type="text" class="form-control" class="form-control" readonly value="-">
                 </div>
                 <td>
                     <h5>Input name User</h5>

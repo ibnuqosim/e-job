@@ -159,7 +159,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-  @include('menu.AdminAnalystOD.masterdata')
+              @include('menu.AdminAnalystOD.masterdata')
             </ul>
             <a href="#">
               <i class="fa fa-rss-square"></i> <span>Menu</span>
@@ -168,7 +168,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-  @include('menu.AdminAnalystOD.menujobdesk')
+              @include('menu.AdminAnalystOD.menujobdesk')
             </ul>
             <a href="#">
               <i class="fa fa-legal"></i> <span>Pengaturan</span>
@@ -177,7 +177,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-  @include('menu.AdminAnalystOD.pengaturan')
+              @include('menu.AdminAnalystOD.pengaturan')
             </ul>
             @endrole
           </li>
@@ -190,20 +190,20 @@
               </span>
             </a>
             <ul class="treeview-menu">
-  @include('menu.ManagerOD')
+              @include('menu.ManagerOD')
             </ul>
             @endrole
           </li>
           <li class="treeview">
             @role('UserSuptMgrGM')
             <a href="#">
-              <i class="fa fa-table"></i> <span>User Sup tMgr GM</span>
+              <i class="fa fa-table"></i> <span>User Sup Mgr GM</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-  @include('menu.UserSuptMgrGM')
+              @include('menu.UserSuptMgrGM.menujobdesk')
             </ul>
             @endrole
           </li>
@@ -216,7 +216,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-  @include('menu.SpecialistHCD')
+              @include('menu.SpecialistHCD')
             </ul>
             @endrole
           </li>
@@ -229,7 +229,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-  @include('menu.InternalAuditor')
+              @include('menu.InternalAuditor')
             </ul>
             @endrole
           </li>
@@ -242,7 +242,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-  @include('menu.AdministratorSMKS')
+              @include('menu.AdministratorSMKS')
             </ul>
             @endrole
           </li>

@@ -16,7 +16,7 @@ Route::get('/', function () {
     if(!Auth::user()){
         return view('auth.login');
     }else{
-        return redirect('/home');
+        return redirect()->route('home');
     }
 });
 
@@ -157,6 +157,8 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
                 echo  "UserSuptMgrGM";
             });
             Route::get('/editing','editingJobController@index');
+            Route::get('/listjobdescreate','UserListJoblistController@index');
+            Route::get('/show-ajax','UserListJoblistController@ShowAjax');
         });
         
     });

@@ -339,7 +339,7 @@ class jobdescreateController extends Controller
     {   
         $arr = [];
         $ret = [];
-        $data = structdisp::where('emppostx','like','%'.$request->q.'%')->get();
+        $data = structdisp::where('no','1')->where('emppostx','like','%'.$request->q.'%')->get();
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->emppostx,'text'=>$value->emppostx.""] );
         }
@@ -437,7 +437,7 @@ class jobdescreateController extends Controller
     {   
         $arr = [];
         $ret = [];
-        $data = structdisp::where('emppostx','like','%'.$request->q.'%')->get();
+        $data = structdisp::where('no','1')->where('emppostx','like','%'.$request->q.'%')->get();
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->emppostx,'text'=>$value->emppostx.""] );
         }
@@ -472,9 +472,9 @@ class jobdescreateController extends Controller
     {   
         $arr = [];
         $ret = [];
-        $data = structdisp::where('empname','like','%'.$request->q.'%')->get();
+        $data = structdisp::where('no','1')->where('empname','like','%'.$request->q.'%')->get();
         foreach ($data as $key => $value) {
-            array_push($arr,['id'=>$value->empname,'text'=>$value->empname.""] );
+            array_push($arr,['id'=>$value->empname,'text'=>$value->empname." (".$value->emportx.") "] );
         }
         $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
         return $ret;
