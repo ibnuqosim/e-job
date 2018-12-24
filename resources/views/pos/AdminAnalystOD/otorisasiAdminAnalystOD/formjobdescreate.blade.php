@@ -928,7 +928,7 @@
                         <tr>
                             <td>
                                 <h5>SESUAI LOGIN ANALIS</h5>
-                            <input type="text" class="form-control" class="form-control" id="analis" name="analis" readonly value="{{ Auth::user()->username }}">
+                            <input type="text" class="form-control" class="form-control" name="analis" readonly value="{{ Auth::user()->username }}">
                             </td>
                             <td>
                                 <h5>Hasri Suryani </h5>
@@ -936,7 +936,7 @@
                 </div>
                 <td>
                     <h5>Input name User</h5>
-                    <select class="js-data-example-ajax form-control" id="namauser" name="namauser"></select>
+                    <select class="js-data-example-ajax form-control"  name="namauser"></select>
                 </td>
                 </tr>
                 <tr>
