@@ -69,9 +69,10 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>No</th>
                             <th>Jobdes</th>
                             <th>Analist</th>
+                            <th>User Name</th>
                             <th>Validasi by</th>
                             <th>Aprove by</th>
                             <th>Aproved by ODHCP</th>
@@ -85,10 +86,11 @@
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->no_jabatan}}</td>
-                            <td>Bambang Nugroho</td>
-                            <td>MOH KOHIR AMAN</td>
-                            <td>Hasri Suryani</td>
-                            <td>Hasri Suryani</td>
+                            <td>{{$item->analis}}</td>
+                            <td>{{$item->namauser}}</td>
+                            <td>Validasi by</td>
+                            <td>Aprove by</td>
+                            <td>Aproved by ODHCP</td>
                             <td>{{$item->verifikasi}}</td>
                             <td>
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
