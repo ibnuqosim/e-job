@@ -150,11 +150,25 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
         });
         
     });
+    
     Route::group(['middleware'=>['auth', 'role:UserSuptMgrGM']], function () {
         
         Route::prefix('UserSuptMgrGM')->group(function(){
             Route::get('/', function(){
                 echo  "UserSuptMgrGM";
+            });
+            Route::get('/editing','editingJobController@index');
+            Route::get('/listjobdescreate','UserListJoblistController@index');
+            Route::get('/show-ajax','UserListJoblistController@ShowAjax');
+        });
+        
+    });
+
+    Route::group(['middleware'=>['auth', 'role:ManagerOD']], function () {
+        
+        Route::prefix('ManagerOD')->group(function(){
+            Route::get('/', function(){
+                echo  "ManagerOD";
             });
             Route::get('/editing','editingJobController@index');
             Route::get('/listjobdescreate','UserListJoblistController@index');

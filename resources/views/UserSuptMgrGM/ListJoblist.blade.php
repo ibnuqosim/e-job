@@ -46,7 +46,6 @@
                         <th>ID</th>
                         <th>JOBDES</th>
                         <th>ANALIST</th>
-                        <th>USER NAME</th>
                         <th>VALIDASI BY</th>
                         <th>APPROVE BY</th>
                         <th>APPROVE BY ODHCP</th>

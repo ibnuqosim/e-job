@@ -26,7 +26,7 @@ class UserListJoblistController extends Controller
             array_push($return,
                 array(
                     'no' => $key+1,
-                    'no_jabatan' => $value->no_jabatan,
+                    'no_jabatan' => $value->subdirektorat,
                     'namauser' => $value->namauser,
                     'analis' => $value->analis,
                 )

@@ -928,30 +928,29 @@
                         <tr>
                             <td>
                                 <h5>SESUAI LOGIN ANALIS</h5>
-                            <input type="text" class="form-control" class="form-control" name="analis" readonly value="{{ Auth::user()->username }}">
+                                <input type="text" class="form-control" class="form-control" name="analis" readonly value="{{ Auth::user()->username }}">
                             </td>
                             <td>
                                 <h5>Hasri Suryani </h5>
-                            <input type="text" class="form-control" class="form-control" readonly value="-">
+                                <input type="text" class="form-control" class="form-control" readonly value="-">
+                            <td>
+                                <h5>Input name User</h5>
+                                <select class="js-data-example-ajax form-control"  id="namauser" name="namauser"></select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}" />
+                            </td>
+                            <td>
+                                <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}" />
+                            </td>
+                            <td>
+                                <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}" />
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <td>
-                    <h5>Input name User</h5>
-                    <select class="js-data-example-ajax form-control"  id="namauser" name="namauser"></select>
-                </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}" />
-                    </td>
-                    <td>
-                        <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}" />
-                    </td>
-                    <td>
-                        <input class="js-data-example-ajax form-control" id="conditions" readonly value="{{ date('d-m-Y') }}" />
-                    </td>
-                    </td>
-                </tr>
-                </table>
             </div>
         </div>
     </section>
@@ -960,9 +959,8 @@
         <button type="submit" class="btn btn-default">Cancel</button>
         <button type="submit" class="btn btn-info pull-right">Save</button>
     </div>
-    </div>
-    </div>
     </section>
+    
 </form>
 @endsection
 
