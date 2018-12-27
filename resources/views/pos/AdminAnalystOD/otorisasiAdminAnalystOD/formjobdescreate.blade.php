@@ -934,6 +934,7 @@
                         <tr>
                             <td>
                                 <h5>ANALIS</h5>
+                                <input type="text" class="form-control" class="form-control" name="nikanalis" readonly value="{{ Auth::user()->userid }}">
                                 <input type="text" class="form-control" class="form-control" name="analis" readonly value="{{ Auth::user()->username }}">
                             </td>
                             
@@ -944,7 +945,7 @@
                                 <h5>Input name User</h5>
                                 <select class="js-data-example-ajax form-control"  id="namauser" name="namauser"></select>
                                 {{-- <select class="js-data-example-ajax form-control"  id="atasan" name="atasan"></select> --}}
-                                <input type="text" class="form-control" class="form-control" name="atasan" readonly value="{{ Auth::user()->username }}">
+                                <input type="text" class="form-control" class="form-control" name="atasan" readonly value="{{ Auth::user()->userid }}">
                             </td>
                         </tr>
                         <tr>

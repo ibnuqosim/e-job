@@ -81,9 +81,19 @@ class jobdescreateController extends Controller
         $persyaratan_fisik                          = $request->persyaratan_fisik;
         $gambar                                     = $request->gambar;
         //inpu analis
+        $nikanalis                                  = $request->nikanalis;
         $analis                                     = $request->analis;
 
-        $namauser                                   = $request->namauser;
+        $user                                       = $request->namauser;
+        $pecahuser                                  = explode("-",$user);
+        $nikuser                                    = $pecahuser[0];
+        $namauser                                   = $pecahuser[1];
+
+        // save atasan
+        //$atasan = $this->atasan($nikuser);
+        //print_r($atasan);
+        //die();
+
 
         $data = new jobdescreate();
         // I. URAIAN JABATAN (Job Description)
@@ -104,9 +114,14 @@ class jobdescreateController extends Controller
         // $file->gambar                            = $gambar;
         $data->gambar                               = $gambar;
         // save analis
+        $data->nikanalis                            = $nikanalis;
         $data->analis                               = $analis;
 
+
+        $data->nikuser                              = $nikuser;
         $data->namauser                             = $namauser;
+
+        
 
 
         
@@ -483,7 +498,7 @@ class jobdescreateController extends Controller
         $ret = [];
         $data = structdisp::where('no','1')->where('empname','like','%'.$request->q.'%')->get();
         foreach ($data as $key => $value) {
-            array_push($arr,['id'=>$value->empname,'text'=>$value->empname." (".$value->emportx.") "] );
+            array_push($arr,['id'=>$value->empnik.'-'.$value->empname,'text'=>$value->empnik.'-'.$value->empname." (".$value->emportx.") "] );
         }
         $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
         return $ret;
