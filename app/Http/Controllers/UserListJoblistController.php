@@ -14,7 +14,10 @@ class UserListJoblistController extends Controller
         // Auth::user()->username;
         //-------------------------
 
-        return view('UserSuptMgrGM.ListJoblist');
+        $tj = jobdescreate::all();
+        $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
+        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
+        // return view('UserSuptMgrGM.ListJoblist');
     }
     public function ShowAjax(Request $request)
     {

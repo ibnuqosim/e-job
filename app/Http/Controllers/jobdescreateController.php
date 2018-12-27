@@ -128,10 +128,6 @@ class jobdescreateController extends Controller
         $data->nikatasan                            = $nikatasan;
         $data->atasan                               = $namaatasan;
 
-        
-
-
-        
         $data->save();
         
         $data_id = jobdescreate::orderBy('id','DESC')->first();
