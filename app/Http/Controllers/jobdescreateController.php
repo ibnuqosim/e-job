@@ -499,6 +499,17 @@ class jobdescreateController extends Controller
         $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
         return $ret;
     } 
+    public function atasan (Request $request)
+    {   
+        $arr = [];
+        $ret = [];
+        $data = structdisp::where('dirname','like','%'.$request->q.'%')->get();
+        foreach ($data as $key => $value) {
+            array_push($arr,['id'=>$value->dirname,'text'=>$value->dirname.""] );
+        }
+        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        return $ret;
+    } 
     public function pendidikan (Request $request)
     {   
         $arr = [];

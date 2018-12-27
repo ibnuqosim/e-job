@@ -143,13 +143,6 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/formjobdescreate/detail/{un}','jobdescreateController@detail');
     });
     
-    Route::group(['middleware'=>['auth', 'role:ManagerOD']], function () {
-        
-        Route::get('/ManagerOD', function(){
-            echo  "manager";
-        });
-        
-    });
     
     Route::group(['middleware'=>['auth', 'role:UserSuptMgrGM']], function () {
         

@@ -41,6 +41,12 @@
             dataType: 'json'
         }
     });
+    $('#atasan').select2({
+        ajax: {
+            url: '{{ url('AdminAnalystOD/formjobdescreate/atasan') }}',
+            dataType: 'json'
+        }
+    });
     $('#analis').select2({
         ajax: {
             url: '{{ url('AdminAnalystOD/formjobdescreate/analis') }}',
@@ -927,15 +933,18 @@
                         </tr>
                         <tr>
                             <td>
-                                <h5>SESUAI LOGIN ANALIS</h5>
+                                <h5>ANALIS</h5>
                                 <input type="text" class="form-control" class="form-control" name="analis" readonly value="{{ Auth::user()->username }}">
                             </td>
+                            
                             <td>
                                 <h5>Hasri Suryani </h5>
                                 <input type="text" class="form-control" class="form-control" readonly value="-">
                             <td>
                                 <h5>Input name User</h5>
                                 <select class="js-data-example-ajax form-control"  id="namauser" name="namauser"></select>
+                                {{-- <select class="js-data-example-ajax form-control"  id="atasan" name="atasan"></select> --}}
+                                <input type="text" class="form-control" class="form-control" name="atasan" readonly value="{{ Auth::user()->username }}">
                             </td>
                         </tr>
                         <tr>
@@ -960,7 +969,7 @@
         <button type="submit" class="btn btn-info pull-right">Save</button>
     </div>
     </section>
-    
+
 </form>
 @endsection
 
