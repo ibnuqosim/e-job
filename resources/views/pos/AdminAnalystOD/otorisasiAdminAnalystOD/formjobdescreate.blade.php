@@ -67,6 +67,27 @@
         detail(data);
     });
 
+    $('#namauser').on('select2:select', function (e) {
+        var data = e.params.data;
+        getatasan (data);
+        //console.log(data);
+    });
+
+    function getatasan (data) {
+        // console.log(data.id);
+        var e = data.id;
+        var res = e.split("-");
+        // console.log(res[0]);
+        var nikatasan = res[0];
+
+        //var i ='4736';
+        $.get('{{ url('AdminAnalystOD/formjobdescreate/atasan') }}/'+nikatasan,function(at){
+            console.log(at);
+            $('#nikatasan').val(at.dirnik); 
+            $('#namaatasan').val(at.dirname);                                           //No jabatan:                      
+        });       
+    }
+    // namauser
     function selectPosition(data) {
 
         $.get('{{ url('AdminAnalystOD/formjobdescreate/getjab') }}/'+data.id,function(jab){
@@ -944,8 +965,8 @@
                             <td>
                                 <h5>Input name User</h5>
                                 <select class="js-data-example-ajax form-control"  id="namauser" name="namauser"></select>
-                                {{-- <select class="js-data-example-ajax form-control"  id="atasan" name="atasan"></select> --}}
-                                <input type="text" class="form-control" class="form-control" name="atasan" readonly value="{{ Auth::user()->userid }}">
+                                <input type="text" class="form-control" class="form-control" id="nikatasan" name="nikatasan" readonly>
+                                <input type="text" class="form-control" class="form-control" id="namaatasan" name="namaatasan" readonly>
                             </td>
                         </tr>
                         <tr>

@@ -89,6 +89,10 @@ class jobdescreateController extends Controller
         $nikuser                                    = $pecahuser[0];
         $namauser                                   = $pecahuser[1];
 
+        $nikatasan                                  =$request->nikatasan;
+        $namaatasan                                 =$request->namaatasan;
+
+
         // save atasan
         //$atasan = $this->atasan($nikuser);
         //print_r($atasan);
@@ -120,6 +124,9 @@ class jobdescreateController extends Controller
 
         $data->nikuser                              = $nikuser;
         $data->namauser                             = $namauser;
+
+        $data->nikatasan                            = $nikatasan;
+        $data->atasan                               = $namaatasan;
 
         
 
@@ -514,16 +521,22 @@ class jobdescreateController extends Controller
         $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
         return $ret;
     } 
-    public function atasan (Request $request)
+    public function atasan ($nik)
     {   
-        $arr = [];
-        $ret = [];
-        $data = structdisp::where('dirname','like','%'.$request->q.'%')->get();
-        foreach ($data as $key => $value) {
-            array_push($arr,['id'=>$value->dirname,'text'=>$value->dirname.""] );
-        }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
-        return $ret;
+        // $arr = [];
+        // $ret = [];
+        // $data = structdisp::where('dirname','like','%'.$request->q.'%')->get();
+        // foreach ($data as $key => $value) {
+        //     array_push($arr,['id'=>$value->dirname,'text'=>$value->dirname.""] );
+        // }
+        // $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        // return $ret;
+
+        $data = structdisp::where('empnik',$nik)
+        ->where('no','2')
+        //->groupBy('no')
+        ->first();       
+        return $data;
     } 
     public function pendidikan (Request $request)
     {   
