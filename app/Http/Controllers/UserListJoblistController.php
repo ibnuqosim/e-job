@@ -99,5 +99,34 @@ class UserListJoblistController extends Controller
         return array('data'=>$return);
 
     }
+    public function showhistorypesananalis(Request $request,$id){
+        //$id =1;
+        $testedit =2;
+        $status='';
+        $return = [];
+        $history = history_pesan::where('jobdescreate_id',$id)->get();
+        foreach($history as $key => $value){
+            if($value->status==null || $value->status==0){
+                $status = "<a class='btn btn-warning' title='Klik untuk konfirmasi revisi !' onclick='konfirmasirevisi(".$value->id.",".$value->jobdescreate_id.");'>Belum direvisi</>";
+            }else{
+                $status = "<a class='btn btn-success' title='Sudah direvisi'>Sudah direvisi (".$value->tglrevisi.")</>";
+            }
+            array_push($return,
+            array(
+            'no'=>$key+1,
+            'nama'=>$value->nama,
+            'pesan'=>$value->pesan,
+            'namaanalis'=>$value->namaanalis,
+            'created_at'=>date_format($value->created_at,"Y-m-d H:i:s"),
+            'status'=>$status
+            )
+            
+        
+        );
+
+        }
+        return array('data'=>$return);
+
+    }
 
 }
