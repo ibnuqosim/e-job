@@ -41,7 +41,14 @@ function gethistorypesan(id){
             ]
         } );
 }
+
+ 
 </script>
+<style>
+td {
+  word-wrap: break-word;
+}
+</style>
 @endsection
 
 @section('content')
@@ -71,6 +78,7 @@ function gethistorypesan(id){
                         <th>APPROVE BY</th>
                         <th>APPROVE BY ODHCP</th>
                         <th>STATUS</th>
+                        <th>ACT</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -87,7 +95,7 @@ function gethistorypesan(id){
                             <td>
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
-                                <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"</a>
+                                <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
                                 {{-- <td><a href="{{action('UserDetailController@downloadPDF', $user->id)}}">PDF</a></td> --}}
@@ -117,7 +125,7 @@ function gethistorypesan(id){
                                                                         
                                                                     </thead>
                                                                     <thead>
-                                                                        <tbody></tbody>
+                                                                        <tbody ></tbody>
                                                                     </thead>
                                                                 </table>
                                                     </div>

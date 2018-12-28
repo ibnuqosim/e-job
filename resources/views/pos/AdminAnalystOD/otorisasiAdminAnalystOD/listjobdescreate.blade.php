@@ -25,7 +25,42 @@
         })
     })
 
-    $(function())
+    //$(function())
+    function showpesan(item){
+    gethistorypesan(item.id);
+}
+function gethistorypesan(id){
+    //var id=1;
+    $('#tbhispesan').DataTable( {
+            "ajax": "{{ url('AdminAnalystOD/show-historypesan') }}/"+id,
+            "bDestroy":true,
+            "columns": [
+                { "data": "no"},
+                { "data": "nama" },
+                { "data": "pesan" },
+                { "data": "namaanalis" },
+                { "data": "created_at" },
+                { "data": "status" },
+            ]
+        } );
+}
+function konfirmasirevisi(id,descid){
+    if (confirm("Apakah anda yakin ?") == true) {
+        $.ajax({
+            url: "{{ url('AdminAnalystOD/konfirmasipesan') }}/"+id,
+            method: 'get',
+            success: function(data) {
+            if(data=='success'){
+                alert('Konfirmasi berhasil !');
+                gethistorypesan(descid);
+            }else{
+                alert('Konfirmasi gagal !');
+            }
+
+           }
+        });
+        }
+}
 </script>
 @endsection
 
@@ -97,10 +132,45 @@
                             <td>
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
+                                <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
                                 {{-- <td><a href="{{action('UserDetailController@downloadPDF', $user->id)}}">PDF</a></td> --}}
-                                
+                                <div class="modal modal-info fade" id="modal-pesan">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title">Pesan Revisi</h4>
+                                                    </div>
+                                            </div>
+                                            <div class="modal-body">
+                                                    <div class="table-responsive">
+                                                            <b>History Pesan Revisi</b>
+                                                            <table id="tbhispesan" class="table" style="color:black" width="100%">
+                                                                    <thead>
+                                                                       <tr>
+                                                                            <td>NO</td>
+                                                                            <td>Dikirim oleh</td>
+                                                                            <td>Pesan Revisi</td>
+                                                                            <td>Analis</td>
+                                                                            <td>Tanggal</td>
+                                                                            <td>Status</td>
+                                                                        </tr>
+                                    
+                                                                        
+                                                                    </thead>
+                                                                    <thead>
+                                                                        <tbody ></tbody>
+                                                                    </thead>
+                                                                </table>
+                                                    </div>
+                                                    
+                                            </div>
+                                        </div>
+
+                                </div>
                                 <div class="modal modal-info fade" id="modal-info">
                                     <div class="modal-dialog">
                                         <div class="modal-content">

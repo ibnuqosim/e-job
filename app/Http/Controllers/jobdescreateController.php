@@ -34,7 +34,7 @@ use App\zhrom0012;
 use App\job;
 use App\profil;
 use App\profil_detail;
-
+use App\history_pesan;
 
 
 class jobdescreateController extends Controller
@@ -310,7 +310,15 @@ class jobdescreateController extends Controller
             return redirect('/AdminAnalystOD/listjobdescreate');
         }
     }
-    
+    public function konfirmasipesan(Request $request,$id){
+        $history = history_pesan::where('id',$id)->update(['status' => '1','tglrevisi'=>date("Y-m-d H:i:s")]);    
+        
+        if($history){
+            $hsl='success';
+            return $hsl;
+        }
+        return Redirect::back()->withErrors(['msg', 'Error']);
+    }
     public function pdf($id)
     {
         $data = jobdescreate::where('id',$id)->get();
