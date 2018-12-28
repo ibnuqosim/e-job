@@ -24,7 +24,7 @@ function showpesan(item){
     $("#nikanalis").val(item.nikanalis);
     $("#namaanalis").val(item.analis);
     gethistorypesan(item.id);
-    console.log(item);
+    //console.log(item);
 }
 function gethistorypesan(id){
     //var id=1;
