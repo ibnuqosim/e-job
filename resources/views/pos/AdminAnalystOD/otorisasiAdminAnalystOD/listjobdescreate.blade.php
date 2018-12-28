@@ -24,8 +24,6 @@
             'autoWidth'   : false
         })
     })
-
-    $(function())
 </script>
 @endsection
 
@@ -199,7 +197,7 @@
                                                         </td>
                                                         <td>:</td>
                                                         <td>
-                                                            <td>{{$item->jabatanatasanlangsung}}</td>
+                                                            <input type="text" readonly class="form-control"  id="jabatanatasanlangsung" name="jabatanatasanlangsung" value="{{$item->jabatanatasanlangsung}}">
                                                         </td>
                                                     </tr>
                                                 </thead>
@@ -208,12 +206,12 @@
                                                 <thead>
                                                     <tr>
                                                         <td>no</td>
-                                                        <td>Direktorat (Directorate)</td>
-                                                        <td>(Directly Responsible to)</td>
+                                                        <td>Jabatan yang diawasi langsung: <br>
+                                                            (Direct supervised positions)
+                                                        </td>
                                                         <td>jumlah</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>{{$item->jabatanatasanlangsung}}</td>
                                                         <td>{{$item->jabatanbawahanlangsung}}</td>
                                                         <td>{{$item->jumlah}}</td>
                                                     </tr>
@@ -413,7 +411,7 @@
                                 </div>
                             </td>
                         </tr>
-                        @endforeach
+                     @endforeach
                     </tbody>
                 </table>
             </div>
