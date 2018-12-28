@@ -104,7 +104,7 @@
 
     function nojabatan(kode) {
         $.get('{{ url('AdminAnalystOD/formjobdescreate/nojabatan') }}/'+kode.id,function(jbt){
-            console.log(jbt);
+            // console.log(jbt);
             var no = $('#jbt').val();
             var gol =  $('#AbbrPosition').val();
             var ret = '';
@@ -568,7 +568,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Prosess </td>
+                        <td>Bertanggung jawab langsung kepada: <br>
+                            (Directly Responsible to)
+                        </td>
                         <td>:</td>
                         <td>
                             <input type="text" readonly class="form-control" id="JbtAtasanLangsung" placeholder="Otomatis pilih table" name="jabatanatasanlangsung" value="">
@@ -587,7 +589,8 @@
                         <thead>
                             <th>
                                 <td>no</td>
-                                <td>Jabatan yang diawasi langsung (Directly Responsible to)</td>
+                                <td>Jabatan yang diawasi langsung<br>
+                                    (Directly Responsible to)</td>
                                 <td>jumlah</td>
                             </th>
                         </thead>
