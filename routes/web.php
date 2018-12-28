@@ -155,6 +155,9 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/editing','editingJobController@index');
             Route::get('/listjobdescreate','UserListJoblistController@index');
             Route::get('/show-ajax','UserListJoblistController@ShowAjax');
+            Route::post('/kirimpesan','UserListJoblistController@store');
+            Route::get('/show-historypesan/{id}','UserListJoblistController@showhistorypesan');
+            // Route::post('/storepesan','UserListJoblistController@store'); 
         });
         
     });
