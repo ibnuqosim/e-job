@@ -24,6 +24,8 @@
             'autoWidth'   : false
         })
     })
+
+    $(function())
 </script>
 @endsection
 
@@ -189,6 +191,15 @@
                                                         <td>:</td>
                                                         <td>
                                                             <input type="text" readonly class="form-control"  id="NameofOrgUnitDirektorat" name="NameofOrgUnitDirektorat" value="{{$item->direktorat}}">
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Bertanggung jawab langsung kepada: <br>
+                                                            (Directly Responsible to)
+                                                        </td>
+                                                        <td>:</td>
+                                                        <td>
+                                                            <td>{{$item->jabatanatasanlangsung}}</td>
                                                         </td>
                                                     </tr>
                                                 </thead>
@@ -395,7 +406,6 @@
                                             </table>
                                             <form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
                                                 <button type="submit" class="btn btn-sm btn-success">Approve</button>
-                                                <button type="submit" class="btn btn-sm btn-success">Kirim Pesan</button>
                                                 <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
                                             </form>
                                         </div>
