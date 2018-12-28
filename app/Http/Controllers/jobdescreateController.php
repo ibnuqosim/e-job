@@ -42,9 +42,9 @@ class jobdescreateController extends Controller
     public function index(Request $request)
     {
         $tj      = jobdescreate::all();
-        // $jb      = job::all();
+        $jb      = job::all();
         $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
-        // $dt      = ['job'=>'ts','jb'=>$jb,'dt'=>$jb];
+        $dt      = ['job'=>'ts','jb'=>$jb,'dt'=>$jb];
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
     }
     public function showjob(Request $request,$id){
