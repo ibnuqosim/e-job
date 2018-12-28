@@ -72,6 +72,7 @@ class UserListJoblistController extends Controller
     }
     public function showhistorypesan(Request $request,$id){
         //$id =1;
+        $testedit =1;
         $status='';
         $return = [];
         $history = history_pesan::where('jobdescreate_id',$id)->get();
