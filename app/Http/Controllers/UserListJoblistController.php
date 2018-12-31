@@ -14,9 +14,11 @@ class UserListJoblistController extends Controller
         //----get user name--------
         // Auth::user()->username;
         //-------------------------
-
+        $koreksi = history_pesan::where('nik',Auth::user()->userid)
+        ->where('status',0)
+        ->count();
         $tj = jobdescreate::all();
-        $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
+        $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
         return view('UserSuptMgrGM.ListJoblist',$data);
         // return view('UserSuptMgrGM.ListJoblist');
     }

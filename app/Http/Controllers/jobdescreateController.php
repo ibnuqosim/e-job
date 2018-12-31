@@ -42,8 +42,12 @@ class jobdescreateController extends Controller
     public function index(Request $request)
     {
         $tj = jobdescreate::all();
+        $koreksi = history_pesan::where('nikanalis',Auth::user()->userid)
+        ->where('status',0)
+        ->count();
+       
         // $fisik = job::all();
-        $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
+        $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
     }
     

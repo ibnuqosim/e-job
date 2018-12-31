@@ -56,9 +56,11 @@ td {
 
     <!-- Default box -->
     <div class="box">
+            
         <div class="box-header with-border">
             <h3 class="box-title">JOB LIST</h3>
             <div class="box-tools pull-right">
+                    
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
                     <i class="fa fa-minus"></i>
                 </button>
@@ -68,6 +70,7 @@ td {
             </div>
         </div>
         <div class="box-body">
+                
             <table id="example1" class="table table-bordered table-striped" style="width:100%">
                 <thead>
                     <tr>
@@ -95,6 +98,7 @@ td {
                             <td>
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
+                                
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>

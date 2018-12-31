@@ -89,12 +89,26 @@
               </ul>
             </li>
             <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown tasks-menu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-comments"></i>
+                    <span class="label label-warning">{{$koreksi}}</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                      <li class="header">Ada {{$koreksi}} revisi yang belum dikonfirmasi</li>
+                  </ul>
+
+            </li>
             <li class="dropdown user user-menu">
               @guest
               <li><a href="{{ route('login') }}">Login</a></li>
               <li><a href="{{ route('register') }}">Register</a></li>
               @else
               <li class="dropdown">
+                <!--a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="label label-warning">10</span>
+                                  </a-->
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                     {{ Auth::user()->username }} <span class="caret"></span>
                   </a>
@@ -132,7 +146,7 @@
             <img src="{{ url('adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
           </div>
           <div class="pull-left info">
-            <p>Alexander Pierce</p>
+            <p>{{ Auth::user()->username }}</p>
             <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
           </div>
         </div>
@@ -151,6 +165,7 @@
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">MAIN NAVIGATION</li>
           <li class="treeview">
+           
             @role('AdminAnalystOD')
             <a href="#">
               <i class="fa fa-laptop"></i> <span>Master Data</span>

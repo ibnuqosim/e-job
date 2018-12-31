@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\history_pesan;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.profil');
+        
+        //$role = Auth::user()->hasRole();
+       // $admin = new Role();
+        //print_r($admin);
+        $koreksi = history_pesan::where('nikanalis',Auth::user()->userid)
+        ->where('status',0)
+        ->count();
+        $data=['koreksi'=>$koreksi];
+        return view('layouts.profil',$data);
     }
 }
