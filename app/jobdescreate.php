@@ -13,13 +13,18 @@ class jobdescreate extends Model
         'gol_jabatan',
     ];
 
-    public function tujuan_jabatan()
+    public function job()
     {
-        return $this->belongsToMany('App\tujuan_jabatan',
-        'detil_tujuan_jabatan', 
-        'jobcreate_id',
-        'tujuan_jabatan_id'
-    );
-        
+        return $this->hasMany('App\job','jobdescreate_id','id');
+    }
+
+    public function jobdescreate_res()
+    {
+        return $this->hasMany('App\jobdescreate_res','jobdescreate_id','id');
+    }
+
+    public function matrikindikator()
+    {
+        return $this->hasMany('App\matrikindikator','id');
     }
 }

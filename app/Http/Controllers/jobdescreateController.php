@@ -41,42 +41,19 @@ class jobdescreateController extends Controller
 {
     public function index(Request $request)
     {
-        $tj      = jobdescreate::all();
-        $jb      = job::all();
+        // $tj      = jobdescreate::all();
+        // $jb      = job::all();
+        // $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
+        // $dt      = ['job'=>'ts','jb'=>$jb,'dt'=>$jb];
+        $tj      = jobdescreate::with('job','jobdescreate_res','matrikindikator')->get();
         $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
-        $dt      = ['job'=>'ts','jb'=>$jb,'dt'=>$jb];
+        // $res     = ['jobdescreate_res'=>'test','tj'=>$tj,'data'=>$tj];
+        // $met     = ['matrikindikator'=>'test','tj'=>$tj,'data'=>$tj];
+        // $data     = job::where('jobdescreate_id',$tj)->first();
+        // dd($data);
+        
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
     }
-    public function showjob(Request $request,$id){
-        //$id =1;
-        $testedit =2;
-        $status='';
-        $return = [];
-        $history = history_pesan::where('jobdescreate_id',$id)->get();
-        foreach($history as $key => $value){
-            if($value->status==null || $value->status==0){
-                $status = "<a class='btn btn-warning' title='Belum direvisi'>Belum direvisi</>";
-            }else{
-                $status = "<a class='btn btn-success' title='Sudah direvisi'>Sudah direvisi (".$value->tglrevisi.")</>";
-            }
-            array_push($return,
-            array(
-            'no'=>$key+1,
-            'nama'=>$value->nama,
-            'pesan'=>$value->pesan,
-            'namaanalis'=>$value->namaanalis,
-            'created_at'=>date_format($value->created_at,"Y-m-d H:i:s"),
-            'status'=>$status
-            )
-            
-        
-        );
-
-        }
-        return array('data'=>$return);
-
-    }
-    
     public function strukturdir()
     {
         $userid     = Auth::user()->userid;

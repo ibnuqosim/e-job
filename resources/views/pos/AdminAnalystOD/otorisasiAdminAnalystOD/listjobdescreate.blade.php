@@ -24,8 +24,6 @@
             'autoWidth'   : false
         })
     })
-<<<<<<< HEAD
-=======
 
     //$(function())
     function showpesan(item){
@@ -63,11 +61,16 @@ function konfirmasirevisi(id,descid){
         });
         }
 }
->>>>>>> 341196abf3e89bba40ed0469093330de6b9cab02
 </script>
 @endsection
 
 @section('content')
+{{-- @foreach ($tj as $item)
+    @foreach ($item->job as $item2)
+    {{ $item2->jabatanatasanlangsung}}
+    @endforeach
+@endforeach
+{{ dd($tj) }} --}}
 <!-- Main content -->
 
 <section class="content-header">
@@ -272,12 +275,13 @@ function konfirmasirevisi(id,descid){
                                                         </td>
                                                         <td>:</td>
                                                         <td>
-                                                            <input type="text" readonly class="form-control"  id="jabatanatasanlangsung" name="jabatanatasanlangsung" value="{{$item->jabatanatasanlangsung}}">
+                                                                <input type="text" readonly class="form-control"  id="jabatanatasanlangsung" name="jabatanatasanlangsung" value="{{$item->job[0]->jabatanatasanlangsung}}">
                                                         </td>
                                                     </tr>
                                                 </thead>
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
+                                     
                                                 <thead>
                                                     <tr>
                                                         <td>no</td>
@@ -286,10 +290,13 @@ function konfirmasirevisi(id,descid){
                                                         </td>
                                                         <td>jumlah</td>
                                                     </tr>
+                                                    @foreach ($item->job as $item2)
                                                     <tr>
-                                                        <td>{{$item->jabatanbawahanlangsung}}</td>
-                                                        <td>{{$item->jumlah}}</td>
+                                                        <td>{{$item2->id}}</td>
+                                                        <td>{{$item2->jabatanbawahanlangsung}}</td>
+                                                        <td>{{$item2->jumlah}}</td>
                                                     </tr>
+                                                    @endforeach
                                                 </thead>
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
@@ -302,21 +309,19 @@ function konfirmasirevisi(id,descid){
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>III. TANGGUNG JAWAB UTAMA (Main Responsibility)</h5>
+                                                @foreach ($item->jobdescreate_res as $item3)
                                                 <thead>
                                                     <tr>
-                                                        <td>Id</td>
+                                                        <td>{{$item3->object}}</td>
                                                     </tr>
-                                                </thead>
-                                                <thead>
                                                     <tr>
-                                                        <td>Tanggung Jawab Duties & Responsibilities</td>
+                                                        <td>{{$item3->object}}</td>
                                                     </tr>
-                                                </thead>
-                                                <thead>
                                                     <tr>
-                                                        <td>Indikator Capaian (Performance Indicators)</td>
+                                                        <td>{{$item3->object}}</td>
                                                     </tr>
                                                 </thead>
+                                                @endforeach
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>IV. DIMENSI (Dimensions)</h5>
