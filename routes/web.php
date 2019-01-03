@@ -93,6 +93,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
 
             //list jobs create
             Route::get('/listjobdescreate','jobdescreateController@index');
+            Route::get('/listjobdescreate','jobdescreateController@showpopup');
             Route::get('/formjobdescreate','jobdescreateController@fromAdd');
             Route::post('/storejobdescreate','jobdescreateController@store');
             Route::get('/editjobdescreate/{id?}','jobdescreateController@edit');

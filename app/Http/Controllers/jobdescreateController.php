@@ -39,11 +39,8 @@ use App\history_pesan;
 
 class jobdescreateController extends Controller
 {
-    public function index(Request $request)
+    public function showpopup(Request $request)
     {
-        // $tj      = jobdescreate::all();
-        // $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
-        // $dt      = ['job'=>'ts','jb'=>$jb,'dt'=>$jb];
         $tj      = jobdescreate::with('job','jobdescreate_res','matrikindikator')->get();
         $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
         $res     = ['jobdescreate_res'=>'test','tj'=>$tj,'data'=>$tj];
