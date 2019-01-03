@@ -48,6 +48,15 @@ class jobdescreateController extends Controller
         // dd($data);
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
     }
+    public function index(Request $request)
+    {
+        $tj      = jobdescreate::with('job','jobdescreate_res','matrikindikator')->get();
+        $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
+        $res     = ['jobdescreate_res'=>'test','tj'=>$tj,'data'=>$tj];
+        $met     = ['matrikindikator'=>'test','tj'=>$tj,'data'=>$tj];
+        // dd($data);
+        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
+    }
     public function strukturdir()
     {
         $userid     = Auth::user()->userid;
