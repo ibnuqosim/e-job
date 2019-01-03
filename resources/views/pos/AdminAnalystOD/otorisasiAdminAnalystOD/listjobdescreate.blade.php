@@ -88,16 +88,13 @@ function konfirmasirevisi(id,descid){
 </section>
 
 <section class="content">
-    
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Title dimensions</h3>
-            
             <div class="box-footer">
                 <a class="btn btn-primary" href="{{ url('AdminAnalystOD/formjobdescreate') }}">create</a>
             </div>
-            
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                 title="Collapse">
@@ -110,7 +107,6 @@ function konfirmasirevisi(id,descid){
                 @if($errors->any())
                     <h4>{{$errors->first()}}</h4>
                 @endif
-
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -140,45 +136,40 @@ function konfirmasirevisi(id,descid){
                             <td>
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
-                                
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
                                 {{-- <td><a href="{{action('UserDetailController@downloadPDF', $user->id)}}">PDF</a></td> --}}
                                 <div class="modal modal-info fade" id="modal-pesan">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span></button>
-                                                        <h4 class="modal-title">Pesan Revisi</h4>
-                                                    </div>
-                                            </div>
-                                            <div class="modal-body">
-                                                    <div class="table-responsive">
-                                                            <b>History Pesan Revisi</b>
-                                                            <table id="tbhispesan" class="table" style="color:black" width="100%">
-                                                                    <thead>
-                                                                       <tr>
-                                                                            <td>NO</td>
-                                                                            <td>Dikirim oleh</td>
-                                                                            <td>Pesan Revisi</td>
-                                                                            <td>Analis</td>
-                                                                            <td>Tanggal</td>
-                                                                            <td>Status</td>
-                                                                        </tr>
-                                    
-                                                                        
-                                                                    </thead>
-                                                                    <thead>
-                                                                        <tbody ></tbody>
-                                                                    </thead>
-                                                                </table>
-                                                    </div>
-                                                    
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">Pesan Revisi</h4>
                                             </div>
                                         </div>
-
+                                        <div class="modal-body">
+                                            <div class="table-responsive">
+                                                <b>History Pesan Revisi</b>
+                                                <table id="tbhispesan" class="table" style="color:black" width="100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <td>NO</td>
+                                                                <td>Dikirim oleh</td>
+                                                                <td>Pesan Revisi</td>
+                                                                <td>Analis</td>
+                                                                <td>Tanggal</td>
+                                                                <td>Status</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <thead>
+                                                            <tbody ></tbody>
+                                                        </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal modal-info fade" id="modal-info">
                                     <div class="modal-dialog">
@@ -218,7 +209,7 @@ function konfirmasirevisi(id,descid){
                                                         <td>:</td>
                                                         <td></td>
                                                     </tr>
-                                            </thead>
+                                                </thead>
                                             </table>
                                              <table id="example1" class="table table-bordered table-striped" style="color:black">  
                                                 <h5>I. IDENTIFIKASI JABATAN (Job Identification)</h5>
@@ -500,7 +491,6 @@ function konfirmasirevisi(id,descid){
             </div>
         </div>
     </section>
-
     <section>
         @include('pos/AdminAnalystOD/otorisasiAdminAnalystOD/pdf')
     </section>
