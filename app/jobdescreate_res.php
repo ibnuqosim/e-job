@@ -9,6 +9,6 @@ class jobdescreate_res extends Model
     protected $table = 'jobdescreate_res';
     public function jobdescreate_res()
     {
-        return $this->belongsTo('App\matrikindikator','jobdescreate_id');
+        return $this->belongsTo('App\jobdescreate_res','jobdescreate_id','id');
     }
 }

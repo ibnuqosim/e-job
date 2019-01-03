@@ -306,7 +306,7 @@ function konfirmasirevisi(id,descid){
                                                 @foreach ($item->jobdescreate_res as $item3)
                                                 <thead>
                                                     <tr>
-                                                        <td>{{$item3->object}}</td>
+                                                        <td>{{$item3->id_kata_kerja}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>{{$item3->object}}</td>

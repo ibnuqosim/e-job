@@ -92,10 +92,10 @@
             <li class="dropdown tasks-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-comments"></i>
-                    <span class="label label-warning">{{$koreksi}}</span>
+                    {{-- <span class="label label-warning">{{$koreksi}}</span> --}}
                   </a>
                   <ul class="dropdown-menu">
-                      <li class="header">Ada {{$koreksi}} revisi yang belum dikonfirmasi</li>
+                      {{-- <li class="header">Ada {{$koreksi}} revisi yang belum dikonfirmasi</li> --}}
                   </ul>
 
             </li>
