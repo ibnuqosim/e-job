@@ -41,6 +41,7 @@ class jobdescreateController extends Controller
 {
     public function index(Request $request)
     {
+<<<<<<< HEAD
         // $tj      = jobdescreate::all();
         // $jb      = job::all();
         // $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
@@ -52,6 +53,15 @@ class jobdescreateController extends Controller
         // $data     = job::where('jobdescreate_id',$tj)->first();
         // dd($data);
         
+=======
+        $tj = jobdescreate::all();
+        $koreksi = history_pesan::where('nikanalis',Auth::user()->userid)
+        ->where('status',0)
+        ->count();
+       
+        // $fisik = job::all();
+        $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
+>>>>>>> cf3b357537368ffee959cdb16a22d815f09b4ef9
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
     }
     public function strukturdir()
