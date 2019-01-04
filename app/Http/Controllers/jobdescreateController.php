@@ -615,10 +615,14 @@ class jobdescreateController extends Controller
 
     public function konfirmasi($id)
     {   
-        $jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
+        //dd($id);
+        //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['approveanalis' => '1','tglapproveanalis' => date("Y-m-d H:i:s")]);    
+        
         
         if($jobdescreate){
-            return back();
+            $hsl='success';
+            return $hsl;
         }
         return Redirect::back()->withErrors(['msg', 'Error']);
     } 

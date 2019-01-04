@@ -63,6 +63,24 @@ function konfirmasirevisi(id,descid){
         });
         }
 }
+function validasianalis(id){
+    if (confirm("Apakah anda yakin ?") == true) {
+        $.ajax({
+            url: "{{ url('AdminAnalystOD/konfirmasi') }}/"+id,
+            method: 'get',
+            success: function(data) {
+            if(data=='success'){
+                alert('Validasi berhasil !');
+                location.reload();
+                
+            }else{
+                alert('validasi gagal !');
+            }
+
+           }
+        });
+        }
+}
 </script>
 @endsection
 
@@ -77,13 +95,13 @@ function konfirmasirevisi(id,descid){
 
 <section class="content-header">
     <h1>
-        Data Tables
+        Data Jobdesc
         <small>advanced tables</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li class="active">Data jobdesc</li>
     </ol>
 </section>
 
@@ -91,7 +109,7 @@ function konfirmasirevisi(id,descid){
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Title dimensions</h3>
+            <h3 class="box-title">Jobdesc</h3>
             <div class="box-footer">
                 <a class="btn btn-primary" href="{{ url('AdminAnalystOD/formjobdescreate') }}">create</a>
             </div>
@@ -112,10 +130,9 @@ function konfirmasirevisi(id,descid){
                         <tr>
                             <th>No</th>
                             <th>Jobdes</th>
-                            <th>Analist</th>
-                            <th>User Name</th>
-                            {{-- <th>Validasi by</th> --}}
-                            <th>Aprove by</th>
+                            <th>Approve by analist</th>
+                            <th>Approve by user</th>
+                            <th>Aprove by atasan</th>
                             <th>Aproved by ODHCP</th>
                             <th>status</th>
                             <th>ACT</th>
@@ -127,18 +144,34 @@ function konfirmasirevisi(id,descid){
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->no_jabatan}}</td>
-                            <td>{{$item->analis}}</td>
+                            <td>@if($item->approveanalis==1)
+                                    {{$item->analis}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
+                                @else
+                                    {{$item->analis}}<!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
+                                        <button type="submit" class="glyphicon glyphicon-thumbs-up" title="Klik disini untuk validasi"></button>
+                            
+                                    </form-->
+                                    
+                                @endif
+
+                                </td>
                             <td>{{$item->namauser}}</td>
-                            {{-- <td>Validasi by</td> --}}
                             <td>{{$item->atasan}}</td>
                             <td>{{$item->approve}}</td>
-                            <td>{{$item->verifikasi}}</td>
+                            <td>@if($item->statusapprove==1)
+                                    <a class="btn btn-success" href="#">Selesai</a>
+                                 @else
+                                 <a class="btn btn-warning" href="#">Progress...</a>
+                                 @endif
+                                </td>
                             <td>
+                                    
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
-                                <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info">pop</a>
+                                <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
+                                <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasianalis({{ $item->id }});"></a>
                                 {{-- <td><a href="{{action('UserDetailController@downloadPDF', $user->id)}}">PDF</a></td> --}}
                                 <div class="modal modal-info fade" id="modal-pesan">
                                     <div class="modal-dialog">
@@ -466,7 +499,7 @@ function konfirmasirevisi(id,descid){
                                                     
                                                 </thead>
                                             </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
+                                            <!--table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>Tulis Pesan Untuk Analis</h5>
                                                 <thead>
                                                     <tr>
@@ -475,9 +508,9 @@ function konfirmasirevisi(id,descid){
                                                         </td>
                                                     </tr>
                                                 </thead>
-                                            </table>
+                                            </table-->
                                             <form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
-                                                <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                                <!--button type="submit" class="btn btn-sm btn-success">Approve</button-->
                                                 <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
                                             </form>
                                         </div>

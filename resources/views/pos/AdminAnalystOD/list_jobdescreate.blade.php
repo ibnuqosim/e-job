@@ -35,7 +35,7 @@
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
         <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li class="active">Data jobdesc</li>
     </ol>
 </section>
 
@@ -44,7 +44,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Title dimensions</h3>
+            <h3 class="box-title">Jobdesc</h3>
             
             <div class="box-footer">
                 <a class="btn btn-primary" href="{{ url('AdminAnalystOD/fromadddimensions') }}">Tambah</a>
