@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\jobdescreate;
 use App\history_pesan;
 
-class UserListJoblistController extends Controller
+class ManagerController extends Controller
 {
     public function index(Request $request)
     {
@@ -19,16 +19,10 @@ class UserListJoblistController extends Controller
         ->count();
         $tj = jobdescreate::all();
         $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
-        return view('UserSuptMgrGM.Listmanagerod',$data);
+        return view('Menu.ManagerOD.Listmanagerod',$data);
         // return view('UserSuptMgrGM.ListJoblist');
     }
     public function store(Request $request){
-        //$item =$request->item;
-        //$decode = json_decode($item);
-        //print_r($item);
-        //die();
-        //echo $item;
-        //die();
         $id                    = $request->iddesc;
         $isipesan              = $request->isipesan;
         $nik                   = Auth::user()->userid;
@@ -130,5 +124,4 @@ class UserListJoblistController extends Controller
         return array('data'=>$return);
 
     }
-
 }

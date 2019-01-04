@@ -172,9 +172,11 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/', function(){
                 echo  "ManagerOD";
             });
-            Route::get('/editing','editingJobController@index');
-            Route::get('/listjobdescreate','UserListJoblistController@index');
-            Route::get('/show-ajax','UserListJoblistController@ShowAjax');
+            Route::get('/Listmanagerod','ManagerController@index');
+            Route::get('/show-ajax','ManagerController@ShowAjax');
+            Route::get('/show-ajax','ManagerController@ShowAjax');
+            Route::post('/kirimpesan','ManagerController@store');
+            Route::get('/show-historypesan/{id}','ManagerController@showhistorypesan');
         });
         
     });

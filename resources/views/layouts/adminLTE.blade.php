@@ -183,7 +183,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.AdminAnalystOD.menujobdesk')
+              @include('menu.ManagerOD.list')
             </ul>
             <a href="#">
               <i class="fa fa-legal"></i> <span>Pengaturan</span>
@@ -205,7 +205,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.ManagerOD')
+              @include('menu.ManagerOD.mastermenu')
             </ul>
             @endrole
           </li>
