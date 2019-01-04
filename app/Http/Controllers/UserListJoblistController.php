@@ -19,7 +19,8 @@ class UserListJoblistController extends Controller
         ->count();
         $tj = jobdescreate::all();
         $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
-        return view('UserSuptMgrGM.Listmanagerod',$data);
+        return view('Menu.UserSuptMgrGM.listjobdescreate',$data);
+        // return view('Menu.ManagerOD.Listmanagerod',$data);
         // return view('UserSuptMgrGM.ListJoblist');
     }
     public function store(Request $request){
