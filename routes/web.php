@@ -160,6 +160,12 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/show-ajax','UserListJoblistController@ShowAjax');
             Route::post('/kirimpesan','UserListJoblistController@store');
             Route::get('/show-historypesan/{id}','UserListJoblistController@showhistorypesan');
+<<<<<<< HEAD
+=======
+            Route::get('/konfirmasi/{id?}','UserListJoblistController@konfirmasi');
+            //Route::post('/storepesan','UserListJoblistController@store'); 
+            //Route::post('/storepesan','UserListJoblistController@store'); 
+>>>>>>> e2655e7c70dc25866842cef03dba5eb512b6ca32
         });
         
     });
@@ -175,6 +181,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/show-ajax','ManagerController@ShowAjax');
             Route::post('/kirimpesan','ManagerController@store');
             Route::get('/show-historypesan/{id}','ManagerController@showhistorypesan');
+            Route::get('/konfirmasi/{id?}','ManagerController@konfirmasi');
         });
         
     });

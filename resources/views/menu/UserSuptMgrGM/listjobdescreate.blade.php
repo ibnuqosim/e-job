@@ -41,6 +41,24 @@ function gethistorypesan(id){
             ]
         } );
 }
+function validasiuser(id){
+    if (confirm("Apakah anda yakin ?") == true) {
+        $.ajax({
+            url: "{{ url('UserSuptMgrGM/konfirmasi') }}/"+id,
+            method: 'get',
+            success: function(data) {
+            if(data=='success'){
+                alert('Validasi berhasil !');
+                location.reload();
+                
+            }else{
+                alert('validasi gagal !');
+            }
+
+           }
+        });
+        }
+}
 
  
 </script>
@@ -75,13 +93,13 @@ td {
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>JOBDES</th>
-                        <th>ANALIST</th>
-                        <th>VALIDASI BY</th>
-                        <th>APPROVE BY</th>
-                        <th>APPROVE BY ODHCP</th>
-                        <th>STATUS</th>
-                        <th>ACT</th>
+                        <th>Jobdes</th>
+                        <th>Approve by analist</th>
+                        <th>Approve by user</th>
+                        <th>Aprove by atasan</th>
+                        <th>Aproved by ODHCP</th>
+                        <th>Status</th>
+                        <th>Act</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -89,12 +107,33 @@ td {
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->no_jabatan}}</td>
-                            <td>{{$item->analis}}</td>
-                            <td>{{$item->namauser}}</td>
+                            <td>@if($item->approveanalis==1)
+                                {{$item->analis}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
+                            @else
+                                {{$item->analis}}<!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
+                                    <button type="submit" class="glyphicon glyphicon-thumbs-up" title="Klik disini untuk validasi"></button>
+                        
+                                </form-->
+                                
+                            @endif
+
+                            </td>
+                            <td>
+                                @if($item->approveuser==1)
+                                {{$item->namauser}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveuser}}"></a>)
+                            @else
+                                {{$item->namauser}}
+                                
+                            @endif
+                            </td>
                             {{-- <td>Validasi by</td> --}}
                             <td>{{$item->atasan}}</td>
                             <td>{{$item->approve}}</td>
-                            <td>{{$item->verifikasi}}</td>
+                            <td>@if($item->statusapprove==1)
+                                <a class="btn btn-success" href="#">Selesai</a>
+                             @else
+                             <a class="btn btn-warning" href="#">Progress...</a>
+                             @endif</td>
                             <td>
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
@@ -102,6 +141,9 @@ td {
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
+                                @if($item->approveuser==null)
+                                <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasiuser({{ $item->id }});"></a>
+                                @endif
                                 {{-- <td><a href="{{action('UserDetailController@downloadPDF', $user->id)}}">PDF</a></td> --}}
                                 <div class="modal modal-info fade" id="modal-pesan">
                                         <div class="modal-dialog">
