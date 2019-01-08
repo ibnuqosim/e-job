@@ -160,8 +160,6 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/show-ajax','UserListJoblistController@ShowAjax');
             Route::post('/kirimpesan','UserListJoblistController@store');
             Route::get('/show-historypesan/{id}','UserListJoblistController@showhistorypesan');
-            //Route::post('/storepesan','UserListJoblistController@store'); 
-            //Route::post('/storepesan','UserListJoblistController@store'); 
         });
         
     });
@@ -185,6 +183,11 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
         Route::get('/SpecialistHCD', function(){
             echo  "SpecialistHCD";
         });
+        Route::get('/listSpecialist','SpecialistHCDController@index');
+            Route::get('/show-ajax','SpecialistHCDController@ShowAjax');
+            Route::get('/show-ajax','SpecialistHCDController@ShowAjax');
+            Route::post('/kirimpesan','SpecialistHCDController@store');
+            Route::get('/show-historypesan/{id}','SpecialistHCDController@showhistorypesan');
         
     });
     Route::group(['middleware'=>['auth', 'role:InternalAuditor']], function () {
