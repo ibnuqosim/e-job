@@ -151,22 +151,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
     
     Route::group(['middleware'=>['auth', 'role:UserSuptMgrGM']], function () {
         
-        Route::prefix('UserSuptMgrGM')->group(function(){
-            Route::get('/', function(){
-                echo  "UserSuptMgrGM";
-            });
-            Route::get('/editing','editingJobController@index');
-            Route::get('/listjobdescreate','UserListJoblistController@index');
-            Route::get('/show-ajax','UserListJoblistController@ShowAjax');
-            Route::post('/kirimpesan','UserListJoblistController@store');
-            Route::get('/show-historypesan/{id}','UserListJoblistController@showhistorypesan');
-<<<<<<< HEAD
-=======
-            Route::get('/konfirmasi/{id?}','UserListJoblistController@konfirmasi');
-            //Route::post('/storepesan','UserListJoblistController@store'); 
-            //Route::post('/storepesan','UserListJoblistController@store'); 
->>>>>>> e2655e7c70dc25866842cef03dba5eb512b6ca32
-        });
+
         
     });
 
