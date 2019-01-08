@@ -183,16 +183,18 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
     });
     Route::group(['middleware'=>['auth', 'role:SpecialistHCD']], function () {
         
-        Route::get('/SpecialistHCD', function(){
-            echo  "SpecialistHCD";
-        });
-        Route::get('/listSpecialist','SpecialistHCDController@index');
+        Route::prefix('SpecialistHCD')->group(function(){
+            Route::get('/', function(){
+                echo  "SpecialistHCD";
+            });
+            Route::get('/listSpecialist','SpecialistHCDController@index');
             Route::get('/show-ajax','SpecialistHCDController@ShowAjax');
             Route::get('/show-ajax','SpecialistHCDController@ShowAjax');
             Route::post('/kirimpesan','SpecialistHCDController@store');
             Route::get('/show-historypesan/{id}','SpecialistHCDController@showhistorypesan');
-        
+        });
     });
+
     Route::group(['middleware'=>['auth', 'role:InternalAuditor']], function () {
         
         Route::get('/InternalAuditor', function(){
