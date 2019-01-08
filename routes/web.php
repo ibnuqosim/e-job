@@ -161,6 +161,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::post('/kirimpesan','UserListJoblistController@store');
             Route::get('/show-historypesan/{id}','UserListJoblistController@showhistorypesan');
             Route::get('/konfirmasi/{id?}','UserListJoblistController@konfirmasi');
+            sfsdfsdf
             //Route::post('/storepesan','UserListJoblistController@store'); 
             //Route::post('/storepesan','UserListJoblistController@store'); 
         });
