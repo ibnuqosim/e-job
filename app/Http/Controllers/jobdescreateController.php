@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 use App\jobdescreate;
 use App\structdisp;
 use App\ZHROM0007;
@@ -39,15 +41,6 @@ use App\history_pesan;
 
 class jobdescreateController extends Controller
 {
-    public function showpopup(Request $request)
-    {
-        $tj      = jobdescreate::with('job','jobdescreate_res','matrikindikator')->get();
-        $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
-        $res     = ['jobdescreate_res'=>'test','tj'=>$tj,'data'=>$tj];
-        $met     = ['matrikindikator'=>'test','tj'=>$tj,'data'=>$tj];
-        // dd($data);
-        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
-    }
     public function index(Request $request)
     {
         $tj      = jobdescreate::with('job','jobdescreate_res','matrikindikator')->get();
@@ -515,14 +508,21 @@ class jobdescreateController extends Controller
     } 
     public function namauser (Request $request)
     {   
-        $arr = [];
-        $ret = [];
-        $data = structdisp::where('no','1')->where('empname','like','%'.$request->q.'%')->get();
-        foreach ($data as $key => $value) {
-            array_push($arr,['id'=>$value->empnik.'-'.$value->empname,'text'=>$value->empnik.'-'.$value->empname." (".$value->emportx.") "] );
-        }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
-        return $ret;
+        // $arr = [];
+        // $ret = [];
+        // $data = structdisp::where('no','1')->where('empname','like','%'.$request->q.'%')->get();
+        // foreach ($data as $key => $value) {
+        //     array_push($arr,['id'=>$value->empnik.'-'.$value->empname,'text'=>$value->empnik.'-'.$value->empname." (".$value->emportx.") "] );
+        // }
+        // $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        // return $ret;
+
+        $client = new Client(); //GuzzleHttp\Client
+        $result = $client->post('your-request-uri', [
+            'form_params' => [
+            'sample-form-data' => 'value'
+        ]
+]);
     } 
     public function analis (Request $request)
     {   
