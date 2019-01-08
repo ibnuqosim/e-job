@@ -132,7 +132,7 @@ function validasimanagerod(id){
                             <th>Jobdes</th>
                             <th>Approve by analist</th>
                             <th>Approve by user</th>
-                            <th>Aprove by atasan</th>
+                            
                             <th>Aproved by ODHCP</th>
                             <th>status</th>
                             <th>ACT</th>
@@ -161,13 +161,7 @@ function validasimanagerod(id){
                                 {{$item->namauser}}
                                 
                             @endif</td>
-                            <td>
-                                @if($item->approveatasan==1)
-                                {{$item->atasan}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveatasan}}"></a>)
-                            @else
-                                {{$item->atasan}}
-                                
-                            @endif</td>
+                            
                             <td>
                                 @if($item->approveodhcp==1)
                                 {{$item->approve}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveodhcp}}"></a>)

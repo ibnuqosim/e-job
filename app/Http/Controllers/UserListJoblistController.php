@@ -17,7 +17,8 @@ class UserListJoblistController extends Controller
         $koreksi = history_pesan::where('nik',Auth::user()->userid)
         ->where('status',0)
         ->count();
-        $tj = jobdescreate::all();
+        $userid  = Auth::user()->userid;
+        $tj = jobdescreate::where('nikuser',$userid)->get();
         $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
         return view('Menu.UserSuptMgrGM.listjobdescreate',$data);
         // return view('Menu.ManagerOD.Listmanagerod',$data);

@@ -96,7 +96,7 @@ td {
                         <th>Jobdes</th>
                         <th>Approve by analist</th>
                         <th>Approve by user</th>
-                        <th>Aprove by atasan</th>
+                        
                         <th>Aproved by ODHCP</th>
                         <th>Status</th>
                         <th>Act</th>
@@ -127,7 +127,7 @@ td {
                             @endif
                             </td>
                             {{-- <td>Validasi by</td> --}}
-                            <td>{{$item->atasan}}</td>
+                            
                             <td>{{$item->approve}}</td>
                             <td>@if($item->statusapprove==1)
                                 <a class="btn btn-success" href="#">Selesai</a>

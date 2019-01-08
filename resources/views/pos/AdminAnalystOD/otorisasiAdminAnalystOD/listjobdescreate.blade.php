@@ -132,7 +132,7 @@ function validasianalis(id){
                             <th>Jobdes</th>
                             <th>Approve by analist</th>
                             <th>Approve by user</th>
-                            <th>Aprove by atasan</th>
+                            <!--th>Aprove by atasan</th-->
                             <th>Aproved by ODHCP</th>
                             <th>status</th>
                             <th>ACT</th>
@@ -161,7 +161,7 @@ function validasianalis(id){
                                 {{$item->namauser}}
                                 
                             @endif</td>
-                            <td>{{$item->atasan}}</td>
+                            <!--td>{{$item->atasan}}</td-->
                             <td>{{$item->approve}}</td>
                             <td>@if($item->statusapprove==1)
                                     <a class="btn btn-success" href="#">Selesai</a>
