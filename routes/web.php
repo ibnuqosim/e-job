@@ -160,6 +160,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/show-ajax','UserListJoblistController@ShowAjax');
             Route::post('/kirimpesan','UserListJoblistController@store');
             Route::get('/show-historypesan/{id}','UserListJoblistController@showhistorypesan');
+            Route::get('/konfirmasi/{id?}','UserListJoblistController@konfirmasi');
             //Route::post('/storepesan','UserListJoblistController@store'); 
             //Route::post('/storepesan','UserListJoblistController@store'); 
         });
@@ -177,6 +178,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/show-ajax','ManagerController@ShowAjax');
             Route::post('/kirimpesan','ManagerController@store');
             Route::get('/show-historypesan/{id}','ManagerController@showhistorypesan');
+            Route::get('/konfirmasi/{id?}','ManagerController@konfirmasi');
         });
         
     });

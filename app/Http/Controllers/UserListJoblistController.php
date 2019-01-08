@@ -131,5 +131,18 @@ class UserListJoblistController extends Controller
         return array('data'=>$return);
 
     }
+    public function konfirmasi($id)
+    {   
+        //dd($id);
+        //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['approveuser' => '1','tglapproveuser' => date("Y-m-d H:i:s")]);    
+        
+        
+        if($jobdescreate){
+            $hsl='success';
+            return $hsl;
+        }
+        return Redirect::back()->withErrors(['msg', 'Error']);
+    } 
 
 }

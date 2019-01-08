@@ -47,7 +47,7 @@ function gethistorypesan(id){
 function konfirmasirevisi(id,descid){
     if (confirm("Apakah anda yakin ?") == true) {
         $.ajax({
-            url: "{{ url('AdminAnalystOD/konfirmasipesan') }}/"+id,
+            url: "{{ url('ManagerOD/konfirmasipesan') }}/"+id,
             method: 'get',
             success: function(data) {
             if(data=='success'){
@@ -63,10 +63,10 @@ function konfirmasirevisi(id,descid){
         });
         }
 }
-function validasianalis(id){
+function validasimanagerod(id){
     if (confirm("Apakah anda yakin ?") == true) {
         $.ajax({
-            url: "{{ url('AdminAnalystOD/konfirmasi') }}/"+id,
+            url: "{{ url('ManagerOD/konfirmasi') }}/"+id,
             method: 'get',
             success: function(data) {
             if(data=='success'){
@@ -155,9 +155,26 @@ function validasianalis(id){
                                 @endif
 
                                 </td>
-                            <td>{{$item->namauser}}</td>
-                            <td>{{$item->atasan}}</td>
-                            <td>{{$item->approve}}</td>
+                            <td>@if($item->approveuser==1)
+                                {{$item->namauser}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveuser}}"></a>)
+                            @else
+                                {{$item->namauser}}
+                                
+                            @endif</td>
+                            <td>
+                                @if($item->approveatasan==1)
+                                {{$item->atasan}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveatasan}}"></a>)
+                            @else
+                                {{$item->atasan}}
+                                
+                            @endif</td>
+                            <td>
+                                @if($item->approveodhcp==1)
+                                {{$item->approve}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveodhcp}}"></a>)
+                            @else
+                                {{$item->approve}}
+                                
+                            @endif</td>
                             <td>@if($item->statusapprove==1)
                                     <a class="btn btn-success" href="#">Selesai</a>
                                  @else
@@ -168,10 +185,12 @@ function validasianalis(id){
                                     
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
-                                <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
+                                <!--a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a-->
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
-                                <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasianalis({{ $item->id }});"></a>
+                                @if($item->approveodhcp==null)
+                                <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasimanagerod({{ $item->id }});"></a>
+                                @endif
                                 {{-- <td><a href="{{action('UserDetailController@downloadPDF', $user->id)}}">PDF</a></td> --}}
                                 <div class="modal modal-info fade" id="modal-pesan">
                                     <div class="modal-dialog">

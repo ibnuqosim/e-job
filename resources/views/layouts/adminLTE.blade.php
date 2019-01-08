@@ -183,7 +183,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.ManagerOD.list')
+              @include('menu.AdminAnalystOD.menujobdesk')
             </ul>
             <a href="#">
               <i class="fa fa-legal"></i> <span>Pengaturan</span>
