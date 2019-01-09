@@ -20,11 +20,22 @@
         } );
     } );*/
 function showpesan(item){
+    reload();
     $("#iddesc").val(item.id);
     $("#nikanalis").val(item.nikanalis);
     $("#namaanalis").val(item.analis);
     gethistorypesan(item.id);
+    
     //console.log(item);
+}
+function reload(){
+    
+    var container = document.getElementById("notif");
+    var content = container.innerHTML;
+    container.innerHTML= content; 
+    
+   //this line is to watch the result in console , you can remove it later	
+    console.log("Refreshed"); 
 }
 function gethistorypesan(id){
     //var id=1;
@@ -40,6 +51,7 @@ function gethistorypesan(id){
                 { "data": "status" },
             ]
         } );
+        
 }
 function validasiuser(id){
     if (confirm("Apakah anda yakin ?") == true) {
@@ -53,6 +65,24 @@ function validasiuser(id){
                 
             }else{
                 alert('validasi gagal !');
+            }
+
+           }
+        });
+        }
+}
+function konfirmvalidanalis(id){
+    if (confirm("Apakah anda yakin ?") == true) {
+        $.ajax({
+            url: "{{ url('UserSuptMgrGM/konfirmasivalidanalis') }}/"+id,
+            method: 'get',
+            success: function(data) {
+            if(data=='success'){
+                alert('Konfirmasi berhasil !');
+                location.reload();
+                
+            }else{
+                alert('Konfirmasi gagal !');
             }
 
            }
@@ -95,7 +125,7 @@ td {
                         <th>ID</th>
                         <th>Jobdes</th>
                         <th>Approve by analist</th>
-                        <th>Approve by user</th>
+                        <th>Approve by Supt/Mgr/GM</th>
                         
                         <th>Aproved by ODHCP</th>
                         <th>Status</th>
@@ -128,7 +158,13 @@ td {
                             </td>
                             {{-- <td>Validasi by</td> --}}
                             
-                            <td>{{$item->approve}}</td>
+                            <td>
+                                @if($item->approveodhcp==1)
+                                {{$item->approve}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveodhcp}}"></a>)
+                            @else
+                                {{$item->approve}}
+                                
+                            @endif</td>
                             <td>@if($item->statusapprove==1)
                                 <a class="btn btn-success" href="#">Selesai</a>
                              @else
@@ -141,7 +177,10 @@ td {
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
-                                @if($item->approveuser==null)
+                                @if($item->konfirmvalidanalis==null)
+                                <a class="glyphicon glyphicon-share" title="Konfirmasi untuk divalidasi analis !" onclick="konfirmvalidanalis({{ $item->id }});"></a>
+                                @endif
+                                @if($item->approveuser==null && $item->konfirmvalidanalis==1 && $item->approveanalis==1)
                                 <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasiuser({{ $item->id }});"></a>
                                 @endif
                                 {{-- <td><a href="{{action('UserDetailController@downloadPDF', $user->id)}}">PDF</a></td> --}}

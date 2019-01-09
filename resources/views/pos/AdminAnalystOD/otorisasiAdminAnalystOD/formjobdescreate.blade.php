@@ -968,8 +968,8 @@
                             <td>
                                 <h5>Input name User</h5>
                                 <select class="js-data-example-ajax form-control"  id="namauser" name="namauser"></select>
-                                <input type="text" class="form-control" class="form-control" id="nikatasan" name="nikatasan" readonly>
-                                <input type="text" class="form-control" class="form-control" id="namaatasan" name="namaatasan" readonly>
+                                <input type="hidden" class="form-control" class="form-control" id="nikatasan" name="nikatasan" readonly>
+                                <input type="hidden" class="form-control" class="form-control" id="namaatasan" name="namaatasan" readonly>
                             </td>
                         </tr>
                         <tr>

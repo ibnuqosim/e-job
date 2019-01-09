@@ -128,7 +128,7 @@ class ManagerController extends Controller
     {   
         //dd($id);
         //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
-        $jobdescreate = jobdescreate::where('id',$id)->update(['approveodhcp' => '1','tglapproveodhcp' => date("Y-m-d H:i:s")]);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['approveodhcp' => '1','tglapproveodhcp' => date("Y-m-d H:i:s"),'statusapprove'=>1]);    
         
         
         if($jobdescreate){
