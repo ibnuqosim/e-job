@@ -126,7 +126,10 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/formjobdescreate/profil','jobdescreateController@profil');
 
             Route::get('/formjobdescreate/managerodhcp','jobdescreateController@managerodhcp');
+
             Route::get('/formjobdescreate/namauser','jobdescreateController@namauser');
+            Route::get('/formjobdescreate/namauser/api/{id}','jobdescreateController@namaUserApi');
+
             Route::get('/formjobdescreate/analis','jobdescreateController@analis');
 
             Route::get('/formjobdescreate/AbbrPosition','jobdescreateController@AbbrPosition');

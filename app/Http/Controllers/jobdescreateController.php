@@ -508,22 +508,33 @@ class jobdescreateController extends Controller
     } 
     public function namauser (Request $request)
     {   
-        // $arr = [];
-        // $ret = [];
-        // $data = structdisp::where('no','1')->where('empname','like','%'.$request->q.'%')->get();
-        // foreach ($data as $key => $value) {
-        //     array_push($arr,['id'=>$value->empnik.'-'.$value->empname,'text'=>$value->empnik.'-'.$value->empname." (".$value->emportx.") "] );
-        // }
-        // $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
-        // return $ret;
-
-        $client = new Client(); //GuzzleHttp\Client
-        $result = $client->post('your-request-uri', [
-            'form_params' => [
-            'sample-form-data' => 'value'
-        ]
-]);
+        
+        $arr = [];
+        $ret = [];
+        $data = structdisp::where('no','1')->where('empname','like','%'.$request->q.'%')->get();
+        foreach ($data as $key => $value) { 
+            array_push($arr,['id'=>$value->empnik.'-'.$value->empname,'text'=>$value->empnik.'-'.$value->empname." (".$value->emportx.") "] );
+        }
+        $ret = ['results' =>
+        $arr ,'pagination'=>['more'=>true]];
+        return $ret;
     } 
+
+    public function namaUserApi (Request $request,$id)
+    {   
+        $arr = [];
+        $ret = [];
+        $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/shortAbbrOrg/'.$id);
+        $jess=json_decode($ret);
+
+        foreach ($jess as $key => $value) {
+            array_push($arr,['id'=>$value->empnik.'-'.$value->empname, 'text'=>$value->empnik.'-'.$value->empname." (".$value->emportx.") "]);
+        }
+        $ret = ['results' =>
+        $arr ,'pagination'=>['more'=>true]];
+        return $ret;
+    } 
+
     public function analis (Request $request)
     {   
         $arr = [];
@@ -537,15 +548,6 @@ class jobdescreateController extends Controller
     } 
     public function atasan ($nik)
     {   
-        // $arr = [];
-        // $ret = [];
-        // $data = structdisp::where('dirname','like','%'.$request->q.'%')->get();
-        // foreach ($data as $key => $value) {
-        //     array_push($arr,['id'=>$value->dirname,'text'=>$value->dirname.""] );
-        // }
-        // $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
-        // return $ret;
-
         $data = structdisp::where('empnik',$nik)
         ->where('no','2')
         //->groupBy('no')
@@ -570,7 +572,7 @@ class jobdescreateController extends Controller
         $ret = [];
         $data = ZHROM0007::where('AbbrPosition','like','%'.$request->q.'%')->get();
         foreach ($data as $key => $value) {
-            array_push($arr,['id'=>$value->AbbrPosition,'text'=>$value->AbbrPosition.""] );
+            array_push($arr,['id'=>$value->AbbrPosition,'abbrUnit'=>$value->AbbrOrgUnitDivisi,'text'=>$value->AbbrPosition.""] );
         }
         $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
         return $ret;

@@ -1,0 +1,10 @@
+emp_hrp1000_s_short
+
+
+AbbrPosition
+http://eos.krakatausteel.com/api/structdisp/ShortAbbrOrg/emp_hrp1000_o_short/34503
+
+   // $client = new zhrom0007(); //GuzzleHttp\Client
+        //$result = file_get_contents('http://eos.krakatausteel.com/api/structdisp/shortAbbrOrg/62202');
+        //$jess=json_decode($result);
+        //var_dump($jess);

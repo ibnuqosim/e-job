@@ -35,12 +35,7 @@
             dataType: 'json'
         }
     });
-    $('#namauser').select2({
-        ajax: {
-            url: '{{ url('AdminAnalystOD/formjobdescreate/namauser') }}',
-            dataType: 'json'
-        }
-    });
+
     $('#atasan').select2({
         ajax: {
             url: '{{ url('AdminAnalystOD/formjobdescreate/atasan') }}',
@@ -65,6 +60,15 @@
         nojabatan(data);
         abbdetail(data);
         detail(data);
+        console.log(data);
+
+        $('#namauser').select2({
+            ajax: {
+                url: '{{ url('AdminAnalystOD/formjobdescreate/namauser/api') }}/'+data.abbrUnit,
+                dataType: 'json'
+            }
+        });
+
     });
 
     $('#namauser').on('select2:select', function (e) {
