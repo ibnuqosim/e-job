@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\jobdescreate;
 use App\history_pesan;
+use App\Events\JobdescApproved;
 
 class UserListJoblistController extends Controller
 {
@@ -145,6 +146,8 @@ class UserListJoblistController extends Controller
         
         if($jobdescreate){
             $hsl='success';
+            $j = jobdescreate::where('id', $id)->first();
+            event(new JobdescApproved($j));
             return $hsl;
         }
         return Redirect::back()->withErrors(['msg', 'Error']);
