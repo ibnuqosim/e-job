@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class jobdescreate extends Model
 {
@@ -26,5 +27,10 @@ class jobdescreate extends Model
     public function matrikindikator()
     {
         return $this->hasMany('App\matrikindikator','id');
+    }
+
+    public function nikapprove()
+    {
+        return User::where('userid', $this->nikapprove);
     }
 }

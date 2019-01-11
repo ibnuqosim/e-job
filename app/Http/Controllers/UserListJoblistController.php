@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\jobdescreate;
 use App\history_pesan;
+use App\Events\JobdescApproved;
 
 class UserListJoblistController extends Controller
 {
@@ -17,7 +18,8 @@ class UserListJoblistController extends Controller
         $koreksi = history_pesan::where('nik',Auth::user()->userid)
         ->where('status',0)
         ->count();
-        $tj = jobdescreate::all();
+        $userid  = Auth::user()->userid;
+        $tj = jobdescreate::where('nikuser',$userid)->get();
         $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
         return view('Menu.UserSuptMgrGM.listjobdescreate',$data);
         // return view('Menu.ManagerOD.Listmanagerod',$data);
@@ -37,6 +39,7 @@ class UserListJoblistController extends Controller
         $nikanalis             = $request->nikanalis;
         $namaanalis            = $request->namaanalis;
         $dilihat               = 0;
+        $status                = 0;
 
         $data = new history_pesan();
         $data->jobdescreate_id      = $id;
@@ -44,8 +47,9 @@ class UserListJoblistController extends Controller
         $data->nik                  = $nik;
         $data->nama                 = $nama;
         $data->nikanalis            = $nikanalis;
-        $data->namaanalis           = $namaanalis;
+        $data->namaanalis           = $namaanalis; 
         $data->dilihat              = $dilihat;
+        $data->status               = $status;
         $data->save();
 
         return redirect('/UserSuptMgrGM/listjobdescreate');
@@ -99,6 +103,8 @@ class UserListJoblistController extends Controller
         );
 
         }
+        history_pesan::where('jobdescreate_id',$id)->where('status',1)->update(['dilihat' => '1','tgldilihat'=>date("Y-m-d H:i:s")]);    
+        
         return array('data'=>$return);
 
     }
@@ -136,6 +142,21 @@ class UserListJoblistController extends Controller
         //dd($id);
         //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
         $jobdescreate = jobdescreate::where('id',$id)->update(['approveuser' => '1','tglapproveuser' => date("Y-m-d H:i:s")]);    
+        
+        
+        if($jobdescreate){
+            $hsl='success';
+            $j = jobdescreate::where('id', $id)->first();
+            event(new JobdescApproved($j));
+            return $hsl;
+        }
+        return Redirect::back()->withErrors(['msg', 'Error']);
+    }
+    public function konfirmasivalidanalis($id)
+    {   
+        //dd($id);
+        //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['konfirmvalidanalis' => '1','tglkonfirmvalidanalis' => date("Y-m-d H:i:s")]);    
         
         
         if($jobdescreate){

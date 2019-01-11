@@ -131,8 +131,8 @@ function validasimanagerod(id){
                             <th>No</th>
                             <th>Jobdes</th>
                             <th>Approve by analist</th>
-                            <th>Approve by user</th>
-                            <th>Aprove by atasan</th>
+                            <th>Approve by Supt/Mgr/GM</th>
+                            
                             <th>Aproved by ODHCP</th>
                             <th>status</th>
                             <th>ACT</th>
@@ -161,13 +161,7 @@ function validasimanagerod(id){
                                 {{$item->namauser}}
                                 
                             @endif</td>
-                            <td>
-                                @if($item->approveatasan==1)
-                                {{$item->atasan}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveatasan}}"></a>)
-                            @else
-                                {{$item->atasan}}
-                                
-                            @endif</td>
+                            
                             <td>
                                 @if($item->approveodhcp==1)
                                 {{$item->approve}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveodhcp}}"></a>)
@@ -188,7 +182,7 @@ function validasimanagerod(id){
                                 <!--a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a-->
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
-                                @if($item->approveodhcp==null)
+                                @if($item->approveodhcp==null && $item->approveuser==1)
                                 <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasimanagerod({{ $item->id }});"></a>
                                 @endif
                                 {{-- <td><a href="{{action('UserDetailController@downloadPDF', $user->id)}}">PDF</a></td> --}}

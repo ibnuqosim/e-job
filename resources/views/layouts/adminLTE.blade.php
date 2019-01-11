@@ -89,16 +89,34 @@
               </ul>
             </li>
             <!-- User Account: style can be found in dropdown.less -->
-            <li class="dropdown tasks-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-comments"></i>
-                    {{-- <span class="label label-warning">{{$koreksi}}</span> --}}
-                  </a>
-                  <ul class="dropdown-menu">
-                      {{-- <li class="header">Ada {{$koreksi}} revisi yang belum dikonfirmasi</li> --}}
-                  </ul>
+            
+           
+            <li class="dropdown tasks-menu" id="notif">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <i class="fa fa-bell-o"></i>
+                  @if($notif>0)<span class="label label-warning">{{$notif}}</span>@endif
+                </a>
+                @role('AdminAnalystOD')
+                <ul class="dropdown-menu">
+                  @if($blmkonfirm>0)<li class="header">Ada <b>{{$blmkonfirm}}</b> revisi yang belum dikonfirmasi</li>@endif
+                  @if($validanalis>0)  <li class="header">Ada <b>{{$validanalis}}</b> jobdesc yang harus divalidasi</li>@endif
+                </ul>
+                @endrole
+                @role('UserSuptMgrGM')
+                <ul class="dropdown-menu">
+                  @if($blmdilihat>0)<li class="header">Ada <b>{{$blmdilihat}}</b> dikonfirmasi revisi jobdesc belum dilihat</li>@endif
+                  @if($validuser>0)  <li class="header">Ada <b>{{$validuser}}</b> jobdesc yang harus divalidasi</li>@endif
+                </ul>
+                @endrole
+                @role('ManagerOD')
+                <ul class="dropdown-menu">
+                  @if($validodhcp>0)  <li class="header">Ada <b>{{$validodhcp}}</b> jobdesc yang harus divalidasi</li>@endif
+                </ul>
+                @endrole
 
             </li>
+            
+            
             <li class="dropdown user user-menu">
               @guest
               <li><a href="{{ route('login') }}">Login</a></li>
