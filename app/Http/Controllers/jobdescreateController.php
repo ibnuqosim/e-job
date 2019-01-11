@@ -509,7 +509,6 @@ class jobdescreateController extends Controller
     } 
     public function namauser (Request $request)
     {   
-<<<<<<< HEAD
         
         $arr = [];
         $ret = [];
@@ -520,23 +519,6 @@ class jobdescreateController extends Controller
         $ret = ['results' =>
         $arr ,'pagination'=>['more'=>true]];
         return $ret;
-=======
-        $arr = [];
-        $ret = [];
-        $data = structdisp::where('no','1')->where('empname','like','%'.$request->q.'%')->get();
-        foreach ($data as $key => $value) {
-            array_push($arr,['id'=>$value->empnik.'-'.$value->empname,'text'=>$value->empnik.'-'.$value->empname." (".$value->emportx.") "] );
-        }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
-        return $ret;
-
-        // $client = new Client(); //GuzzleHttp\Client
-        // $result = $client->post('your-request-uri', [
-        //     'form_params' => [
-        //     'sample-form-data' => 'value'
-        // ]
-//]);
->>>>>>> 20aeaebcd2e4432ddac8929d5e6e2f650a58e89a
     } 
 
     public function namaUserApi (Request $request,$id)
@@ -553,6 +535,7 @@ class jobdescreateController extends Controller
         $arr ,'pagination'=>['more'=>true]];
         return $ret;
     } 
+
 
     public function analis (Request $request)
     {   
