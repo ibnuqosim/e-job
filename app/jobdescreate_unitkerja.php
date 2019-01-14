@@ -8,8 +8,8 @@ class jobdescreate_unitkerja extends Model
 {
     protected $table = 'jobdescreate_unitkerja';
 
-    public function jobdescreate_unitkerja()
+    public function jobdescreate()
     {
-        return $this->belongsTo('App\jobdescreate','id');
+        return $this->belongsTo('App\jobdescreate');
     }
 }

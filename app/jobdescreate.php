@@ -24,11 +24,10 @@ class jobdescreate extends Model
         return $this->hasMany('App\jobdescreate_res','jobdescreate_id','id');
     }
 
-    public function matrikindikator()
+    public function jobdescreate_unitkerja()
     {
-        return $this->hasMany('App\matrikindikator','id');
+        return $this->hasMany('App\jobdescreate_unitkerja');
     }
-
     public function nikapprove()
     {
         return User::where('userid', $this->nikapprove);

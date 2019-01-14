@@ -149,6 +149,8 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/formjobdescreate/atasan/{nik?}','jobdescreateController@atasan');
             Route::get('/show-historypesan/{id}','UserListJoblistController@showhistorypesananalis');
             Route::get('/konfirmasipesan/{id}','jobdescreateController@konfirmasipesan');
+            Route::get('/getjobdescreate/{id}','jobdescreateController@getjobdescreate');
+            
     });
     
     

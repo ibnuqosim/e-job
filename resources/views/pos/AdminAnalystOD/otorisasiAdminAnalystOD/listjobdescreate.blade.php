@@ -81,6 +81,47 @@ function validasianalis(id){
         });
         }
 }
+function view_job(id){
+    $.ajax({
+            url: "{{ url('AdminAnalystOD/getjobdescreate') }}/"+id,
+            method: 'get',
+            success: function(data) {
+            console.log(data);
+            console.log(data.item);
+            console.log(data.job);
+            
+
+            //alert(data[0].id);
+             $('#nojabatan').val(data.item[0].no_jabatan);
+             $('#NameofPosition').val(data.item[0].name_jabatan);
+             $('#LvlOrg').val(data.item[0].gol_jabatan);
+             $('#NameofOrgUnitDinas').val(data.item[0].dinas);
+             $('#NameofOrgUnitDivisi').val(data.item[0].divisi);
+             $('#NameofOrgUnitSubDirektorat').val(data.item[0].subdirektorat);
+             $('#NameofOrgUnitDirektorat').val(data.item[0].direktorat);
+             console.log(data.job.length);
+             var no=0;
+             var html='';
+             for (i = 0; i < data.job.length; i++) {
+                no++;
+                html+='<tr><td>'+no+'</td><td>'+data.job[i].jabatanbawahanlangsung+'<td><td>'+data.job[i].jumlah+'<td></tr>';
+                }
+                $('#jbl').html(html);
+
+                var no2=0;
+             var html2='';
+             for (i = 0; i < data.jobres.length; i++) {
+                no++;
+                html+='<tr><td>'+no+'</td><td>'+data.jobres[i].jabatanbawahanlangsung+'<td><td>'+data.jobres[i].jumlah+'<td></tr>';
+                }
+                $('#uno').html(html2);
+
+
+
+
+           }
+        });
+}
 </script>
 @endsection
 
@@ -169,7 +210,7 @@ function validasianalis(id){
                                 </td>
                             <td>
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
-                                <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
+                                <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info" onclick="view_job({{$item->id}})"></a>
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
@@ -254,8 +295,8 @@ function validasianalis(id){
                                                     <tr>
                                                         <td width=50%>No. Jabatan (Job No.)</td>
                                                         <td>:</td>
-                                                        <td width=50%>    
-                                                            {{$item->no_jabatan}}
+                                                        <td width=50% >    
+                                                            <input type="text" id="nojabatan" readonly class="form-control">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -283,7 +324,7 @@ function validasianalis(id){
                                                         <td>Divisi (Division)</td>
                                                         <td>:</td>
                                                         <td>    
-                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitDivisi" name="NameofOrgUnitDivisi" value="{{$item->divisi}}">
+                                                            <input type="text"readonly  class="form-control" id="NameofOrgUnitDivisi" name="NameofOrgUnitDivisi" >
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -321,13 +362,7 @@ function validasianalis(id){
                                                         </td>
                                                         <td>jumlah</td>
                                                     </tr>
-                                                    @foreach ($item->job as $item2)
-                                                    <tr>
-                                                        <td>{{$item2->id}}</td>
-                                                        <td>{{$item2->jabatanbawahanlangsung}}</td>
-                                                        <td>{{$item2->jumlah}}</td>
-                                                    </tr>
-                                                    @endforeach
+                                                    <tbody id="jbl"></tbody>
                                                 </thead>
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
@@ -338,21 +373,11 @@ function validasianalis(id){
                                                     </tr>
                                                 </thead>
                                             </table>
+                                            <h5>III. TANGGUNG JAWAB UTAMA (Main Responsibility)</h5>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>III. TANGGUNG JAWAB UTAMA (Main Responsibility)</h5>
-                                                @foreach ($item->jobdescreate_res as $item3)
-                                                <thead>
-                                                    <tr>
-                                                        <td>{{$item3->id_kata_kerja}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>{{$item3->id_met_object}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>{{$item3->id_met_indikator}}</td>
-                                                    </tr>
-                                                </thead>
-                                                @endforeach
+                                                <tbody id="uno">
+                                                  
+                                                </tbody>
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>IV. DIMENSI (Dimensions)</h5>
@@ -390,14 +415,14 @@ function validasianalis(id){
                                                         <td>Indikator Capaian (Performance Indicators)</td>
                                                     </tr>
                                                 </thead>
-                                                @foreach ($item->jobdescreate as $item4)
+                                                @foreach ($item->jobdescreate_unitkerja as $item4)
                                                 <thead>
                                                     <tr>
                                                         <th>Unit Kerja (Work Unit)</th>
                                                     </tr>
                                                     <tr>
                                                         <td>a. Internal (Internal)</td>
-                                                        <td>{{$item->id_emp_cskt_ltext}}</td>
+                                                        <td>{{$item4->id_emp_cskt_ltext}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Dalam Hal (Keterangan Internal):</td>

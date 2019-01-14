@@ -44,9 +44,14 @@ class jobdescreateController extends Controller
     public function index(Request $request)
     {
         $userid  = Auth::user()->userid;
-        $tj      = jobdescreate::with('job','jobdescreate_res','matrikindikator','jobdescreate_unitkerja')->where('nikanalis',$userid)->get();
-        $data    = ['jobdescreate_unitkerja'=>'tj','dt'=>$tj,'data'=>$tj];
-        // $dt      = ['jobdescreate_unitkerja'=>'test','tj'=>$tt,'dt'=>$tt];
+        $tj      = jobdescreate::with(['job','jobdescreate_res' => function($query){
+            $query->with('matrikinndikator')->get();
+        },'jobdescreate_unitkerja'])->where('nikanalis',$userid)->get();
+         //dd($tj);
+        $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
+        // $res     = ['jobdescreate_res'=>'test','tj'=>$tj,'data'=>$tj];
+        // $met     = ['matrikindikator'=>'test','tj'=>$tj,'data'=>$tj];
+        // $dk     = ['jobdescreate_unitkerja'=>'test','tj'=>$tj,'data'=>$tj];
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
     }
     public function strukturdir()
@@ -646,5 +651,14 @@ class jobdescreateController extends Controller
         $item = jobdescreate::where('id',$id)->get();
         
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['item'=>$item]);
+    }
+    function getjobdescreate(Request $request, $id){
+        $job=[];
+        $jobres=[];
+        $jobres= jobdescreate_res::where('jobdescreate_id',$id)->get();
+        $item = jobdescreate::where('id',$id)->get();
+        $job  = job::where('jobdescreate_id',$id)->get();
+        $data = array('item'=>$item,'job'=>$job,'jobres'=>$jobres);
+        return $data;
     }
 }
