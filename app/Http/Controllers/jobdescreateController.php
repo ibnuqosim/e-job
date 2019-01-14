@@ -44,11 +44,9 @@ class jobdescreateController extends Controller
     public function index(Request $request)
     {
         $userid  = Auth::user()->userid;
-        $tj      = jobdescreate::with('job','jobdescreate_res','matrikindikator')->where('nikanalis',$userid)->get();
-        $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
-        $res     = ['jobdescreate_res'=>'test','tj'=>$tj,'data'=>$tj];
-        $met     = ['matrikindikator'=>'test','tj'=>$tj,'data'=>$tj];
-        // dd($data);
+        $tj      = jobdescreate::with('job','jobdescreate_res','matrikindikator','jobdescreate_unitkerja')->where('nikanalis',$userid)->get();
+        $data    = ['jobdescreate_unitkerja'=>'tj','dt'=>$tj,'data'=>$tj];
+        // $dt      = ['jobdescreate_unitkerja'=>'test','tj'=>$tt,'dt'=>$tt];
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
     }
     public function strukturdir()

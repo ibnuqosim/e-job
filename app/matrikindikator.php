@@ -10,6 +10,6 @@ class matrikindikator extends Model
 
     public function matrikindikator()
     {
-        return $this->belongsTo('App\jobdescreate_res','id','lavel','unitkerja','kodeunit','object');
+        return $this->belongsTo('App\jobdescreate_res','id','lavel','unitkerja','kodeunit','object','indikator','kewenangan');
     }
 }

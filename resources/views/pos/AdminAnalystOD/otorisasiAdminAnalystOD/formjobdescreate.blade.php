@@ -231,9 +231,9 @@
     }
     function Workinternal() {
         var workint = $('#workint').val();
-        var stre;
+        var stwork;
         {
-            stre = "<div id='halsatu"+workint+"' >"+
+            stwork ="<div id='halsatu"+workint+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<select class='js-data-example-ajax form-control workint-ajax' name='work[]'></select>"+
                         "</div>"+
@@ -259,7 +259,7 @@
                         "</div>"+
                     "</div>"; 
 
-            $("#divdworkint").append(stre);
+            $("#divdworkint").append(stwork);
             $("#divhal").append(hal);
             $("#divhalk").append(halk);
             $("#divhalks").append(halks);

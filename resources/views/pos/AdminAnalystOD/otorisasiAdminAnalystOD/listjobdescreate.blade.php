@@ -106,7 +106,6 @@ function validasianalis(id){
 </section>
 
 <section class="content">
-    <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Jobdesc</h3>
@@ -144,17 +143,16 @@ function validasianalis(id){
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->no_jabatan}}</td>
-                            <td>@if($item->approveanalis==1)
+                            <td>
+                                @if($item->approveanalis==1)
                                     {{$item->analis}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
                                 @else
-                                    {{$item->analis}}<!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
+                                    {{$item->analis}}
+                                    <!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
                                         <button type="submit" class="glyphicon glyphicon-thumbs-up" title="Klik disini untuk validasi"></button>
-                            
                                     </form-->
-                                    
                                 @endif
-
-                                </td>
+                            </td>
                             <td> @if($item->approveuser==1)
                                 {{$item->namauser}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveuser}}"></a>)
                             @else
@@ -170,7 +168,6 @@ function validasianalis(id){
                                  @endif
                                 </td>
                             <td>
-                                    
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
@@ -349,10 +346,10 @@ function validasianalis(id){
                                                         <td>{{$item3->id_kata_kerja}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>{{$item3->object}}</td>
+                                                        <td>{{$item3->id_met_object}}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>{{$item3->object}}</td>
+                                                        <td>{{$item3->id_met_indikator}}</td>
                                                     </tr>
                                                 </thead>
                                                 @endforeach
@@ -378,11 +375,13 @@ function validasianalis(id){
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>WEWENANG</h5>
+                                                @foreach ($item->jobdescreate_res as $item3)
                                                 <thead>
                                                     <tr>
-                                                        <td>Indikator Capaian (Performance Indicators)</td>
+                                                        <td>{{$item3->id_met_kewenangan}}</td>
                                                     </tr>
                                                 </thead>
+                                                @endforeach
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>VI. HUBUNGAN KERJA (Work Relationship)</h5>
@@ -391,15 +390,14 @@ function validasianalis(id){
                                                         <td>Indikator Capaian (Performance Indicators)</td>
                                                     </tr>
                                                 </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>I. IDENTIFIKASI JABATAN (Job Identification)</h5>
+                                                @foreach ($item->jobdescreate as $item4)
                                                 <thead>
                                                     <tr>
                                                         <th>Unit Kerja (Work Unit)</th>
                                                     </tr>
                                                     <tr>
                                                         <td>a. Internal (Internal)</td>
+                                                        <td>{{$item->id_emp_cskt_ltext}}</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Dalam Hal (Keterangan Internal):</td>
@@ -411,6 +409,7 @@ function validasianalis(id){
                                                         <td>Dalam Hal (Keterangan External):</td>
                                                     </tr>
                                                 </thead>
+                                                @endforeach
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>VII. ALAT,BAHAN,DAN LINGKUNGAN KERJA (Tools, Materials, and Conditions)</h5>
@@ -525,7 +524,7 @@ function validasianalis(id){
                                 </div>
                             </td>
                         </tr>
-                     @endforeach
+                        @endforeach
                     </tbody>
                 </table>
             </div>
