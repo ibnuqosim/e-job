@@ -106,6 +106,8 @@
                 <ul class="dropdown-menu">
                   @if($blmdilihat>0)<li class="header">Ada <b>{{$blmdilihat}}</b> dikonfirmasi revisi jobdesc belum dilihat</li>@endif
                   @if($validuser>0)  <li class="header">Ada <b>{{$validuser}}</b> jobdesc yang harus divalidasi</li>@endif
+                  @if($tindaklanjut>0)  <li class="header">Ada <b>{{$tindaklanjut}}</b> jobdesc yang belum ditindaklanjut</li>@endif
+                
                 </ul>
                 @endrole
                 @role('ManagerOD')
