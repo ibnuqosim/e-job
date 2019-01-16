@@ -112,13 +112,9 @@ function view_job(id){
              var html2='';
              for (i = 0; i < data.jobres.length; i++) {
                 no++;
-                html+='<tr><td>'+no+'</td><td>'+data.jobres[i].jabatanbawahanlangsung+'<td><td>'+data.jobres[i].jumlah+'<td></tr>';
+                html+='<tr><td>'+no+'</td><td>'+data.jobres[i].id_met_object+'<td><td>'+data.jobres[i].object+'<td></tr>';
                 }
                 $('#uno').html(html2);
-
-
-
-
            }
         });
 }
