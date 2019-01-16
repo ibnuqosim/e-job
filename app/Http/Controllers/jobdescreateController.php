@@ -99,6 +99,15 @@ class jobdescreateController extends Controller
         $nikatasan                                  =$request->nikatasan;
         $namaatasan                                 =$request->namaatasan;
 
+        //manajer odhcp
+        $userid  = Auth::user()->userid;
+        $ret = [];
+        $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid.'/minManagerBoss');
+        $jess=json_decode($ret);
+        $nikapprove                                  = $jess->personnel_no;
+        $nameapprove                                  = $jess->name;
+
+
 
         // save atasan
         //$atasan = $this->atasan($nikuser);
@@ -134,6 +143,9 @@ class jobdescreateController extends Controller
 
         $data->nikatasan                            = $nikatasan;
         $data->atasan                               = $namaatasan;
+
+        $data->nikapprove                           = $nikapprove;
+        $data->approve                              = $nameapprove;
 
         $data->save();
         
