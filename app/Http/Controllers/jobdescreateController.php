@@ -341,7 +341,7 @@ class jobdescreateController extends Controller
     public function pdf($id)
     {
         $data = jobdescreate::where('id',$id)->get();
-        // dd($data);
+         dd($data);
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.pdf', [ 'data' => $data ]);
     }
     
