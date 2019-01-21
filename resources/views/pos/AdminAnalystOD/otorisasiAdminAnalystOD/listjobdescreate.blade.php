@@ -99,22 +99,88 @@ function view_job(id){
              $('#NameofOrgUnitDivisi').val(data.item[0].divisi);
              $('#NameofOrgUnitSubDirektorat').val(data.item[0].subdirektorat);
              $('#NameofOrgUnitDirektorat').val(data.item[0].direktorat);
+
+                // untuk mengambil table dari profil
+             $('#namajabatan').val(data.profil[0].namajabatan);
+             $('#golongan').val(data.profil[0].golongan);
+             $('#nojabatan').val(data.profil[0].nojabatan);
+             $('#noorg').val(data.profil[0].noorg);
+             $('#unitkerja').val(data.profil[0].unitkerja);
+             $('#jobgroup').val(data.profil[0].jobgroup);
+
              console.log(data.job.length);
              var no=0;
              var html='';
              for (i = 0; i < data.job.length; i++) {
                 no++;
-                html+='<tr><td>'+no+'</td><td>'+data.job[i].jabatanbawahanlangsung+'<td><td>'+data.job[i].jumlah+'<td></tr>';
+                html+='<tr><td>'+no+'</td><td>'+data.job[i].jabatanbawahanlangsung+'</td><td>'+data.job[i].jumlah+'</td></tr>';
                 }
                 $('#jbl').html(html);
 
-                var no2=0;
-             var html2='';
-             for (i = 0; i < data.jobres.length; i++) {
+            var no2=0;
+            var html2='';
+            for (i = 0; i < data.jobres.length; i++) {
                 no++;
-                html+='<tr><td>'+no+'</td><td>'+data.jobres[i].id_met_object+'<td><td>'+data.jobres[i].object+'<td></tr>';
+                html2+='<tr><td>'+data.jobres[i].keterangan+'</td><td>'+data.jobres[i].object+'</td><td>'+data.jobres[i].indikator+'</td></tr>';
                 }
                 $('#uno').html(html2);
+                // }
+
+            var no3=0;
+            var html3='';
+            for (i = 0; i < data.unit.length; i++) {
+                no++;
+                html3+='<tr><td>'+data.unit[i].id_emp_cskt_ltext+'</td><td>'+data.unit[i].id_hal_internal+'</td><td>'+data.unit[i].id_eksternal+'</td><td>'+data.unit[i].id_hal_external+'</td></tr>';
+                }
+                $('#wowo').html(html3);
+
+            var no4=0;
+            var html4='';
+            for (i = 0; i < data.tools.length; i++) {
+                no++;
+                html4+='<tr><td>'+data.tools[i].id_deskripsi+'</td></tr>';
+                }
+                $('#tools').html(html4);
+            
+            var no5=0;
+            var html5='';
+            for (i = 0; i < data.mat.length; i++) {
+                no++;
+                html5+='<tr><td>'+data.mat[i].id_deskripsi+'</td></tr>';
+                }
+                $('#mat').html(html5);
+            
+            var no6=0;
+            var html6='';
+            for (i = 0; i < data.co.length; i++) {
+                no++;
+                html6+='<tr><td>'+data.co[i].id_deskripsi+'</td></tr>';
+                }
+                $('#co').html(html6);
+
+            var no7=0;
+            var html7='';
+            for (i = 0; i < data.pen.length; i++) {
+                no++;
+                html7+='<tr><td>'+data.pen[i].id_jenjang+'</td></tr>';
+                }
+                $('#pen').html(html7);
+            
+            var no8=0;
+            var html8='';
+            for (i = 0; i < data.ker.length; i++) {
+                no++;
+                html8+='<tr><td>'+data.ker[i].id_keterangan+'</td></tr>';
+                }
+                $('#ker').html(html8);
+            
+            var no9=0;
+            var html9='';
+            for (i = 0; i < data.profil_d.length; i++) {
+                no++;
+                html9+='<tr><td>'+no+'</td><td>'+data.profil_d[i].groupaspek+'</td><td>'+data.profil_d[i].namakompetensi+'</td><td>'+data.profil_d[i].proficiency+'</td></tr>';
+                }
+                $('#profil_d').html(html9);
            }
         });
 }
@@ -246,7 +312,7 @@ function view_job(id){
                                     </div>
                                 </div>
                                 <div class="modal modal-info fade" id="modal-info">
-                                    <div class="modal-dialog">
+                                    <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -259,7 +325,7 @@ function view_job(id){
                                                 <h5>URAIAN JABATAN (Job Description)</h5>
                                                 <thead>
                                                    <tr>
-                                                        <td width=50%>Record Sheet No</td>
+                                                        <td width=40%>Record Sheet No</td>
                                                         <td>:</td>
                                                         <td width=50%>RS/PO01/001-ISSUE No.3</td>
                                                     </tr>
@@ -289,9 +355,9 @@ function view_job(id){
                                                 <h5>I. IDENTIFIKASI JABATAN (Job Identification)</h5>
                                                 <thead>
                                                     <tr>
-                                                        <td width=50%>No. Jabatan (Job No.)</td>
+                                                        <td width=40%>No. Jabatan (Job No.)</td>
                                                         <td>:</td>
-                                                        <td width=50% >    
+                                                        <td width=60%>    
                                                             <input type="text" id="nojabatan" readonly class="form-control">
                                                         </td>
                                                     </tr>
@@ -299,7 +365,7 @@ function view_job(id){
                                                         <td>Gol. Jabatan (Job Level):</td>
                                                         <td>:</td>
                                                         <td>
-                                                            <input type="text" readonly class="form-control" id="LvlOrg" name="LvlOrg"  value="{{$item->gol_jabatan}}">
+                                                            <input type="text" readonly class="form-control" id="LvlOrg" name="LvlOrg"  value="{{$item->gol_jabatan}}" size="70px">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -313,28 +379,28 @@ function view_job(id){
                                                         <td>Dinas (Official)</td>
                                                         <td>:</td>
                                                         <td>                         
-                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitDinas" name="NameofOrgUnitDinas" value="{{$item->dinas}}">
+                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitDinas" name="NameofOrgUnitDinas" value="{{$item->dinas}}" size="70px">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Divisi (Division)</td>
                                                         <td>:</td>
                                                         <td>    
-                                                            <input type="text"readonly  class="form-control" id="NameofOrgUnitDivisi" name="NameofOrgUnitDivisi" >
+                                                            <input type="text"readonly  class="form-control" id="NameofOrgUnitDivisi" name="NameofOrgUnitDivisi" size="70px" >
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Subdirektorat(Subdirectorate)</td>
                                                         <td>:</td>
                                                         <td> 
-                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitSubDirektorat" name="NameofOrgUnitSubDirektorat" value="{{$item->subdirektorat}}">
+                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitSubDirektorat" name="NameofOrgUnitSubDirektorat" value="{{$item->subdirektorat}}" size="70px">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td>Direktorat (Directorate)</td>
                                                         <td>:</td>
                                                         <td>
-                                                            <input type="text" readonly class="form-control"  id="NameofOrgUnitDirektorat" name="NameofOrgUnitDirektorat" value="{{$item->direktorat}}">
+                                                            <input type="text" readonly class="form-control"  id="NameofOrgUnitDirektorat" name="NameofOrgUnitDirektorat" value="{{$item->direktorat}}" size="70px">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -343,19 +409,16 @@ function view_job(id){
                                                         </td>
                                                         <td>:</td>
                                                         <td>
-                                                                <input type="text" readonly class="form-control"  id="jabatanatasanlangsung" name="jabatanatasanlangsung" value="{{$item->job[0]->jabatanatasanlangsung}}">
+                                                            <input type="text" readonly class="form-control"  id="jabatanatasanlangsung" name="jabatanatasanlangsung" value="{{$item->job[0]->jabatanatasanlangsung}}" size="70px">
                                                         </td>
                                                     </tr>
                                                 </thead>
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                     
                                                 <thead>
                                                     <tr>
                                                         <td>no</td>
-                                                        <td>Jabatan yang diawasi langsung: <br>
-                                                            (Direct supervised positions)
-                                                        </td>
+                                                        <td>Jabatan yang diawasi langsung(Direct supervised positions)</td>
                                                         <td>jumlah</td>
                                                     </tr>
                                                     <tbody id="jbl"></tbody>
@@ -369,8 +432,16 @@ function view_job(id){
                                                     </tr>
                                                 </thead>
                                             </table>
-                                            <h5>III. TANGGUNG JAWAB UTAMA (Main Responsibility)</h5>
+                                            
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
+                                                <h5>III. TANGGUNG JAWAB UTAMA (Main Responsibility)</h5>
+                                                <thead>
+                                                    <tr>
+                                                        <th width=20%>Kata Kerja</th>
+                                                        <th width=40%>Tanggung Jawab (Duties & Responsibilities)</th>
+                                                        <th width=40%>Indikator Capaian (Performance Indicators)<th>
+                                                    </tr>
+                                                </thead>
                                                 <tbody id="uno">
                                                   
                                                 </tbody>
@@ -379,7 +450,7 @@ function view_job(id){
                                                 <h5>IV. DIMENSI (Dimensions)</h5>
                                                 <thead>
                                                     <tr>
-                                                        <td>a. Finansial (Financial)</td>
+                                                        <th>a. Finansial (Financial)</th>
                                                     </tr>
                                                     <tr>
                                                         <td>{{$item->finansial}}</td>
@@ -387,7 +458,7 @@ function view_job(id){
                                                 </thead>
                                                 <thead>
                                                     <tr>
-                                                        <td>b. Non Finansial (Non Financial)</td>
+                                                        <th>b. Non Finansial (Non Financial)</th>
                                                     </tr>
                                                     <tr>
                                                         <td>{{$item->nonfinansial}}</td>
@@ -408,103 +479,105 @@ function view_job(id){
                                                 <h5>VI. HUBUNGAN KERJA (Work Relationship)</h5>
                                                 <thead>
                                                     <tr>
-                                                        <td>Indikator Capaian (Performance Indicators)</td>
+                                                        <th width=20%>a.Internal</th>
+                                                        <th width=30%>Dalam Hal (Keterangan Internal)</th>
+                                                        <th width=20%>b. Eksternal</th>
+                                                        <th width=30%>Dalam Hal (Keterangan External)<th>
                                                     </tr>
                                                 </thead>
-                                                @foreach ($item->jobdescreate_unitkerja as $item4)
-                                                <thead>
-                                                    <tr>
-                                                        <th>Unit Kerja (Work Unit)</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>a. Internal (Internal)</td>
-                                                        <td>{{$item4->id_emp_cskt_ltext}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Dalam Hal (Keterangan Internal):</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>b. Eksternal (External)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Dalam Hal (Keterangan External):</td>
-                                                    </tr>
-                                                </thead>
-                                                @endforeach
+                                                <tbody id="wowo">
+
+                                                </tbody>
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>VII. ALAT,BAHAN,DAN LINGKUNGAN KERJA (Tools, Materials, and Conditions)</h5>
                                                 <thead>
                                                     <tr>
-                                                        <td>1. Alat Kerja (Tools)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2. Bahan Kerja (Materials)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3. Lingk. Kerja (Conditions)</td>
+                                                        <th>Alat Kerja</th>
                                                     </tr>
                                                 </thead>
+                                                <tbody id="tools"></tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Bahan Kerja (Materials)</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="mat"></tbody>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Lingk. Kerja (Conditions)</th>
+                                                    </tr>
+                                                </thead>
+                                                    <tbody id="co"></tbody>
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>VIII. PERSYARATAN JABATAN (Job Spesifications)</h5>
                                                 <thead>
                                                     <tr>
-                                                        <td>1. Pendidikan</td>
+                                                        <th>Pendidikan</th>
+                                                    </tr>
+                                                    <tbody id="pen"></tbody>
+                                                </thead>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Pengalaman Kerja</th>
+                                                    </tr>
+                                                    <tbody id="ker"></tbody>
+                                                </thead>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Persyaratan Fisik</th>
                                                     </tr>
                                                     <tr>
-                                                        <td>2. Pengalaman Kerja</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3. Persyaratan Fisik</td>
+                                                        <td>{{$item->persyaratan_fisik}}</td>
                                                     </tr>
                                                 </thead>
                                             </table>
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <thead>
                                                     <tr>
-                                                        <td>4. Profile Jabatan</td>
+                                                        <th>4. Profile Jabatan</th>
                                                     </tr>
                                                     <tr>
                                                         <td width=50%>Nama Jabatan</td>
                                                         <td>:</td>
                                                         <td width=50%>    
-                                                            {{$item->no_jabatan}}
+                                                            <input type="text" readonly class="form-control" id="namajabatan" name="namajabatan" value="{{$item->namajabatan}}" size="70px">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td width=50%>Golongan</td>
                                                         <td>:</td>
                                                         <td width=50%>    
-                                                            {{$item->no_jabatan}}
+                                                            <input type="text" readonly class="form-control" id="golongan" name="golongan" value="{{$item->golongan}}" size="70px">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td width=50%>No Jabatan</td>
                                                         <td>:</td>
                                                         <td width=50%>    
-                                                            {{$item->no_jabatan}}
+                                                            <input type="text" readonly class="form-control" id="nojabatan" name="nojabatan" value="{{$item->nojabatan}}" size="70px">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td width=50%>NO.ORG</td>
                                                         <td>:</td>
                                                         <td width=50%>    
-                                                            {{$item->no_jabatan}}
+                                                            <input type="text" readonly class="form-control" id="noorg" name="noorg" value="{{$item->noorg}}" size="70px">
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td width=50%>Unit Kerja</td>
                                                         <td>:</td>
                                                         <td width=50%>    
-                                                            {{$item->no_jabatan}}
+                                                            <input type="text" readonly class="form-control" id="unitkerja" name="unitkerja" value="{{$item->unitkerja}}" size="70px">
                                                         </td>
                                                     </tr>
                                                      <tr>
                                                         <td width=50%>JOB GROUP</td>
                                                         <td>:</td>
                                                         <td width=50%>    
-                                                            {{$item->no_jabatan}}
+                                                            <input type="text" readonly class="form-control" id="jobgroup" name="jobgroup" value="{{$item->jobgroup}}" size="70px">
                                                         </td>
                                                     </tr>
                                                 </thead>
@@ -512,32 +585,16 @@ function view_job(id){
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <thead>
                                                    <tr>
-                                                        <td>NO</td>
-                                                        <td>GROUP ASPEK</td>
-                                                        <td>NAMA KOMPETENSI</td>
-                                                        <td>PROFISIENSI</td>
-                                                    </tr>
-                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>01</td>
-                                                        <td>01</td>
-                                                        <td>wePROFISIENSI</td>
-                                                    </tr>
-                                                    
+                                                        <th>NO</th>
+                                                        <th>GROUP ASPEK</th>
+                                                        <th>NAMA KOMPETENSI</th>
+                                                        <th>PROFISIENSI</th>
+                                                    </tr>         
                                                 </thead>
-                                            </table>
-                                            <!--table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>Tulis Pesan Untuk Analis</h5>
                                                 <thead>
-                                                    <tr>
-                                                        <td>
-                                                            <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial" placeholder="Isi Data ..."></textarea>
-                                                        </td>
-                                                    </tr>
-                                                </thead>
-                                            </table-->
+                                                <tbody id="profil_d"></tbody>
+                                            </table>
                                             <form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
-                                                <!--button type="submit" class="btn btn-sm btn-success">Approve</button-->
                                                 <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
                                             </form>
                                         </div>

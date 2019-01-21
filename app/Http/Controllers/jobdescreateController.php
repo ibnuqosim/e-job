@@ -48,10 +48,9 @@ class jobdescreateController extends Controller
             $query->with('matrikinndikator')->get();
         },'jobdescreate_unitkerja'])->where('nikanalis',$userid)->get();
          //dd($tj);
-        $data    = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
-        // $res     = ['jobdescreate_res'=>'test','tj'=>$tj,'data'=>$tj];
-        // $met     = ['matrikindikator'=>'test','tj'=>$tj,'data'=>$tj];
-        // $dk     = ['jobdescreate_unitkerja'=>'test','tj'=>$tj,'data'=>$tj];
+        $data   = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
+        // $dk     = ['profil'=>'test','tj',tj=>$tj,'data'=>$tj];     
+
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
     }
     public function strukturdir()
@@ -104,6 +103,7 @@ class jobdescreateController extends Controller
         $ret = [];
         $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid.'/minManagerBoss');
         $jess=json_decode($ret);
+        //dd($jess);
         $nikapprove                                  = $jess->personnel_no;
         $nameapprove                                  = $jess->name;
 
@@ -297,7 +297,7 @@ class jobdescreateController extends Controller
                 
                 $profil = new profil();
 
-
+                $profil->jobdescreate_id  = $data_id->id;
                 $profil->namajabatan      = $namajabatan;
                 $profil->noorg            = $noorg;
                 $profil->golongan         = $golongan;
@@ -318,9 +318,9 @@ class jobdescreateController extends Controller
                 for ($i=0; $i < $max; $i++) { 
                     $profil_detail = new profil_detail();
                     $profil_detail->jobdescreate_id = $data_id->id;
-                    $profil_detail->groupaspek = isset($request->groupaspek[$i])?$request->groupaspek[$i]:NULL;
-                    $profil_detail->namakompetensi = isset($request->namakompetensi[$i])?$request->namakompetensi[$i]:NULL;
-                    $profil_detail->proficiency = isset($request->proficiency[$i])?$request->proficiency[$i]:NULL;
+                    $profil_detail->groupaspek = isset($request->groupaspek[$i])?$request->groupaspek[$i]:'';
+                    $profil_detail->namakompetensi = isset($request->namakompetensi[$i])?$request->namakompetensi[$i]:'';
+                    $profil_detail->proficiency = isset($request->proficiency[$i])?$request->proficiency[$i]:'';
                     $profil_detail->save();
                 }
             }
@@ -665,12 +665,34 @@ class jobdescreateController extends Controller
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['item'=>$item]);
     }
     function getjobdescreate(Request $request, $id){
-        $job=[];
-        $jobres=[];
-        $jobres= jobdescreate_res::where('jobdescreate_id',$id)->get();
-        $item = jobdescreate::where('id',$id)->get();
-        $job  = job::where('jobdescreate_id',$id)->get();
-        $data = array('item'=>$item,'job'=>$job,'jobres'=>$jobres);
+        $job        =[];
+        $jobres     =[];
+        $unit       =[];
+        $tools      =[];
+        $mat        =[];
+        $co         =[];
+        $pen        =[];
+        $ker        =[];
+        $profil     =[];
+        $profil_d   =[];
+        $jobres = jobdescreate_res::where('jobdescreate_id',$id)
+                    ->join('kata_kerja', 'jobdescreate_res.id_kata_kerja', '=', 'kata_kerja.id')
+                    ->join('matrikindikator', 'jobdescreate_res.id_met_object', '=', 'matrikindikator.id')
+                    ->select('jobdescreate_res.*', 'kata_kerja.keterangan', 'matrikindikator.object','matrikindikator.indikator')
+                    ->get();
+        // ini buat jon table
+        // dd($jobres);
+        $tools      = jobdescreate_tools::where('jobdescreate_id',$id)->get();
+        $mat        = jobdescreate_materials::where('jobdescreate_id',$id)->get();
+        $unit       = jobdescreate_unitkerja::where('jobdescreate_id',$id)->get();
+        $co         = jobdescreate_conditions::where('jobdescreate_id',$id)->get();
+        $pen        = jobdescreate_pen::where('jobdescreate_id',$id)->get();
+        $ker        = jobdescreate_penga::where('jobdescreate_id',$id)->get();
+        $profil     = profil::where('jobdescreate_id',$id)->get();
+        $item       = jobdescreate::where('id',$id)->get();
+        $profil_d   = profil_detail::where('jobdescreate_id',$id)->get();
+        $job    = job::where('jobdescreate_id',$id)->get();
+        $data   = array('item'=>$item,'job'=>$job,'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'profil'=>$profil,'profil_d'=>$profil_d);
         return $data;
     }
 }
