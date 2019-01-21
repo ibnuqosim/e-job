@@ -65,7 +65,7 @@
         $('#namauser').select2({
             ajax: {
                 url: '{{ url('AdminAnalystOD/formjobdescreate/namauser/api') }}/'+data.abbrUnit,
-                dataType: 'json'
+                dataType: 'json',
             }
         });
 
@@ -73,7 +73,7 @@
 
     $('#namauser').on('select2:select', function (e) {
         var data = e.params.data;
-        getatasan (data);
+        //getatasan (data);
         //console.log(data);
     });
 

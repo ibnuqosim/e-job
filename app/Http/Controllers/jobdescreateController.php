@@ -542,12 +542,21 @@ class jobdescreateController extends Controller
         $ret = [];
         $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/shortAbbrOrg/'.$id);
         $jess=json_decode($ret);
+        $collection = collect($jess);
 
-        foreach ($jess as $key => $value) {
+        $filtered = $collection->filter(function ($value, $key) use ($request) {
+            return str_is('*'.strtolower($request->q).'*', strtolower($value->empname) );
+        });
+        
+        $x = $filtered->all();
+
+        foreach ($x as $key => $value) {
             array_push($arr,['id'=>$value->empnik.'-'.$value->empname, 'text'=>$value->empnik.'-'.$value->empname." (".$value->emportx.") "]);
         }
         $ret = ['results' =>
         $arr ,'pagination'=>['more'=>true]];
+        
+        // preg_match($pattern, substr($subject,3), $matches, PREG_OFFSET_CAPTURE);
         return $ret;
     } 
 
