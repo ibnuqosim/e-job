@@ -1,5 +1,5 @@
 <div style="display : none">
-    @foreach ($tj as $item)
+    @foreach ($data as $item)
     <div id="print{{$item->id}}">
         <body>
             <img alt="Gambar Koala" src="{{ url('img/ks.png') }}"height="50" width="50" />
@@ -97,11 +97,11 @@
                             <tr>
                                 <td>No Jabatan</td>
                                 <td>:</td>
-                                <td>{{$item->no_jabatan}}</td>
+                                <td>22400.000000</td>
                             </tr>
-                                <td>Nama Jabatan Jabatan</td>
+                                <td>No Jabatan</td>
                                 <td>:</td>
-                                <td>{{$item->name_jabatan}}</td>
+                                <td>B</td>
                             </tr>
                         </table>
                     </td>
