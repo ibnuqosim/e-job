@@ -478,6 +478,7 @@ function view_job(id){
                                             <table id="example1" class="table table-bordered table-striped" style="color:black">
                                                 <h5>VI. HUBUNGAN KERJA (Work Relationship)</h5>
                                                 <thead>
+                                                    <h5>Unit Kerja (Work Unit)</h5>
                                                     <tr>
                                                         <th width=20%>a.Internal</th>
                                                         <th width=30%>Dalam Hal (Keterangan Internal)</th>

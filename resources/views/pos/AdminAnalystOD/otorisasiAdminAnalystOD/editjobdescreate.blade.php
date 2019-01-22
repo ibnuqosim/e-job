@@ -128,6 +128,7 @@
         var kode = $('#AbbrOrgUnitDivisi').val();
         console.log();
         if('gol','kode'){
+            alert(res);
             stre = "<div id='kolom"+res+"'>"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<select class='js-data-example-ajax form-control res-ajax' name='res[]'></select>"+
@@ -430,14 +431,41 @@
     function hapuspenga(penga) {
         $('#kolompenga'+penga).remove();
     }
+    function getjobres(jobparse){
+        var res = $('#res').val();
+        
+        var no=0;
+        var html='';
+        for (i = 0; i < jobparse.length; i++) {
+                no++;
+                res++;
+                //html+=jobparse[i].keterangan+'<br>';
+                html+="<div id='kolom"+no+"'>"+
+                        "<div class='col-sm-11' style='margin-bottom:9px' >"+
+                            "<select class='js-data-example-ajax form-control res-ajax' name='res[]'>"+
+                            "<option value="+jobparse[i].id_kata_kerja+">"+jobparse[i].keterangan+"</option>"+
+                            "</select>"+
+                        "</div>"+
+                        "<div class='col-sm-1' style='margin-bottom:9px' >"+
+                            "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapusres("+no+")' >Hapus</a>"+
+                        "</div>"+
+                    "</div>";
+            }
+                $('#res').val(res);
+                $('#divres').append(html);
 
+    }
     $(document).ready(function(){
         var data = $('#SelectedAbbrPosition').html();
         selectPosition(data); 
         nojabatan(data);
         abbdetail(data);
         detail(data);
-        resjabatan();
+        // resjabatan();
+        var jobres ='{!!$jobres!!}';
+        var jobparse = JSON.parse(jobres);
+        console.log(jobparse);
+        getjobres(jobparse);
     })
 
 </script>
@@ -614,6 +642,8 @@
                         <div class="form-group">
                             <label></label><br>
                             <button type="button" class="btn btn-primary" onclick="resjabatan();">Tambah Data</button>
+                            {{$jobres}}
+                            
                         </div>
                         <div class="form-group" id="divres">
                             <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" />                 

@@ -669,9 +669,15 @@ class jobdescreateController extends Controller
 
     public function edit(Request $request, $id)
     {
+        $jobres     =[];
         $item = jobdescreate::where('id',$id)->get();
+        $jobres = jobdescreate_res::where('jobdescreate_id',$id)
+                    ->join('kata_kerja', 'jobdescreate_res.id_kata_kerja', '=', 'kata_kerja.id')
+                    ->join('matrikindikator', 'jobdescreate_res.id_met_object', '=', 'matrikindikator.id')
+                    ->select('jobdescreate_res.*', 'kata_kerja.keterangan', 'matrikindikator.object','matrikindikator.indikator')
+                    ->get();
         
-        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['item'=>$item]);
+        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['item'=>$item,'jobres'=>$jobres]);
     }
     function getjobdescreate(Request $request, $id){
         $job        =[];
