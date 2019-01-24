@@ -73,8 +73,9 @@
 
     $('#namauser').on('select2:select', function (e) {
         var data = e.params.data;
+        //alert(data);
         //getatasan (data);
-        //console.log(data);
+        console.log(data);
     });
 
     function getatasan (data) {
