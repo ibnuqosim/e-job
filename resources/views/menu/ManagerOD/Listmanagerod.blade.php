@@ -81,6 +81,109 @@ function validasimanagerod(id){
         });
         }
 }
+function view_job(id){
+    $.ajax({
+            url: "{{ url('ManagerOD/getjobdescreate') }}/"+id,
+            method: 'get',
+            success: function(data) {
+            console.log(data);
+            console.log(data.item);
+            console.log(data.job);
+            
+
+            //alert(data[0].id);
+             $('#nojabatan').val(data.item[0].no_jabatan);
+             $('#NameofPosition').val(data.item[0].name_jabatan);
+             $('#LvlOrg').val(data.item[0].gol_jabatan);
+             $('#NameofOrgUnitDinas').val(data.item[0].dinas);
+             $('#NameofOrgUnitDivisi').val(data.item[0].divisi);
+             $('#NameofOrgUnitSubDirektorat').val(data.item[0].subdirektorat);
+             $('#NameofOrgUnitDirektorat').val(data.item[0].direktorat);
+
+                // untuk mengambil table dari profil
+             $('#namajabatan').val(data.profil[0].namajabatan);
+             $('#golongan').val(data.profil[0].golongan);
+             $('#nojabatan').val(data.profil[0].nojabatan);
+             $('#noorg').val(data.profil[0].noorg);
+             $('#unitkerja').val(data.profil[0].unitkerja);
+             $('#jobgroup').val(data.profil[0].jobgroup);
+
+             console.log(data.job.length);
+             var no=0;
+             var html='';
+             for (i = 0; i < data.job.length; i++) {
+                no++;
+                html+='<tr><td>'+no+'</td><td>'+data.job[i].jabatanbawahanlangsung+'</td><td>'+data.job[i].jumlah+'</td></tr>';
+                }
+                $('#jbl').html(html);
+
+            var no2=0;
+            var html2='';
+            for (i = 0; i < data.jobres.length; i++) {
+                no++;
+                html2+='<tr><td>'+data.jobres[i].keterangan+'</td><td>'+data.jobres[i].object+'</td><td>'+data.jobres[i].indikator+'</td></tr>';
+                }
+                $('#uno').html(html2);
+                // }
+
+            var no3=0;
+            var html3='';
+            for (i = 0; i < data.unit.length; i++) {
+                no++;
+                html3+='<tr><td>'+data.unit[i].id_emp_cskt_ltext+'</td><td>'+data.unit[i].id_hal_internal+'</td><td>'+data.unit[i].id_eksternal+'</td><td>'+data.unit[i].id_hal_external+'</td></tr>';
+                }
+                $('#wowo').html(html3);
+
+            var no4=0;
+            var html4='';
+            for (i = 0; i < data.tools.length; i++) {
+                no++;
+                html4+='<tr><td>'+data.tools[i].id_deskripsi+'</td></tr>';
+                }
+                $('#tools').html(html4);
+            
+            var no5=0;
+            var html5='';
+            for (i = 0; i < data.mat.length; i++) {
+                no++;
+                html5+='<tr><td>'+data.mat[i].id_deskripsi+'</td></tr>';
+                }
+                $('#mat').html(html5);
+            
+            var no6=0;
+            var html6='';
+            for (i = 0; i < data.co.length; i++) {
+                no++;
+                html6+='<tr><td>'+data.co[i].id_deskripsi+'</td></tr>';
+                }
+                $('#co').html(html6);
+
+            var no7=0;
+            var html7='';
+            for (i = 0; i < data.pen.length; i++) {
+                no++;
+                html7+='<tr><td>'+data.pen[i].id_jenjang+'</td></tr>';
+                }
+                $('#pen').html(html7);
+            
+            var no8=0;
+            var html8='';
+            for (i = 0; i < data.ker.length; i++) {
+                no++;
+                html8+='<tr><td>'+data.ker[i].id_keterangan+'</td></tr>';
+                }
+                $('#ker').html(html8);
+            
+            var no9=0;
+            var html9='';
+            for (i = 0; i < data.profil_d.length; i++) {
+                no++;
+                html9+='<tr><td>'+no+'</td><td>'+data.profil_d[i].groupaspek+'</td><td>'+data.profil_d[i].namakompetensi+'</td><td>'+data.profil_d[i].proficiency+'</td></tr>';
+                }
+                $('#profil_d').html(html9);
+           }
+        });
+}
 </script>
 @endsection
 
@@ -144,24 +247,20 @@ function validasimanagerod(id){
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->no_jabatan}}</td>
-                            <td>@if($item->approveanalis==1)
+                            <td>
+                                @if($item->approveanalis==1)
                                     {{$item->analis}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
                                 @else
                                     {{$item->analis}}<!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
                                         <button type="submit" class="glyphicon glyphicon-thumbs-up" title="Klik disini untuk validasi"></button>
-                            
-                                    </form-->
-                                    
+                                    </form--> 
                                 @endif
-
-                                </td>
+                            </td>
                             <td>@if($item->approveuser==1)
                                 {{$item->namauser}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveuser}}"></a>)
                             @else
-                                {{$item->namauser}}
-                                
+                                {{$item->namauser}}    
                             @endif</td>
-                            
                             <td>
                                 @if($item->approveodhcp==1)
                                 {{$item->approve}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveodhcp}}"></a>)
@@ -178,14 +277,12 @@ function validasimanagerod(id){
                             <td>
                                     
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
-                                <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info"></a>
-                                <!--a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a-->
+                                <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info" onclick="view_job({{$item->id}})">popup</a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
                                 @if($item->approveodhcp==null && $item->approveuser==1)
                                 <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasimanagerod({{ $item->id }});"></a>
                                 @endif
-                                {{-- <td><a href="{{action('UserDetailController@downloadPDF', $user->id)}}">PDF</a></td> --}}
                                 <div class="modal modal-info fade" id="modal-pesan">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -217,318 +314,9 @@ function validasimanagerod(id){
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal modal-info fade" id="modal-info">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span></button>
-                                                <h4 class="modal-title">Konfirmasi</h4>
-                                            </div>
-                                        </div>
-                                        <div class="modal-body">
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">      
-                                                <h5>URAIAN JABATAN (Job Description)</h5>
-                                                <thead>
-                                                   <tr>
-                                                        <td width=50%>Record Sheet No</td>
-                                                        <td>:</td>
-                                                        <td width=50%>RS/PO01/001-ISSUE No.3</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Issue Date</td>
-                                                        <td>:</td>
-                                                        <td>01/06/2010{{$item->no_jabatan}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Holder</td>
-                                                        <td>:</td>
-                                                        <td>Divisi OD&HCP</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Halaman (Page)</td>
-                                                        <td>:</td>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Tgl. Berlaku (Validity Date)</td>
-                                                        <td>:</td>
-                                                        <td></td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                             <table id="example1" class="table table-bordered table-striped" style="color:black">  
-                                                <h5>I. IDENTIFIKASI JABATAN (Job Identification)</h5>
-                                                <thead>
-                                                    <tr>
-                                                        <td width=50%>No. Jabatan (Job No.)</td>
-                                                        <td>:</td>
-                                                        <td width=50%>    
-                                                            {{$item->no_jabatan}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Gol. Jabatan (Job Level):</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <input type="text" readonly class="form-control" id="LvlOrg" name="LvlOrg"  value="{{$item->gol_jabatan}}">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>name Jabatan (Job Name)</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" name="NameofPosition" value="{{$item->name_jabatan}}">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Dinas (Official)</td>
-                                                        <td>:</td>
-                                                        <td>                         
-                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitDinas" name="NameofOrgUnitDinas" value="{{$item->dinas}}">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Divisi (Division)</td>
-                                                        <td>:</td>
-                                                        <td>    
-                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitDivisi" name="NameofOrgUnitDivisi" value="{{$item->divisi}}">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Subdirektorat(Subdirectorate)</td>
-                                                        <td>:</td>
-                                                        <td> 
-                                                            <input type="text" readonly class="form-control" id="NameofOrgUnitSubDirektorat" name="NameofOrgUnitSubDirektorat" value="{{$item->subdirektorat}}">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Direktorat (Directorate)</td>
-                                                        <td>:</td>
-                                                        <td>
-                                                            <input type="text" readonly class="form-control"  id="NameofOrgUnitDirektorat" name="NameofOrgUnitDirektorat" value="{{$item->direktorat}}">
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Bertanggung jawab langsung kepada: <br>
-                                                            (Directly Responsible to)
-                                                        </td>
-                                                        <td>:</td>
-                                                        <td>
-                                                                <input type="text" readonly class="form-control"  id="jabatanatasanlangsung" name="jabatanatasanlangsung" value="{{$item->job[0]->jabatanatasanlangsung}}">
-                                                        </td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                     
-                                                <thead>
-                                                    <tr>
-                                                        <td>no</td>
-                                                        <td>Jabatan yang diawasi langsung: <br>
-                                                            (Direct supervised positions)
-                                                        </td>
-                                                        <td>jumlah</td>
-                                                    </tr>
-                                                    @foreach ($item->job as $item2)
-                                                    <tr>
-                                                        <td>{{$item2->id}}</td>
-                                                        <td>{{$item2->jabatanbawahanlangsung}}</td>
-                                                        <td>{{$item2->jumlah}}</td>
-                                                    </tr>
-                                                    @endforeach
-                                                </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>II. TUJUAN JABATAN (Primary Job Role)</h5>
-                                                <thead>
-                                                    <tr>
-                                                        <td>{{$item->jobrole}}</td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>III. TANGGUNG JAWAB UTAMA (Main Responsibility)</h5>
-                                                @foreach ($item->jobdescreate_res as $item3)
-                                                <thead>
-                                                    <tr>
-                                                        <td>{{$item3->id_kata_kerja}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>{{$item3->object}}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>{{$item3->object}}</td>
-                                                    </tr>
-                                                </thead>
-                                                @endforeach
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>IV. DIMENSI (Dimensions)</h5>
-                                                <thead>
-                                                    <tr>
-                                                        <td>a. Finansial (Financial)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>{{$item->finansial}}</td>
-                                                    </tr>
-                                                </thead>
-                                                <thead>
-                                                    <tr>
-                                                        <td>b. Non Finansial (Non Financial)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>{{$item->nonfinansial}}</td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>WEWENANG</h5>
-                                                <thead>
-                                                    <tr>
-                                                        <td>Indikator Capaian (Performance Indicators)</td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>VI. HUBUNGAN KERJA (Work Relationship)</h5>
-                                                <thead>
-                                                    <tr>
-                                                        <td>Indikator Capaian (Performance Indicators)</td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>I. IDENTIFIKASI JABATAN (Job Identification)</h5>
-                                                <thead>
-                                                    <tr>
-                                                        <th>Unit Kerja (Work Unit)</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>a. Internal (Internal)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Dalam Hal (Keterangan Internal):</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>b. Eksternal (External)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Dalam Hal (Keterangan External):</td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>VII. ALAT,BAHAN,DAN LINGKUNGAN KERJA (Tools, Materials, and Conditions)</h5>
-                                                <thead>
-                                                    <tr>
-                                                        <td>1. Alat Kerja (Tools)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2. Bahan Kerja (Materials)</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3. Lingk. Kerja (Conditions)</td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>VIII. PERSYARATAN JABATAN (Job Spesifications)</h5>
-                                                <thead>
-                                                    <tr>
-                                                        <td>1. Pendidikan</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2. Pengalaman Kerja</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3. Persyaratan Fisik</td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <thead>
-                                                    <tr>
-                                                        <td>4. Profile Jabatan</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width=50%>Nama Jabatan</td>
-                                                        <td>:</td>
-                                                        <td width=50%>    
-                                                            {{$item->no_jabatan}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width=50%>Golongan</td>
-                                                        <td>:</td>
-                                                        <td width=50%>    
-                                                            {{$item->no_jabatan}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width=50%>No Jabatan</td>
-                                                        <td>:</td>
-                                                        <td width=50%>    
-                                                            {{$item->no_jabatan}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width=50%>NO.ORG</td>
-                                                        <td>:</td>
-                                                        <td width=50%>    
-                                                            {{$item->no_jabatan}}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width=50%>Unit Kerja</td>
-                                                        <td>:</td>
-                                                        <td width=50%>    
-                                                            {{$item->no_jabatan}}
-                                                        </td>
-                                                    </tr>
-                                                     <tr>
-                                                        <td width=50%>JOB GROUP</td>
-                                                        <td>:</td>
-                                                        <td width=50%>    
-                                                            {{$item->no_jabatan}}
-                                                        </td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-                                            <table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <thead>
-                                                   <tr>
-                                                        <td>NO</td>
-                                                        <td>GROUP ASPEK</td>
-                                                        <td>NAMA KOMPETENSI</td>
-                                                        <td>PROFISIENSI</td>
-                                                    </tr>
-                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>01</td>
-                                                        <td>01</td>
-                                                        <td>wePROFISIENSI</td>
-                                                    </tr>
-                                                    
-                                                </thead>
-                                            </table>
-                                            <!--table id="example1" class="table table-bordered table-striped" style="color:black">
-                                                <h5>Tulis Pesan Untuk Analis</h5>
-                                                <thead>
-                                                    <tr>
-                                                        <td>
-                                                            <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial" placeholder="Isi Data ..."></textarea>
-                                                        </td>
-                                                    </tr>
-                                                </thead>
-                                            </table-->
-                                            <form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
-                                                <!--button type="submit" class="btn btn-sm btn-success">Approve</button-->
-                                                <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">Close</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                                <section>
+                                    @include('Menu/ManagerOD/popup')
+                                </section>
                             </td>
                         </tr>
                      @endforeach

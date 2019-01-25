@@ -158,8 +158,9 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
     Route::group(['middleware'=>['auth', 'role:UserSuptMgrGM']], function () {
 
         Route::prefix('UserSuptMgrGM')->group(function(){
+
             Route::get('/', function(){
-                echo  "UserSuptMgrGM";
+                return redirect('UserSuptMgrGM/listjobdescreate');
             });
             Route::get('/editing','editingJobController@index');
             Route::get('/listjobdescreate','UserListJoblistController@index');
@@ -168,8 +169,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/show-historypesan/{id}','UserListJoblistController@showhistorypesan');
             Route::get('/konfirmasi/{id?}','UserListJoblistController@konfirmasi');
             Route::get('/konfirmasivalidanalis/{id?}','UserListJoblistController@konfirmasivalidanalis');
-            //Route::post('/storepesan','UserListJoblistController@store'); 
-            //Route::post('/storepesan','UserListJoblistController@store'); 
+            Route::get('/getjobdescreate/{id}','jobdescreateController@getjobdescreate'); 
         });
     });
 
@@ -185,6 +185,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::post('/kirimpesan','ManagerController@store');
             Route::get('/show-historypesan/{id}','ManagerController@showhistorypesan');
             Route::get('/konfirmasi/{id?}','ManagerController@konfirmasi');
+            Route::get('/getjobdescreate/{id}','jobdescreateController@getjobdescreate');
         });
         
     });
