@@ -66,6 +66,24 @@ class jobdescreateController extends Controller
         $data = ['strukturdir'=>$strukturdir];
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.formjobdescreate',$data);
     }
+    public function delete(Request $request, $id){
+        jobdescreate::where('id',$id)->delete();
+        jobdescreate_res::where('jobdescreate_id',$id)->delete();
+        jobdescreate_res::where('jobdescreate_id',$id)->delete();
+        jobdescreate_unitkerja::where('jobdescreate_id',$id)->delete();
+        jobdescreate_tools::where('jobdescreate_id',$id)->delete();
+        jobdescreate_materials::where('jobdescreate_id',$id)->delete();
+        jobdescreate_conditions::where('jobdescreate_id',$id)->delete();
+        jobdescreate_pen::where('jobdescreate_id',$id)->delete();
+        jobdescreate_penga::where('jobdescreate_id',$id)->delete();
+        job::where('jobdescreate_id',$id)->delete();
+        profil::where('jobdescreate_id',$id)->delete();
+        profil_detail::where('jobdescreate_id',$id)->delete();
+        return redirect('/AdminAnalystOD/listjobdescreate');
+
+        
+
+    }
     public function storeedit(Request $request, $id){
         // I. URAIAN JABATAN (Job Description)
         $getjab                                     = $request->getjab;
@@ -87,24 +105,27 @@ class jobdescreateController extends Controller
         //inpu analis
         $nikanalis                                  = $request->nikanalis;
         $analis                                     = $request->analis;
-        $user                                       = $request->namauser;
-        $pecahuser                                  = explode("-",$user);
-        $nikuser                                    = $pecahuser[0];
-        $namauser                                   = $pecahuser[1];
+        //$user                                       = $request->namauser;
+        //$pecahuser                                  = explode("-",$user);
+        //$nikuser                                    = $pecahuser[0];
+        //$namauser                                   = $pecahuser[1];
         //dd($user);
         $nikatasan                                  =$request->nikatasan;
         $namaatasan                                 =$request->namaatasan;
         //manajer odhcp
-        $userid  = Auth::user()->userid;
-        $ret = [];
-        $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid.'/minManagerBoss');
-        $jess=json_decode($ret);
-        //dd($getjab);
-        $nikapprove                                  = $jess->personnel_no;
-        $nameapprove                                  = $jess->name;
+        // $userid  = Auth::user()->userid;
+        // $ret = [];
+        // $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid.'/minManagerBoss');
+        // $jess=json_decode($ret);
+        // //dd($getjab);
+        // $nikapprove                                  = $jess->personnel_no;
+        // $nameapprove                                  = $jess->name;
 
-
-
+        $jobdescreate = jobdescreate::where('id',$id)
+        ->update(['persyaratan_fisik' => $persyaratan_fisik,
+        'finansial'=>$finansial,'nonfinansial'=>$nonfinansial,
+        'jobrole'=>$jobrole]);    
+        
         //dd($request->res);
         jobdescreate_res::where('jobdescreate_id',$id)->delete();
         
@@ -181,6 +202,30 @@ class jobdescreateController extends Controller
                 $jobdescreate_conditions->save();
             }
         }
+        jobdescreate_pen::where('jobdescreate_id',$id)->delete();
+        if($request->pen){
+                
+            $count_pen = count($request->pen);
+
+            for ($i=0; $i < $count_pen; $i++) { 
+                $jobdescreate_pen = new jobdescreate_pen();
+                $jobdescreate_pen->jobdescreate_id = $id;
+                $jobdescreate_pen->id_jenjang = isset($request->pen[$i])?$request->pen[$i]:NULL;
+                $jobdescreate_pen->save();
+            }
+        }
+        jobdescreate_penga::where('jobdescreate_id',$id)->delete();
+        if($request->penga){
+                
+            $count_penga = count($request->penga);
+
+            for ($i=0; $i < $count_pen; $i++) { 
+                $jobdescreate_penga = new jobdescreate_penga();
+                $jobdescreate_penga->jobdescreate_id = $id;
+                $jobdescreate_penga->id_keterangan = isset($request->penga[$i])?$request->penga[$i]:NULL;
+                $jobdescreate_penga->save();
+            }
+        }
         return redirect('/AdminAnalystOD/listjobdescreate');
 
        
@@ -242,8 +287,8 @@ class jobdescreateController extends Controller
         $data = new jobdescreate();
         // I. URAIAN JABATAN (Job Description)
         $data->no_jabatan                           = $getjab;
-        $data->name_jabatan                         = $LvlOrg;
-        $data->gol_jabatan                          = $NameofPosition;
+        $data->name_jabatan                         = $NameofPosition;
+        $data->gol_jabatan                          = $LvlOrg;
         $data->dinas                                = $NameofOrgUnitDinas;
         $data->divisi                               = $NameofOrgUnitDivisi;
         $data->subdirektorat                        = $NameofOrgUnitSubDirektorat;

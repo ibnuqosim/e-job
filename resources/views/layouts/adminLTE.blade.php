@@ -104,9 +104,11 @@
                 @endrole
                 @role('UserSuptMgrGM')
                 <ul class="dropdown-menu">
-                  @if($blmdilihat>0)<li class="header">Ada <b>{{$blmdilihat}}</b> dikonfirmasi revisi jobdesc belum dilihat</li>@endif
-                  @if($validuser>0)  <li class="header">Ada <b>{{$validuser}}</b> jobdesc yang harus divalidasi</li>@endif
-                  @if($tindaklanjut>0)  <li class="header">Ada <b>{{$tindaklanjut}}</b> jobdesc yang belum ditindaklanjut</li>@endif
+                  @if($blmdilihat>0)
+
+                  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$blmdilihat}}</b> dikonfirmasi revisi jobdesc belum dilihat<a></li>@endif
+                  @if($validuser>0)  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$validuser}}</b> jobdesc yang harus divalidasi</a></li>@endif
+                  @if($tindaklanjut>0)  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$tindaklanjut}}</b> jobdesc yang belum ditindaklanjut</a></li>@endif
                 
                 </ul>
                 @endrole

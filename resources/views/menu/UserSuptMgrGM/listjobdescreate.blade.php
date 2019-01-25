@@ -124,6 +124,7 @@ td {
                     <tr>
                         <th>ID</th>
                         <th>Jobdes</th>
+                        <th>Name of Position</th>
                         <th>Approve by analist</th>
                         <th>Approve by Supt/Mgr/GM</th>
                         
@@ -137,6 +138,7 @@ td {
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->no_jabatan}}</td>
+                            <td>{{$item->name_jabatan}}</td>
                             <td>@if($item->approveanalis==1)
                                 {{$item->analis}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
                             @else

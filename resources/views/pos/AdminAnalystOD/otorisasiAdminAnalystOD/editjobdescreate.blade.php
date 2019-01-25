@@ -581,7 +581,7 @@
         var no=0;
         var stre='';
         for (i = 0; i < penparse.length; i++) {
-            stre =  "<div id='kolompen"+no+"' >"+
+            stre +=  "<div id='kolompen"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control pen-ajax' name='pen[]'>"+
                                 "<option value="+penparse[i].id_jenjang+">"+penparse[i].id_jenjang+"</option>"+
@@ -601,7 +601,7 @@
         var no=0;
         var stre='';
         for (i = 0; i < kerparse.length; i++) {
-            stre =  "<div id='kolompenga"+no+"' >"+
+            stre +=  "<div id='kolompenga"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control penga-ajax' name='penga[]'>"+
                                 "<option value="+kerparse[i].id_keterangan+">"+kerparse[i].id_keterangan+"</option>"+
@@ -1174,12 +1174,12 @@
                                             <input type="text" class="form-control" class="form-control" readonly  placeholder="Sr. Spec.Organization Design ">      
                                         </td-->
                                         <td>
-                                            <h5>Hasri Suryani </h5>
-                                            <input type="text" class="form-control" class="form-control" readonly  placeholder="Manager OD&HCP"> 
+                                            <h5>Manajer ODCHP </h5>
+                                            <input type="text" value="{{$datas->approve."(".$datas->nikapprove.")"}}" class="form-control" class="form-control" readonly  placeholder="Manager OD&HCP"> 
                                         </div>
                                         <td>
                                             <h5>Input name User</h5>
-                                            <select class="js-data-example-ajax form-control" id="namauser" name="namauser">
+                                            <select disabled="true" class="js-data-example-ajax form-control" id="namauser" name="namauser">
                                                 <option value="{{ $datas->nikuser."-". $datas->namauser }}">{{ $datas->namauser }}</option>
                                             </select>
                                             <input type="hidden" class="form-control" class="form-control" id="nikatasan" name="nikatasan" readonly>

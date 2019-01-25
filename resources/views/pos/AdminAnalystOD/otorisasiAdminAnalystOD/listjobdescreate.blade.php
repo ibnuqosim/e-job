@@ -232,6 +232,7 @@ function view_job(id){
                         <tr>
                             <th>No</th>
                             <th>Jobdes</th>
+                            <th>Name of Position</th>
                             <th>Approve by analist</th>
                             <th>Approve by user</th>
                             <!--th>Aprove by atasan</th-->
@@ -246,6 +247,7 @@ function view_job(id){
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->no_jabatan}}</td>
+                            <td>{{$item->name_jabatan}}</td>
                             <td>
                                 @if($item->approveanalis==1)
                                     {{$item->analis}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
@@ -274,7 +276,7 @@ function view_job(id){
                                 <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info" onclick="view_job({{$item->id}})"></a>
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
-                                <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
+                                <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/deletejobdescreate',['id'=>$item->id]) }}"></a>
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
                                 @if($item->approveanalis==null && $item->konfirmvalidanalis==1)
                                 <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasianalis({{ $item->id }});"></a>
