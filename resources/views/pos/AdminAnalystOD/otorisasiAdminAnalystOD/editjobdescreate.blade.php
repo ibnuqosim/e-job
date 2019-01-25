@@ -128,7 +128,7 @@
         var kode = $('#AbbrOrgUnitDivisi').val();
         console.log();
         if('gol','kode'){
-            alert(res);
+            //alert(res);
             stre = "<div id='kolom"+res+"'>"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<select class='js-data-example-ajax form-control res-ajax' name='res[]'></select>"+
@@ -435,12 +435,15 @@
         var res = $('#res').val();
         
         var no=0;
-        var html='';
+        var kk='';
+        var obj='';
+        var indi='';
+        var wew='';
         for (i = 0; i < jobparse.length; i++) {
                 no++;
                 res++;
                 //html+=jobparse[i].keterangan+'<br>';
-                html+="<div id='kolom"+no+"'>"+
+                kk+="<div id='kolom"+no+"'>"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<select class='js-data-example-ajax form-control res-ajax' name='res[]'>"+
                             "<option value="+jobparse[i].id_kata_kerja+">"+jobparse[i].keterangan+"</option>"+
@@ -450,11 +453,170 @@
                             "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapusres("+no+")' >Hapus</a>"+
                         "</div>"+
                     "</div>";
+                obj+="<div id='okkolom"+no+"'>"+
+                        "<div class='col-sm-11' style='margin-bottom:9px' >"+
+                            "<select class='js-data-example-ajax form-control divresk-ajax' name='divresk[]'>"+
+                                "<option value="+jobparse[i].id_met_object+">"+jobparse[i].object+"</option>"+
+                                "</select>"+
+                        "</div>"+
+                    "</div>";
+                indi+="<div id='indikolom"+no+"'>"+
+                        "<div class='col-sm-11' style='margin-bottom:9px' >"+
+                            "<input value='"+jobparse[i].indikator+"' type='text' class='kolomindi"+no+" form-control' id='id_met_indikator' name='divindi[]'/>"+
+                        "</div>"+
+                    "</div>";
+                wew+="<div id='wewikolom"+no+"'>"+
+                        "<div class='col-sm-11' style='margin-bottom:9px' >"+
+                            "<input value='"+jobparse[i].id_met_kewenangan+"' type='text' class='kolomwew"+no+" form-control' id='id_met_kewenangan' name='divwew[]'/>"+
+                        "</div>"+
+                    "</div>"
             }
                 $('#res').val(res);
-                $('#divres').append(html);
+                $('#divres').append(kk);
+                $('#divresk').append(obj);
+                $("#divindi").append(indi);
+                $("#divwew").append(wew);
+               
 
     }
+    function getjobunit(unitparse){
+        var no=0;
+        var stre='';
+        var hal='';
+        var halk='';
+        var halks='';
+        for (i = 0; i < unitparse.length; i++) {
+            console.log(unitparse[i].id_emp_cskt_ltext);
+            stre += "<div id='halsatu"+no+"' >"+
+                        "<div class='col-sm-11' style='margin-bottom:9px' >"+
+                            "<select class='js-data-example-ajax form-control workint-ajax' name='work[]'>"+
+                                "<option value="+unitparse[i].id_emp_cskt_ltext+">"+unitparse[i].id_emp_cskt_ltext+"</option>"+
+                            "</select>"+
+                        "</div>"+
+                        "<div class='col-sm-1' style='margin-bottom:9px' >"+
+                            "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapusworkint("+no+")' >Hapus</a>"+
+                        "</div>"+
+                    "</div>";
+            hal +=   "<div id='haldua"+no+"'>"+
+                        "<div class='col-sm-11' style='margin-bottom:9px' >"+
+                            "<textarea type='text' class='kolomindi"+no+" form-control' name='divhal[]'>"+unitparse[i].id_hal_internal+"</textarea>"+
+                        "</div>"+
+                    "</div>";
+            halk +=  "<div id='haltiga"+no+"'>"+
+                        "<div class='col-sm-11' style='margin-bottom:9px' >"+
+                            "<textarea type='text' class='kolomindi"+no+" form-control' name='divhalk[]'>"+unitparse[i].id_eksternal+"</textarea>"+
+                        "</div>"+
+                    "</div>"; 
+            halks +=  "<div id='halempat"+no+"'>"+
+                        "<div class='col-sm-11' style='margin-bottom:9px' >"+
+                            "<textarea type='text' class='kolomindi"+no+" form-control' name='divhalks[]'>"+unitparse[i].id_hal_external+"</textarea>"+
+                        "</div>"+
+                    "</div>";
+        }
+        $("#divdworkint").append(stre);
+        $("#divhal").append(hal);
+        $("#divhalk").append(halk);
+        $("#divhalks").append(halks);
+
+    }
+    function getjobtools(toolsparse){
+        var no=0;
+        var stre='';
+        for (i = 0; i < toolsparse.length; i++) {
+            stre +=  "<div id='kolom"+no+"' >"+
+                        "<div class='col-sm-11' style='margin-bottom:10px' >"+
+                            "<select class='js-data-example-ajax form-control tools-ajax' name='tools[]'>"+
+                                "<option value="+toolsparse[i].id_deskripsi+">"+toolsparse[i].id_deskripsi+"</option>"+
+                            "</select>"+
+                        "</div>"+
+                        "<div class='col-sm-1' style='margin-bottom:10px' >"+
+                            "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapustools("+no+")' >Hapus</a>"+
+                        "</div>"+
+                    "</div>"; 
+
+        }
+        $("#divdtools").append(stre);
+
+    }
+    function getjobmat(matparse){
+        var no=0;
+        var stre='';
+        for (i = 0; i < matparse.length; i++) {
+            stre = "<div id='kolom"+no+"' >"+
+                        "<div class='col-sm-11' style='margin-bottom:10px' >"+
+                            "<select class='js-data-example-ajax form-control materials-ajax' name='materials[]'>"+
+                                "<option value="+matparse[i].id_deskripsi+">"+matparse[i].id_deskripsi+"</option>"+
+                            "</select>"+
+                        "</div>"+
+                        "<div class='col-sm-1' style='margin-bottom:10px' >"+
+                            "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapusmaterials("+no+")' >Hapus</a>"+
+                        "</div>"+
+                    "</div>"; 
+            $("#divdmaterials").append(stre);
+
+        }
+
+
+    }
+    function getcondition(coparse){
+        var no=0;
+        var stre='';
+        for (i = 0; i < coparse.length; i++) {
+            stre +=  "<div id='kolom"+no+"' >"+
+                        "<div class='col-sm-11' style='margin-bottom:10px' >"+
+                            "<select class='js-data-example-ajax form-control conditions-ajax' name='conditions[]'>"+
+                                "<option value="+coparse[i].id_deskripsi+">"+coparse[i].id_deskripsi+"</option>"+
+                            "</select>"+
+                        "</div>"+
+                        "<div class='col-sm-1' style='margin-bottom:10px' >"+
+                            "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapusconditions("+no+")' >Hapus</a>"+
+                        "</div>"+
+                    "</div>";            
+            
+
+        }
+        $("#divdconditions").append(stre);
+    }
+    function getpend(penparse){
+        var no=0;
+        var stre='';
+        for (i = 0; i < penparse.length; i++) {
+            stre =  "<div id='kolompen"+no+"' >"+
+                        "<div class='col-sm-11' style='margin-bottom:10px' >"+
+                            "<select class='js-data-example-ajax form-control pen-ajax' name='pen[]'>"+
+                                "<option value="+penparse[i].id_jenjang+">"+penparse[i].id_jenjang+"</option>"+
+                            "</select>"+
+                        "</div>"+
+                        "<div class='col-sm-1' style='margin-bottom:10px' >"+
+                            "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapuspen("+no+")' >Hapus</a>"+
+                        "</div>"+
+                    "</div>";            
+            
+
+        }
+        $("#divdpen").append(stre);
+
+    }
+    function getker(kerparse){
+        var no=0;
+        var stre='';
+        for (i = 0; i < kerparse.length; i++) {
+            stre =  "<div id='kolompenga"+no+"' >"+
+                        "<div class='col-sm-11' style='margin-bottom:10px' >"+
+                            "<select class='js-data-example-ajax form-control penga-ajax' name='penga[]'>"+
+                                "<option value="+kerparse[i].id_keterangan+">"+kerparse[i].id_keterangan+"</option>"+
+                            "</select>"+
+                        "</div>"+
+                        "<div class='col-sm-1' style='margin-bottom:10px' >"+
+                            "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapuspenga("+no+")' >Hapus</a>"+
+                        "</div>"+
+                    "</div>";            
+           
+
+        }
+        $("#divdpenga").append(stre);
+    }
+
     $(document).ready(function(){
         var data = $('#SelectedAbbrPosition').html();
         selectPosition(data); 
@@ -463,9 +625,31 @@
         detail(data);
         // resjabatan();
         var jobres ='{!!$jobres!!}';
+        var jobunit='{!!$unit!!}';
+        var jobtools ='{!!$tools!!}';
+        var jobmat ='{!!$mat!!}';
+        var co     ='{!!$co!!}';
+        var pen    ='{!!$pen!!}';
+        var ker    ='{!!$ker!!}';
+
+
         var jobparse = JSON.parse(jobres);
+        var unitparse = JSON.parse(jobunit);
+        var toolsparse = JSON.parse(jobtools);
+        var matparse = JSON.parse(jobmat);
+        var coparse = JSON.parse(co);
+        var penparse = JSON.parse(pen);
+        var kerparse = JSON.parse(ker);
         console.log(jobparse);
+        //return false;
+        //console.log(jobunit);
         getjobres(jobparse);
+        getjobunit(unitparse);
+        getjobtools(toolsparse);
+        getjobmat(matparse);
+        getcondition(coparse);
+        getpend(penparse);
+        getker(kerparse);
     })
 
 </script>
@@ -488,12 +672,14 @@
         <li><a href="http://e-job.site/home"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Edit</a></li>
         <li class="active">EDIT FROM JOBDES</li>
+        
     </ol>
 </section>
 <section class="content">
     <div class="box box-warning">
         <div class="box-header with-border">
             <h4 class="box-title">URAIAN JABATAN (Job Description)</h4>
+            
         </div>
         <div class="box-body">
             <table width=50% id="example2" class="table table-bordered table-hover">
@@ -526,7 +712,7 @@
         </div>
     </div>
 </section> 
-<form class="form-horizontal" action="{{ url('AdminAnalystOD/storejobdescreate') }}" method="post" enctype="multipart/form-data">
+<form class="form-horizontal" action="{{ url('AdminAnalystOD/storejobdesedit/'.$id) }}" method="post" enctype="multipart/form-data">
     <input name="_token" value="{{ csrf_token() }}" type="hidden">  
     <section class="content">
         <div class="box box-warning">   
@@ -541,9 +727,11 @@
                         <td>:</td>
                         <td width=50%>  
                         <span id="SelectedAbbrPosition" style="display:none">{{ $datas->no_jabatan }}</span>
-                            <select class="js-data-example-ajax form-control" 
+
+                            <select disabled="true"  class="js-data-example-ajax form-control" 
                                     id="AbbrPosition"  name="getjab" 
-                                    value="{{ $datas->no_jabatan }}">
+                                    >
+                                    <option value="{{ $datas->no_jabatan }}">{{ $datas->no_jabatan }}</option>
                             </select>
                         </td>
                     </tr>
@@ -642,7 +830,7 @@
                         <div class="form-group">
                             <label></label><br>
                             <button type="button" class="btn btn-primary" onclick="resjabatan();">Tambah Data</button>
-                            {{$jobres}}
+                            
                             
                         </div>
                         <div class="form-group" id="divres">
@@ -856,7 +1044,9 @@
                                     <label>3. Persyaratan Fisik</label>
                                 </div>
                                 <div class="form-group">
-                                    <select class="js-data-example-ajax form-control" id="fisik" name="persyaratan_fisik"></select>
+                                    <select class="js-data-example-ajax form-control" id="fisik" name="persyaratan_fisik">
+                                        <option value="{{$datas->persyaratan_fisik}}">{{$datas->persyaratan_fisik}}</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label>4. Profil Jabatan</label>
@@ -974,17 +1164,26 @@
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>
+                                            <td>
+                                                    <h5>ANALIS</h5>
+                                                    <input type="text" class="form-control" class="form-control" name="nikanalis" readonly value="{{ $datas->nikanalis }}">
+                                                    <input type="text" class="form-control" class="form-control" name="analis" readonly value="{{ $datas->analis }}">
+                                                </td>
+                                        <!--td>
                                             <h5>SESUAI LOGIN ANALIS</h5>
                                             <input type="text" class="form-control" class="form-control" readonly  placeholder="Sr. Spec.Organization Design ">      
-                                        </td>
+                                        </td-->
                                         <td>
                                             <h5>Hasri Suryani </h5>
                                             <input type="text" class="form-control" class="form-control" readonly  placeholder="Manager OD&HCP"> 
                                         </div>
                                         <td>
                                             <h5>Input name User</h5>
-                                            <select class="js-data-example-ajax form-control" id="namauser" name="namauser"></select>
+                                            <select class="js-data-example-ajax form-control" id="namauser" name="namauser">
+                                                <option value="{{ $datas->nikuser."-". $datas->namauser }}">{{ $datas->namauser }}</option>
+                                            </select>
+                                            <input type="hidden" class="form-control" class="form-control" id="nikatasan" name="nikatasan" readonly>
+                                            <input type="hidden" class="form-control" class="form-control" id="namaatasan" name="namaatasan" readonly>
                                         </td>
                                     </tr>
                                     <tr>

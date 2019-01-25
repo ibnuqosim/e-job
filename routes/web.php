@@ -97,7 +97,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/formjobdescreate','jobdescreateController@fromAdd');
             Route::post('/storejobdescreate','jobdescreateController@store');
             Route::get('/editjobdescreate/{id?}','jobdescreateController@edit');
-            
+            Route::post('/storejobdesedit/{id?}','jobdescreateController@storeedit');
             Route::get('/formjobdescreate/resjabatan/{gol?}','jobdescreateController@resjabatan');
             Route::get('/formjobdescreate/resunitkerja/{gol?}','jobdescreateController@resunitkerja');
             

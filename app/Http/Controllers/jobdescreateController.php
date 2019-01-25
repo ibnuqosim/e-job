@@ -66,11 +66,132 @@ class jobdescreateController extends Controller
         $data = ['strukturdir'=>$strukturdir];
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.formjobdescreate',$data);
     }
+    public function storeedit(Request $request, $id){
+        // I. URAIAN JABATAN (Job Description)
+        $getjab                                     = $request->getjab;
+        $LvlOrg                                     = $request->LvlOrg;
+        $NameofPosition                             = $request->NameofPosition;
+        $NameofOrgUnitDinas                         = $request->NameofOrgUnitDinas;
+        $NameofOrgUnitDivisi                        = $request->NameofOrgUnitDivisi;
+        $NameofOrgUnitSubDirektorat                 = $request->NameofOrgUnitSubDirektorat;
+        $NameofOrgUnitDirektorat                    = $request->NameofOrgUnitDirektorat;
+        //dd($getjab);
+        // II. TUJUAN JABATAN (Primary Job Role)
+        $jobrole                                    = $request->jobrole;
+        // IV. DIMENSI (Dimensions)
+        $finansial                                  = $request->finansial;
+        $nonfinansial                               = $request->nonfinansial;
+
+        $persyaratan_fisik                          = $request->persyaratan_fisik;
+        $gambar                                     = $request->gambar;
+        //inpu analis
+        $nikanalis                                  = $request->nikanalis;
+        $analis                                     = $request->analis;
+        $user                                       = $request->namauser;
+        $pecahuser                                  = explode("-",$user);
+        $nikuser                                    = $pecahuser[0];
+        $namauser                                   = $pecahuser[1];
+        //dd($user);
+        $nikatasan                                  =$request->nikatasan;
+        $namaatasan                                 =$request->namaatasan;
+        //manajer odhcp
+        $userid  = Auth::user()->userid;
+        $ret = [];
+        $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid.'/minManagerBoss');
+        $jess=json_decode($ret);
+        //dd($getjab);
+        $nikapprove                                  = $jess->personnel_no;
+        $nameapprove                                  = $jess->name;
+
+
+
+        //dd($request->res);
+        jobdescreate_res::where('jobdescreate_id',$id)->delete();
+        
+        if($request->res || $request->divindi || $request->divresk || $request->divwew){
+            $count_res = count($request->res);
+            $resunit = count($request->divresk);
+            $count_resindikator = count($request->divindi);
+            $un_div = count($request->divwew);
+            $max = max($count_res,$resunit,$count_resindikator,$un_div);
+    
+            for ($i=0; $i < $max; $i++) { 
+                $jobdescreate_res = new jobdescreate_res();
+                $jobdescreate_res->jobdescreate_id  = $id;
+                $jobdescreate_res->id_kata_kerja    = isset($request->res[$i])?$request->res[$i]:NULL;
+                $jobdescreate_res->id_met_object    = isset($request->divresk[$i])?$request->divresk[$i]:NULL;
+                $jobdescreate_res->id_met_indikator = isset($request->divindi[$i])?$request->divindi[$i]:NULL;
+
+                $jobdescreate_res->id_met_kewenangan = isset($request->divwew[$i])?$request->divwew[$i]:NULL;
+                $jobdescreate_res->save();
+            }
+        }
+        jobdescreate_unitkerja::where('jobdescreate_id',$id)->delete();
+        if($request->work || $request->divhal || $request->divhalk || $request->divhalks){
+                
+            $count_work = count($request->work);
+            $divhal = count($request->divhal);
+            $count_divhalk = count($request->divhalk);
+            $divhalks = count($request->divhalks);
+            $max = max($count_work,$divhal,$count_divhalk,$divhalks);
+            
+            for ($i=0; $i < $max; $i++) { 
+                $jobdescreate_unitkerja = new jobdescreate_unitkerja();
+                $jobdescreate_unitkerja->jobdescreate_id = $id;
+                $jobdescreate_unitkerja->id_emp_cskt_ltext = isset($request->work[$i])?$request->work[$i]:NULL;
+                $jobdescreate_unitkerja->id_hal_internal = isset($request->divhal[$i])?$request->divhal[$i]:NULL;
+                $jobdescreate_unitkerja->id_eksternal = isset($request->divhalk[$i])?$request->divhalk[$i]:NULL;
+                $jobdescreate_unitkerja->id_hal_external = isset($request->divhalks[$i])?$request->divhalks[$i]:NULL;
+                $jobdescreate_unitkerja->save();
+            }
+        }
+        jobdescreate_tools::where('jobdescreate_id',$id)->delete();
+        if($request->tools){
+                
+            $count_tools = count($request->tools);
+            
+            for ($i=0; $i < $count_tools; $i++) { 
+                $jobdescreate_tools = new jobdescreate_tools();
+                $jobdescreate_tools->jobdescreate_id = $id;
+                $jobdescreate_tools->id_deskripsi = isset($request->tools[$i])?$request->tools[$i]:NULL;
+                $jobdescreate_tools->save();
+            }
+        }
+        jobdescreate_materials::where('jobdescreate_id',$id)->delete();
+        if($request->materials){
+                
+            $count_materials = count($request->materials);
+
+            for ($i=0; $i < $count_materials; $i++) { 
+                $jobdescreate_materials = new jobdescreate_materials();
+                $jobdescreate_materials->jobdescreate_id = $id;
+                $jobdescreate_materials->id_deskripsi = isset($request->materials[$i])?$request->materials[$i]:NULL;
+                $jobdescreate_materials->save();
+            }
+        }
+        jobdescreate_conditions::where('jobdescreate_id',$id)->delete();
+        if($request->conditions){
+                
+            $count_conditions = count($request->conditions);
+
+            for ($i=0; $i < $count_conditions; $i++) { 
+                $jobdescreate_conditions = new jobdescreate_conditions();
+                $jobdescreate_conditions->jobdescreate_id = $id;
+                $jobdescreate_conditions->id_deskripsi = isset($request->conditions[$i])?$request->conditions[$i]:NULL;
+                $jobdescreate_conditions->save();
+            }
+        }
+        return redirect('/AdminAnalystOD/listjobdescreate');
+
+       
+
+    }
 
     public function store(Request $request)
     {
         // I. URAIAN JABATAN (Job Description)
         $getjab                                     = $request->getjab;
+        //dd($getjab);
         $LvlOrg                                     = $request->LvlOrg;
         $NameofPosition                             = $request->NameofPosition;
         $NameofOrgUnitDinas                         = $request->NameofOrgUnitDinas;
@@ -94,6 +215,9 @@ class jobdescreateController extends Controller
         $pecahuser                                  = explode("-",$user);
         $nikuser                                    = $pecahuser[0];
         $namauser                                   = $pecahuser[1];
+        
+
+        
 
         $nikatasan                                  =$request->nikatasan;
         $namaatasan                                 =$request->namaatasan;
@@ -670,14 +794,23 @@ class jobdescreateController extends Controller
     public function edit(Request $request, $id)
     {
         $jobres     =[];
+        $unit       =[];
+        $tools      =[];
+        $mat        =[];
         $item = jobdescreate::where('id',$id)->get();
         $jobres = jobdescreate_res::where('jobdescreate_id',$id)
                     ->join('kata_kerja', 'jobdescreate_res.id_kata_kerja', '=', 'kata_kerja.id')
                     ->join('matrikindikator', 'jobdescreate_res.id_met_object', '=', 'matrikindikator.id')
                     ->select('jobdescreate_res.*', 'kata_kerja.keterangan', 'matrikindikator.object','matrikindikator.indikator')
                     ->get();
-        
-        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['item'=>$item,'jobres'=>$jobres]);
+        $unit       = jobdescreate_unitkerja::where('jobdescreate_id',$id)->get();
+        $tools      = jobdescreate_tools::where('jobdescreate_id',$id)->get();
+        $mat        = jobdescreate_materials::where('jobdescreate_id',$id)->get();
+        $co         = jobdescreate_conditions::where('jobdescreate_id',$id)->get();
+        $pen        = jobdescreate_pen::where('jobdescreate_id',$id)->get();
+        $ker        = jobdescreate_penga::where('jobdescreate_id',$id)->get();
+        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['item'=>$item,
+        'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'id'=>$id]);
     }
     
     function getjobdescreate(Request $request, $id){
