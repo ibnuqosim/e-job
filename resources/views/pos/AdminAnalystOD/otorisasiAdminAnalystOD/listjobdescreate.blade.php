@@ -303,7 +303,7 @@ function view_job(id){
                                     </div>
                                 </div>
                                 <section>
-                                    @include('pos/UserSuptMgrGM/otorisasiAdminAnalystOD/popup')
+                                    @include('pos/AdminAnalystOD/otorisasiAdminAnalystOD/popup')
                                 </section>
                             </td>
                         </tr>

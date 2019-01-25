@@ -137,4 +137,37 @@ class ManagerController extends Controller
         }
         return Redirect::back()->withErrors(['msg', 'Error']);
     } 
+
+    function getjobdescreate(Request $request, $id){
+        $job        =[];
+        $jobres     =[];
+        $unit       =[];
+        $tools      =[];
+        $mat        =[];
+        $co         =[];
+        $pen        =[];
+        $ker        =[];
+        $profil     =[];
+        $profil_d   =[];
+        $jobres = jobdescreate_res::where('jobdescreate_id',$id)
+                    ->join('kata_kerja', 'jobdescreate_res.id_kata_kerja', '=', 'kata_kerja.id')
+                    ->join('matrikindikator', 'jobdescreate_res.id_met_object', '=', 'matrikindikator.id')
+                    ->select('jobdescreate_res.*', 'kata_kerja.keterangan', 'matrikindikator.object','matrikindikator.indikator')
+                    ->get();
+        // ini buat jon table
+        // dd($jobres);
+        $tools      = jobdescreate_tools::where('jobdescreate_id',$id)->get();
+        $mat        = jobdescreate_materials::where('jobdescreate_id',$id)->get();
+        $unit       = jobdescreate_unitkerja::where('jobdescreate_id',$id)->get();
+        $co         = jobdescreate_conditions::where('jobdescreate_id',$id)->get();
+        $pen        = jobdescreate_pen::where('jobdescreate_id',$id)->get();
+        $ker        = jobdescreate_penga::where('jobdescreate_id',$id)->get();
+        $profil     = profil::where('jobdescreate_id',$id)->get();
+        $item       = jobdescreate::where('id',$id)->get();
+        $profil_d   = profil_detail::where('jobdescreate_id',$id)->get();
+        $job    = job::where('jobdescreate_id',$id)->get();
+        $data   = array('item'=>$item,'job'=>$job,'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'profil'=>$profil,'profil_d'=>$profil_d);
+        return $data;
+    }
+
 }

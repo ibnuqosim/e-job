@@ -184,6 +184,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::post('/kirimpesan','ManagerController@store');
             Route::get('/show-historypesan/{id}','ManagerController@showhistorypesan');
             Route::get('/konfirmasi/{id?}','ManagerController@konfirmasi');
+            Route::get('/getjobdescreate/{id}','jobdescreateController@getjobdescreate');
         });
         
     });
