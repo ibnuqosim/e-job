@@ -41,7 +41,7 @@ class ManagerController extends Controller
         $data->dilihat              = $dilihat;
         $data->save();
 
-        return redirect('/UserSuptMgrGM/listjobdescreate');
+        return redirect('/ManagerOD/Listmanagerod');
 
         //echo $isipesan."-".$id;
 

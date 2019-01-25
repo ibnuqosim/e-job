@@ -27,12 +27,16 @@
 
     //$(function())
     function showpesan(item){
-    gethistorypesan(item.id);
+        
+        $("#iddesc").val(item.id);
+        $("#nikanalis").val(item.nikanalis);
+        $("#namaanalis").val(item.analis);   
+        gethistorypesan(item.id);
 }
 function gethistorypesan(id){
     //var id=1;
     $('#tbhispesan').DataTable( {
-            "ajax": "{{ url('AdminAnalystOD/show-historypesan') }}/"+id,
+            "ajax": "{{ url('ManagerOD/show-historypesan') }}/"+id,
             "bDestroy":true,
             "columns": [
                 { "data": "no"},
@@ -233,6 +237,7 @@ function view_job(id){
                         <tr>
                             <th>No</th>
                             <th>Jobdes</th>
+                            <th>Name of Position</th>
                             <th>Approve by analist</th>
                             <th>Approve by Supt/Mgr/GM</th>
                             
@@ -247,6 +252,7 @@ function view_job(id){
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->no_jabatan}}</td>
+                            <td>{{$item->name_jabatan}}</td>
                             <td>
                                 @if($item->approveanalis==1)
                                     {{$item->analis}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
@@ -276,13 +282,15 @@ function view_job(id){
                                 </td>
                             <td>
                                     
-                                <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a>
-                                <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info" onclick="view_job({{$item->id}})">popup</a>
-                                <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a>
+                                {{-- <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a> --}}
+                                <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info" onclick="view_job({{$item->id}})"></a>
+                                <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
+                                {{-- <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a> --}}
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
                                 @if($item->approveodhcp==null && $item->approveuser==1)
                                 <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasimanagerod({{ $item->id }});"></a>
                                 @endif
+                                
                                 <div class="modal modal-info fade" id="modal-pesan">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -293,24 +301,31 @@ function view_job(id){
                                             </div>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="table-responsive">
-                                                <b>History Pesan Revisi</b>
+                                            <div class="table-responsive"><b>History Pesan Revisi</b>
                                                 <table id="tbhispesan" class="table" style="color:black" width="100%">
-                                                        <thead>
-                                                            <tr>
-                                                                <td>NO</td>
-                                                                <td>Dikirim oleh</td>
-                                                                <td>Pesan Revisi</td>
-                                                                <td>Analis</td>
-                                                                <td>Tanggal</td>
-                                                                <td>Status</td>
-                                                            </tr>
-                                                        </thead>
-                                                        <thead>
-                                                            <tbody ></tbody>
-                                                        </thead>
+                                                    <thead>
+                                                        <tr>
+                                                            <td>NO</td>
+                                                            <td>Ditulis oleh</td>
+                                                            <td>Pesan Revisi</td>
+                                                            <td>Analis</td>
+                                                            <td>Tanggal</td>
+                                                            <td>Status</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <thead>
+                                                        <tbody ></tbody>
+                                                    </thead>
                                                 </table>
                                             </div>
+                                            <form action="{{ url('ManagerOD/kirimpesan') }}" method="post">
+                                                {{ @csrf_field() }}
+                                                <input type="hidden" name="iddesc" id="iddesc">
+                                                <input type="hidden" name="nikanalis" id="nikanalis">
+                                                <input type="hidden" name="namaanalis" id="namaanalis">
+                                                <textarea type="text" class="form-control" class="form-control" id="isipesan" name="isipesan" placeholder="Isi Pesan ..." rows="4"></textarea>
+                                                <button type="submit" class="btn btn-sm btn-success">Kirim Pesan</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>

@@ -98,15 +98,15 @@
                 </a>
                 @role('AdminAnalystOD')
                 <ul class="dropdown-menu">
-                  @if($blmkonfirm>0)<li class="header">Ada <b>{{$blmkonfirm}}</b> revisi yang belum dikonfirmasi</li>@endif
-                  @if($validanalis>0)  <li class="header">Ada <b>{{$validanalis}}</b> jobdesc yang harus divalidasi</li>@endif
+                  @if($blmkonfirm>0)<li class="header"><a href="{{ url('AdminAnalystOD/listjobdescreate') }}">Ada <b>{{$blmkonfirm}}</b> revisi yang belum dikonfirmasi</a></li>@endif
+                  @if($validanalis>0)  <li class="header"><a href="{{ url('AdminAnalystOD/listjobdescreate') }}">Ada <b>{{$validanalis}}</b> jobdesc yang harus divalidasi</a></li>@endif
                 </ul>
                 @endrole
                 @role('UserSuptMgrGM')
                 <ul class="dropdown-menu">
                   @if($blmdilihat>0)
 
-                  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$blmdilihat}}</b> dikonfirmasi revisi jobdesc belum dilihat<a></li>@endif
+                  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$blmdilihat}}</b> dikonfirmasi revisi belum dicek<a></li>@endif
                   @if($validuser>0)  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$validuser}}</b> jobdesc yang harus divalidasi</a></li>@endif
                   @if($tindaklanjut>0)  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$tindaklanjut}}</b> jobdesc yang belum ditindaklanjut</a></li>@endif
                 
@@ -114,7 +114,7 @@
                 @endrole
                 @role('ManagerOD')
                 <ul class="dropdown-menu">
-                  @if($validodhcp>0)  <li class="header">Ada <b>{{$validodhcp}}</b> jobdesc yang harus divalidasi</li>@endif
+                  @if($validodhcp>0)  <li class="header"><a href="{{ url('ManagerOD/Listmanagerod') }}">Ada <b>{{$validodhcp}}</b> jobdesc yang harus divalidasi</a></li>@endif
                 </ul>
                 @endrole
 
