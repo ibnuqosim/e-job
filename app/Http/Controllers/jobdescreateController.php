@@ -679,6 +679,7 @@ class jobdescreateController extends Controller
         
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['item'=>$item,'jobres'=>$jobres]);
     }
+    
     function getjobdescreate(Request $request, $id){
         $job        =[];
         $jobres     =[];
