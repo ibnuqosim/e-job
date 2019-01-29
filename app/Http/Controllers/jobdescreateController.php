@@ -686,6 +686,19 @@ class jobdescreateController extends Controller
         $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
         return $ret;
     } 
+
+    public function perfisik (Request $request)
+    {   
+        $arr = [];
+        $ret = [];
+        $data = persyaratan_fisik::where('persyaratan','like','%'.$request->q.'%')->get();
+        // dd($data);
+        foreach ($data as $key => $value) {
+            array_push($arr,['id'=>$value->persyaratan,'text'=>$value->persyaratan.""] );
+        }
+        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        return $ret;
+    } 
     
     public function managerodhcp (Request $request)
     {   
