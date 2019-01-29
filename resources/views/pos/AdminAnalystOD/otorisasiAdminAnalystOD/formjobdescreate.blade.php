@@ -473,7 +473,7 @@
     <ol class="breadcrumb">
         <li><a href="http://e-job.site/home"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Edit</a></li>
-        <li class="active">MENU JOBDES</li>
+        <li class="active">MENU JOBDES tess</li>
     </ol>
 </section>
 <section class="content">
@@ -521,7 +521,7 @@
             </div>
             <div class="box-body">
                 <table width=50% id="example2" class="table table-bordered table-hover">
-                    @foreach ($strukturdir as $item)
+                    {{-- @foreach ($strukturdir as $item) --}}
                     <tr>
                         <td width=50%>No. Jabatan (Job No.)</td>
                         <td>:</td>
@@ -586,7 +586,7 @@
                             <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="Otomatis pilih table" name="AbbrOrgUnitDivisi">
                         </td>
                     </tr>
-                    @endforeach
+                    {{-- @endforeach --}}
 
                 </table>
                 <div class="form-group">
