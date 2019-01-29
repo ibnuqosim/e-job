@@ -21,7 +21,7 @@ class UserListJoblistController extends Controller
         $userid  = Auth::user()->userid;
         $tj = jobdescreate::where('nikuser',$userid)->get();
         $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
-        return view('Menu.UserSuptMgrGM.listjobdescreate',$data);
+        return view('menu.UserSuptMgrGM.listjobdescreate',$data);
 
         
     }
