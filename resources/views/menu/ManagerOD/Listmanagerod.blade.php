@@ -336,7 +336,7 @@ function view_job(id){
                                     </div>
                                 </div>
                                 <section>
-                                    @include('Menu/ManagerOD/popup')
+                                    @include('menu/ManagerOD/popup')
                                 </section>
                             </td>
                         </tr>

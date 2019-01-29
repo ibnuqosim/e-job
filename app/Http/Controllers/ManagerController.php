@@ -19,7 +19,7 @@ class ManagerController extends Controller
         ->count();
         $tj = jobdescreate::where('nikapprove',Auth::user()->userid)->get();
         $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
-        return view('Menu.ManagerOD.Listmanagerod',$data);
+        return view('menu.ManagerOD.Listmanagerod',$data);
         // return view('UserSuptMgrGM.ListJoblist');
     }
     public function store(Request $request){
