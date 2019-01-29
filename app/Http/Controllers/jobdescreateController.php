@@ -692,7 +692,7 @@ class jobdescreateController extends Controller
         $arr = [];
         $ret = [];
         $data = persyaratan_fisik::where('persyaratan','like','%'.$request->q.'%')->get();
-        // dd($data);
+        // dd($data)
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->persyaratan,'text'=>$value->persyaratan.""] );
         }
