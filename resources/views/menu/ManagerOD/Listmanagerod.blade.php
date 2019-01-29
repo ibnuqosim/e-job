@@ -275,11 +275,17 @@ function view_job(id){
                                 
                             @endif</td>
                             <td>@if($item->statusapprove==1)
-                                    <a class="btn btn-success" href="#">Selesai</a>
-                                 @else
-                                 <a class="btn btn-warning" href="#">Progress...</a>
-                                 @endif
-                                </td>
+                                <a class="btn btn-success" href="#">Selesai</a>
+                             @elseif($item->posisiprogress==0)
+                             <a class="btn btn-success" href="#">menunggu konfirmasi user</a>
+                             @elseif($item->posisiprogress==1)
+                             <a class="btn btn-success" href="#">menunggu validasi analis</a>
+                             @elseif($item->posisiprogress==2)
+                             <a class="btn btn-success" href="#">menunggu validasi user/atasan</a>
+                             @elseif($item->posisiprogress==3)
+                             <a class="btn btn-success" href="#">menunggu validasi odhcp</a>
+                             @endif
+                            </td>
                             <td>
                                     
                                 {{-- <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a> --}}

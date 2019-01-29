@@ -25,7 +25,7 @@ class AdminLTEComposer
         $this->belumkonfirm = history_pesan::where('nikanalis',$user->userid)->where('status',0)->get();
         $this->belumdilihat = history_pesan::where('nik',$user->userid)->where('dilihat',0)->where('status',1)->get();
         //notif untuk analis
-        $wherevalidanalis = array('konfirmvalidanalis'=>1,'nikanalis'=>$user->userid,'approveanalis'=>null);
+        $wherevalidanalis = array('konfirmvalidanalis'=>1,'nikanalis'=>$user->userid,'approveanalis'=>0);
         $this->validanalis  = jobdescreate::where($wherevalidanalis)->get();
         //notif untuk user
         $wherevaliduser = array('approveuser'=>null,'nikuser'=>$user->userid,'approveanalis'=>1);
