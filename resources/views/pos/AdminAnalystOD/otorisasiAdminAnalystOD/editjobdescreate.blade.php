@@ -1179,7 +1179,7 @@
                                         </div>
                                         <td>
                                             <h5>Input name User</h5>
-                                            <select disabled="true" class="js-data-example-ajax form-control" id="namauser" name="namauser">
+                                            <select disabled="true" class="js-data-example-ajax form-control" id="namauser" name="namauser" required="true">
                                                 <option value="{{ $datas->nikuser."-". $datas->namauser }}">{{ $datas->namauser }}</option>
                                             </select>
                                             <input type="hidden" class="form-control" class="form-control" id="nikatasan" name="nikatasan" readonly>

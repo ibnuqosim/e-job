@@ -189,7 +189,9 @@
             $("#divresk").append(ok);
             $("#divindi").append(indi);
             $("#divwew").append(wew);
+            
             $('.res-ajax').select2({
+                
                 ajax: {
                     url: '{{ url('AdminAnalystOD/formjobdescreate/resjabatan') }}/'+gol,
                     dataType: 'json'
@@ -993,11 +995,11 @@
                             </td>
                             
                             <td>
-                                <h5>Hasri Suryani </h5>
+                                <h5>Manajer ODCHP </h5>
                                 <input type="text" class="form-control" class="form-control" readonly value="-">
                             <td>
                                 <h5>Input name User</h5>
-                                <select class="js-data-example-ajax form-control"  id="namauser" name="namauser"></select>
+                                <select class="js-data-example-ajax form-control"  id="namauser" name="namauser" required="true"> </select>
                                 <input type="hidden" class="form-control" class="form-control" id="nikatasan" name="nikatasan" readonly>
                                 <input type="hidden" class="form-control" class="form-control" id="namaatasan" name="namaatasan" readonly>
                             </td>
