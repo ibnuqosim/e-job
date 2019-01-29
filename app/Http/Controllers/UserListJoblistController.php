@@ -139,7 +139,7 @@ class UserListJoblistController extends Controller
 
     public function konfirmasi($id)
     {     
-        $jobdescreate = jobdescreate::where('id',$id)->update(['approveuser' => '1','tglapproveuser' => date("Y-m-d H:i:s")]);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['approveuser' => '1','tglapproveuser' => date("Y-m-d H:i:s"),'posisiprogress'=>3]);    
         if($jobdescreate){
             $hsl='success';
             $j = jobdescreate::where('id', $id)->first();
@@ -151,7 +151,7 @@ class UserListJoblistController extends Controller
     
     public function konfirmasivalidanalis($id)
     {    
-        $jobdescreate = jobdescreate::where('id',$id)->update(['konfirmvalidanalis' => '1','tglkonfirmvalidanalis' => date("Y-m-d H:i:s")]);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['konfirmvalidanalis' => '1','tglkonfirmvalidanalis' => date("Y-m-d H:i:s"),'posisiprogress'=>1]);    
         if($jobdescreate){
             $hsl='success';
             return $hsl;

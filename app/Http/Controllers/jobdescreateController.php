@@ -255,6 +255,7 @@ class jobdescreateController extends Controller
         //inpu analis
         $nikanalis                                  = $request->nikanalis;
         $analis                                     = $request->analis;
+        $approveanalis                              = 0;
 
         $user                                       = $request->namauser;
         $pecahuser                                  = explode("-",$user);
@@ -305,6 +306,7 @@ class jobdescreateController extends Controller
         // save analis
         $data->nikanalis                            = $nikanalis;
         $data->analis                               = $analis;
+        $data->approveanalis                        = $approveanalis;
 
 
         $data->nikuser                              = $nikuser;
@@ -315,6 +317,7 @@ class jobdescreateController extends Controller
 
         $data->nikapprove                           = $nikapprove;
         $data->approve                              = $nameapprove;
+        $data->posisiprogress                       = 0;
 
         $data->save();
         
@@ -814,7 +817,7 @@ class jobdescreateController extends Controller
     {   
         //dd($id);
         //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
-        $jobdescreate = jobdescreate::where('id',$id)->update(['approveanalis' => '1','tglapproveanalis' => date("Y-m-d H:i:s")]);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['approveanalis' => '1','tglapproveanalis' => date("Y-m-d H:i:s"),'posisiprogress'=>2]);    
         
         
         if($jobdescreate){

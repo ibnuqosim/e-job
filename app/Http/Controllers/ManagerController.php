@@ -30,6 +30,7 @@ class ManagerController extends Controller
         $nikanalis             = $request->nikanalis;
         $namaanalis            = $request->namaanalis;
         $dilihat               = 0;
+        $status               = 0;
 
         $data = new history_pesan();
         $data->jobdescreate_id      = $id;
@@ -39,7 +40,13 @@ class ManagerController extends Controller
         $data->nikanalis            = $nikanalis;
         $data->namaanalis           = $namaanalis;
         $data->dilihat              = $dilihat;
+        $data->status              = $status;
         $data->save();
+
+        $jobdescreate = jobdescreate::where('id',$id)
+        ->update(['posisiprogress' => 0,
+        'tglkonfirmvalidanalis'=>'','konfirmvalidanalis'=>'',
+        'tglapproveuser'=>'','approveuser'=>'','tglapproveanalis'=>'','approveanalis'=>'']);
 
         return redirect('/ManagerOD/Listmanagerod');
 
@@ -128,7 +135,7 @@ class ManagerController extends Controller
     {   
         //dd($id);
         //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
-        $jobdescreate = jobdescreate::where('id',$id)->update(['approveodhcp' => '1','tglapproveodhcp' => date("Y-m-d H:i:s"),'statusapprove'=>1]);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['approveodhcp' => '1','tglapproveodhcp' => date("Y-m-d H:i:s"),'statusapprove'=>1,'posisiprogress'=>4]);    
         
         
         if($jobdescreate){
