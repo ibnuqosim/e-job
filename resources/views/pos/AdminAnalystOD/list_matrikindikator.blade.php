@@ -44,7 +44,7 @@
             <h3 class="box-title">Title Matrikindikator</h3>
             
             <div class="box-footer">
-                <a class="btn btn-primary" href="{{ url('pos/AdminAnalystOD/fromaddmatrikindikator') }}">Tambah</a>
+                <a class="btn btn-primary" href="{{ url('AdminAnalystOD/fromaddmatrikindikator') }}">Tambah</a>
             </div>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
