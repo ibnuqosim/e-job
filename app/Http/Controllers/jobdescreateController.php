@@ -47,7 +47,7 @@ class jobdescreateController extends Controller
         $tj      = jobdescreate::with(['job','jobdescreate_res' => function($query){
             $query->with('matrikinndikator')->get();
         },'jobdescreate_unitkerja'])->where('nikanalis',$userid)->get();
-         dd($tj);
+        // dd($tj);
         $data   = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
         // $dk     = ['profil'=>'test','tj',tj=>$tj,'data'=>$tj];     
 
@@ -307,16 +307,20 @@ class jobdescreateController extends Controller
         $data->nikanalis                            = $nikanalis;
         $data->analis                               = $analis;
         $data->approveanalis                        = $approveanalis;
+        $data->konfirmvalidanalis                   = 0;
+        
 
 
         $data->nikuser                              = $nikuser;
         $data->namauser                             = $namauser;
+        $data->approveuser                          = 0;
 
         $data->nikatasan                            = $nikatasan;
         $data->atasan                               = $namaatasan;
 
         $data->nikapprove                           = $nikapprove;
         $data->approve                              = $nameapprove;
+        $data->approveodhcp                         = 0;
         $data->posisiprogress                       = 0;
 
         $data->save();
