@@ -12,7 +12,7 @@
       <div class="box-header with-border">
         <h3 class="box-title">from Add Responsibility</h3>
       </div>
-      <form class="form-horizontal" action="{{ url('AdminAnalystOD/storeresponsibility') }}" method="post">
+      <form class="form-horizontal" action="{{ url('pos/AdminAnalystOD/storeresponsibility') }}" method="post">
         <input name="_token" value="{{ csrf_token() }}" type="hidden">
         <div class="box-body">
           <div class="form-group">

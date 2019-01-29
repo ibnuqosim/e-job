@@ -18,7 +18,7 @@ public function index(Request $request)
     }
     public function fromAdd(Request $request)
     {
-        return view('AdminAnalystOD.fromaddmatrikindikator');
+        return view('pos.AdminAnalystOD.fromaddmatrikindikator');
     }
 
     public function store(Request $request)
