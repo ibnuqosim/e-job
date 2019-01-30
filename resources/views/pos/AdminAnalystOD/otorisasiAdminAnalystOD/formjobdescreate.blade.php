@@ -869,7 +869,7 @@
                         <button type="button" class="btn btn-primary" onclick="perfisik();">Tambah Data</button>
                     </div>
                     <div class="form-group" id="divdfisik">
-                        <input class="js-data-example-ajax form-control" id="fisik" name="persyaratan" value="1" type="hidden" />
+                        <input class="js-data-example-ajax form-control" id="fisik" name="id_persyaratan" value="1" type="hidden" />
                     </div>
                     <div class="form-group">
                         <label>4. Profil Jabatan</label>

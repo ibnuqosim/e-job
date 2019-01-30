@@ -311,7 +311,7 @@ function view_job(id){
                                     </div>
                                 </div>
                                 <section>
-                                    @include('pos/AdminAnalystOD/otorisasiAdminAnalystOD/popup')
+                                    @include('AdminAnalystOD/otorisasiAdminAnalystOD/popup')
                                 </section>
                             </td>
                         </tr>
