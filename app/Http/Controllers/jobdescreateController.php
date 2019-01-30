@@ -37,6 +37,7 @@ use App\job;
 use App\profil;
 use App\profil_detail;
 use App\history_pesan;
+use App\jobdescreate_fisik;
 
 
 class jobdescreateController extends Controller
@@ -103,21 +104,9 @@ class jobdescreateController extends Controller
         //inpu analis
         $nikanalis                                  = $request->nikanalis;
         $analis                                     = $request->analis;
-        //$user                                       = $request->namauser;
-        //$pecahuser                                  = explode("-",$user);
-        //$nikuser                                    = $pecahuser[0];
-        //$namauser                                   = $pecahuser[1];
-        //dd($user);
+
         $nikatasan                                  =$request->nikatasan;
         $namaatasan                                 =$request->namaatasan;
-        //manajer odhcp
-        // $userid  = Auth::user()->userid;
-        // $ret = [];
-        // $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid.'/minManagerBoss');
-        // $jess=json_decode($ret);
-        // //dd($getjab);
-        // $nikapprove                                  = $jess->personnel_no;
-        // $nameapprove                                  = $jess->name;
 
         $jobdescreate = jobdescreate::where('id',$id)
         ->update(['persyaratan_fisik' => $persyaratan_fisik,
@@ -217,19 +206,20 @@ class jobdescreateController extends Controller
                 
             $count_penga = count($request->penga);
 
-            for ($i=0; $i < $count_pen; $i++) { 
+            for ($i=0; $i < $count_penga; $i++) { 
                 $jobdescreate_penga = new jobdescreate_penga();
                 $jobdescreate_penga->jobdescreate_id = $id;
                 $jobdescreate_penga->id_keterangan = isset($request->penga[$i])?$request->penga[$i]:NULL;
                 $jobdescreate_penga->save();
             }
         }
+
         jobdescreate_fisik::where('jobdescreate_id',$id)->delete();
         if($request->fisik){
                 
             $count_fisik = count($request->fisik);
 
-            for ($i=0; $i < $count_pen; $i++) { 
+            for ($i=0; $i < $count_fisik; $i++) { 
                 $jobdescreate_fisik = new jobdescreate_fisik();
                 $jobdescreate_fisik->jobdescreate_id = $id;
                 $jobdescreate_fisik->id_persyaratan = isset($request->fisik[$i])?$request->fisik[$i]:NULL;
@@ -461,18 +451,6 @@ class jobdescreateController extends Controller
                 }
             }
 
-             if($request->penga){
-                
-                $count_penga = count($request->penga);
-
-                for ($i=0; $i < $count_pen; $i++) { 
-                    $jobdescreate_penga = new jobdescreate_penga();
-                    $jobdescreate_penga->jobdescreate_id = $data_id->id;
-                    $jobdescreate_penga->id_keterangan = isset($request->penga[$i])?$request->penga[$i]:NULL;
-                    $jobdescreate_penga->save();
-                }
-            }
-
             if($request->namajabatan || $request->noorg || $request->golongan || $request->unitkerja || $request->nojabatan || $request->job ){
                 $namajabatan    = $request->namajabatan;
                 $noorg          = $request->noorg;
@@ -511,6 +489,17 @@ class jobdescreateController extends Controller
                 }
             }
             
+            if($request->fisik){
+                
+                $count_fisik = count($request->fisik);
+
+                for ($i=0; $i < $count_pen; $i++) { 
+                    $jobdescreate_fisik = new jobdescreate_fisik();
+                    $jobdescreate_fisik->jobdescreate_id = $data_id->id;
+                    $jobdescreate_fisik->id_persyaratan = isset($request->fisik[$i])?$request->fisik[$i]:NULL;
+                    $jobdescreate_fisik->save();
+                }
+            }
             
             return redirect('/AdminAnalystOD/listjobdescreate');
         }
