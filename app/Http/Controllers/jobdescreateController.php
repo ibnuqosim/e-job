@@ -49,7 +49,12 @@ class jobdescreateController extends Controller
             $query->with('matrikinndikator')->get();
         },'jobdescreate_unitkerja'])->where('nikanalis',$userid)->get();
         // dd($tj);
-        $data   = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj];
+        $pdf = jobdescreate::join('job', 'jobdescreate.id', '=', 'job.jobdescreate_id')
+        ->select('jobdescreate.*', 'job.jabatanatasanlangsung')
+        ->get();
+        //dd($pdf);
+        $data   = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'pdf'=>$pdf];
+        
         // $dk     = ['profil'=>'test','tj',tj=>$tj,'data'=>$tj];     
 
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.listjobdescreate',$data);
@@ -513,9 +518,34 @@ class jobdescreateController extends Controller
     }
     public function pdf($id)
     {
-        $data = jobdescreate::where('id',$id)->get();
-        // dd($data);
-        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.pdf', [ 'data' => $data ]);
+        $jobres     =[];
+        $unit       =[];
+        $tools      =[];
+        $mat        =[];
+        $co         =[];
+        $pen        =[];
+        $ker        =[];
+        $profil     =[];
+        $profil_d   =[];
+        $data = jobdescreate::where('jobdescreate.id',$id)
+        ->join('job', 'jobdescreate.id', '=', 'job.jobdescreate_id')
+        ->select('jobdescreate.*', 'job.jabatanatasanlangsung')
+        ->get();
+        $job = job::where('jobdescreate_id',$id)
+        ->get();
+        $jobres = jobdescreate_res::where('jobdescreate_id',$id)
+                    ->join('kata_kerja', 'jobdescreate_res.id_kata_kerja', '=', 'kata_kerja.id')
+                    ->join('matrikindikator', 'jobdescreate_res.id_met_object', '=', 'matrikindikator.id')
+                    ->select('jobdescreate_res.*', 'kata_kerja.keterangan', 'matrikindikator.object','matrikindikator.indikator')
+                    ->get();
+        $unit       = jobdescreate_unitkerja::where('jobdescreate_id',$id)->get();
+        $tools      = jobdescreate_tools::where('jobdescreate_id',$id)->get();
+        $mat        = jobdescreate_materials::where('jobdescreate_id',$id)->get();
+        $co         = jobdescreate_conditions::where('jobdescreate_id',$id)->get();
+        $pen        = jobdescreate_pen::where('jobdescreate_id',$id)->get();
+        $ker        = jobdescreate_penga::where('jobdescreate_id',$id)->get();
+         //dd($job);
+        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.pdf', [ 'data' => $data,'job'=>$job,'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'profil'=>$profil,'profil_d'=>$profil_d]);
     }
     
    
