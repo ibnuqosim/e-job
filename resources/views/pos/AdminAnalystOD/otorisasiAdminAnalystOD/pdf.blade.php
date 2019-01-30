@@ -1,5 +1,9 @@
-<div style="display : none">
-    @foreach ($tj as $item)
+
+
+
+<div>
+    
+    @foreach ($data as $item)
     <div id="print{{$item->id}}">
         <body>
             <img alt="Gambar Koala" src="{{ url('img/ks.png') }}"height="50" width="50" />
@@ -77,17 +81,17 @@
                             <tr>
                                 <td>Divisi</td>
                                 <td>:</td>
-                                <td><b>MRO Procurement</b></td>
+                                <td><b>{{$item->divisi}}</b></td>
                             </tr>
                             <tr>
                                 <td>Sub Direktorat</td>
                                 <td>:</td>
-                                <td>MRO Procurement & Facilities</td>
+                                <td>{{$item->subdirektorat}}</td>
                             </tr>
                             <tr>
                                 <td>Direktorat</td>
                                 <td>:</td>
-                                <td>Logistik & PU</td>
+                                <td>{{$item->direktorat}}</td>
                             </tr>
                            
                         </table>
@@ -99,7 +103,7 @@
                                 <td>:</td>
                                 <td>{{$item->no_jabatan}}</td>
                             </tr>
-                                <td>No Jabatan</td>
+                                <td>Nama Jabatan</td>
                                 <td>:</td>
                                 <td>{{$item->name_jabatan}}</td>
                             </tr>
@@ -111,26 +115,23 @@
                                     <tr>
                                         <td>Bertangung Jawab Langsung Kepada</td>
                                         <td>:</td>
-                                        <td>General Manager Procurement</td>
+                                        <td>{{$item->jabatanatasanlangsung}}</td>
                                     </tr>
                                     <tr>
-                                        <td>Jabatan Yang Langsung dikoordinasi</td>
+                                        <td valign="top">Jabatan Yang Langsung dikoordinasi</td>
+                                        <td valign="top">:</td>
+                                        <td valign="top">
+                                                
+                                            <ul>
+                                                @foreach ($job as $koor)
+                                                <li>{{$koor->jabatanbawahanlangsung}}</li>
+                                                @endforeach
+                                            </ul>
+
+
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td>1. Sr. Specialist Material Procurement     (01)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2. Supt. General Supplies Proc.     (01)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3. Supt. Spare Parts Mech. Proc,   (01)</td>
-                                    </tr>  
-                                    <tr>
-                                        <td>4. Supt. General Supplies Proc.     (01)</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5. Supt. LTA Procurement     (01)</td>
-                                    </tr>             
+                                                
                                 </table>
                             </td>
                         </tr>
@@ -145,10 +146,7 @@
                         <td width="40%"  colspan="2">
                             <table>
                                 <tr>
-                                    <td>Mengorganisasikan dan mengkoordinasikan proses pengadaan suku cadang dan non suku cadang (Raw Material, 
-                                        Operating Supplies, General Supplies, dll) 
-                                        dan proses penanganan claim terhadap pengadaan material serta memastikan pemutakhirkan data pengadaan guna menjamin proses pengadaan berjalan optimal, 
-                                        sesuai prosedur, tepat harga, tepat kualitas, tepat kuantitas dan tepat waktu
+                                    <td><p>{{$item->jobrole}}</p>
                                     </td>
                                 </tr>    
                             </table>
@@ -174,29 +172,18 @@
                     <tr>
                         <td width="40%"  colspan="2">
                             <table>
-                                <tr>
-                                    <td>
-                                        1.	Mengorganisasikan proses evaluasi dan penentuan cara pengadaan barang 
-                                        (suku cadang dan non suku cadang)untuk menentukan proses pengadaan sesuai 
-                                        dengan prinsip-prinsip yang telah ditentukan.
-                                    </td>
-                                </tr> 
+                                    <?php $no=1; ?>
+                                    @foreach ($jobres as $jres)
+                                    
+                                    <tr>
+                                    <td>{{$no}}.</td><td>{{$jres->keterangan." ".lcfirst($jres->object)}}</td>
+                                    </tr>
+                                    <?php $no++; ?>
+                                    @endforeach
                             </table>
                         </td>
                     </tr>
-                    <tr>
-                        <td width="40%"  colspan="2">
-                            <table>
-                                <tr>
-                                    <td>
-                                        2.	Mengatur dan mengarahkan serta menetapkan proses pemilihan rekanan dengan nilai estimasi pengadaan sesuai prosedur 
-                                        untuk memastikanpeserta tender yang akan diikutsertakan dalam proses pengadaan dan Aanweijzing
-                                        (penjelasan teknis dan administratif).
-                                    </td>
-                                </tr> 
-                            </table>
-                        </td>
-                    </tr>
+                    
                 </table>
             </div>
             <h3>IV.	DIMENSI</h3>
@@ -206,31 +193,23 @@
                         <td width="40%" colspan="4">
                             <table>
                                 <tr>
-                                    <td>Finansial</td>
-                                    <td>:</td>
+                                    <td valign="top">Finansial</td>
+                                    <td valign="top">:</td>
                                     <td></td>
-                                    <td>
-                                        Pengadaan Raw Material pertahun + Rp 6 - 13 Trilyun.
-                                        Pengadaan Suku Cadang pertahun + Rp 200 - 400 Milyar.
-                                        Pengadaan General & Operating Supplies + Rp 1 – 2 Trilyun.
-                                        Uang muka untuk pembelian Rp 1,2 Milyar/tahun
+                                    <td valign="top">
+                                            {{$item->finansial}}
                                     </td>
                                 </tr> 
-                            </table>
-                            <table>
-                                    <tr>
-                                        <td>Non Finansial</td>
-                                        <td>:</td>
+                                <tr>
+                                        <td valign="top">Non Finansial</td>
+                                        <td valign="top">:</td>
                                         <td></td>
-                                        <td> 
-                                                Pengadaan Raw Material pertahun + Rp 6 - 13 Trilyun.
-                                                Pengadaan Suku Cadang pertahun + Rp 200 - 400 Milyar.
-                                                Pengadaan General & Operating Supplies + Rp 1 – 2 Trilyun.
-                                                Uang muka untuk pembelian Rp 1,2 Milyar/tahun
-    
+                                        <td valign="top"> 
+                                                {{$item->nonfinansial}}
                                         </td>
-                                    </tr> 
-                                </table>
+                                </tr> 
+                            </table>
+                            
                         </td>
                         </tr>
                     </tr>
@@ -241,31 +220,11 @@
                 <table border="1" width="100%" celladding="0" cellspacing="0" class="table table-bordered table-hover">
                     <tr>
                         <td width="40%" colspan="4">
-                            <table>
-                                <tr>
-                                    <td>•	Memastikan evaluasi dan penentuan pengadaan barang</td>
-                                </tr> 
-                            </table>
-                            <table>
-                                <tr>
-                                    <td>•	Memastikan daftar peserta tender</td>
-                                </tr> 
-                            </table>
-                            <table>
-                                <tr>
-                                    <td>•	Memastikan permintaan penawaran</td>
-                                </tr> 
-                            </table>
-                            <table>
-                                <tr>
-                                    <td>•	Merekomendasikan calon pemenang tender</td>
-                                </tr> 
-                            </table>
-                            <table>
-                                <tr>
-                                    <td>•	Menentukan Purchase Order </td>
-                                </tr> 
-                            </table>
+                                <ul>
+                                @foreach ($jobres as $jres2)
+                                <li>{{$jres2->id_met_kewenangan}}</li>
+                                @endforeach
+                            </ul>
                         </td>
                         </tr>
                 </table>
@@ -274,151 +233,114 @@
             <div class="form-group">
                 <table border="1" width="100%" celladding="0" cellspacing="0" class="table table-bordered table-hover">
                      <tr>
-                        <td width="40%"  colspan="2">
-                            <table>
-                                <tr>
-                                    <td>Jabatan/Unit kerja yang dituju</td>
-                                </tr>
-                            </table>
-                        </td>
-                        <td width="40%"  colspan="2">
-                            <table>
-                                <tr>
-                                    <td>Dalam Hal :</td>
-                                </tr>
-                            </table>
+                         <td width="50%">Jabatan / Unit yang dituju</td><td width="50%">Dalam Hal</td>
+                     </tr>
+                     <tr>
+                            <td width="50%">
+                                <ul>
+                                    <li><b>Internal</b></li>
+                                    @foreach ($unit as $junit)
+                                    {{"- ".$junit->id_emp_cskt_ltext}}
+                                    @endforeach
+                                </ul>
+                                
+                            </td>
+                            <td width="50%">
+                                    @foreach ($unit as $junit)
+                                    {{"- ".$junit->id_hal_internal}}
+                                    @endforeach
+
+                            </td>
+                     </tr>
+                     <tr>
+                            <td width="50%">
+                                <ul>
+                                    <li><b>Eksternal</b></li>
+                                    @foreach ($unit as $junit)
+                                    {{"- ".$junit->id_eksternal}}
+                                    @endforeach
+                                </ul>
+                            </td>
+                            <td width="50%">
+                                    @foreach ($unit as $junit)
+                                    {{"- ".$junit->id_hal_external}}
+                                    @endforeach
+                                
+                            </td>
+                     </tr>
+                </table>
+            </div>
+            <h3>VII. ALAT, BAHAN DAN LINGKUNGAN KERJA</h3>
+            <div class="form-group">
+                <table border="1" width="100%" celladding="0" cellspacing="0" class="table table-bordered table-hover">
+                    <tr>
+                        <td width="2%" align="center">1</td><td width="10%">Alat Kerja</td><td width="2%" align="center">:</td><td>
+                                @foreach ($tools as $jtools)
+                                {{$jtools->id_deskripsi.", "}}
+                                @endforeach
                         </td>
                     </tr>
                     <tr>
-                        <td width="40%"  colspan="2">
-                            <table>
-                                <tr>
-                                    <td>1. Internal</td>
-                                    <td></td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td>. isinya</td>
-                                </tr>
-                            </table>
-                             <table>
-                                <tr>
-                                    <td>2. Eksternal</td>
-                                    <td></td>
-                                </tr>
-                            </table>
+                        <td width="2%" align="center">2</td><td width="10%">Bahan Kerja</td><td width="2%" align="center">:</td><td>
+                                @foreach ($mat as $jmat)
+                                {{$jmat->id_deskripsi.", "}}
+                                @endforeach
                         </td>
-                        <td width="40%"  colspan="2">
-                            <table>
-                                <tr>
-                                    <td>• Daftar Rekanan</td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td>• Penerbitan RIR / RR</td>
-                                </tr>
-                            </table>
+                    </tr>
+                    <tr>
+                        <td width="2%" align="center">3</td><td width="10%">Lingkungan Kerja</td><td width="2%" align="center">:</td><td>
+                                @foreach ($co as $jco)
+                                {{$jco->id_deskripsi.", "}}
+                                @endforeach
                         </td>
                     </tr>
                 </table>
             </div>
-            <h3>VIII. ALAT, BAHAN DAN LINGKUNGAN KERJA</h3>
+            <h3>VIII. SPESIFIKASI JABATAN </h3>
             <div class="form-group">
                 <table border="1" width="100%" celladding="0" cellspacing="0" class="table table-bordered table-hover">
                     <tr>
-                        <td width="40%"  colspan="2">
-                            <table>
-                                <tr>
-                                    <td>
-                                      1. Pendidikan dan Pengalaman Kerja : 
-                                      S1  Teknik/Non Teknik dengan pengalaman minimal 6 tahun  dibidang yang relevan.
-                                    </td>
-                                </tr> 
-                            </table>
+                        <td width="2%" align="center">1.</td><td width="20%">Pendidikan dan pengalaman kerja</td><td width="2%" align="center">:</td><td>
+                                <ul>
+                                        @foreach ($pen as $jpen)
+                                        <li>{{$jpen->id_jenjang}}
+                                                @foreach ($ker as $jker) {{$jker->id_keterangan}} @endforeach
+                                        </li>
+                                        @endforeach
+                                    </ul>
                         </td>
                     </tr>
                     <tr>
-                        <td width="40%"  colspan="2">
-                            <table>
-                                <tr>
-                                    <td>
-                                        2.	Mengatur dan mengarahkan serta menetapkan proses pemilihan rekanan dengan nilai estimasi pengadaan sesuai prosedur 
-                                        untuk memastikanpeserta tender yang akan diikutsertakan dalam proses pengadaan dan Aanweijzing
-                                        (penjelasan teknis dan administratif).
-                                    </td>
-                                </tr> 
-                            </table>
-                        </td>
+                        <td width="2%" align="center">2.</td><td width="20%">Persyaratan fisik</td><td width="2%" align="center">:</td><td></td>
+                    </tr>
+                    <tr>
+                        <td width="2%" align="center">3.</td><td width="20%">Profil jabatan</td><td width="2%" align="center">:</td><td>Terlampir</td>
                     </tr>
                 </table>
             </div>
-            <h3>IX.	POSISI JABATAN DALAM BAGAN ORGANISASI </h3>
-            <div class="form-group">
-                <table border="1" width="100%" celladding="0" cellspacing="0" class="table table-bordered table-hover">
-                    <tr>
-                        <td width="40%"  colspan="2">
-                            <table>
-                                <tr>
-                                    <td>
-                                    </td>
-                                </tr> 
-                            </table>
-                        </td>
-                    </tr>
-                </table>
+            <h3>IX. POSISI JABATAN DALAM BAGAN ORGANISASI </h3>
+            <div class="form-group" align="center">
+                    
+                    <img  src="{{ url('img/jobdesc/'.$item->gambar) }}" />
+                    
             </div>
             <h3>X.	LEGALISASI </h3>
             <div class="form-group">
                 <table border="1" width="100%" celladding="0" cellspacing="0" class="table table-bordered table-hover">
-                    <td width="40%">
-                        <table>
-                            <tr>
-                                <td>DIANALISIS OLEH :</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td width="40%">
-                        <table>
-                            <tr>
-                                <td>MENYETUJUI</td>
-                            </tr>
-                        </table>
-                    </td>
+                    <tr>
+                        <td width="35%" align="center">DIANALISIS OLEH :</td><td align="center" colspan="2" width="65%">MENYETUJUI</td>
+                    </tr>
+                    <tr>
+                        <td><br><br><br>{{$item->analis}}</td><td><br><br><br>{{$item->approve}}</td><td><br><br><br>{{$item->namauser}}</td>
+                    </tr>
+                    <tr>
+                        <td></td><td></td><td></td>
+                    </tr>
+                    <tr>
+                        <td>Tgl:</td><td>Tgl:</td><td>Tgl:</td>
+                    </tr>
                 </table>
-                <table border="1" width="100%" celladding="0" cellspacing="0" class="table table-bordered table-hover">
-                    <td width="40%">
-                        <table>
-                            <tr>
-                                <td>Bambang Nugroho</td>
-                            </tr>
-                            <tr>
-                                <td>Sr. Spec.Organization Design</td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td width="20%">
-                        <table>
-                            <tr>
-                                <td>Hasri Suryani</td>
-                            </tr>
-                            <tr>
-                                <td>Mgr. OD & HCP</td>
-                            </tr>
-                        </table>
-                    </td>
-                     <td width="20%">
-                        <table>
-                            <tr>
-                                <td>Tonny Sunarto </td>
-                            </tr>
-                             <tr>
-                                <td>GM. MRO Procurement & Facilities</td>
-                            </tr>
-                        </table>
-                    </td>
-                </table>
+                
             </div>
             <br><br><br><br><br><br><br><br>
             <h3>PROFIL JABATAN</h3>

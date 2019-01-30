@@ -275,7 +275,8 @@ function view_job(id){
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info" onclick="view_job({{$item->id}})"></a>
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/deletejobdescreate',['id'=>$item->id]) }}"></a>
-                                <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
+                                {{-- <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a> --}}
+                                <a class="glyphicon glyphicon-print" href="{{ url('AdminAnalystOD/pdf',['id'=>$item->id]) }}"></a>
                                 @if($item->approveanalis==null && $item->konfirmvalidanalis==1)
                                 <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasianalis({{ $item->id }});"></a>
                                 @endif
@@ -322,6 +323,6 @@ function view_job(id){
         </div>
     </section>
     <section>
-        @include('pos/AdminAnalystOD/otorisasiAdminAnalystOD/pdf')
+        {{-- @include('pos/AdminAnalystOD/otorisasiAdminAnalystOD/pdf') --}}
     </section>
     @endsection
