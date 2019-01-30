@@ -99,8 +99,6 @@ class jobdescreateController extends Controller
         // IV. DIMENSI (Dimensions)
         $finansial                                  = $request->finansial;
         $nonfinansial                               = $request->nonfinansial;
-
-        $persyaratan_fisik                          = $request->persyaratan_fisik;
         $gambar                                     = $request->gambar;
         //inpu analis
         $nikanalis                                  = $request->nikanalis;
@@ -224,6 +222,18 @@ class jobdescreateController extends Controller
                 $jobdescreate_penga->jobdescreate_id = $id;
                 $jobdescreate_penga->id_keterangan = isset($request->penga[$i])?$request->penga[$i]:NULL;
                 $jobdescreate_penga->save();
+            }
+        }
+        jobdescreate_fisik::where('jobdescreate_id',$id)->delete();
+        if($request->fisik){
+                
+            $count_fisik = count($request->fisik);
+
+            for ($i=0; $i < $count_pen; $i++) { 
+                $jobdescreate_fisik = new jobdescreate_fisik();
+                $jobdescreate_fisik->jobdescreate_id = $id;
+                $jobdescreate_fisik->id_persyaratan = isset($request->fisik[$i])?$request->fisik[$i]:NULL;
+                $jobdescreate_fisik->save();
             }
         }
         return redirect('/AdminAnalystOD/listjobdescreate');
