@@ -182,7 +182,16 @@ function view_job(id){
                 html9+='<tr><td>'+no+'</td><td>'+data.profil_d[i].groupaspek+'</td><td>'+data.profil_d[i].namakompetensi+'</td><td>'+data.profil_d[i].proficiency+'</td></tr>';
                 }
                 $('#profil_d').html(html9);
+    
+            var no10=0;
+            var html10='';
+            for (i = 0; i < data.fisik.length; i++) {
+                no++;
+                html10+='<tr><td>'+data.fisik[i].id_persyaratan+'</td></tr>';
+                }
+                $('#fisik').html(html10);
            }
+
         });
 }
 </script>

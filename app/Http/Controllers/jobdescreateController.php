@@ -70,7 +70,6 @@ class jobdescreateController extends Controller
     public function delete(Request $request, $id){
         jobdescreate::where('id',$id)->delete();
         jobdescreate_res::where('jobdescreate_id',$id)->delete();
-        jobdescreate_res::where('jobdescreate_id',$id)->delete();
         jobdescreate_unitkerja::where('jobdescreate_id',$id)->delete();
         jobdescreate_tools::where('jobdescreate_id',$id)->delete();
         jobdescreate_materials::where('jobdescreate_id',$id)->delete();
@@ -80,7 +79,8 @@ class jobdescreateController extends Controller
         job::where('jobdescreate_id',$id)->delete();
         profil::where('jobdescreate_id',$id)->delete();
         profil_detail::where('jobdescreate_id',$id)->delete();
-        return redirect('/AdminAnalystOD/listjobdescreate');
+        jobdescreate_fisik::where('jobdescreate_id',$id)->delete();
+        return redirect('/AdminAnalystOD/listjobdescreate')->with('status', 'Berhasil di Update');
 
         
 
@@ -109,7 +109,7 @@ class jobdescreateController extends Controller
         $namaatasan                                 =$request->namaatasan;
 
         $jobdescreate = jobdescreate::where('id',$id)
-        ->update(['persyaratan_fisik' => $persyaratan_fisik,
+        ->update([
         'finansial'=>$finansial,'nonfinansial'=>$nonfinansial,
         'jobrole'=>$jobrole]);    
         
@@ -299,8 +299,6 @@ class jobdescreateController extends Controller
         // IV. DIMENSI (Dimensions)
         $data->finansial                            = $finansial;
         $data->nonfinansial                         = $nonfinansial;
-        $data->persyaratan_fisik                    = $persyaratan_fisik;
-
         // $file->gambar                            = $gambar;
         $data->gambar                               = $gambar;
         // save analis
@@ -496,7 +494,7 @@ class jobdescreateController extends Controller
                 for ($i=0; $i < $count_pen; $i++) { 
                     $jobdescreate_fisik = new jobdescreate_fisik();
                     $jobdescreate_fisik->jobdescreate_id = $data_id->id;
-                    $jobdescreate_fisik->id_persyaratan = isset($request->fisik[$i])?$request->fisik[$i]:NULL;
+                    $jobdescreate_fisik->id_persyaratan = isset($request->fisik[$i])?$request->fisik[$i]:'';
                     $jobdescreate_fisik->save();
                 }
             }
@@ -861,6 +859,7 @@ class jobdescreateController extends Controller
         $unit       =[];
         $tools      =[];
         $mat        =[];
+        $fisik      =[];
         $item = jobdescreate::where('id',$id)->get();
         $jobres = jobdescreate_res::where('jobdescreate_id',$id)
                     ->join('kata_kerja', 'jobdescreate_res.id_kata_kerja', '=', 'kata_kerja.id')
@@ -873,8 +872,9 @@ class jobdescreateController extends Controller
         $co         = jobdescreate_conditions::where('jobdescreate_id',$id)->get();
         $pen        = jobdescreate_pen::where('jobdescreate_id',$id)->get();
         $ker        = jobdescreate_penga::where('jobdescreate_id',$id)->get();
+        $fisik      = jobdescreate_fisik::where('jobdescreate_id',$id)->get();
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.editjobdescreate',['item'=>$item,
-        'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'id'=>$id]);
+        'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'id'=>$id,'fisik'=>$fisik]);
     }
     
     function getjobdescreate(Request $request, $id){
@@ -888,6 +888,7 @@ class jobdescreateController extends Controller
         $ker        =[];
         $profil     =[];
         $profil_d   =[];
+        $fisik      =[];
         $jobres = jobdescreate_res::where('jobdescreate_id',$id)
                     ->join('kata_kerja', 'jobdescreate_res.id_kata_kerja', '=', 'kata_kerja.id')
                     ->join('matrikindikator', 'jobdescreate_res.id_met_object', '=', 'matrikindikator.id')
@@ -895,6 +896,7 @@ class jobdescreateController extends Controller
                     ->get();
         // ini buat jon table
         // dd($jobres);
+        $fisik      = jobdescreate_fisik::where('jobdescreate_id',$id)->get();
         $tools      = jobdescreate_tools::where('jobdescreate_id',$id)->get();
         $mat        = jobdescreate_materials::where('jobdescreate_id',$id)->get();
         $unit       = jobdescreate_unitkerja::where('jobdescreate_id',$id)->get();
@@ -904,8 +906,8 @@ class jobdescreateController extends Controller
         $profil     = profil::where('jobdescreate_id',$id)->get();
         $item       = jobdescreate::where('id',$id)->get();
         $profil_d   = profil_detail::where('jobdescreate_id',$id)->get();
-        $job    = job::where('jobdescreate_id',$id)->get();
-        $data   = array('item'=>$item,'job'=>$job,'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'profil'=>$profil,'profil_d'=>$profil_d);
+        $job        = job::where('jobdescreate_id',$id)->get();
+        $data       = array('item'=>$item,'job'=>$job,'jobres'=>$jobres,'unit'=>$unit,'fisik'=>$fisik,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'profil'=>$profil,'profil_d'=>$profil_d);
         return $data;
     }
 }

@@ -217,9 +217,7 @@
                     <tr>
                         <th>Persyaratan Fisik</th>
                     </tr>
-                    <tr>
-                        <td>{{$item->persyaratan_fisik}}</td>
-                    </tr>
+                    <tbody id="fisik"></tbody>
                 </thead>
             </table>
             <table id="example1" class="table table-bordered table-striped" style="color:black">

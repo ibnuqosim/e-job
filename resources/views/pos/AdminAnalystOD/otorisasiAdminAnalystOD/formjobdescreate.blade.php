@@ -460,9 +460,9 @@
 
     function perfisik() {
         var fisik = $('#fisik').val();
-        var stref;
+        var stre;
         {
-            stref = "<div id='kolomfisik"+fisik+"' >"+
+            stre = "<div id='kolomfisik"+fisik+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control fisik-ajax' name='fisik[]'></select>"+
                         "</div>"+
@@ -470,7 +470,7 @@
                             "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapusfisik("+fisik+")' >Hapus</a>"+
                         "</div>"+
                     "</div>";            
-            $("#divdfisik").append(stref);
+            $("#divdfisik").append(stre);
             
             $('.fisik-ajax').select2({
                 ajax: {
