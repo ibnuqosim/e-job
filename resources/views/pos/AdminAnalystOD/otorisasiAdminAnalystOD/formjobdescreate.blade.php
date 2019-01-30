@@ -17,12 +17,6 @@
             dataType: 'json'
         }
     });
-    $('#fisik').select2({
-        ajax: {
-            url: '{{ url('AdminAnalystOD/formjobdescreate/fisik') }}',
-            dataType: 'json'
-        }
-    });
     $('#profil').select2({
         ajax: {
             url: '{{ url('AdminAnalystOD/formjobdescreate/profil') }}',
@@ -464,6 +458,34 @@
         $('#kolompenga'+penga).remove();
     }
 
+    function perfisik() {
+        var fisik = $('#fisik').val();
+        var stref;
+        {
+            stref = "<div id='kolomfisik"+fisik+"' >"+
+                        "<div class='col-sm-11' style='margin-bottom:10px' >"+
+                            "<select class='js-data-example-ajax form-control fisik-ajax' name='fisik[]'></select>"+
+                        "</div>"+
+                        "<div class='col-sm-1' style='margin-bottom:10px' >"+
+                            "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapusfisik("+fisik+")' >Hapus</a>"+
+                        "</div>"+
+                    "</div>";            
+            $("#divdfisik").append(stref);
+            
+            $('.fisik-ajax').select2({
+                ajax: {
+                    url: '{{ url('AdminAnalystOD/formjobdescreate/perfisik') }}',
+                    dataType: 'json'
+                }
+            });
+            fisik = (fisik-1) + 2;
+            $('fisik').val(fisik);
+        }
+    }
+    function hapusfisik(fisik) {
+        $('#kolomfisik'+fisik).remove();
+    }
+
 </script>
 @endsection
  
@@ -844,7 +866,10 @@
                         <label>3. Persyaratan Fisik</label>
                     </div>
                     <div class="form-group">
-                        <select class="js-data-example-ajax form-control" id="fisik" name="persyaratan_fisik"></select>
+                        <button type="button" class="btn btn-primary" onclick="perfisik();">Tambah Data</button>
+                    </div>
+                    <div class="form-group" id="divdfisik">
+                        <input class="js-data-example-ajax form-control" id="fisik" name="id_persyaratan" value="1" type="hidden" />
                     </div>
                     <div class="form-group">
                         <label>4. Profil Jabatan</label>

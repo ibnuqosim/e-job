@@ -1,4 +1,3 @@
-
 @foreach ($tj as $item)
 <div class="modal modal-info fade" id="modal-info">
     <div class="modal-dialog modal-lg">
