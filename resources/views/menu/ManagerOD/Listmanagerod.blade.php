@@ -346,7 +346,7 @@ function view_job(id){
             </div>
         </div>
     </section>
-    <section>
+    {{-- <section>
         @include('pos/AdminAnalystOD/otorisasiAdminAnalystOD/pdf')
-    </section>
+    </section> --}}
     @endsection

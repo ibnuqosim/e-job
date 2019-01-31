@@ -18,7 +18,7 @@
           <div class="form-group">
             <label for="persyaratan" class="col-sm-2 control-label">Persyaratan</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="persyaratan" placeholder="Isi Data" name="persyaratan">
+                    <input type="text" class="form-control" id="persyaratan" placeholder="Isi Data" name="persyaratan" required>
                 </div>
             </div>
         <div class="box-footer">

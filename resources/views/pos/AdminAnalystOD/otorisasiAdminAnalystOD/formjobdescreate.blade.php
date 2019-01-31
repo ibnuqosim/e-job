@@ -1022,7 +1022,7 @@
     </section>
 
     <div class="box-footer">
-        <button type="submit" class="btn btn-default">Cancel</button>
+        <a href="{{ url('AdminAnalystOD/listjobdescreate') }}" class="btn btn-warning">Cancel</a>
         <button type="submit" class="btn btn-info pull-right">Save</button>
     </div>
     </section>

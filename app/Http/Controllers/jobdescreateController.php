@@ -496,7 +496,7 @@ class jobdescreateController extends Controller
                 
                 $count_fisik = count($request->fisik);
 
-                for ($i=0; $i < $count_pen; $i++) { 
+                for ($i=0; $i < $count_fisik; $i++) { 
                     $jobdescreate_fisik = new jobdescreate_fisik();
                     $jobdescreate_fisik->jobdescreate_id = $data_id->id;
                     $jobdescreate_fisik->id_persyaratan = isset($request->fisik[$i])?$request->fisik[$i]:'';

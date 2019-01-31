@@ -58,7 +58,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>Nomor</th>
                             <th>unitkerja</th>
                             <th>kodeunit</th>
                             <th>object</th>
@@ -68,9 +68,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php $no=0; ?>
                         @foreach ($tj as $item)
+                        <?php $no++; ?>
                         <tr>
-                            <td>{{$item->id}}</td>
+                            <td>{{$no}}</td>
                             <td>{{$item->unitkerja}}</td>
                             <td>{{$item->kodeunit}}</td>
                             <td>{{$item->object}}</td>

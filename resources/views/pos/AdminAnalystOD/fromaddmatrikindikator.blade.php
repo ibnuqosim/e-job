@@ -12,47 +12,47 @@
       <div class="box-header with-border">
         <h3 class="box-title">from Add Responsibility</h3>
       </div>
-      <form class="form-horizontal" action="{{ url('pos/AdminAnalystOD/storeresponsibility') }}" method="post">
+      <form class="form-horizontal" action="{{ url('AdminAnalystOD/storeresponsibility') }}" method="post">
         <input name="_token" value="{{ csrf_token() }}" type="hidden">
         <div class="box-body">
           <div class="form-group">
             <label for="unitkerja" class="col-sm-2 control-label">unitkerja</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="unitkerja" name="unitkerja">
+              <input type="text" class="form-control" id="unitkerja" name="unitkerja" required>
             </div>
           </div>
 
           <div class="form-group">
             <label for="kodeunit" class="col-sm-2 control-label">kodeunit</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="kodeunit"  name="kodeunit">
+              <input type="text" class="form-control" id="kodeunit"  name="kodeunit" required>
             </div>
           </div>
 
           <div class="form-group">
             <label for="object" class="col-sm-2 control-label">object</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="object"  name="object">
+              <input type="text" class="form-control" id="object"  name="object" required>
             </div>
           </div>
 
           <div class="form-group">
             <label for="indikator" class="col-sm-2 control-label">indikator</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="indikator"  name="indikator">
+              <input type="text" class="form-control" id="indikator"  name="indikator" required>
             </div>
           </div>
 
           <div class="form-group">
             <label for="kewenangan" class="col-sm-2 control-label">kewenangan</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="kewenangan"  name="kewenangan">
+              <input type="text" class="form-control" id="kewenangan"  name="kewenangan" required>
             </div>
           </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-          <button type="submit" class="btn btn-default">Cancel</button>
+          <a href="{{ url('AdminAnalystOD/list_matrikindikator') }}" class="btn btn-warning">Cancel</a>
           <button type="submit" class="btn btn-info pull-right">Save</button>
         </div>
         <!-- /.box-footer -->

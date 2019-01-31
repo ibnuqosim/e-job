@@ -18,12 +18,12 @@
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Bahan Kerja</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" deskripsi="Isi Data" name="deskripsi">
+              <input type="text" class="form-control" id="inputEmail3" deskripsi="Isi Data" name="deskripsi" required>
             </div>
           </div>
         </div>
         <div class="box-footer">
-          <button type="submit" class="btn btn-default">Cancel</button>
+          <a href="{{ url('AdminAnalystOD/list_bahankerja') }}" class="btn btn-warning">Cancel</a>
           <button type="submit" class="btn btn-info pull-right">Save</button>
         </div>
       </form>

@@ -31,7 +31,7 @@ class katakerjaController extends Controller
         $data->save();
         
         if($data){
-            return redirect('/AdminAnalystOD/list_katakerja')->with('status', 'Berhasil di Simpan');
+            return redirect('AdminAnalystOD/list_katakerja')->with('status', 'Berhasil di Simpan');
         }
     }
     public function delete($id)
