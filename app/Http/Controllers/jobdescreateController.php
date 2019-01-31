@@ -85,7 +85,7 @@ class jobdescreateController extends Controller
         profil::where('jobdescreate_id',$id)->delete();
         profil_detail::where('jobdescreate_id',$id)->delete();
         jobdescreate_fisik::where('jobdescreate_id',$id)->delete();
-        return redirect('/AdminAnalystOD/listjobdescreate')->with('status', 'Berhasil di Update');
+        return redirect('/AdminAnalystOD/listjobdescreate')->with('status', 'Berhasil di delete');
 
         
 
@@ -231,7 +231,7 @@ class jobdescreateController extends Controller
                 $jobdescreate_fisik->save();
             }
         }
-        return redirect('/AdminAnalystOD/listjobdescreate');
+        return redirect('/AdminAnalystOD/listjobdescreate')->with('status', 'Berhasil di update');
 
        
 
@@ -504,7 +504,7 @@ class jobdescreateController extends Controller
                 }
             }
             
-            return redirect('/AdminAnalystOD/listjobdescreate');
+            return redirect('/AdminAnalystOD/listjobdescreate')->with('status', 'Berhasil di Simpan');
         }
     }
     public function konfirmasipesan(Request $request,$id){

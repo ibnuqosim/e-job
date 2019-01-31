@@ -208,7 +208,12 @@ function view_job(id){
         <li class="active">Data jobdesc</li>
     </ol>
 </section>
-
+@section('content')
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
 <section class="content">
     <div class="box">
         <div class="box-header with-border">

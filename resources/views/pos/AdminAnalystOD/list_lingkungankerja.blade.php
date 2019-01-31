@@ -21,12 +21,14 @@
 </script>
 @endsection
 
+{{-- membuat pesan simpan --}}
 @section('content')
 @if (session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
     </div>
 @endif
+{{-- and --}}
 <section class="content-header">
     <h1>
         Data Tables
