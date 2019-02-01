@@ -247,33 +247,38 @@ function view_job(id){
 
                         </tr>
                     </thead>
-                    <tbody>                        
+                    <tbody>      
+                            <?php $no=0;?>                  
                         @foreach ($tj as $item)
+                        <?php $no++;?>
                         <tr>
-                            <td>{{$item->id}}</td>
+                            <td>{{$no}}</td>
                             <td>{{$item->no_jabatan}}</td>
                             <td>{{$item->name_jabatan}}</td>
                             <td>
-                                @if($item->approveanalis==1)
-                                    {{$item->analis}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
+                                    @if($item->approveanalis==1)
+                                    {{$item->nikanalis."(".$item->analis."-".$item->jabanalis.")"}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
+                                    @else
+                                        {{$item->nikanalis."(".$item->analis."-".$item->jabanalis.")"}}
+                                        <!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
+                                            <button type="submit" class="glyphicon glyphicon-thumbs-up" title="Klik disini untuk validasi"></button>
+                                        </form-->
+                                    @endif
+                                </td>
+                                <td> @if($item->approveuser==1)
+                                    {{$item->nikuser."(".$item->namauser."-".$item->jabuser.")"}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveuser}}"></a>)
                                 @else
-                                    {{$item->analis}}<!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
-                                        <button type="submit" class="glyphicon glyphicon-thumbs-up" title="Klik disini untuk validasi"></button>
-                                    </form--> 
-                                @endif
-                            </td>
-                            <td>@if($item->approveuser==1)
-                                {{$item->namauser}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveuser}}"></a>)
-                            @else
-                                {{$item->namauser}}    
-                            @endif</td>
-                            <td>
-                                @if($item->approveodhcp==1)
-                                {{$item->approve}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveodhcp}}"></a>)
-                            @else
-                                {{$item->approve}}
-                                
-                            @endif</td>
+                                {{$item->nikuser."(".$item->namauser."-".$item->jabuser.")"}}
+                                    
+                                @endif</td>
+                                <!--td>{{$item->atasan}}</td-->
+                                <td>
+                                        @if($item->approveodhcp==1)
+                                        {{$item->nikapprove."(".$item->approve."-".$item->jabapprove.")"}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveodhcp}}"></a>)
+                                    @else
+                                    {{$item->nikapprove."(".$item->approve."-".$item->jabapprove.")"}}
+                                        
+                                    @endif</td>
                             <td>@if($item->statusapprove==1)
                                 <a class="btn btn-success" href="#">Selesai</a>
                              @elseif($item->posisiprogress==0)

@@ -197,6 +197,25 @@
                     dataType: 'json'
                 }
             });
+            // $(".res-ajax").select2({
+            // placeholder: "Ketik untuk mencari...",
+            //     ajax:{
+            //         url: '{{ url('AdminAnalystOD/formjobdescreate/resjabatan') }}/'+gol,
+            //         dataType: 'json',
+            //         data: function (params) {
+
+            //             var queryParameters = {
+            //                 text: params.term
+            //             }
+            //             return queryParameters;
+            //         }
+            //     },
+            //     cache: true,
+            //     minimumInputLength: 3,
+            //     formatResult: format,
+            //     formatSelection: format,
+            //     escapeMarkup: function(m) { return m; }
+            // });
             $('.divresk-ajax').select2({
                 ajax: {
                     url: '{{ url('AdminAnalystOD/formjobdescreate/resunitindikator') }}/'+kode,
@@ -217,6 +236,10 @@
             alert('URAIAN JABATAN MASIH KOSONG');
         }
     }
+    function format(x)
+{
+  return x.text;
+}
     function hapusres(res) {
         $('#kolom'+res).remove();
         $('#okkolom'+res).remove();
@@ -485,12 +508,14 @@
     function hapusfisik(fisik) {
         $('#kolomfisik'+fisik).remove();
     }
+    
 
 </script>
 @endsection
  
 @section('content')
 <section class="content-header">
+        
     <h1>
         MENU JOBDES
     </h1>
@@ -501,6 +526,7 @@
     </ol>
 </section>
 <section class="content">
+    
     <div class="box box-warning">
         <div class="box-header with-border">
             <h4 class="box-title">URAIAN JABATAN (Job Description)</h4>
@@ -537,6 +563,7 @@
     </div>
 </section>
 <form class="form-horizontal" action="{{ url('AdminAnalystOD/storejobdescreate') }}" method="post" enctype="multipart/form-data">
+    
     <input name="_token" value="{{ csrf_token() }}" type="hidden">
     <section class="content">
         <div class="box box-warning">
@@ -550,7 +577,13 @@
                         <td width=50%>No. Jabatan (Job No.)</td>
                         <td>:</td>
                         <td width=50%>
-                            <select class="js-data-example-ajax form-control" id="AbbrPosition" name="getjab"></select>
+                            <select class="js-data-example-ajax form-control select2" id="AbbrPosition" name="getjab">
+                                {{-- <option value="">--Pilih jabatan--</option>    
+                                @foreach ($abbr as $nojab)
+                            <option value="{{$nojab->AbbrPosition}}">{{$nojab->AbbrPosition." (".$nojab->NameofPosition.")"}}</option>
+
+                                    @endforeach --}}
+                            </select>
                         </td>
                     </tr>
                     <tr>
