@@ -66,7 +66,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $no=0; ?>
                         @foreach ($tj as $item)
+                        <?php $no++; ?>
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->deskripsi}}</td>

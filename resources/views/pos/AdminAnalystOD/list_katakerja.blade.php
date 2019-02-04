@@ -66,14 +66,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $no=0; ?>
                         @foreach ($tj as $item)
+                        <?php $no++; ?>
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->level}}</td>
                             <td>{{$item->keterangan}}</td>
                             <td>
-                                {{-- <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editkatakerja',['id'=>$item->id]) }}"></a> --}}
-                                {{-- <a class="glyphicon glyphicon-trash" data-target="#modal-info" href="{{ url('AdminAnalystOD/deletekatakerja',['id'=>$item->id]) }}"></a> --}}
                                 <a class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#modal-info{{ $item->id }}"></a>
                                 <a class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#modal-delete{{ $item->id }}"></a>
                             </td>

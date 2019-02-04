@@ -241,11 +241,9 @@ function view_job(id){
                             <th>Name of Position</th>
                             <th>Approve by analist</th>
                             <th>Approve by user</th>
-                            <!--th>Aprove by atasan</th-->
                             <th>Aproved by ODHCP</th>
                             <th>status</th>
                             <th>ACT</th>
-
                         </tr>
                     </thead>
                     <tbody>                        

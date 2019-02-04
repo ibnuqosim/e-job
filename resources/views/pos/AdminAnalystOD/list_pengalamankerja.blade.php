@@ -60,14 +60,16 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>keterangan</th>
+                            <th>keteranganjj</th>
                             <th>ACT</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $no=0; ?>
                         @foreach ($tj as $item)
+                        <?php $no++; ?>
                         <tr>
-                            <td>{{$item->id}}</td>
+                            <td>{{$no}}</td>
                             <td>{{$item->keterangan}}</td>
                             <td>
                                 {{-- <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editpengalamankerja',['id'=>$item->id]) }}"></a>
