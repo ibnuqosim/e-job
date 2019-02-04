@@ -103,7 +103,7 @@ class UserListJoblistController extends Controller
         );
 
         }
-        history_pesan::where('jobdescreate_id',$id)->where('status',1)->update(['dilihat' => '1','tgldilihat'=>date("Y-m-d H:i:s")]);    
+        history_pesan::where('jobdescreate_id',$id)->where('status',1)->where('nik',Auth::user()->userid)->update(['dilihat' => '1','tgldilihat'=>date("Y-m-d H:i:s")]);    
         
         return array('data'=>$return);
 
@@ -139,7 +139,7 @@ class UserListJoblistController extends Controller
 
     public function konfirmasi($id)
     {     
-        $jobdescreate = jobdescreate::where('id',$id)->update(['approveuser' => '1','tglapproveuser' => date("Y-m-d H:i:s"),'posisiprogress'=>3]);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['approveuser' => '1','tglapproveuser' => date("Y-m-d H:i:s"),'posisiprogress'=>2]);    
         if($jobdescreate){
             $hsl='success';
             $j = jobdescreate::where('id', $id)->first();

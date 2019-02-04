@@ -262,7 +262,8 @@ class jobdescreateController extends Controller
         //inpu analis
         $nikanalis                                  = $request->nikanalis;
         $analis                                     = $request->analis;
-        $approveanalis                              = 0;
+        $approveanalis                              = 1;
+        $tglapproveanalis                           = date('Y-m-d H:i:s');
 
         $user                                       = $request->namauser;
         $pecahuser                                  = explode("-",$user);
@@ -315,6 +316,7 @@ class jobdescreateController extends Controller
         $data->analis                               = $analis;
         $data->approveanalis                        = $approveanalis;
         $data->konfirmvalidanalis                   = 0;
+        $data->tglapproveanalis                     = $tglapproveanalis;
         
 
 
@@ -331,11 +333,14 @@ class jobdescreateController extends Controller
         $data->jabapprove                           = $jabapprove;
         
         $data->approveodhcp                         = 0;
-        $data->posisiprogress                       = 0;
+        $data->posisiprogress                       = 1;
 
         $data->save();
+
+        
         
         $data_id = jobdescreate::orderBy('id','DESC')->first();
+        
         if($data){
             //print_r("jabatan=".$request->jabatanatasanlangsung."-".$request->jabatanbawahanlangsung);
            // die();

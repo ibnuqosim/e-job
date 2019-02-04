@@ -108,7 +108,7 @@
 
                   <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$blmdilihat}}</b> dikonfirmasi revisi belum dicek<a></li>@endif
                   @if($validuser>0)  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$validuser}}</b> jobdesc yang harus divalidasi</a></li>@endif
-                  @if($tindaklanjut>0)  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$tindaklanjut}}</b> jobdesc yang belum ditindaklanjut</a></li>@endif
+                  {{-- @if($tindaklanjut>0)  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$tindaklanjut}}</b> jobdesc yang belum ditindaklanjut</a></li>@endif --}}
                 
                 </ul>
                 @endrole

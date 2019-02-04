@@ -217,7 +217,7 @@ td {
                         
                         <th>Aproved by ODHCP</th>
                         <th>Status</th>
-                        <th>Act</th>
+                        <th width="10%">Act</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -250,28 +250,26 @@ td {
                                     {{$item->nikapprove."(".$item->approve."-".$item->jabapprove.")"}}
                                         
                                     @endif</td>
-                            <td>@if($item->statusapprove==1)
-                                <a class="btn btn-success" href="#">Selesai</a>
-                             @elseif($item->posisiprogress==0)
-                             <a class="btn btn-success" href="#">menunggu konfirmasi user</a>
-                             @elseif($item->posisiprogress==1)
-                             <a class="btn btn-success" href="#">menunggu validasi analis</a>
-                             @elseif($item->posisiprogress==2)
-                             <a class="btn btn-success" href="#">menunggu validasi user/atasan</a>
-                             @elseif($item->posisiprogress==3)
-                             <a class="btn btn-success" href="#">menunggu validasi odhcp</a>
-                             @endif
-                            </td>
+                                    <td>@if($item->statusapprove==1 || $item->posisiprogress==3)
+                                        <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
+                                     @elseif($item->posisiprogress==1)
+                                     <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi user/atasan"></i></a>
+                                     @elseif($item->posisiprogress==2)
+                                     <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi manager odhcp"></i></a>
+                                     @elseif($item->posisiprogress==4)
+                                     <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
+                                     @endif
+                                    </td>
                             <td>
                                 <!--a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a-->
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info" onclick="view_job({{$item->id}})"></a>
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 {{-- <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a> --}}
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
-                                    @if($item->konfirmvalidanalis==null)
+                                    {{-- @if($item->konfirmvalidanalis==null)
                                         <a class="glyphicon glyphicon-share" title="Konfirmasi untuk divalidasi analis !" onclick="konfirmvalidanalis({{ $item->id }});"></a>
-                                    @endif
-                                    @if($item->approveuser==null && $item->konfirmvalidanalis==1 && $item->approveanalis==1)
+                                    @endif --}}
+                                    @if($item->approveuser==null  && $item->approveanalis==1)
                                         <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasiuser({{ $item->id }});"></a>
                                     @endif
                                 <div class="modal modal-info fade" id="modal-pesan">

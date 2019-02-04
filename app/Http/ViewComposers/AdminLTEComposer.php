@@ -21,7 +21,7 @@ class AdminLTEComposer
     {
         $user = Auth::user();
         //dd($user);
-        $this->tindaklanjut = jobdescreate::where('konfirmvalidanalis',0)->where('nikuser',$user->userid)->get();
+        // $this->tindaklanjut = jobdescreate::where('konfirmvalidanalis',0)->where('nikuser',$user->userid)->get();
         $this->belumkonfirm = history_pesan::where('nikanalis',$user->userid)->where('status',0)->get();
         $this->belumdilihat = history_pesan::where('nik',$user->userid)->where('dilihat',0)->where('status',1)->get();
         //notif untuk analis
@@ -38,15 +38,15 @@ class AdminLTEComposer
 
     public function compose(View $view)
     {
-        $tindaklanjut = $this->tindaklanjut->count();
+        // $tindaklanjut = $this->tindaklanjut->count();
         $blmkonfirm = $this->belumkonfirm->count();
         $blmdilihat = $this->belumdilihat->count();
         $validanalis= $this->validanalis->count();
         $validuser= $this->validuser->count();
         $validodhcp= $this->validodhcp->count();
-        $notif = $blmkonfirm+$blmdilihat+$validanalis+$validuser+$validodhcp+$tindaklanjut;
+        $notif = $blmkonfirm+$blmdilihat+$validanalis+$validuser+$validodhcp;
         $with = array(
-            'tindaklanjut'=>$tindaklanjut,
+            
             'blmkonfirm'=>$blmkonfirm,
             'notif'=>$notif,
             'blmdilihat'=>$blmdilihat,

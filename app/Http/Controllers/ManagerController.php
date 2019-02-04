@@ -44,9 +44,8 @@ class ManagerController extends Controller
         $data->save();
 
         $jobdescreate = jobdescreate::where('id',$id)
-        ->update(['posisiprogress' => 0,
-        'tglkonfirmvalidanalis'=>'','konfirmvalidanalis'=>'',
-        'tglapproveuser'=>'','approveuser'=>'','tglapproveanalis'=>'','approveanalis'=>'']);
+        ->update(['posisiprogress' => 1,
+        'tglapproveuser'=>'','approveuser'=>'']);
 
         return redirect('/ManagerOD/Listmanagerod');
 
@@ -99,6 +98,8 @@ class ManagerController extends Controller
         );
 
         }
+        history_pesan::where('jobdescreate_id',$id)->where('status',1)->where('nik',Auth::user()->userid)->update(['dilihat' => '1','tgldilihat'=>date("Y-m-d H:i:s")]);    
+        
         return array('data'=>$return);
 
     }
@@ -135,7 +136,7 @@ class ManagerController extends Controller
     {   
         //dd($id);
         //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
-        $jobdescreate = jobdescreate::where('id',$id)->update(['approveodhcp' => '1','tglapproveodhcp' => date("Y-m-d H:i:s"),'statusapprove'=>1,'posisiprogress'=>4]);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['approveodhcp' => '1','tglapproveodhcp' => date("Y-m-d H:i:s"),'statusapprove'=>1,'posisiprogress'=>3]);    
         
         
         if($jobdescreate){

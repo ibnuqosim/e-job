@@ -244,7 +244,7 @@ function view_job(id){
                             <!--th>Aprove by atasan</th-->
                             <th>Aproved by ODHCP</th>
                             <th>status</th>
-                            <th>ACT</th>
+                            <th width="10%">ACT</th>
 
                         </tr>
                     </thead>
@@ -281,16 +281,14 @@ function view_job(id){
                                     
                                 @endif</td>
                             
-                            <td>@if($item->statusapprove==1)
-                                <a class="btn btn-success" href="#">Selesai</a>
-                             @elseif($item->posisiprogress==0)
-                             <a class="btn btn-success" href="#">menunggu konfirmasi user</a>
+                            <td>@if($item->statusapprove==1 || $item->posisiprogress==3)
+                                <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
                              @elseif($item->posisiprogress==1)
-                             <a class="btn btn-success" href="#">menunggu validasi analis</a>
+                             <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi user/atasan"></i></a>
                              @elseif($item->posisiprogress==2)
-                             <a class="btn btn-success" href="#">menunggu validasi user/atasan</a>
-                             @elseif($item->posisiprogress==3)
-                             <a class="btn btn-success" href="#">menunggu validasi odhcp</a>
+                             <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi manager odhcp"></i></a>
+                             @elseif($item->posisiprogress==4)
+                             <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
                              @endif
                             </td>
                             <td>
