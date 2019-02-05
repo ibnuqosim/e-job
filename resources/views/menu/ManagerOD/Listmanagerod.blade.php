@@ -217,9 +217,9 @@ function view_job(id){
     <div class="box">
         <div class="box-header with-border">
             <h3 class="box-title">Jobdesc</h3>
-            <div class="box-footer">
+            {{-- <div class="box-footer">
                 <a class="btn btn-primary" href="{{ url('AdminAnalystOD/formjobdescreate') }}">create</a>
-            </div>
+            </div> --}}
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
                 title="Collapse">
@@ -279,15 +279,17 @@ function view_job(id){
                                     {{$item->nikapprove."(".$item->approve."-".$item->jabapprove.")"}}
                                         
                                     @endif</td>
-                                    <td>@if($item->statusapprove==1 || $item->posisiprogress==3)
+                                    <td>@if($item->posisiprogress==3)
                                         <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
                                      @elseif($item->posisiprogress==1)
                                      <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi user/atasan"></i></a>
                                      @elseif($item->posisiprogress==2)
                                      <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi manager odhcp"></i></a>
+                    
                                      @elseif($item->posisiprogress==4)
-                                     <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
-                                     @endif
+                                    <a class="btn btn-danger" href="#"><i class="fa    fa-briefcase" title="Status kadaluarsa tanggal : {{$item->tglkadaluarsa}}"></i></a>
+                                    
+                                    @endif
                                     </td>
                             <td>
                                     

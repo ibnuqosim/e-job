@@ -902,6 +902,19 @@ class jobdescreateController extends Controller
         }
         return Redirect::back()->withErrors(['msg', 'Error']);
     } 
+    public function kadaluarsa($id)
+    {   
+        //dd($id);
+        //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['posisiprogress' => '4','tglkadaluarsa' => date("Y-m-d H:i:s")]);    
+        
+        
+        if($jobdescreate){
+            $hsl='success';
+            return $hsl;
+        }
+        return Redirect::back()->withErrors(['msg', 'Error']);
+    } 
     
     public function abrevationno (Request $request)
     {   

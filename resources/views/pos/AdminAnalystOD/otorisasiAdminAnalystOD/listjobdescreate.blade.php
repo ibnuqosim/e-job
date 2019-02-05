@@ -81,6 +81,24 @@ function validasianalis(id){
         });
         }
 }
+function kadaluarsa(id){
+    if (confirm("Apakah anda yakin ?") == true) {
+        $.ajax({
+            url: "{{ url('AdminAnalystOD/kadaluarsa') }}/"+id,
+            method: 'get',
+            success: function(data) {
+            if(data=='success'){
+                alert('Status kadaluarsa berhasil !');
+                location.reload();
+                
+            }else{
+                alert('Status kadaluarsa gagal !');
+            }
+
+           }
+        });
+        }
+}
 
 function view_job(id){
     $.ajax({
@@ -281,14 +299,16 @@ function view_job(id){
                                     
                                 @endif</td>
                             
-                            <td>@if($item->statusapprove==1 || $item->posisiprogress==3)
+                            <td>@if($item->posisiprogress==3)
                                 <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
                              @elseif($item->posisiprogress==1)
                              <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi user/atasan"></i></a>
                              @elseif($item->posisiprogress==2)
                              <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi manager odhcp"></i></a>
+            
                              @elseif($item->posisiprogress==4)
-                             <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
+                             <a class="btn btn-danger" href="#"><i class="fa    fa-briefcase" title="Status kadaluarsa tanggal : {{$item->tglkadaluarsa}}"></i></a>
+                             
                              @endif
                             </td>
                             <td>
@@ -300,6 +320,9 @@ function view_job(id){
                                 <a class="glyphicon glyphicon-print" href="{{ url('AdminAnalystOD/pdf',['id'=>$item->id]) }}"></a>
                                 @if($item->approveanalis==null && $item->konfirmvalidanalis==1)
                                 <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasianalis({{ $item->id }});"></a>
+                                @endif
+                                @if($item->posisiprogress==3)
+                                <a class="glyphicon glyphicon glyphicon-briefcase" title="Klik di sini sebagai kadaluarsa !" onclick="kadaluarsa({{ $item->id }});"></a>
                                 @endif
                                 <div class="modal modal-info fade" id="modal-pesan">
                                     <div class="modal-dialog">

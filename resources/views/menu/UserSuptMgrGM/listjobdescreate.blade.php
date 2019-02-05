@@ -250,15 +250,17 @@ td {
                                     {{$item->nikapprove."(".$item->approve."-".$item->jabapprove.")"}}
                                         
                                     @endif</td>
-                                    <td>@if($item->statusapprove==1 || $item->posisiprogress==3)
+                                    <td>@if($item->posisiprogress==3)
                                         <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
                                      @elseif($item->posisiprogress==1)
                                      <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi user/atasan"></i></a>
                                      @elseif($item->posisiprogress==2)
                                      <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi manager odhcp"></i></a>
+                    
                                      @elseif($item->posisiprogress==4)
-                                     <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
-                                     @endif
+                                    <a class="btn btn-danger" href="#"><i class="fa    fa-briefcase" title="Status kadaluarsa tanggal : {{$item->tglkadaluarsa}}"></i></a>
+                                    
+                                    @endif
                                     </td>
                             <td>
                                 <!--a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a-->

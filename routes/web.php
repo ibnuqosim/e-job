@@ -143,6 +143,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/formjobdescreate/abbdeletail/{detail}','jobdescreateController@abbdeletail');
             Route::get('/pdf/{id?}','jobdescreateController@pdf');
             Route::get('/konfirmasi/{id?}','jobdescreateController@konfirmasi');
+            Route::get('/kadaluarsa/{id?}','jobdescreateController@kadaluarsa');
 
             Route::get('/formjobdescreate/abbdetail/{dbl}','jobdescreateController@abbdetail');
             Route::get('/formjobdescreate/detail/{un}','jobdescreateController@detail');
