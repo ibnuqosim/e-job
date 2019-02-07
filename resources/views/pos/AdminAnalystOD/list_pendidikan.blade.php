@@ -23,7 +23,9 @@
 
 @section('content')
 @if (session('status'))
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-check"></i> Alert!</h4>
         {{ session('status') }}
     </div>
 @endif
@@ -64,7 +66,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $no=0; ?>
                         @foreach ($tj as $item)
+                        <?php $no++; ?>
                         <tr>
                             <td>{{$item->id}}</td>
                             <td>{{$item->jenjang}}</td>

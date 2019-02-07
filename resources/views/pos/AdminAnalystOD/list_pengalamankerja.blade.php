@@ -20,14 +20,14 @@
     })
 </script>
 @endsection
-
 @section('content')
 @if (session('status'))
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-check"></i> Alert!</h4>
         {{ session('status') }}
     </div>
 @endif
-
 <section class="content-header">
     <h1>
         Data Tables
@@ -60,14 +60,16 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>keterangan</th>
+                            <th>keteranganjj</th>
                             <th>ACT</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $no=0; ?>
                         @foreach ($tj as $item)
+                        <?php $no++; ?>
                         <tr>
-                            <td>{{$item->id}}</td>
+                            <td>{{$no}}</td>
                             <td>{{$item->keterangan}}</td>
                             <td>
                                 {{-- <a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editpengalamankerja',['id'=>$item->id]) }}"></a>

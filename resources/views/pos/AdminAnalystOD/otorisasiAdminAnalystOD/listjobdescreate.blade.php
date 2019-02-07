@@ -215,20 +215,11 @@ function view_job(id){
 </script>
 @endsection
 @section('content')
-{{-- <section class="content-header">
-    <h1>
-        Data Jobdesc
-        <small>advanced tables</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data jobdesc</li>
-    </ol>
-</section> --}}
-@section('content')
+
 @if (session('status'))
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-check"></i> Alert!</h4>
         {{ session('status') }}
     </div>
 @endif
@@ -259,11 +250,9 @@ function view_job(id){
                             <th>Name of Position</th>
                             <th>Approve by analist</th>
                             <th>Approve by user</th>
-                            <!--th>Aprove by atasan</th-->
                             <th>Aproved by ODHCP</th>
-                            <th>status</th>
+                            <th>status</th>11
                             <th width="10%">ACT</th>
-
                         </tr>
                     </thead>
                     <tbody> 
@@ -279,9 +268,6 @@ function view_job(id){
                                 {{$item->nikanalis."(".$item->analis."-".$item->jabanalis.")"}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
                                 @else
                                     {{$item->nikanalis."(".$item->analis."-".$item->jabanalis.")"}}
-                                    <!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
-                                        <button type="submit" class="glyphicon glyphicon-thumbs-up" title="Klik disini untuk validasi"></button>
-                                    </form-->
                                 @endif
                             </td>
                             <td> @if($item->approveuser==1)

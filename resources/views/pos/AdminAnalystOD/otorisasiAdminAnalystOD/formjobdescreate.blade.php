@@ -572,17 +572,11 @@
             </div>
             <div class="box-body">
                 <table width=50% id="example2" class="table table-bordered table-hover">
-                    {{-- @foreach ($strukturdir as $item) --}}
                     <tr>
                         <td width=50%>No. Jabatan (Job No.)</td>
                         <td>:</td>
                         <td width=50%>
-                            <select class="js-data-example-ajax form-control select2" id="AbbrPosition" name="getjab">
-                                {{-- <option value="">--Pilih jabatan--</option>    
-                                @foreach ($abbr as $nojab)
-                            <option value="{{$nojab->AbbrPosition}}">{{$nojab->AbbrPosition." (".$nojab->NameofPosition.")"}}</option>
-
-                                    @endforeach --}}
+                            <select class="js-data-example-ajax form-control select2" id="AbbrPosition" name="getjab" required>
                             </select>
                         </td>
                     </tr>
@@ -597,8 +591,7 @@
                         <td>name Jabatan (Job Name)</td>
                         <td>:</td>
                         <td>
-                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" placeholder="name Jabatan (Job Name)"
-                                name="NameofPosition">
+                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" placeholder="name Jabatan (Job Name)" name="NameofPosition">
                         </td>
                     </tr>
                     <tr>
@@ -635,7 +628,7 @@
                         </td>
                         <td>:</td>
                         <td>
-                            <input type="text" readonly class="form-control" id="JbtAtasanLangsung" placeholder="Otomatis pilih table" name="jabatanatasanlangsung" value="">
+                            <input type="text" readonly class="form-control" id="JbtAtasanLangsung" placeholder="Otomatis pilih table" name="jabatanatasanlangsung">
                         </td>
                     </tr>
                     <tr>
@@ -643,8 +636,6 @@
                             <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="Otomatis pilih table" name="AbbrOrgUnitDivisi">
                         </td>
                     </tr>
-                    {{-- @endforeach --}}
-
                 </table>
                 <div class="form-group">
                     <table border="1" width="100%" class="table table-bordered table-hover">
@@ -676,7 +667,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label></label><br>
-                        <textarea class="form-control" rows="3" id="jobrole" name="jobrole" placeholder="Isi Data ..."></textarea>
+                        <textarea class="form-control" rows="3" id="jobrole" name="jobrole" placeholder="Isi Data ..." required></textarea>
                     </div>
                 </div>
             </div>
@@ -694,46 +685,38 @@
                             <label></label><br>
                             <button type="button" class="btn btn-primary" onclick="resjabatan();">Tambah Data</button>
                         </div>
-                        <div class="form-group" id="divres">
-                            <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" />
-                        </div>
+                        <h5>
+                            Melaksanakan setiap tugas dan tanggung jawab dengan memerhatikan aspek dan kondisi keuangan
+                            perusahaan serta mendukung program penghematan perusahaan.
 
+                        </h5>
+                        <div class="form-group" id="divres">
+                            <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" required/>
+                        </div>
                         <div class="form-group">
                             <label>Tanggung Jawab (Duties & Responsibilities)</label><br>
                         </div>
+                        <h5>
+                            Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) dan 
+                            peraturan/kebijakan yang berlaku baik internal (Prosedur, WI, SOP, PKB) maupun eksternal
+                            (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja yang tinggi dan memenuhi 
+                            standar yang ditetapkan.
+                        </h5>
                         <div class="form-group" id="divresk">
-                            <input class="js-data-example-ajax form-control" name="id_met_object" id="divresk" value="1" type="hidden" />
+                            <input class="js-data-example-ajax form-control" name="id_met_object" id="divresk" value="1" type="hidden" required/>
                         </div>
                         <div class="form-group">
                             <label>Indikator Capaian (Performance Indicators) </label><br>
                         </div>
+                        <h5>
+                            Penghematan Unit Kerja
+                        </h5>
+                        <h5>
+                            Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku
+                        </h5>
                         <div class="form-group" id="divindi">
-                            <input class="form-control" name="id_met_indikatorvalue" id="divresk" value="1" type="hidden" />
+                            <input class="form-control" name="id_met_indikatorvalue" id="divresk" value="1" type="hidden"  required/>
                         </div>
-                        <label>
-                            <h6>
-                                Melaksanakan setiap tugas dan tanggung jawab dengan memerhatikan aspek dan 
-                                kondisi keuangan perusahaan serta mendukung program penghematan perusahaan.
-                            </h6>
-                        </label>
-                        <label>
-                            <h6>
-                                Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) dan 
-                                peraturan/kebijakan yang berlaku baik internal (Prosedur, WI, SOP, PKB) maupun eksternal
-                                (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja yang tinggi dan memenuhi 
-                                standar yang ditetapkan.
-                            </h6>
-                        </label>
-                        <label>
-                            <h6>
-                                Penghematan Unit Kerja
-                            </h6>
-                        </label>
-                        <label>
-                            <h6>
-                                Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku
-                            </h6>
-                        </label>
                     </div>
                 </div>
             </div>
@@ -753,13 +736,13 @@
                         <label> a. Finansial (Financial) </label>
                     </div>
                     <div class="form-group">
-                        <textarea type="text" class="form-control" class="form-control" id="finansial" name="finansial" placeholder="Isi Data ..."></textarea>
+                        <textarea type="text" class="form-control" class="form-control" id="finansial" name="finansial" placeholder="Isi Data ..." required></textarea>
                     </div>
                     <div class="form-group">
                         <label> b. Non Finansial (Non Financial) </label>
                     </div>
                     <div class="form-group">
-                        <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial" placeholder="Isi Data ..."></textarea>
+                        <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial" placeholder="Isi Data ..." required></textarea>
                     </div>
                 </div>
             </div>
@@ -984,7 +967,7 @@
             </div>
             <div class="box-body">
                 <label for="exampleInputFile">File input</label>
-                <input type="file" id="gambar" name="gambar">
+                <input type="file" id="gambar" name="gambar" required>
             </div>
         </div>
     </section>

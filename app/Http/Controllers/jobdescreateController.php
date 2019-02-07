@@ -361,9 +361,9 @@ class jobdescreateController extends Controller
                 for ($i=0; $i < $max; $i++) { 
                     $job = new job();
                     $job->jobdescreate_id  = $data_id->id;
-                    $job->jabatanatasanlangsung     = isset($request->jabatanatasanlangsung)?$request->jabatanatasanlangsung:NULL;
-                    $job->jabatanbawahanlangsung    = isset($request->jabatanbawahanlangsung[$i])?$request->jabatanbawahanlangsung[$i]:NULL;
-                    $job->jumlah                    = isset($request->jumlah[$i])?$request->jumlah[$i]:NULL;
+                    $job->jabatanatasanlangsung     = isset($request->jabatanatasanlangsung)?$request->jabatanatasanlangsung:'';
+                    $job->jabatanbawahanlangsung    = isset($request->jabatanbawahanlangsung[$i])?$request->jabatanbawahanlangsung[$i]:'';
+                    $job->jumlah                    = isset($request->jumlah[$i])?$request->jumlah[$i]:'';
                     $job->save();
                 }
             }else{
@@ -383,11 +383,11 @@ class jobdescreateController extends Controller
                 for ($i=0; $i < $max; $i++) { 
                     $jobdescreate_res = new jobdescreate_res();
                     $jobdescreate_res->jobdescreate_id  = $data_id->id;
-                    $jobdescreate_res->id_kata_kerja    = isset($request->res[$i])?$request->res[$i]:NULL;
-                    $jobdescreate_res->id_met_object    = isset($request->divresk[$i])?$request->divresk[$i]:NULL;
-                    $jobdescreate_res->id_met_indikator = isset($request->divindi[$i])?$request->divindi[$i]:NULL;
+                    $jobdescreate_res->id_kata_kerja    = isset($request->res[$i])?$request->res[$i]:'';
+                    $jobdescreate_res->id_met_object    = isset($request->divresk[$i])?$request->divresk[$i]:'';
+                    $jobdescreate_res->id_met_indikator = isset($request->divindi[$i])?$request->divindi[$i]:'';
 
-                    $jobdescreate_res->id_met_kewenangan = isset($request->divwew[$i])?$request->divwew[$i]:NULL;
+                    $jobdescreate_res->id_met_kewenangan = isset($request->divwew[$i])?$request->divwew[$i]:'';
                     $jobdescreate_res->save();
                 }
             }
