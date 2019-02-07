@@ -171,6 +171,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/konfirmasi/{id?}','UserListJoblistController@konfirmasi');
             Route::get('/konfirmasivalidanalis/{id?}','UserListJoblistController@konfirmasivalidanalis');
             Route::get('/getjobdescreate/{id}','jobdescreateController@getjobdescreate'); 
+            Route::get('/pdf/{id?}','jobdescreateController@pdf');
         });
     });
 
@@ -187,6 +188,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/show-historypesan/{id}','ManagerController@showhistorypesan');
             Route::get('/konfirmasi/{id?}','ManagerController@konfirmasi');
             Route::get('/getjobdescreate/{id}','jobdescreateController@getjobdescreate');
+            Route::get('/pdf/{id?}','jobdescreateController@pdf');
         });
         
     });

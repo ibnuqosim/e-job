@@ -267,8 +267,7 @@ td {
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info" onclick="view_job({{$item->id}})"></a>
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 {{-- <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a> --}}
-                                <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
-                                    {{-- @if($item->konfirmvalidanalis==null)
+                                <a class="glyphicon glyphicon-print" href="{{ url('UserSuptMgrGM/pdf',['id'=>$item->id]) }}"></a>   {{-- @if($item->konfirmvalidanalis==null)
                                         <a class="glyphicon glyphicon-share" title="Konfirmasi untuk divalidasi analis !" onclick="konfirmvalidanalis({{ $item->id }});"></a>
                                     @endif --}}
                                     @if($item->approveuser==null  && $item->approveanalis==1)

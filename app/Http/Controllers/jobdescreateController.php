@@ -241,6 +241,7 @@ class jobdescreateController extends Controller
 
     public function store(Request $request)
     {
+        
         // I. URAIAN JABATAN (Job Description)
         $getjab                                     = $request->getjab;
         //dd($getjab);
@@ -294,8 +295,9 @@ class jobdescreateController extends Controller
         //print_r($atasan);
         //die();
         if($request->gambar!=null){
-            $path = $request->gambar->store('public/img/jobdesc');
+            $path = $request->gambar->store('img/jobdesc');
         }
+        
         
         $data = new jobdescreate();
         // I. URAIAN JABATAN (Job Description)
@@ -561,8 +563,11 @@ class jobdescreateController extends Controller
         $pen        = jobdescreate_pen::where('jobdescreate_id',$id)->get();
         $ker        = jobdescreate_penga::where('jobdescreate_id',$id)->get();
         $fisik      = jobdescreate_fisik::where('jobdescreate_id',$id)->get();
+        $profil     = profil::where('jobdescreate_id',$id)->get();
+        $profil_d     = profil_detail::where('jobdescreate_id',$id)->get();
+        $no =1;
          //dd($job);
-        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.pdf', [ 'data' => $data,'job'=>$job,'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'profil'=>$profil,'profil_d'=>$profil_d,'fisik'=>$fisik]);
+        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.pdf', [ 'data' => $data,'job'=>$job,'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'profil'=>$profil,'profil_d'=>$profil_d,'fisik'=>$fisik,'no'=>$no]);
     }
     
    
