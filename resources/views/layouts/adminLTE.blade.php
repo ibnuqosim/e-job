@@ -90,7 +90,7 @@
             </li>
             <!-- User Account: style can be found in dropdown.less -->
             
-           
+          
             <li class="dropdown tasks-menu" id="notif">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-bell-o"></i>
@@ -104,17 +104,13 @@
                 @endrole
                 @role('UserSuptMgrGM')
                 <ul class="dropdown-menu">
-                  @if($blmdilihat>0)
-
-                  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$blmdilihat}}</b> dikonfirmasi revisi belum dicek<a></li>@endif
-                  @if($validuser>0)  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$validuser}}</b> jobdesc yang harus divalidasi</a></li>@endif
-                  {{-- @if($tindaklanjut>0)  <li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$tindaklanjut}}</b> jobdesc yang belum ditindaklanjut</a></li>@endif --}}
-                
+                  @if($blmdilihat>0)<li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$blmdilihat}}</b> dikonfirmasi revisi belum dicek<a></li>@endif
+                  @if($validuser>0)<li class="header"><a href="{{ url('UserSuptMgrGM/listjobdescreate') }}">Ada <b>{{$validuser}}</b> jobdesc yang harus divalidasi</a></li>@endif
                 </ul>
                 @endrole
                 @role('ManagerOD')
                 <ul class="dropdown-menu">
-                  @if($validodhcp>0)  <li class="header"><a href="{{ url('ManagerOD/Listmanagerod') }}">Ada <b>{{$validodhcp}}</b> jobdesc yang harus divalidasi</a></li>@endif
+                  @if($validodhcp>0)<li class="header"><a href="{{ url('ManagerOD/Listmanagerod') }}">Ada <b>{{$validodhcp}}</b> jobdesc yang harus divalidasi</a></li>@endif
                 </ul>
                 @endrole
 
