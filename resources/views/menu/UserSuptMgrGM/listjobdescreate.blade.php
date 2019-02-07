@@ -217,7 +217,7 @@ td {
                         
                         <th>Aproved by ODHCP</th>
                         <th>Status</th>
-                        <th>Act</th>
+                        <th width="10%">Act</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -226,50 +226,52 @@ td {
                             <td>{{$item->id}}</td>
                             <td>{{$item->no_jabatan}}</td>
                             <td>{{$item->name_jabatan}}</td>
-                            <td>@if($item->approveanalis==1)
-                                {{$item->analis}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
-                                @else
-                                    {{$item->analis}}<!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
-                                    <button type="submit" class="glyphicon glyphicon-thumbs-up" title="Klik disini untuk validasi"></button>
-                                    </form-->
-                                 @endif
-                            </td>
                             <td>
-                                @if($item->approveuser==1)
-                                    {{$item->namauser}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveuser}}"></a>)
-                                @else 
-                                    {{$item->namauser}}
-                                @endif
-                            </td>
-                            <td>
-                                @if($item->approveodhcp==1)
-                                    {{$item->approve}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveodhcp}}"></a>)
+                                    @if($item->approveanalis==1)
+                                    {{$item->nikanalis."(".$item->analis."-".$item->jabanalis.")"}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
+                                    @else
+                                        {{$item->nikanalis."(".$item->analis."-".$item->jabanalis.")"}}
+                                        <!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
+                                            <button type="submit" class="glyphicon glyphicon-thumbs-up" title="Klik disini untuk validasi"></button>
+                                        </form-->
+                                    @endif
+                                </td>
+                                <td> @if($item->approveuser==1)
+                                    {{$item->nikuser."(".$item->namauser."-".$item->jabuser.")"}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveuser}}"></a>)
                                 @else
-                                {{$item->approve}}
-                                @endif
-                            </td>
-                            <td>@if($item->statusapprove==1)
-                                <a class="btn btn-success" href="#">Selesai</a>
-                             @elseif($item->posisiprogress==0)
-                             <a class="btn btn-success" href="#">menunggu konfirmasi user</a>
-                             @elseif($item->posisiprogress==1)
-                             <a class="btn btn-success" href="#">menunggu validasi analis</a>
-                             @elseif($item->posisiprogress==2)
-                             <a class="btn btn-success" href="#">menunggu validasi user/atasan</a>
-                             @elseif($item->posisiprogress==3)
-                             <a class="btn btn-success" href="#">menunggu validasi odhcp</a>
-                             @endif
-                            </td>
+                                {{$item->nikuser."(".$item->namauser."-".$item->jabuser.")"}}
+                                    
+                                @endif</td>
+                                <!--td>{{$item->atasan}}</td-->
+                                <td>
+                                        @if($item->approveodhcp==1)
+                                        {{$item->nikapprove."(".$item->approve."-".$item->jabapprove.")"}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveodhcp}}"></a>)
+                                    @else
+                                    {{$item->nikapprove."(".$item->approve."-".$item->jabapprove.")"}}
+                                        
+                                    @endif</td>
+                                    <td>@if($item->posisiprogress==3)
+                                        <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
+                                     @elseif($item->posisiprogress==1)
+                                     <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi user/atasan"></i></a>
+                                     @elseif($item->posisiprogress==2)
+                                     <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi manager odhcp"></i></a>
+                    
+                                     @elseif($item->posisiprogress==4)
+                                    <a class="btn btn-danger" href="#"><i class="fa    fa-briefcase" title="Status kadaluarsa tanggal : {{$item->tglkadaluarsa}}"></i></a>
+                                    
+                                    @endif
+                                    </td>
                             <td>
                                 <!--a class="glyphicon glyphicon-pencil" href="{{ url('AdminAnalystOD/editjobdescreate',['id'=>$item->id]) }}"></a-->
                                 <a class="glyphicon glyphicon-search" data-toggle="modal" data-target="#modal-info" onclick="view_job({{$item->id}})"></a>
                                 <a class="glyphicon glyphicon-comment" data-toggle="modal" data-target="#modal-pesan" onclick="showpesan({{$item}});"></a>
                                 {{-- <a class="glyphicon glyphicon-trash" href="{{ url('AdminAnalystOD/fromadddimensions') }}"></a> --}}
                                 <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
-                                    @if($item->konfirmvalidanalis==null)
+                                    {{-- @if($item->konfirmvalidanalis==null)
                                         <a class="glyphicon glyphicon-share" title="Konfirmasi untuk divalidasi analis !" onclick="konfirmvalidanalis({{ $item->id }});"></a>
-                                    @endif
-                                    @if($item->approveuser==null && $item->konfirmvalidanalis==1 && $item->approveanalis==1)
+                                    @endif --}}
+                                    @if($item->approveuser==null  && $item->approveanalis==1)
                                         <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasiuser({{ $item->id }});"></a>
                                     @endif
                                 <div class="modal modal-info fade" id="modal-pesan">

@@ -68,8 +68,10 @@ class jobdescreateController extends Controller
     }
     public function fromAdd(Request $request)
     {
+        $abbr =[];
+        $abbr = ZHROM0007::get();
         $strukturdir = $this->strukturdir();
-        $data = ['strukturdir'=>$strukturdir];
+        $data = ['strukturdir'=>$strukturdir,'abbr'=>$abbr];
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.formjobdescreate',$data);
     }
     public function delete(Request $request, $id){
@@ -260,12 +262,14 @@ class jobdescreateController extends Controller
         //inpu analis
         $nikanalis                                  = $request->nikanalis;
         $analis                                     = $request->analis;
-        $approveanalis                              = 0;
+        $approveanalis                              = 1;
+        $tglapproveanalis                           = date('Y-m-d H:i:s');
 
         $user                                       = $request->namauser;
         $pecahuser                                  = explode("-",$user);
         $nikuser                                    = $pecahuser[0];
         $namauser                                   = $pecahuser[1];
+        $jabuser                                    = $pecahuser[2];
         
 
         
@@ -280,7 +284,8 @@ class jobdescreateController extends Controller
         $jess=json_decode($ret);
         //dd($jess);
         $nikapprove                                  = $jess->personnel_no;
-        $nameapprove                                  = $jess->name;
+        $nameapprove                                 = $jess->name;
+        $jabapprove                                  = $jess->position_name;
 
 
 
@@ -311,11 +316,13 @@ class jobdescreateController extends Controller
         $data->analis                               = $analis;
         $data->approveanalis                        = $approveanalis;
         $data->konfirmvalidanalis                   = 0;
+        $data->tglapproveanalis                     = $tglapproveanalis;
         
 
 
         $data->nikuser                              = $nikuser;
         $data->namauser                             = $namauser;
+        $data->jabuser                              = $jabuser;
         $data->approveuser                          = 0;
 
         $data->nikatasan                            = $nikatasan;
@@ -323,12 +330,17 @@ class jobdescreateController extends Controller
 
         $data->nikapprove                           = $nikapprove;
         $data->approve                              = $nameapprove;
+        $data->jabapprove                           = $jabapprove;
+        
         $data->approveodhcp                         = 0;
-        $data->posisiprogress                       = 0;
+        $data->posisiprogress                       = 1;
 
         $data->save();
+
+        
         
         $data_id = jobdescreate::orderBy('id','DESC')->first();
+        
         if($data){
             //print_r("jabatan=".$request->jabatanatasanlangsung."-".$request->jabatanbawahanlangsung);
            // die();
@@ -559,7 +571,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->id,'text'=>$value->deskripsi.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
        
     } 
@@ -574,7 +586,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->id,'text'=>$value->keterangan] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     }     
     public function resunitindikator(Request $request,$kode = null)
@@ -588,7 +600,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->id,'text'=>$value->object,'indikator'=>$value->indikator,'kewenangan'=>$value->kewenangan] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
   
@@ -600,7 +612,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->emppostx,'text'=>$value->emppostx.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
     public function wewenangauthorities (Request $request,$kode = null)
@@ -613,19 +625,39 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->id,'text'=>$value->wewenang.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
     public function Workinternal (Request $request) 
     {   
 
+        // $arr = [];
+        // $ret = [];
+        // $data = structdisp::where('emp_cskt_ltext','like','%'.$request->q.'%')->get();
+        // foreach ($data as $key => $value) {
+        //     array_push($arr,['id'=>$value->emp_cskt_ltext,'text'=>$value->emp_cskt_ltext] );
+        // }
+        // $ret  = ['results' => $arr];
+        // return $ret;
         $arr = [];
         $ret = [];
-        $data = structdisp::where('emp_cskt_ltext','like','%'.$request->q.'%')->get();
-        foreach ($data as $key => $value) {
-            array_push($arr,['id'=>$value->emp_cskt_ltext,'text'=>$value->emp_cskt_ltext] );
+        $ret = file_get_contents('http://eos.krakatausteel.com/api/organization/level');
+        $jess=json_decode($ret);
+        $collection = collect($jess);
+
+        $filtered = $collection->filter(function ($value, $key) use ($request) {
+            return str_is('*'.strtolower($request->q).'*', strtolower($value->Objectname) );
+        });
+        
+        $x = $filtered->all();
+
+        foreach ($x as $key => $value) {
+            array_push($arr,['id'=>$value->Objectname, 'text'=>$value->Objectname]);
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret = ['results' =>
+        $arr];
+        
+        // preg_match($pattern, substr($subject,3), $matches, PREG_OFFSET_CAPTURE);
         return $ret;
     } 
 
@@ -639,7 +671,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->id,'text'=>$value->deskripsi.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
     public function tmcalatkerja (Request $request,$kode = null)
@@ -650,7 +682,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->deskripsi,'text'=>$value->deskripsi] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
     public function tmcbahankerja (Request $request)
@@ -661,7 +693,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->deskripsi,'text'=>$value->deskripsi] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
 
@@ -674,7 +706,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->deskripsi,'text'=>$value->deskripsi] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
 
@@ -686,7 +718,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->persyaratan,'text'=>$value->persyaratan.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
 
@@ -698,7 +730,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->emppostx,'text'=>$value->emppostx.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
     
@@ -710,7 +742,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->keterangan,'text'=>$value->keterangan.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr ];
         return $ret;
     } 
 
@@ -723,7 +755,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->persyaratan,'text'=>$value->persyaratan.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
     
@@ -735,7 +767,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->dirname,'text'=>$value->dirname.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
     public function namauser (Request $request)
@@ -748,7 +780,7 @@ class jobdescreateController extends Controller
             array_push($arr,['id'=>$value->empnik.'-'.$value->empname,'text'=>$value->empnik.'-'.$value->empname." (".$value->emportx.") "] );
         }
         $ret = ['results' =>
-        $arr ,'pagination'=>['more'=>true]];
+        $arr ];
         return $ret;
     } 
 
@@ -767,10 +799,10 @@ class jobdescreateController extends Controller
         $x = $filtered->all();
 
         foreach ($x as $key => $value) {
-            array_push($arr,['id'=>$value->empnik.'-'.$value->empname, 'text'=>$value->empnik.'-'.$value->empname." (".$value->emportx.") "]);
+            array_push($arr,['id'=>$value->empnik.'-'.$value->empname.'-'.$value->emppostx, 'text'=>$value->empnik.'-'.$value->empname." (".$value->emppostx.") "]);
         }
         $ret = ['results' =>
-        $arr ,'pagination'=>['more'=>true]];
+        $arr];
         
         // preg_match($pattern, substr($subject,3), $matches, PREG_OFFSET_CAPTURE);
         return $ret;
@@ -785,7 +817,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->empname,'text'=>$value->empname.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
     public function atasan ($nik)
@@ -804,7 +836,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->jenjang,'text'=>$value->jenjang] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
     
@@ -814,9 +846,9 @@ class jobdescreateController extends Controller
         $ret = [];
         $data = ZHROM0007::where('AbbrPosition','like','%'.$request->q.'%')->get();
         foreach ($data as $key => $value) {
-            array_push($arr,['id'=>$value->AbbrPosition,'abbrUnit'=>$value->AbbrOrgUnitDivisi,'text'=>$value->AbbrPosition.""] );
+            array_push($arr,['id'=>$value->AbbrPosition,'abbrUnit'=>$value->AbbrOrgUnitDivisi,'text'=>$value->AbbrPosition." (".$value->NameofPosition.") "] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr];
         return $ret;
     } 
 
@@ -870,6 +902,19 @@ class jobdescreateController extends Controller
         }
         return Redirect::back()->withErrors(['msg', 'Error']);
     } 
+    public function kadaluarsa($id)
+    {   
+        //dd($id);
+        //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['posisiprogress' => '4','tglkadaluarsa' => date("Y-m-d H:i:s")]);    
+        
+        
+        if($jobdescreate){
+            $hsl='success';
+            return $hsl;
+        }
+        return Redirect::back()->withErrors(['msg', 'Error']);
+    } 
     
     public function abrevationno (Request $request)
     {   
@@ -879,7 +924,7 @@ class jobdescreateController extends Controller
         foreach ($data as $key => $value) {
             array_push($arr,['id'=>$value->abrevationno,'text'=>$value->abrevationno.""] );
         }
-        $ret  = ['results' => $arr ,'pagination'=>['more'=>true]];
+        $ret  = ['results' => $arr ];
         return $ret;
     } 
 

@@ -81,6 +81,24 @@ function validasianalis(id){
         });
         }
 }
+function kadaluarsa(id){
+    if (confirm("Apakah anda yakin ?") == true) {
+        $.ajax({
+            url: "{{ url('AdminAnalystOD/kadaluarsa') }}/"+id,
+            method: 'get',
+            success: function(data) {
+            if(data=='success'){
+                alert('Status kadaluarsa berhasil !');
+                location.reload();
+                
+            }else{
+                alert('Status kadaluarsa gagal !');
+            }
+
+           }
+        });
+        }
+}
 
 function view_job(id){
     $.ajax({
@@ -197,7 +215,7 @@ function view_job(id){
 </script>
 @endsection
 @section('content')
-<section class="content-header">
+{{-- <section class="content-header">
     <h1>
         Data Jobdesc
         <small>advanced tables</small>
@@ -207,7 +225,7 @@ function view_job(id){
         <li><a href="#">Tables</a></li>
         <li class="active">Data jobdesc</li>
     </ol>
-</section>
+</section> --}}
 @section('content')
 @if (session('status'))
     <div class="alert alert-success">
@@ -242,44 +260,50 @@ function view_job(id){
                             <th>Approve by analist</th>
                             <th>Approve by user</th>
                             <th>Aproved by ODHCP</th>
-                            <th>status</th>
-                            <th>ACT</th>
+                            <th>status</th>11
+                            <th width="10%">ACT</th>
                         </tr>
                     </thead>
-                    <tbody>                        
+                    <tbody> 
+                        <?php $no=0;?>                       
                         @foreach ($tj as $item)
+                        <?php $no++;?>
                         <tr>
-                            <td>{{$item->id}}</td>
+                            <td>{{$no}}</td>
                             <td>{{$item->no_jabatan}}</td>
                             <td>{{$item->name_jabatan}}</td>
                             <td>
                                 @if($item->approveanalis==1)
-                                    {{$item->analis}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
+                                {{$item->nikanalis."(".$item->analis."-".$item->jabanalis.")"}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveanalis}}"></a>)
                                 @else
-                                    {{$item->analis}}
-                                    <!--form action="{{ url('AdminAnalystOD/konfirmasi') }}/{{ $item->id }}" method="get">
-                                        <button type="submit" class="glyphicon glyphicon-thumbs-up" title="Klik disini untuk validasi"></button>
-                                    </form-->
+                                    {{$item->nikanalis."(".$item->analis."-".$item->jabanalis.")"}}
                                 @endif
                             </td>
                             <td> @if($item->approveuser==1)
-                                {{$item->namauser}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveuser}}"></a>)
+                                {{$item->nikuser."(".$item->namauser."-".$item->jabuser.")"}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveuser}}"></a>)
                             @else
-                                {{$item->namauser}}
+                            {{$item->nikuser."(".$item->namauser."-".$item->jabuser.")"}}
                                 
                             @endif</td>
                             <!--td>{{$item->atasan}}</td-->
-                            <td>{{$item->approve}}</td>
-                            <td>@if($item->statusapprove==1)
-                                <a class="btn btn-success" href="#">Selesai</a>
-                             @elseif($item->posisiprogress==0)
-                             <a class="btn btn-success" href="#">menunggu konfirmasi user</a>
+                            <td>
+                                    @if($item->approveodhcp==1)
+                                    {{$item->nikapprove."(".$item->approve."-".$item->jabapprove.")"}} (<a class="glyphicon glyphicon-thumbs-up" title="{{$item->tglapproveodhcp}}"></a>)
+                                @else
+                                {{$item->nikapprove."(".$item->approve."-".$item->jabapprove.")"}}
+                                    
+                                @endif</td>
+                            
+                            <td>@if($item->posisiprogress==3)
+                                <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
                              @elseif($item->posisiprogress==1)
-                             <a class="btn btn-success" href="#">menunggu validasi analis</a>
+                             <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi user/atasan"></i></a>
                              @elseif($item->posisiprogress==2)
-                             <a class="btn btn-success" href="#">menunggu validasi user/atasan</a>
-                             @elseif($item->posisiprogress==3)
-                             <a class="btn btn-success" href="#">menunggu validasi odhcp</a>
+                             <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi manager odhcp"></i></a>
+            
+                             @elseif($item->posisiprogress==4)
+                             <a class="btn btn-danger" href="#"><i class="fa    fa-briefcase" title="Status kadaluarsa tanggal : {{$item->tglkadaluarsa}}"></i></a>
+                             
                              @endif
                             </td>
                             <td>
@@ -291,6 +315,9 @@ function view_job(id){
                                 <a class="glyphicon glyphicon-print" href="{{ url('AdminAnalystOD/pdf',['id'=>$item->id]) }}"></a>
                                 @if($item->approveanalis==null && $item->konfirmvalidanalis==1)
                                 <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasianalis({{ $item->id }});"></a>
+                                @endif
+                                @if($item->posisiprogress==3)
+                                <a class="glyphicon glyphicon glyphicon-briefcase" title="Klik di sini sebagai kadaluarsa !" onclick="kadaluarsa({{ $item->id }});"></a>
                                 @endif
                                 <div class="modal modal-info fade" id="modal-pesan">
                                     <div class="modal-dialog">

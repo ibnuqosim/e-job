@@ -776,10 +776,10 @@
                         <td width=50%>  
                         <span id="SelectedAbbrPosition" style="display:none">{{ $datas->no_jabatan }}</span>
 
-                            <select disabled="true"  class="js-data-example-ajax form-control" 
+                            <select id="SelectedAbbrPosition" disabled="true"  class="js-data-example-ajax form-control" 
                                     id="AbbrPosition"  name="getjab" 
                                     >
-                                    <option value="{{ $datas->no_jabatan }}">{{ $datas->no_jabatan }}</option>
+                                    <option value="{{ $datas->no_jabatan }}">{{ $datas->no_jabatan." (".$datas->name_jabatan.")" }}</option>
                             </select>
                         </td>
                     </tr>
