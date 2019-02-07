@@ -576,7 +576,7 @@
                         <td width=50%>No. Jabatan (Job No.)</td>
                         <td>:</td>
                         <td width=50%>
-                            <select class="js-data-example-ajax form-control select2" id="AbbrPosition" name="getjab">
+                            <select class="js-data-example-ajax form-control select2" id="AbbrPosition" name="getjab" required>
                             </select>
                         </td>
                     </tr>
@@ -591,8 +591,7 @@
                         <td>name Jabatan (Job Name)</td>
                         <td>:</td>
                         <td>
-                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" placeholder="name Jabatan (Job Name)"
-                                name="NameofPosition">
+                            <input type="text" readonly class="form-control" class="form-control" id="NameofPosition" placeholder="name Jabatan (Job Name)" name="NameofPosition">
                         </td>
                     </tr>
                     <tr>
@@ -629,7 +628,7 @@
                         </td>
                         <td>:</td>
                         <td>
-                            <input type="text" readonly class="form-control" id="JbtAtasanLangsung" placeholder="Otomatis pilih table" name="jabatanatasanlangsung" value="">
+                            <input type="text" readonly class="form-control" id="JbtAtasanLangsung" placeholder="Otomatis pilih table" name="jabatanatasanlangsung">
                         </td>
                     </tr>
                     <tr>
@@ -668,7 +667,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label></label><br>
-                        <textarea class="form-control" rows="3" id="jobrole" name="jobrole" placeholder="Isi Data ..."></textarea>
+                        <textarea class="form-control" rows="3" id="jobrole" name="jobrole" placeholder="Isi Data ..." required></textarea>
                     </div>
                 </div>
             </div>
@@ -692,7 +691,7 @@
 
                         </h5>
                         <div class="form-group" id="divres">
-                            <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" />
+                            <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" required/>
                         </div>
                         <div class="form-group">
                             <label>Tanggung Jawab (Duties & Responsibilities)</label><br>
@@ -704,7 +703,7 @@
                             standar yang ditetapkan.
                         </h5>
                         <div class="form-group" id="divresk">
-                            <input class="js-data-example-ajax form-control" name="id_met_object" id="divresk" value="1" type="hidden" />
+                            <input class="js-data-example-ajax form-control" name="id_met_object" id="divresk" value="1" type="hidden" required/>
                         </div>
                         <div class="form-group">
                             <label>Indikator Capaian (Performance Indicators) </label><br>
@@ -716,7 +715,7 @@
                             Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku
                         </h5>
                         <div class="form-group" id="divindi">
-                            <input class="form-control" name="id_met_indikatorvalue" id="divresk" value="1" type="hidden" />
+                            <input class="form-control" name="id_met_indikatorvalue" id="divresk" value="1" type="hidden"  required/>
                         </div>
                     </div>
                 </div>
@@ -737,13 +736,13 @@
                         <label> a. Finansial (Financial) </label>
                     </div>
                     <div class="form-group">
-                        <textarea type="text" class="form-control" class="form-control" id="finansial" name="finansial" placeholder="Isi Data ..."></textarea>
+                        <textarea type="text" class="form-control" class="form-control" id="finansial" name="finansial" placeholder="Isi Data ..." required></textarea>
                     </div>
                     <div class="form-group">
                         <label> b. Non Finansial (Non Financial) </label>
                     </div>
                     <div class="form-group">
-                        <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial" placeholder="Isi Data ..."></textarea>
+                        <textarea type="text" class="form-control" class="form-control" id="nonfinansial" name="nonfinansial" placeholder="Isi Data ..." required></textarea>
                     </div>
                 </div>
             </div>
@@ -968,7 +967,7 @@
             </div>
             <div class="box-body">
                 <label for="exampleInputFile">File input</label>
-                <input type="file" id="gambar" name="gambar">
+                <input type="file" id="gambar" name="gambar" required>
             </div>
         </div>
     </section>
