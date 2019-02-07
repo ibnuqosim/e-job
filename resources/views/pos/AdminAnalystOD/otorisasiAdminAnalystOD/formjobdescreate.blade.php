@@ -572,17 +572,11 @@
             </div>
             <div class="box-body">
                 <table width=50% id="example2" class="table table-bordered table-hover">
-                    {{-- @foreach ($strukturdir as $item) --}}
                     <tr>
                         <td width=50%>No. Jabatan (Job No.)</td>
                         <td>:</td>
                         <td width=50%>
                             <select class="js-data-example-ajax form-control select2" id="AbbrPosition" name="getjab">
-                                {{-- <option value="">--Pilih jabatan--</option>    
-                                @foreach ($abbr as $nojab)
-                            <option value="{{$nojab->AbbrPosition}}">{{$nojab->AbbrPosition." (".$nojab->NameofPosition.")"}}</option>
-
-                                    @endforeach --}}
                             </select>
                         </td>
                     </tr>
@@ -643,8 +637,6 @@
                             <input type="hidden" readonly class="form-control" id="AbbrOrgUnitDivisi" placeholder="Otomatis pilih table" name="AbbrOrgUnitDivisi">
                         </td>
                     </tr>
-                    {{-- @endforeach --}}
-
                 </table>
                 <div class="form-group">
                     <table border="1" width="100%" class="table table-bordered table-hover">
@@ -694,46 +686,38 @@
                             <label></label><br>
                             <button type="button" class="btn btn-primary" onclick="resjabatan();">Tambah Data</button>
                         </div>
+                        <h5>
+                            Melaksanakan setiap tugas dan tanggung jawab dengan memerhatikan aspek dan kondisi keuangan
+                            perusahaan serta mendukung program penghematan perusahaan.
+
+                        </h5>
                         <div class="form-group" id="divres">
                             <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" />
                         </div>
-
                         <div class="form-group">
                             <label>Tanggung Jawab (Duties & Responsibilities)</label><br>
                         </div>
+                        <h5>
+                            Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) dan 
+                            peraturan/kebijakan yang berlaku baik internal (Prosedur, WI, SOP, PKB) maupun eksternal
+                            (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja yang tinggi dan memenuhi 
+                            standar yang ditetapkan.
+                        </h5>
                         <div class="form-group" id="divresk">
                             <input class="js-data-example-ajax form-control" name="id_met_object" id="divresk" value="1" type="hidden" />
                         </div>
                         <div class="form-group">
                             <label>Indikator Capaian (Performance Indicators) </label><br>
                         </div>
+                        <h5>
+                            Penghematan Unit Kerja
+                        </h5>
+                        <h5>
+                            Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku
+                        </h5>
                         <div class="form-group" id="divindi">
                             <input class="form-control" name="id_met_indikatorvalue" id="divresk" value="1" type="hidden" />
                         </div>
-                        <label>
-                            <h6>
-                                Melaksanakan setiap tugas dan tanggung jawab dengan memerhatikan aspek dan 
-                                kondisi keuangan perusahaan serta mendukung program penghematan perusahaan.
-                            </h6>
-                        </label>
-                        <label>
-                            <h6>
-                                Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) dan 
-                                peraturan/kebijakan yang berlaku baik internal (Prosedur, WI, SOP, PKB) maupun eksternal
-                                (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja yang tinggi dan memenuhi 
-                                standar yang ditetapkan.
-                            </h6>
-                        </label>
-                        <label>
-                            <h6>
-                                Penghematan Unit Kerja
-                            </h6>
-                        </label>
-                        <label>
-                            <h6>
-                                Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku
-                            </h6>
-                        </label>
                     </div>
                 </div>
             </div>

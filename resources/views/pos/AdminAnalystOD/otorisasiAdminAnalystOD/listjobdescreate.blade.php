@@ -215,20 +215,11 @@ function view_job(id){
 </script>
 @endsection
 @section('content')
-{{-- <section class="content-header">
-    <h1>
-        Data Jobdesc
-        <small>advanced tables</small>
-    </h1>
-    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data jobdesc</li>
-    </ol>
-</section> --}}
-@section('content')
+
 @if (session('status'))
-    <div class="alert alert-success">
+    <div class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <h4><i class="icon fa fa-check"></i> Alert!</h4>
         {{ session('status') }}
     </div>
 @endif
