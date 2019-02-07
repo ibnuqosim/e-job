@@ -295,7 +295,7 @@ class jobdescreateController extends Controller
         //print_r($atasan);
         //die();
         if($request->gambar!=null){
-            $path = $request->gambar->store('img/jobdesc');
+            $path = $request->gambar->store('jobdesc');
         }
         
         
