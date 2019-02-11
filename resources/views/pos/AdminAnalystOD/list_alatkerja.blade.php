@@ -46,7 +46,7 @@
             <h3 class="box-title">Title Alat Kerja</h3>
             
             <div class="box-footer">
-                <a class="btn btn-primary" href="{{ url('AdminAnalystOD/fromAddalatkerja') }}">Tambah</a>
+                <a class="btn btn-primary" href="{{ url('AdministratorSMKS/fromAddalatkerja') }}">Tambah</a>
             </div>
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
