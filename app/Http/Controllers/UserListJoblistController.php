@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\jobdescreate;
 use App\history_pesan;
 use App\Events\JobdescApproved;
+use App\Approval_h;
 
 class UserListJoblistController extends Controller
 {
@@ -138,9 +139,20 @@ class UserListJoblistController extends Controller
     }
 
     public function konfirmasi($id)
-    {     
+    {   
+        $datajob = jobdescreate::where('id',$id)->get();
+        //dd($datajob[0]->nikuser);
         $jobdescreate = jobdescreate::where('id',$id)->update(['approveuser' => '1','tglapproveuser' => date("Y-m-d H:i:s"),'posisiprogress'=>2]);    
         if($jobdescreate){
+
+            $app_h = new Approval_h();
+            $app_h->jobdescreate_id = $id;
+            $app_h->nik = $datajob[0]->nikuser;
+            $app_h->nama = $datajob[0]->namauser;
+            $app_h->sebagai ='User / Atasan';
+            $app_h->waktu =date('Y-m-d H:i:s');
+            $app_h->save();
+
             $hsl='success';
             $j = jobdescreate::where('id', $id)->first();
             event(new JobdescApproved($j));

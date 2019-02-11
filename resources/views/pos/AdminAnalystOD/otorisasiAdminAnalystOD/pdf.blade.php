@@ -54,7 +54,7 @@ return true;
                     <th>Record Sheet No.</th>
                     <th>:</th>
                     <th>RS/PO01/001-ISSUE No. 03</th>
-                    <th rowspan="3">URAIAN JABATAN (Job Description)</th>
+                    <td rowspan="3" align="center"><b><h3>URAIAN JABATAN (Job Description)</h3></b></td>
                     <th>Halaman (Page)</th>
                     <th>:</th>
                     <th></th>
@@ -74,11 +74,11 @@ return true;
                 </tr>
 
             </table>
-            <h3>I. IDENTIFIKASI JABATAN</h3>
+            <h3>I. IDENTIFIKASI JABATAN ( Job Identification )</h3>
             <table border="1" width="100%">
                
                 <tr>
-                    <td>No Jabatan (Job No)</td>
+                    <td width="40%">No Jabatan (Job No)</td>
                     <td>:</td>
                     <td>{{$item->no_jabatan}}<td>Gol.Jabatan (Job Level) :</td>
                     <td width="5%">{{$item->gol_jabatan}}</td>
@@ -142,13 +142,22 @@ return true;
             <table border="1" width="100%">
                
                 <tr>
-                    <th colspan="2" width="60%">Tugas & Tanggung Jawab (Duties & Responsibilities)
+                    <th  width="60%">Tugas & Tanggung Jawab (Duties & Responsibilities)
                     </th>
                     <th width="40%">Indikator Capaian (Performance Indicators)
                     </th>
                 </tr>
+                
+                <?php $no=0; ?>
+                @foreach ($jobres as $jres)
+                
                 <tr>
-                    <td>1.</td>
+                <td>{{$jres->keterangan." ".lcfirst($jres->object)}}</td><td>{{$jres->id_met_indikator}}</td>
+                </tr>
+                <?php $no++; ?>
+                @endforeach
+                <tr>
+                    {{-- <td>1.</td> --}}
                     <td>Melaksanakan setiap tugas dan tanggung jawab dengan memerhatikan aspek dan kondisi keuangan
                         perusahaan serta mendukung program penghematan perusahaan.
                     </td>
@@ -156,7 +165,7 @@ return true;
                     </td>
                 </tr>
                 <tr>
-                    <td>2.</td>
+                    {{-- <td>2.</td> --}}
                     <td>Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) dan peraturan/kebijakan
                         yang berlaku baik internal (Prosedur, WI, SOP, PKB) maupun eksternal (Perpres, Permen, Kepmen,
                         dll) untuk menghasilkan kualitas kerja yang tinggi dan memenuhi standar yang ditetapkan.
@@ -164,27 +173,19 @@ return true;
                     <td>Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku
                     </td>
                 </tr>
-                <?php $no=3; ?>
-                @foreach ($jobres as $jres)
-                
-                <tr>
-                <td>{{$no}}.</td><td>{{$jres->keterangan." ".lcfirst($jres->object)}}</td><td>{{$jres->id_met_indikator}}</td>
-                </tr>
-                <?php $no++; ?>
-                @endforeach
             </table>
             <h3>IV. DIMENSI (Dimensions)</h3>
             <table border="1" width="100%">
                 <tr>
-                    <td>b. Non Finansial (Non Financial)
+                    <td width="40%">b. Non Finansial (Non Financial)
 
                     </td>
-                    <td>:</td><td>{{$item->nonfinansial}}</td>
+                    <td align="center">:</td><td>{{$item->nonfinansial}}</td>
                 </tr>
                 <tr>
                     <td>a. Finansial (Financial)
                     </td>
-                    <td>:</td><td>{{$item->finansial}}</td>
+                    <td align="center">:</td><td>{{$item->finansial}}</td>
                 </tr>
             </table>
             <h3>V. WEWENANG (Authorities)</h3>
@@ -341,7 +342,7 @@ return true;
         @endforeach
         
     </div>
-    <br><br><br><br><br><br><br><br>
+    <br>
     <div class="box box-warning" >
             <div class="box-body" >
                    
@@ -349,10 +350,10 @@ return true;
                    
                 <table width="100%" >
                     <tr>
-                        <td><img  src="{{ url('img/logo.png') }}" height="70" width="130" /></td>
-                        <td align="center" valign="bottom"><strong>PROFILE JABATAN</strong></td>
-                        <td align="right">
-                            <table frame="box" width="50%">
+                        <td width="33%"><img  src="{{ url('img/logo.png') }}" height="70" width="130" /></td>
+                        <td width="33%" align="center" valign="bottom"><strong>PROFILE JABATAN</strong></td>
+                        <td width="33%" align="right">
+                            <table frame="box" width="100%">
                                 <tr><td>No. Issue</td><td>:</td><td>01</td></tr>
                                 <tr><td>No. RS</td><td>:</td><td>RS/PO00/010</td></tr>
                                 <tr><td>Tgl.</td><td>:</td><td>21/06/2013</td></tr>

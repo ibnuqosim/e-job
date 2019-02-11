@@ -38,6 +38,8 @@ use App\profil;
 use App\profil_detail;
 use App\history_pesan;
 use App\jobdescreate_fisik;
+use App\Approval_h;
+
 
 
 class jobdescreateController extends Controller
@@ -345,6 +347,15 @@ class jobdescreateController extends Controller
         
         
         $data_id = jobdescreate::orderBy('id','DESC')->first();
+
+        $app_h = new Approval_h();
+        $app_h->jobdescreate_id = $data_id->id;
+        $app_h->nik = $nikanalis;
+        $app_h->nama =$analis;
+        $app_h->sebagai ='Analis';
+        $app_h->waktu =date('Y-m-d H:i:s');
+        $app_h->save();
+
         
         if($data){
             //print_r("jabatan=".$request->jabatanatasanlangsung."-".$request->jabatanbawahanlangsung);
@@ -994,5 +1005,27 @@ class jobdescreateController extends Controller
         $job        = job::where('jobdescreate_id',$id)->get();
         $data       = array('item'=>$item,'job'=>$job,'jobres'=>$jobres,'unit'=>$unit,'fisik'=>$fisik,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'profil'=>$profil,'profil_d'=>$profil_d);
         return $data;
+    }
+    public function showhistoryapproval(Request $request,$id){
+        
+        $return = [];
+        $history = Approval_h::where('jobdescreate_id',$id)->get();
+        foreach($history as $key => $value){
+            array_push($return,
+            array(
+            'no'=>$key+1,
+            'nik'=>$value->nik,
+            'nama'=>$value->nama,
+            'sebagai'=>$value->sebagai,
+            'waktu'=>$value->waktu
+            )
+            
+        
+        );
+
+        }
+        
+        return array('data'=>$return);
+
     }
 }

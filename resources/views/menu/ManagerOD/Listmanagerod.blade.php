@@ -48,6 +48,24 @@ function gethistorypesan(id){
             ]
         } );
 }
+function showapproval(item){
+        console.log(item);
+        gethistoryapproval(item.id);
+    }
+    function gethistoryapproval(id) {
+        //var id=1;
+        $('#tbhisapproval').DataTable({
+            "ajax": "{{ url('ManagerOD/show-historyapproval') }}/" + id,
+            "bDestroy": true,
+            "columns": [
+                { "data": "no" },
+                { "data": "nik" },
+                { "data": "nama" },
+                { "data": "sebagai" },
+                { "data": "waktu" }
+            ]
+        });
+    }
 function konfirmasirevisi(id,descid){
     if (confirm("Apakah anda yakin ?") == true) {
         $.ajax({
@@ -280,14 +298,14 @@ function view_job(id){
                                         
                                     @endif</td>
                                     <td>@if($item->posisiprogress==3)
-                                        <a class="btn btn-success" href="#"><i class="fa   fa-check" title="Selesai"></i></a>
+                                        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#modal-approval" onclick="showapproval({{$item}});"><i class="fa   fa-check" title="Selesai"></i></a>
                                      @elseif($item->posisiprogress==1)
-                                     <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi user/atasan"></i></a>
+                                     <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#modal-approval" onclick="showapproval({{$item}});"><i class="fa  fa-spinner" title="Menunggu validasi user/atasan"></i></a>
                                      @elseif($item->posisiprogress==2)
-                                     <a class="btn btn-warning" href="#"><i class="fa  fa-spinner" title="Menunggu validasi manager odhcp"></i></a>
+                                     <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#modal-approval" onclick="showapproval({{$item}});"><i class="fa  fa-spinner" title="Menunggu validasi manager odhcp"></i></a>
                     
                                      @elseif($item->posisiprogress==4)
-                                    <a class="btn btn-danger" href="#"><i class="fa    fa-briefcase" title="Status kadaluarsa tanggal : {{$item->tglkadaluarsa}}"></i></a>
+                                    <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#modal-approval" onclick="showapproval({{$item}});"><i class="fa    fa-briefcase" title="Status kadaluarsa tanggal : {{$item->tglkadaluarsa}}"></i></a>
                                     
                                     @endif
                                     </td>
@@ -337,6 +355,36 @@ function view_job(id){
                                                 <textarea type="text" class="form-control" class="form-control" id="isipesan" name="isipesan" placeholder="Isi Pesan ..." rows="4"></textarea>
                                                 <button type="submit" class="btn btn-sm btn-success">Kirim Pesan</button>
                                             </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal modal-info fade" id="modal-approval">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title">History Approval</h4>
+                                            </div>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="table-responsive">
+                                                <b>History Approval</b>
+                                                <table id="tbhisapproval" class="table" style="color:black" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <td>NO</td>
+                                                            <td>Nik</td>
+                                                            <td>Nama</td>
+                                                            <td>Sebagai</td>
+                                                            <td>Waktu</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <thead>
+                                                    <tbody></tbody>
+                                                    </thead>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

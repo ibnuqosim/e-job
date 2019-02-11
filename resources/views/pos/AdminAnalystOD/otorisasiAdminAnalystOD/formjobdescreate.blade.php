@@ -685,16 +685,21 @@
                             <label></label><br>
                             <button type="button" class="btn btn-primary" onclick="resjabatan();">Tambah Data</button>
                         </div>
+                       
+                        <div class="form-group" id="divres">
+                            <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" required/>
+                        </div>
                         <h5>
                             Melaksanakan setiap tugas dan tanggung jawab dengan memerhatikan aspek dan kondisi keuangan
                             perusahaan serta mendukung program penghematan perusahaan.
 
                         </h5>
-                        <div class="form-group" id="divres">
-                            <input class="js-data-example-ajax form-control" name="id_kata_kerja" id="res" value="1" type="hidden" required/>
-                        </div>
                         <div class="form-group">
                             <label>Tanggung Jawab (Duties & Responsibilities)</label><br>
+                        </div>
+                        
+                        <div class="form-group" id="divresk">
+                            <input class="js-data-example-ajax form-control" name="id_met_object" id="divresk" value="1" type="hidden" required/>
                         </div>
                         <h5>
                             Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) dan 
@@ -702,11 +707,12 @@
                             (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja yang tinggi dan memenuhi 
                             standar yang ditetapkan.
                         </h5>
-                        <div class="form-group" id="divresk">
-                            <input class="js-data-example-ajax form-control" name="id_met_object" id="divresk" value="1" type="hidden" required/>
-                        </div>
                         <div class="form-group">
                             <label>Indikator Capaian (Performance Indicators) </label><br>
+                        </div>
+                        
+                        <div class="form-group" id="divindi">
+                            <input class="form-control" name="id_met_indikatorvalue" id="divresk" value="1" type="hidden"  required/>
                         </div>
                         <h5>
                             Penghematan Unit Kerja
@@ -714,9 +720,6 @@
                         <h5>
                             Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku
                         </h5>
-                        <div class="form-group" id="divindi">
-                            <input class="form-control" name="id_met_indikatorvalue" id="divresk" value="1" type="hidden"  required/>
-                        </div>
                     </div>
                 </div>
             </div>

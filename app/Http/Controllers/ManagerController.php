@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\jobdescreate;
 use App\history_pesan;
+use App\Approval_h;
 
 class ManagerController extends Controller
 {
@@ -135,11 +136,19 @@ class ManagerController extends Controller
     public function konfirmasi($id)
     {   
         //dd($id);
-        //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
+        //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);  
+        $datajob = jobdescreate::where('id',$id)->get();  
         $jobdescreate = jobdescreate::where('id',$id)->update(['approveodhcp' => '1','tglapproveodhcp' => date("Y-m-d H:i:s"),'statusapprove'=>1,'posisiprogress'=>3]);    
         
         
         if($jobdescreate){
+            $app_h = new Approval_h();
+            $app_h->jobdescreate_id = $id;
+            $app_h->nik = $datajob[0]->nikapprove;
+            $app_h->nama = $datajob[0]->approve;
+            $app_h->sebagai ='Manajer odhcp';
+            $app_h->waktu =date('Y-m-d H:i:s');
+            $app_h->save();
             $hsl='success';
             return $hsl;
         }

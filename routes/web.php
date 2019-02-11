@@ -150,6 +150,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
 
             Route::get('/formjobdescreate/atasan/{nik?}','jobdescreateController@atasan');
             Route::get('/show-historypesan/{id}','UserListJoblistController@showhistorypesananalis');
+            Route::get('/show-historyapproval/{id}','jobdescreateController@showhistoryapproval');
             Route::get('/konfirmasipesan/{id}','jobdescreateController@konfirmasipesan');
             Route::get('/getjobdescreate/{id}','jobdescreateController@getjobdescreate');
             
@@ -168,6 +169,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/show-ajax','UserListJoblistController@ShowAjax');
             Route::post('/kirimpesan','UserListJoblistController@store');
             Route::get('/show-historypesan/{id}','UserListJoblistController@showhistorypesan');
+            Route::get('/show-historyapproval/{id}','jobdescreateController@showhistoryapproval');
             Route::get('/konfirmasi/{id?}','UserListJoblistController@konfirmasi');
             Route::get('/konfirmasivalidanalis/{id?}','UserListJoblistController@konfirmasivalidanalis');
             Route::get('/getjobdescreate/{id}','jobdescreateController@getjobdescreate'); 
@@ -186,6 +188,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/show-ajax','ManagerController@ShowAjax');
             Route::post('/kirimpesan','ManagerController@store');
             Route::get('/show-historypesan/{id}','ManagerController@showhistorypesan');
+            Route::get('/show-historyapproval/{id}','jobdescreateController@showhistoryapproval');
             Route::get('/konfirmasi/{id?}','ManagerController@konfirmasi');
             Route::get('/getjobdescreate/{id}','jobdescreateController@getjobdescreate');
             Route::get('/pdf/{id?}','jobdescreateController@pdf');
