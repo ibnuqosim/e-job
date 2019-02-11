@@ -216,9 +216,8 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
     Route::group(['middleware'=>['auth', 'role:AdministratorSMKS']], function () {
         
         Route::get('/AdministratorSMKS', function(){
-            echo  "AdministratorSMKS";
+            return redirect('AdministratorSMKS');
         });
-        
-    });
-    
-    Route::get('/debug','debugController@index');
+       
+});
+Route::get('/debug','debugController@index');

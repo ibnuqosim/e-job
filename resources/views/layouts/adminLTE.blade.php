@@ -185,6 +185,7 @@
           <li class="treeview">
            
             @role('AdminAnalystOD')
+            @if(Auth::user()->userid=='12610')
             <a href="#">
               <i class="fa fa-laptop"></i> <span>Master Data</span>
               <span class="pull-right-container">
@@ -194,6 +195,7 @@
             <ul class="treeview-menu">
               @include('menu.AdminAnalystOD.masterdata')
             </ul>
+            @endif
             <a href="#">
               <i class="fa fa-rss-square"></i> <span>Menu</span>
               <span class="pull-right-container">
@@ -275,7 +277,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              @include('menu.AdministratorSMKS')
+              @include('menu.AdministratorSMKS.mastersmks')
             </ul>
             @endrole
           </li>

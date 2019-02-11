@@ -51,7 +51,10 @@ class HomeController extends Controller
             $whereanalstat_1=array('nikapprove'=>$user->userid,'posisiprogress'=>1);
             $this->waitforuser = jobdescreate::where($whereanalstat_1)->get();
         }
-        
+        if($roles=='AdministratorSMKS'){
+            $whereanalstat_1=array('posisiprogress'=>1);
+            $this->waitforuser = jobdescreate::where($whereanalstat_1)->get();
+        }
         //status 2
         if($roles=='AdminAnalystOD'){
             $whereanalstat_2=array('nikanalis'=>$user->userid,'posisiprogress'=>2);
@@ -63,6 +66,10 @@ class HomeController extends Controller
         }
         if($roles=='ManagerOD'){
             $whereanalstat_2=array('nikapprove'=>$user->userid,'posisiprogress'=>2);
+            $this->waitformanodhcp = jobdescreate::where($whereanalstat_2)->get();
+        }
+        if($roles=='AdministratorSMKS'){
+            $whereanalstat_2=array('posisiprogress'=>2);
             $this->waitformanodhcp = jobdescreate::where($whereanalstat_2)->get();
         }
         
@@ -79,6 +86,10 @@ class HomeController extends Controller
             $whereanalstat_3=array('nikapprove'=>$user->userid,'posisiprogress'=>3);
             $this->selesai = jobdescreate::where($whereanalstat_3)->get();
         }
+        if($roles=='AdministratorSMKS'){
+            $whereanalstat_3=array('posisiprogress'=>3);
+            $this->selesai = jobdescreate::where($whereanalstat_3)->get();
+        }
         //status 4
         if($roles=='AdminAnalystOD'){
             $whereanalstat_4=array('nikanalis'=>$user->userid,'posisiprogress'=>4);
@@ -90,6 +101,10 @@ class HomeController extends Controller
         }
         if($roles=='ManagerOD'){
             $whereanalstat_4=array('nikapprove'=>$user->userid,'posisiprogress'=>4);
+            $this->kadal = jobdescreate::where($whereanalstat_4)->get();
+        }
+        if($roles=='AdministratorSMKS'){
+            $whereanalstat_4=array('posisiprogress'=>4);
             $this->kadal = jobdescreate::where($whereanalstat_4)->get();
         }
         //dashboard
