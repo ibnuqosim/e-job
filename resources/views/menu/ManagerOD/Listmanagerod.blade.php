@@ -199,8 +199,8 @@ function view_job(id){
             var no9=0;
             var html9='';
             for (i = 0; i < data.profil_d.length; i++) {
-                no++;
-                html9+='<tr><td>'+no+'</td><td>'+data.profil_d[i].groupaspek+'</td><td>'+data.profil_d[i].namakompetensi+'</td><td>'+data.profil_d[i].proficiency+'</td></tr>';
+                no9++;
+                html9+='<tr><td>'+no9+'</td><td>'+data.profil_d[i].groupaspek+'</td><td>'+data.profil_d[i].namakompetensi+'</td><td>'+data.profil_d[i].proficiency+'</td></tr>';
                 }
                 $('#profil_d').html(html9);
            }
