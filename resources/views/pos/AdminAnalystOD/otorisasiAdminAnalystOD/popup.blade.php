@@ -140,7 +140,7 @@
                         (Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) 
                     </td>
                     <td>
-                        9Penghematan Unit Kerja
+                        Penghematan Unit Kerja
                     </td>
                 </tr>
                 <tr>
