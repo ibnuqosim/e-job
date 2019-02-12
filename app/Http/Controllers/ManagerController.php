@@ -30,8 +30,8 @@ class ManagerController extends Controller
         $nama                  = Auth::user()->username;
         $nikanalis             = $request->nikanalis;
         $namaanalis            = $request->namaanalis;
-        $dilihat               = 0;
-        $status               = 0;
+        $dilihat               = 1;
+        $status                = 0;
 
         $data = new history_pesan();
         $data->jobdescreate_id      = $id;
@@ -43,6 +43,16 @@ class ManagerController extends Controller
         $data->dilihat              = $dilihat;
         $data->status              = $status;
         $data->save();
+
+        //insert into approval h
+        $datajob = jobdescreate::where('id',$id)->get();
+        $app_h = new Approval_h();
+        $app_h->jobdescreate_id = $id;
+        $app_h->nik = $datajob[0]->nikapprove;
+        $app_h->nama = $datajob[0]->approve;
+        $app_h->sebagai ='Manajer odhcp ( Revisi )';
+        $app_h->waktu =date('Y-m-d H:i:s');
+        $app_h->save();
 
         $jobdescreate = jobdescreate::where('id',$id)
         ->update(['posisiprogress' => 1,

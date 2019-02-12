@@ -243,7 +243,7 @@ class jobdescreateController extends Controller
 
     public function store(Request $request)
     {
-        
+        $userid  = Auth::user()->userid;
         // I. URAIAN JABATAN (Job Description)
         $getjab                                     = $request->getjab;
         //dd($getjab);
@@ -265,6 +265,14 @@ class jobdescreateController extends Controller
         //inpu analis
         $nikanalis                                  = $request->nikanalis;
         $analis                                     = $request->analis;
+        //cari nama jabatan analis
+        
+        $retjab    = [];
+        $retjab    = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid);
+        $jessjab   =json_decode($retjab);
+        $jabanalis = $jessjab->position_name;
+
+
         $approveanalis                              = 1;
         $tglapproveanalis                           = date('Y-m-d H:i:s');
 
@@ -281,7 +289,7 @@ class jobdescreateController extends Controller
         $namaatasan                                 =$request->namaatasan;
 
         //manajer odhcp
-        $userid  = Auth::user()->userid;
+        
         $ret = [];
         $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid.'/minManagerBoss');
         $jess=json_decode($ret);
@@ -320,6 +328,7 @@ class jobdescreateController extends Controller
         // save analis
         $data->nikanalis                            = $nikanalis;
         $data->analis                               = $analis;
+        $data->jabanalis                            = $jabanalis;
         $data->approveanalis                        = $approveanalis;
         $data->konfirmvalidanalis                   = 0;
         $data->tglapproveanalis                     = $tglapproveanalis;
@@ -905,6 +914,7 @@ class jobdescreateController extends Controller
         $ret = [];
         $data = zhrom0012::where('namakompetensi','like','%'.$request->q.'%')
                 ->where('nojabatan',$kode)
+                ->groupBy('namakompetensi')
                 ->get();
         return $data;
     } 

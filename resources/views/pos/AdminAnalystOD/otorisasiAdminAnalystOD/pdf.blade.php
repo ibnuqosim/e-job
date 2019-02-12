@@ -62,10 +62,10 @@ return true;
                 <tr>
                     <th>IssuE Date</th>
                     <th>:</th>
-                    <th>01/06/2010</th>
+                <th>{{date("d/m/Y")}}</th>
                     <th rowspan="2">Tgl. Berlaku (Validity Date)</th>
                     <th rowspan="2">:</th>
-                    <th rowspan="2"></th>
+                    <th rowspan="2">{{$item->tglapproveodhcp}}</th>
                 </tr>
                 <tr>
                     <th>Holder</th>
@@ -317,8 +317,8 @@ return true;
                 </tr>
                 <tr>
                     <td align="center"><br><br>@if($item->approveanalis==1)<p><b>APPROVED</b></p>@endif<br>{{$item->analis}}</td>
-                    <td align="center"><br><br><br>@if($item->approveuser==1)<p><b>APPROVED</b></p>@endif<br>{{$item->approve}}</td>
-                    <td align="center"><br><br><br>@if($item->approveodhcp==1)<p><b>APPROVED</b></p>@endif<br>{{$item->namauser}}</td>
+                    <td align="center"><br><br><br>@if($item->approveodhcp==1)<p><b>APPROVED</b></p>@endif<br>{{$item->approve}}</td>
+                    <td align="center"><br><br><br>@if($item->approveuser==1)<p><b>APPROVED</b></p>@endif<br>{{$item->namauser}}</td>
                 </tr>
                 <tr>
                     <td align="center">{{$item->jabanalis}}</td>
@@ -356,7 +356,7 @@ return true;
                             <table frame="box" width="100%">
                                 <tr><td>No. Issue</td><td>:</td><td>01</td></tr>
                                 <tr><td>No. RS</td><td>:</td><td>RS/PO00/010</td></tr>
-                                <tr><td>Tgl.</td><td>:</td><td>21/06/2013</td></tr>
+                                <tr><td>Tgl.</td><td>:</td><td>{{date("d/m/Y")}}</td></tr>
                             </table>
                         </td>
                     </tr>
@@ -416,8 +416,8 @@ return true;
                     </tr>
                     <tr>
                         <td align="center" width="33%"><br><br>@if($itemx->approveanalis==1)<p><b>APPROVED</b></p>@endif<br>{{$itemx->analis}}</td>
-                        <td align="center" width="33%"><br><br><br>@if($itemx->approveuser==1)<p><b>APPROVED</b></p>@endif<br>{{$itemx->approve}}</td>
-                        <td align="center" width="33%"><br><br><br>@if($itemx->approveodhcp==1)<p><b>APPROVED</b></p>@endif<br>{{$itemx->namauser}}</td>
+                        <td align="center" width="33%"><br><br><br>@if($itemx->approveodhcp==1)<p><b>APPROVED</b></p>@endif<br>{{$itemx->approve}}</td>
+                        <td align="center" width="33%"><br><br><br>@if($itemx->approveuser==1)<p><b>APPROVED</b></p>@endif<br>{{$itemx->namauser}}</td>
                     </tr>
                     <tr>
                         <td align="center">{{$itemx->jabanalis}}</td>

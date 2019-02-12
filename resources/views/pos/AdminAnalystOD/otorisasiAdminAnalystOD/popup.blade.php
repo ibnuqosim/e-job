@@ -128,34 +128,35 @@
                         <th width=40%>Tanggung Jawab (Duties & Responsibilities)</th>
                         <th width=40%>Indikator Capaian (Performance Indicators)<th>
                     </tr>
-                    <tr>
-                        <td>
-                            (Melaksanakan setiap tugas dan tanggung jawab
-                        </td>
-                        <td>
-                            (Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) 
-                        </td>
-                        <td>
-                            9Penghematan Unit Kerja
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            dengan memerhatikan aspek dan kondisi keuangan
-                            perusahaan serta mendukung program penghematan perusahaan.)
-                        </td>
-                        <td>
-                            dan peraturan/kebijakan yang berlaku baik internal (Prosedur, WI, SOP, PKB) 
-                            maupun eksternal (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja 
-                            yang tinggi dan memenuhi standar yang ditetapkan.)
-                        </td> 
-                        <td>
-                            Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku)
-                        </td>
-                    </tr>
+                    
                 </thead>
                 <tbody id="uno">
                 </tbody>
+                <tr>
+                    <td>
+                        (Melaksanakan setiap tugas dan tanggung jawab
+                    </td>
+                    <td>
+                        (Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) 
+                    </td>
+                    <td>
+                        9Penghematan Unit Kerja
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        dengan memerhatikan aspek dan kondisi keuangan
+                        perusahaan serta mendukung program penghematan perusahaan.)
+                    </td>
+                    <td>
+                        dan peraturan/kebijakan yang berlaku baik internal (Prosedur, WI, SOP, PKB) 
+                        maupun eksternal (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja 
+                        yang tinggi dan memenuhi standar yang ditetapkan.)
+                    </td> 
+                    <td>
+                        Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku)
+                    </td>
+                </tr>
             </table>
             <table id="example1" class="table table-bordered table-striped" style="color:black">
                 <h5>IV. DIMENSI (Dimensions)</h5>

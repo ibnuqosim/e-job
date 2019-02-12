@@ -292,9 +292,9 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <div class="pull-right hidden-xs">
+      {{-- <div class="pull-right hidden-xs">
         <b>Version</b> 2.4.0
-      </div>
+      </div> --}}
       <strong>Copyright &copy; 2018-2019 <a href="http://e-job.site/home">Krakatau information Technology</a>.</strong> All
       rights reserved.
     </footer>
