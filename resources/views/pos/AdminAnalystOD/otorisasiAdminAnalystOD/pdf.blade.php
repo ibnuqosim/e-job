@@ -32,7 +32,7 @@ return true;
 {{-- <a href="#" onclick="printDiv('cetak');
         ">Cetak</a> --}}
 <section class="content">
-    <div class="box box-warning" align="right" ><div class="box-body"><a href="#" onclick="printDiv('cetak');" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+    <div class="box box-warning" align="right" ><div class="box-body"><a href="{{ url('cetakpdf',['id'=>$id]) }}"  class="btn btn-default"><i class="fa fa-print"></i> Print</a>
         &nbsp; <a class="btn btn-warning pull-right" href="javascript:history.back()"><i class="fa fa-reply"></i> Kembali
         </a>
     </div></div>

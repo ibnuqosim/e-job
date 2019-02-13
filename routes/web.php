@@ -154,6 +154,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/konfirmasipesan/{id}','jobdescreateController@konfirmasipesan');
             Route::get('/getjobdescreate/{id}','jobdescreateController@getjobdescreate');
             
+            
     });
     
     
@@ -224,3 +225,4 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
        
 });
 Route::get('/debug','debugController@index');
+Route::get('/cetakpdf/{id?}','jobdescreateController@cetakpdf');

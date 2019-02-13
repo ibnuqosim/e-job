@@ -553,8 +553,66 @@ class jobdescreateController extends Controller
         }
         return Redirect::back()->withErrors(['msg', 'Error']);
     }
+    public function cetakpdf($id){
+        //$data['id']=$id;
+        //dd($data['id']);
+        //$pdf = PDF::loadView('pos.AdminAnalystOD.otorisasiAdminAnalystOD.jobpdf', $data);
+        //return $pdf->download('jobdescpdf.pdf');
+        $jobres     =[];
+        $unit       =[];
+        $tools      =[];
+        $mat        =[];
+        $co         =[];
+        $pen        =[];
+        $ker        =[];
+        $profil     =[];
+        $profil_d   =[];
+        $fisik      =[];
+         $data = jobdescreate::where('jobdescreate.id',$id)
+         ->join('job', 'jobdescreate.id', '=', 'job.jobdescreate_id')
+         ->select('jobdescreate.*', 'job.jabatanatasanlangsung')
+         ->get();
+        $job = job::where('jobdescreate_id',$id)
+        ->get();
+        $jobres = jobdescreate_res::where('jobdescreate_id',$id)
+                    ->join('kata_kerja', 'jobdescreate_res.id_kata_kerja', '=', 'kata_kerja.id')
+                    ->join('matrikindikator', 'jobdescreate_res.id_met_object', '=', 'matrikindikator.id')
+                    ->select('jobdescreate_res.*', 'kata_kerja.keterangan', 'matrikindikator.object','matrikindikator.indikator')
+                    ->get();
+        $unit       = jobdescreate_unitkerja::where('jobdescreate_id',$id)->get();
+        $tools      = jobdescreate_tools::where('jobdescreate_id',$id)->get();
+        $mat        = jobdescreate_materials::where('jobdescreate_id',$id)->get();
+        $co         = jobdescreate_conditions::where('jobdescreate_id',$id)->get();
+        $pen        = jobdescreate_pen::where('jobdescreate_id',$id)->get();
+        $ker        = jobdescreate_penga::where('jobdescreate_id',$id)->get();
+        $fisik      = jobdescreate_fisik::where('jobdescreate_id',$id)->get();
+        $profil     = profil::where('jobdescreate_id',$id)->get();
+        $profil_d     = profil_detail::where('jobdescreate_id',$id)->get();
+        $no =1;
+
+        $datajob['data']  =$data;
+        $datajob['job']   =$job;
+        $datajob['jobres']=$jobres;
+        $datajob['unit']  =$unit;
+        $datajob['tools'] =$tools;
+        $datajob['mat']   =$mat;
+        $datajob['co']    =$co;
+        $datajob['pen']   =$pen;
+        $datajob['ker']   =$ker;
+        $datajob['fisik'] =$fisik;
+        $datajob['profil']=$profil;
+        $datajob['profil_d']=$profil_d;
+        $datajob['no']=$no;
+
+         $pdf = PDF::loadView('pos.AdminAnalystOD.otorisasiAdminAnalystOD.jobpdf', $datajob);
+         return $pdf->download('jobdescpdf.pdf');
+    }
     public function pdf($id)
     {
+        // $data['id']=$id;
+        // $pdf = PDF::loadView('pos.AdminAnalystOD.otorisasiAdminAnalystOD.jobpdf', $data);
+        // return $pdf->download('jobdescpdf.pdf');
+
         $jobres     =[];
         $unit       =[];
         $tools      =[];
@@ -586,8 +644,26 @@ class jobdescreateController extends Controller
         $profil     = profil::where('jobdescreate_id',$id)->get();
         $profil_d     = profil_detail::where('jobdescreate_id',$id)->get();
         $no =1;
-         //dd($job);
-        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.pdf', [ 'data' => $data,'job'=>$job,'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'profil'=>$profil,'profil_d'=>$profil_d,'fisik'=>$fisik,'no'=>$no]);
+
+        // // //dd($job);
+        return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.pdf', [ 'data' => $data,'job'=>$job,'jobres'=>$jobres,'unit'=>$unit,'tools'=>$tools,'mat'=>$mat,'co'=>$co,'pen'=>$pen,'ker'=>$ker,'profil'=>$profil,'profil_d'=>$profil_d,'fisik'=>$fisik,'no'=>$no,'id'=>$id]);
+        // $datajob['data']  =$data;
+        // $datajob['job']   =$job;
+        // $datajob['jobres']=$jobres;
+        // $datajob['unit']  =$unit;
+        // $datajob['tools'] =$tools;
+        // $datajob['mat']   =$mat;
+        // $datajob['co']    =$co;
+        // $datajob['pen']   =$pen;
+        // $datajob['ker']   =$ker;
+        // $datajob['fisik'] =$fisik;
+        // $datajob['profil']=$profil;
+        // $datajob['profil_d']=$profil_d;
+        // $datajob['no']=$no;
+
+
+        // $pdf = PDF::loadView('pos.AdminAnalystOD.otorisasiAdminAnalystOD.pdf', $datajob);
+        // return $pdf->download('jobdescpdf.pdf');
     }
     
    
