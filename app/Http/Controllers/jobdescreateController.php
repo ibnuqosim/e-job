@@ -603,7 +603,7 @@ class jobdescreateController extends Controller
         $datajob['profil']=$profil;
         $datajob['profil_d']=$profil_d;
         $datajob['no']=$no;
-
+         
          $pdf = PDF::loadView('pos.AdminAnalystOD.otorisasiAdminAnalystOD.jobpdf', $datajob);
          return $pdf->download('jobdescpdf.pdf');
     }
