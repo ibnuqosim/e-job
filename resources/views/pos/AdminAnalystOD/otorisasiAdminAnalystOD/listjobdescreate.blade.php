@@ -136,6 +136,7 @@
                 $('#NameofOrgUnitDivisi').val(data.item[0].divisi);
                 $('#NameofOrgUnitSubDirektorat').val(data.item[0].subdirektorat);
                 $('#NameofOrgUnitDirektorat').val(data.item[0].direktorat);
+                $('#finansial').val(data.item[0].finansial);
 
                 // untuk mengambil table dari profil
                 $('#namajabatan').val(data.profil[0].namajabatan);

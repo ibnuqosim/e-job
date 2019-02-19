@@ -327,8 +327,8 @@ return true;
                 </tr>
                 <tr>
                     <td>TGL(Date): {{$item->tglapproveanalis}}</td>
-                    <td>TGL(Date):{{$item->tglapproveuser}}</td>
                     <td>TGL(Date):{{$item->tglapproveodhcp}}</td>
+                    <td>TGL(Date):{{$item->tglapproveuser}}</td>
                 </tr>
             </table>
 

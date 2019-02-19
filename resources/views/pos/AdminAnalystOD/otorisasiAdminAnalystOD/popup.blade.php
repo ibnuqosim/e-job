@@ -165,7 +165,7 @@
                         <th>a. Finansial (Financial)</th>
                     </tr>
                     <tr>
-                        <td>{{$item->finansial}}</td>
+                        <td><input type="text" readonly class="form-control" id="finansial" name="finansial" size="70px"></td>
                     </tr>
                 </thead>
                 <thead>
