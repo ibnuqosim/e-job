@@ -140,7 +140,7 @@
                         setiap tugas dan tanggung jawab dengan memerhatikan aspek dan kondisi keuangan perusahaan serta mendukung program penghematan perusahaan.
                     </td>
                     <td>
-                        Penghematan Unit Kerja
+                        Penghematan Unit Kerja.
                     </td>
                 </tr>
                 <tr>
