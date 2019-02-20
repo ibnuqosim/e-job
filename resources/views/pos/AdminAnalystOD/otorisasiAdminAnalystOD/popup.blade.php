@@ -134,10 +134,10 @@
                 </tbody>
                 <tr>
                     <td>
-                        (Melaksanakan setiap tugas dan tanggung jawab
+                        Melaksanakan 
                     </td>
                     <td>
-                        (Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) 
+                        setiap tugas dan tanggung jawab dengan memerhatikan aspek dan kondisi keuangan perusahaan serta mendukung program penghematan perusahaan.
                     </td>
                     <td>
                         Penghematan Unit Kerja
@@ -145,16 +145,13 @@
                 </tr>
                 <tr>
                     <td>
-                        dengan memerhatikan aspek dan kondisi keuangan
-                        perusahaan serta mendukung program penghematan perusahaan.)
+                        Melaksanakan
                     </td>
                     <td>
-                        dan peraturan/kebijakan yang berlaku baik internal (Prosedur, WI, SOP, PKB) 
-                        maupun eksternal (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja 
-                        yang tinggi dan memenuhi standar yang ditetapkan.)
-                    </td> 
+                        tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) dan peraturan/kebijakan yang berlaku baik internal (Prosedur, WI, SOP, PKB) maupun eksternal (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja yang tinggi dan memenuhi standar yang ditetapkan.
+                    </td>
                     <td>
-                        Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku)
+                        Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku
                     </td>
                 </tr>
             </table>
@@ -165,7 +162,7 @@
                         <th>a. Finansial (Financial)</th>
                     </tr>
                     <tr>
-                        <td><input type="text" readonly class="form-control" id="finansial" name="finansial" size="70px"></td>
+                        <td><input type="text" readonly class="form-control" id="finansial" name="finansial" size="100px" /></td>
                     </tr>
                 </thead>
                 <thead>
@@ -173,7 +170,7 @@
                         <th>b. Non Finansial (Non Financial)</th>
                     </tr>
                     <tr>
-                        <td>{{$item->nonfinansial}}</td>
+                        <td><input type="text" readonly class="form-control" id="nonfinansial" name="nonfinansial" size="100px"/></td>
                     </tr>
                 </thead>
             </table>
