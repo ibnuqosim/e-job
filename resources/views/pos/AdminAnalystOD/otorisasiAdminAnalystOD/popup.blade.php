@@ -128,7 +128,6 @@
                         <th width=40%>Tanggung Jawab (Duties & Responsibilities)</th>
                         <th width=40%>Indikator Capaian (Performance Indicators)<th>
                     </tr>
-                    
                 </thead>
                 <tbody id="uno">
                 </tbody>
