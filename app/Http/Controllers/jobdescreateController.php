@@ -950,12 +950,29 @@ class jobdescreateController extends Controller
     {   
         $arr = [];
         $ret = [];
-        $data = ZHROM0007::where('AbbrPosition','like','%'.$request->q.'%')->get();
-        foreach ($data as $key => $value) {
-            array_push($arr,['id'=>$value->AbbrPosition,'abbrUnit'=>$value->AbbrOrgUnitDivisi,'text'=>$value->AbbrPosition." (".$value->NameofPosition.") "] );
+        $ret = file_get_contents('http://10.10.10.97:8000/api/zhrom0007');
+        $jess=json_decode($ret);
+        $collection = collect($jess);
+        $filtered = $collection->filter(function ($value, $key) use ($request) {
+            return str_is('*'.strtolower($request->q).'*', strtolower($value->AbbrPosition) );
+        });
+        
+        $x = $filtered->all();
+
+        foreach ($x as $key => $value) {
+            array_push($arr,['id'=>$value->AbbrPosition, 'text'=>$value->AbbrPosition." (".$value->NameofPosition.") "]);
         }
-        $ret  = ['results' => $arr];
-        return $ret;
+        $ret = ['results' =>
+        $arr];
+        
+        
+        //dd($collection);
+        // $data = ZHROM0007::where('AbbrPosition','like','%'.$request->q.'%')->get();
+        // foreach ($data as $key => $value) {
+        //     array_push($arr,['id'=>$value->AbbrPosition,'abbrUnit'=>$value->AbbrOrgUnitDivisi,'text'=>$value->AbbrPosition." (".$value->NameofPosition.") "] );
+        // }
+        // $ret  = ['results' => $arr];
+         return $ret;
     } 
 
     public function getjab ($jabatan)
