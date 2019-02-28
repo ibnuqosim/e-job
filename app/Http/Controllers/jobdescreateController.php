@@ -960,7 +960,7 @@ class jobdescreateController extends Controller
         $x = $filtered->all();
 
         foreach ($x as $key => $value) {
-            array_push($arr,['id'=>$value->AbbrPosition, 'text'=>$value->AbbrPosition." (".$value->NameofPosition.") "]);
+            array_push($arr,['id'=>$value->AbbrPosition,'abbrUnit'=>$value->AbbrOrgUnitDivisi, 'text'=>$value->AbbrPosition." (".$value->NameofPosition.") "]);
         }
         $ret = ['results' =>
         $arr];
@@ -977,20 +977,30 @@ class jobdescreateController extends Controller
 
     public function getjab ($jabatan)
     {   
-        $data = ZHROM0007::where('AbbrPosition', $jabatan)
-        ->groupBy('AbbrPosition')
-        ->first();       
-        return $data;
+        //   $data = ZHROM0007::where('AbbrPosition', $jabatan)
+        //   ->groupBy('AbbrPosition')
+        //   ->first();
+        //$data = [];
+        $data    = file_get_contents('http://10.10.10.97:8000/api/zhrom0007/AbbrPosition/'.$jabatan);
+        $jessdata   =json_decode($data); 
+        $collection = collect($jessdata);
+        //dd($data);    
+        return $collection;
     }
 
     public function nojabatan (Request $request,$kode = null)
     {   
-        $arr = [];
-        $ret = [];
-        $data = zhrom0013::where('jabatanatasanlangsung','like','%'.$request->q.'%')
-                ->where('nojabatan',$kode)
-                ->get();
-        return $data;
+        // $arr = [];
+        // $ret = [];
+        // $data = zhrom0013::where('jabatanatasanlangsung','like','%'.$request->q.'%')
+        //         ->where('nojabatan',$kode)
+        //         ->get();
+        // return $data;
+        $data    = file_get_contents('http://10.10.10.97:8000/api/zhrom0013/nojabatan/'.$kode);
+        $jessdata   =json_decode($data); 
+        $collection = collect($jessdata);
+        //dd($data);    
+        return $collection;
     } 
 
     public function detail ($un)
@@ -999,17 +1009,23 @@ class jobdescreateController extends Controller
         ->groupBy('nojabatan')
         ->first();       
         return $data;
+        
     }
 
     public function abbdetail (Request $request,$kode = null)
     {   
-        $arr = [];
-        $ret = [];
-        $data = zhrom0012::where('namakompetensi','like','%'.$request->q.'%')
-                ->where('nojabatan',$kode)
-                ->groupBy('namakompetensi')
-                ->get();
-        return $data;
+        // $arr = [];
+        // $ret = [];
+        // $data = zhrom0012::where('namakompetensi','like','%'.$request->q.'%')
+        //         ->where('nojabatan',$kode)
+        //         ->groupBy('namakompetensi')
+        //         ->get();
+        // return $data;
+        $data    = file_get_contents('http://10.10.10.97:8000/api/zhrom0012/nojabatan/'.$kode);
+        $jessdata   =json_decode($data); 
+        $collection = collect($jessdata);
+        //dd($data);    
+        return $collection;
     } 
 
 

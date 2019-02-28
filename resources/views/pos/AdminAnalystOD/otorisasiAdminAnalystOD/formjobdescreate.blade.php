@@ -49,12 +49,14 @@
         }
     });
     $('#AbbrPosition').on('select2:select', function (e) {
+        
         var data = e.params.data;
         selectPosition(data); 
         nojabatan(data);
         abbdetail(data);
         detail(data);
-        console.log(data);
+        //console.log(data);
+        //alert(data);
 
         $('#namauser').select2({
             ajax: {
@@ -90,6 +92,8 @@
     function selectPosition(data) {
 
         $.get('{{ url('AdminAnalystOD/formjobdescreate/getjab') }}/'+data.id,function(jab){
+            console.log(jab);
+            
             $('#LvlOrg').val(jab.LvlOrg);                                           //No jabatan:                     
             $('#NameofPosition ').val(jab.NameofPosition);                          //gol jabatan          
             $('#NameofOrgUnitDinas').val(jab.NameofOrgUnitDinas);                 	//dinas
