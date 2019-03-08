@@ -469,7 +469,7 @@
                 kk+="<div id='kolom"+no+"'>"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<select class='js-data-example-ajax form-control res-ajax' name='res[]'>"+
-                            "<option value="+jobparse[i].id_kata_kerja+">"+jobparse[i].keterangan+"</option>"+
+                            "<option value='"+jobparse[i].id_kata_kerja+"'>"+jobparse[i].keterangan+"</option>"+
                             "</select>"+
                         "</div>"+
                         "<div class='col-sm-1' style='margin-bottom:9px' >"+
@@ -479,7 +479,7 @@
                 obj+="<div id='okkolom"+no+"'>"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<select class='js-data-example-ajax form-control divresk-ajax' name='divresk[]'>"+
-                                "<option value="+jobparse[i].id_met_object+">"+jobparse[i].object+"</option>"+
+                                "<option value='"+jobparse[i].id_met_object+"'>"+jobparse[i].object+"</option>"+
                                 "</select>"+
                         "</div>"+
                     "</div>";
@@ -513,7 +513,7 @@
             stre += "<div id='halsatu"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<select class='js-data-example-ajax form-control workint-ajax' name='work[]'>"+
-                                "<option value="+unitparse[i].id_emp_cskt_ltext+">"+unitparse[i].id_emp_cskt_ltext+"</option>"+
+                                "<option value='"+unitparse[i].id_emp_cskt_ltext+"'>"+unitparse[i].id_emp_cskt_ltext+"</option>"+
                             "</select>"+
                         "</div>"+
                         "<div class='col-sm-1' style='margin-bottom:9px' >"+
@@ -549,7 +549,7 @@
             stre +=  "<div id='kolom"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control tools-ajax' name='tools[]'>"+
-                                "<option value="+toolsparse[i].id_deskripsi+">"+toolsparse[i].id_deskripsi+"</option>"+
+                                "<option value='"+toolsparse[i].id_deskripsi+"'>"+toolsparse[i].id_deskripsi+"</option>"+
                             "</select>"+
                         "</div>"+
                         "<div class='col-sm-1' style='margin-bottom:10px' >"+
@@ -568,7 +568,7 @@
             stre = "<div id='kolom"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control materials-ajax' name='materials[]'>"+
-                                "<option value="+matparse[i].id_deskripsi+">"+matparse[i].id_deskripsi+"</option>"+
+                                "<option value='"+matparse[i].id_deskripsi+"'>"+matparse[i].id_deskripsi+"</option>"+
                             "</select>"+
                         "</div>"+
                         "<div class='col-sm-1' style='margin-bottom:10px' >"+
@@ -588,7 +588,7 @@
             stre +=  "<div id='kolom"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control conditions-ajax' name='conditions[]'>"+
-                                "<option value="+coparse[i].id_deskripsi+">"+coparse[i].id_deskripsi+"</option>"+
+                                "<option value='"+coparse[i].id_deskripsi+"'>"+coparse[i].id_deskripsi+"</option>"+
                             "</select>"+
                         "</div>"+
                         "<div class='col-sm-1' style='margin-bottom:10px' >"+
@@ -607,7 +607,7 @@
             stre +=  "<div id='kolompen"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control pen-ajax' name='pen[]'>"+
-                                "<option value="+penparse[i].id_jenjang+">"+penparse[i].id_jenjang+"</option>"+
+                                "<option value='"+penparse[i].id_jenjang+"'>"+penparse[i].id_jenjang+"</option>"+
                             "</select>"+
                         "</div>"+
                         "<div class='col-sm-1' style='margin-bottom:10px' >"+
@@ -627,7 +627,7 @@
             stre +=  "<div id='kolompenga"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control penga-ajax' name='penga[]'>"+
-                                "<option value="+kerparse[i].id_keterangan+">"+kerparse[i].id_keterangan+"</option>"+
+                                "<option value='"+kerparse[i].id_keterangan+"'>"+kerparse[i].id_keterangan+"</option>"+
                             "</select>"+
                         "</div>"+
                         "<div class='col-sm-1' style='margin-bottom:10px' >"+
@@ -647,7 +647,7 @@
             stre +=  "<div id='kolomfisik"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control fisik-ajax' name='fisik[]'>"+
-                                "<option value="+kerfisik[i].id_persyaratan+">"+kerfisik[i].id_persyaratan+"</option>"+
+                                "<option value='"+kerfisik[i].id_persyaratan+"'>"+kerfisik[i].id_persyaratan+"</option>"+
                             "</select>"+
                         "</div>"+
                         "<div class='col-sm-1' style='margin-bottom:10px' >"+
