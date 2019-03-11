@@ -1005,10 +1005,15 @@ class jobdescreateController extends Controller
 
     public function detail ($un)
     {   
-        $data = zhrom0012::where('nojabatan', $un)
-        ->groupBy('nojabatan')
-        ->first();       
-        return $data;
+        // $data = zhrom0012::where('nojabatan', $un)
+        // ->groupBy('nojabatan')
+        // ->first();       
+        // return $data;
+        $data    = file_get_contents('http://10.10.10.97:8000/api/zhrom0012/nojabatan/'.$un);
+        $jessdata   =json_decode($data); 
+        $collection = collect($jessdata);
+        //dd($collection);    
+        return $collection;
         
     }
 
