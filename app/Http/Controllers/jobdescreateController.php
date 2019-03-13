@@ -39,6 +39,8 @@ use App\profil_detail;
 use App\history_pesan;
 use App\jobdescreate_fisik;
 use App\Approval_h;
+use Storage;
+use File;
 
 
 
@@ -77,6 +79,18 @@ class jobdescreateController extends Controller
         return view('pos.AdminAnalystOD.otorisasiAdminAnalystOD.formjobdescreate',$data);
     }
     public function delete(Request $request, $id){
+        $datajob = jobdescreate::where('id',$id)->get();
+        $gambar = $datajob[0]->gambar;
+        if($gambar){
+            $explgambar = explode("/",$gambar);
+            $filename =$explgambar[1];
+            $lokfile =storage_path().'/app/jobdesc/'.$filename;
+            if (File::exists($lokfile))
+            {
+                unlink($lokfile);
+            }
+        }
+
         jobdescreate::where('id',$id)->delete();
         jobdescreate_res::where('jobdescreate_id',$id)->delete();
         jobdescreate_unitkerja::where('jobdescreate_id',$id)->delete();
@@ -89,6 +103,8 @@ class jobdescreateController extends Controller
         profil::where('jobdescreate_id',$id)->delete();
         profil_detail::where('jobdescreate_id',$id)->delete();
         jobdescreate_fisik::where('jobdescreate_id',$id)->delete();
+        Approval_h::where('jobdescreate_id',$id)->delete();
+        history_pesan::where('jobdescreate_id',$id)->delete();
         return redirect('/AdminAnalystOD/listjobdescreate')->with('status', 'Berhasil di delete');
 
         
@@ -117,10 +133,39 @@ class jobdescreateController extends Controller
         $nikatasan                                  =$request->nikatasan;
         $namaatasan                                 =$request->namaatasan;
 
+        $datajob = jobdescreate::where('id',$id)->get();
+        $gambar = $datajob[0]->gambar;
+        if($gambar){
+            $explgambar = explode("/",$gambar);
+            $filename =$explgambar[1];
+            $lokfile =storage_path().'/app/jobdesc/'.$filename;
+        }else{
+            $filename='';
+            $lokfile='';
+        }
+        
+      
+       //Storage::disk('public')->path($filename);
+        //unlink($lokfile);
+        //dd(storage_path());
+        $path = 'jobdesc/'.$filename;
+        if (File::exists($lokfile) && $request->gambar!=null)
+        {
+            unlink($lokfile);
+            $path = $request->gambar->store('jobdesc');
+        }
+        if (!File::exists($lokfile) && $request->gambar!=null)
+        {
+            $path = $request->gambar->store('jobdesc');
+        }
+        if($lokfile==''&& $request->gambar!=null){
+            $path = $request->gambar->store('jobdesc');
+        }
+
         $jobdescreate = jobdescreate::where('id',$id)
         ->update([
         'finansial'=>$finansial,'nonfinansial'=>$nonfinansial,
-        'jobrole'=>$jobrole]);    
+        'jobrole'=>$jobrole,'gambar'=>$path]);    
         
         //dd($request->res);
         jobdescreate_res::where('jobdescreate_id',$id)->delete();

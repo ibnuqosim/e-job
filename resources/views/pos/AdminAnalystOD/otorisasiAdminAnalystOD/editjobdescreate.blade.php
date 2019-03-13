@@ -90,12 +90,12 @@
 
     function detail(data) {
         $.get('{{ url('AdminAnalystOD/formjobdescreate/detail') }}/'+data,function(un){
-            $('#noorg ').val(un.noorg);                                
-            $('#unitkerja').val(un.unitkerja);  
-            $('#nojabatan ').val(un.nojabatan);                                
-            $('#namajabatan').val(un.namajabatan);        
-            $('#gol ').val(un.gol);                                
-            $('#job').val(un.job);                         
+            $('#noorg ').val(un[0].noorg);                                
+            $('#unitkerja').val(un[0].unitkerja);  
+            $('#nojabatan ').val(un[0].nojabatan);                                
+            $('#namajabatan').val(un[0].namajabatan);        
+            $('#gol ').val(un[0].gol);                                
+            $('#job').val(un[0].job);                         
         });                                                                       
      }
 
