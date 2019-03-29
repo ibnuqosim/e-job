@@ -286,9 +286,9 @@
     }
     function tmcalatkerja() {
         var tools = $('#tools').val();
-        var stre;
+        var stre='';
         {
-            stre =  "<div id='kolom"+tools+"' >"+
+            stre+=  "<div id='kolom"+tools+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control tools-ajax' name='tools[]' value='{{'$datas->jabatan'}}'></select>"+
                         "</div>"+
@@ -306,8 +306,9 @@
                     // tmcalatkerja(tmcalatkerja);
                 }
             });
+           // tools = (tools-1) + 2;
             tools = (tools-1) + 2;
-            $('tools').val(tools);
+            $('#tools').val(tools);
         }
     }
     function hapustools(tools) {
@@ -335,7 +336,7 @@
                 }
             });
             materials = (materials-1) + 2;
-            $('materials').val(materials);
+            $('#materials').val(materials);
         }
     }
     function hapusmaterials(materials) {
@@ -362,7 +363,7 @@
                 }
             });
             conditions = (conditions-1) + 2;
-            $('conditions').val(conditions);
+            $('#conditions').val(conditions);
         }
     }
     function hapusconditions(conditions) {
@@ -447,7 +448,7 @@
                 }
             });
             fisik = (fisik-1) + 2;
-            $('fisik').val(fisik);
+            $('#fisik').val(fisik);
         }
     }
     function hapusfisik(fisik) {
@@ -509,6 +510,7 @@
         var halk='';
         var halks='';
         for (i = 0; i < unitparse.length; i++) {
+            no++;
             console.log(unitparse[i].id_emp_cskt_ltext);
             stre += "<div id='halsatu"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
@@ -546,6 +548,7 @@
         var no=0;
         var stre='';
         for (i = 0; i < toolsparse.length; i++) {
+            no++;
             stre +=  "<div id='kolom"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control tools-ajax' name='tools[]'>"+
@@ -565,6 +568,7 @@
         var no=0;
         var stre='';
         for (i = 0; i < matparse.length; i++) {
+            no++;
             stre = "<div id='kolom"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control materials-ajax' name='materials[]'>"+
@@ -585,6 +589,7 @@
         var no=0;
         var stre='';
         for (i = 0; i < coparse.length; i++) {
+            no++;
             stre +=  "<div id='kolom"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control conditions-ajax' name='conditions[]'>"+
@@ -604,6 +609,7 @@
         var no=0;
         var stre='';
         for (i = 0; i < penparse.length; i++) {
+            no++;
             stre +=  "<div id='kolompen"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control pen-ajax' name='pen[]'>"+
@@ -624,6 +630,7 @@
         var no=0;
         var stre='';
         for (i = 0; i < kerparse.length; i++) {
+            no++;
             stre +=  "<div id='kolompenga"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control penga-ajax' name='penga[]'>"+
@@ -644,6 +651,7 @@
         var no=0;
         var stre='';
         for (i = 0; i < kerfisik.length; i++) {
+            no++;
             stre +=  "<div id='kolomfisik"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control fisik-ajax' name='fisik[]'>"+
@@ -1034,7 +1042,7 @@
                                 {{-- </select>
                         </td> --}}
                         <div class="form-group" id="divdtools" value="{{ $datas->jabatan }}">
-                            <input class="js-data-example-ajax form-control" id="tools" value="1" name="id_deskripsi" type="hidden" />
+                            <input class="js-data-example-ajax form-control" id="tools" name="id_deskripsi" type="hidden" value="0" />
                         </div>
                         <div class="form-group">
                             <label>2. Bahan Kerja (Materials)</label>

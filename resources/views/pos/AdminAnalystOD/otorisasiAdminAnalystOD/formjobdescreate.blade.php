@@ -256,6 +256,7 @@
     }
     function Workinternal() {
         var workint = $('#workint').val();
+        
         var stwork;
         {
             stwork ="<div id='halsatu"+workint+"' >"+
@@ -297,7 +298,8 @@
                 }
             });
             workint = (workint-1) + 2;
-            $('workint').val(workint);
+            
+            $('#workint').val(workint);
         }
     }
     function hapusworkint(workint) {
@@ -368,7 +370,7 @@
                 }
             });
             tools = (tools-1) + 2;
-            $('tools').val(tools);
+            $('#tools').val(tools);
         }
     }
     function hapustools(tools) {
@@ -396,7 +398,7 @@
                 }
             });
             materials = (materials-1) + 2;
-            $('materials').val(materials);
+            $('#materials').val(materials);
         }
     }
     function hapusmaterials(materials) {
@@ -423,7 +425,7 @@
                 }
             });
             conditions = (conditions-1) + 2;
-            $('conditions').val(conditions);
+            $('#conditions').val(conditions);
         }
     }
     function hapusconditions(conditions) {
@@ -451,7 +453,7 @@
                 }
             });
             pen = (pen-1) + 2;
-            $('pen').val(pen);
+            $('#pen').val(pen);
         }
     }
     function hapuspen(pen) {
@@ -479,7 +481,7 @@
                 }
             });
             penga = (penga-1) + 2;
-            $('penga').val(penga);
+            $('#penga').val(penga);
         }
     }
     function hapuspenga(penga) {
@@ -507,7 +509,7 @@
                 }
             });
             fisik = (fisik-1) + 2;
-            $('fisik').val(fisik);
+            $('#fisik').val(fisik);
         }
     }
     function hapusfisik(fisik) {

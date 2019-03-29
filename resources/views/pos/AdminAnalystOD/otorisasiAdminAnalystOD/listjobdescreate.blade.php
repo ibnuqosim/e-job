@@ -148,11 +148,12 @@
                 $('#jobgroup').val(data.profil[0].jobgroup);
 
                 console.log(data.job.length);
-                var no = 0;
+                var no ='-';
                 var html = '';
+                    html+=':';
                 for (i = 0; i < data.job.length; i++) {
-                    no++;
-                    html += '<tr><td>' + no + '</td><td>' + data.job[i].jabatanbawahanlangsung + '</td><td>' + data.job[i].jumlah + '</td></tr>';
+                    //no++;
+                    html += ' <table width="100%"><tr><td>' + no + '</td><td>' + data.job[i].jabatanbawahanlangsung + '</td><td>' + data.job[i].jumlah + '</td></tr></table>';
                 }
                 $('#jbl').html(html);
 
@@ -160,24 +161,35 @@
                 var html2 = '';
                 for (i = 0; i < data.jobres.length; i++) {
                     no++;
-                    html2 += '<tr><td>' + data.jobres[i].keterangan + '</td><td>' + data.jobres[i].object + '</td><td>' + data.jobres[i].indikator + '</td></tr>';
+                    html2 += '<tr><td colspan="4">' + data.jobres[i].keterangan +' '+data.jobres[i].object +'</td><td colspan="3">' + data.jobres[i].indikator + '</td></tr>';
                 }
                 $('#uno').html(html2);
                 // }
 
                 var no3 = 0;
-                var html3 = '';
+                var int = '';
+                var halint='';
+                var eks='';
+                var haleks='';
                 for (i = 0; i < data.unit.length; i++) {
                     no++;
-                    html3 += '<tr><td>' + data.unit[i].id_emp_cskt_ltext + '</td><td>' + data.unit[i].id_hal_internal + '</td><td>' + data.unit[i].id_eksternal + '</td><td>' + data.unit[i].id_hal_external + '</td></tr>';
+                    //html3 += '<tr><td>' + data.unit[i].id_emp_cskt_ltext + '</td><td>' + data.unit[i].id_hal_internal + '</td><td>' + data.unit[i].id_eksternal + '</td><td>' + data.unit[i].id_hal_external + '</td></tr>';
+                    int+='-'+data.unit[i].id_emp_cskt_ltext;
+                    halint+='-'+data.unit[i].id_hal_internal;
+                    eks+='-'+data.unit[i].id_hal_external;
+                    haleks+='-'+data.unit[i].id_eksternal;
                 }
-                $('#wowo').html(html3);
+                $('#in').html(int);
+                $('#halin').html(halint);
+                $('#eks').html(eks);
+                $('#haleks').html(haleks);
 
                 var no4 = 0;
                 var html4 = '';
                 for (i = 0; i < data.tools.length; i++) {
                     no++;
-                    html4 += '<tr><td>' + data.tools[i].id_deskripsi + '</td></tr>';
+                    //html4 += '<tr><td>' + data.tools[i].id_deskripsi + '</td></tr>';
+                    html4+='-'+data.tools[i].id_deskripsi;
                 }
                 $('#tools').html(html4);
 
@@ -185,7 +197,8 @@
                 var html5 = '';
                 for (i = 0; i < data.mat.length; i++) {
                     no++;
-                    html5 += '<tr><td>' + data.mat[i].id_deskripsi + '</td></tr>';
+                   // html5 += '<tr><td>' + data.mat[i].id_deskripsi + '</td></tr>';
+                    html5+='-'+data.mat[i].id_deskripsi;
                 }
                 $('#mat').html(html5);
 
@@ -193,7 +206,8 @@
                 var html6 = '';
                 for (i = 0; i < data.co.length; i++) {
                     no++;
-                    html6 += '<tr><td>' + data.co[i].id_deskripsi + '</td></tr>';
+                    //html6 += '<tr><td>' + data.co[i].id_deskripsi + '</td></tr>';
+                    html6+='-'+data.co[i].id_deskripsi;
                 }
                 $('#co').html(html6);
 

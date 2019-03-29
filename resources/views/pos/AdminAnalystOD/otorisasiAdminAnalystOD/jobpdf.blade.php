@@ -252,7 +252,7 @@
                                 <td valign="top" width="20%">b. Eksternal<br>(External)</td>
                                 <td valign="top" width="1%">:</td>
                                 <td valign="top"> @foreach ($unit as $junit)
-                                    {{"- ".$junit->id_eksternal}}
+                                    {{"- ".$junit->id_hal_external}}
                                     @endforeach</td>
                             </tr>
                         </table>
@@ -261,7 +261,7 @@
                         <table width="100%">
                             <tr>
                                 <td valign="top">@foreach ($unit as $junit)
-                                    {{"- ".$junit->id_hal_external}}
+                                    {{"- ".$junit->id_eksternal}}
                                     @endforeach</td>
                             </tr>
                         </table>
