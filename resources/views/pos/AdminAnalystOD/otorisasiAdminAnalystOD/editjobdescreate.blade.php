@@ -234,7 +234,7 @@
                 }
             });
             workint = (workint-1) + 2;
-            $('workint').val(workint);
+            $('#workint').val(workint);
         }
     }
     function hapusworkint(workint) {
@@ -286,9 +286,9 @@
     }
     function tmcalatkerja() {
         var tools = $('#tools').val();
-        var stre='';
+        var stre;
         {
-            stre+=  "<div id='kolom"+tools+"' >"+
+            stre=  "<div id='kolom"+tools+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:10px' >"+
                             "<select class='js-data-example-ajax form-control tools-ajax' name='tools[]' value='{{'$datas->jabatan'}}'></select>"+
                         "</div>"+
@@ -701,6 +701,7 @@
         getjobres(jobparse);
         getjobunit(unitparse);
         getjobtools(toolsparse);
+        //tmcalatkerja(toolsparse);
         getjobmat(matparse);
         getcondition(coparse);
         getpend(penparse);
