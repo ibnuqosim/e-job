@@ -205,6 +205,7 @@
             <ul class="treeview-menu">
               @include('menu.AdminAnalystOD.menujobdesk')
             </ul>
+            @if(Auth::user()->userid=='12610')
             <a href="#">
               <i class="fa fa-legal"></i> <span>Pengaturan</span>
               <span class="pull-right-container">
@@ -214,6 +215,7 @@
             <ul class="treeview-menu">
               @include('menu.AdminAnalystOD.pengaturan')
             </ul>
+            @endif
             @endrole
           </li>
           <li class="treeview">

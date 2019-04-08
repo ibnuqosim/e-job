@@ -318,8 +318,10 @@ class jobdescreateController extends Controller
         $jabanalis = $jessjab->position_name;
 
 
-        $approveanalis                              = 1;
-        $tglapproveanalis                           = date('Y-m-d H:i:s');
+        // $approveanalis                              = 1;
+        // $tglapproveanalis                           = date('Y-m-d H:i:s');
+        $approveanalis                              = 0;
+        $tglapproveanalis                           = '';
 
         $user                                       = $request->namauser;
         $pecahuser                                  = explode("-",$user);
@@ -393,7 +395,7 @@ class jobdescreateController extends Controller
         $data->jabapprove                           = $jabapprove;
         
         $data->approveodhcp                         = 0;
-        $data->posisiprogress                       = 1;
+        $data->posisiprogress                       = 0;
         $data->gambar                               = $path;
 
         $data->save();
@@ -402,13 +404,13 @@ class jobdescreateController extends Controller
         
         $data_id = jobdescreate::orderBy('id','DESC')->first();
 
-        $app_h = new Approval_h();
-        $app_h->jobdescreate_id = $data_id->id;
-        $app_h->nik = $nikanalis;
-        $app_h->nama =$analis;
-        $app_h->sebagai ='Analis';
-        $app_h->waktu =date('Y-m-d H:i:s');
-        $app_h->save();
+        // $app_h = new Approval_h();
+        // $app_h->jobdescreate_id = $data_id->id;
+        // $app_h->nik = $nikanalis;
+        // $app_h->nama =$analis;
+        // $app_h->sebagai ='Analis';
+        // $app_h->waktu =date('Y-m-d H:i:s');
+        // $app_h->save();
 
         
         if($data){
@@ -1081,12 +1083,23 @@ class jobdescreateController extends Controller
 
     public function konfirmasi($id)
     {   
-        //dd($id);
+        $datajob = jobdescreate::where('id',$id)->get();
+        //dd($datajob[0]->nikanalis);
         //$jobdescreate = jobdescreate::where('id',$id)->update(['verifikasi' => 'yes']);    
-        $jobdescreate = jobdescreate::where('id',$id)->update(['approveanalis' => '1','tglapproveanalis' => date("Y-m-d H:i:s"),'posisiprogress'=>2]);    
+        $jobdescreate = jobdescreate::where('id',$id)->update(['approveanalis' => '1','tglapproveanalis' => date("Y-m-d H:i:s"),'posisiprogress'=>1]);    
         
         
         if($jobdescreate){
+            //$data_id = jobdescreate::where('id',$id)->get();
+
+            $app_h = new Approval_h();
+            $app_h->jobdescreate_id = $datajob[0]->id;
+            $app_h->nik = $datajob[0]->nikanalis;
+            $app_h->nama =$datajob[0]->analis;
+            $app_h->sebagai ='Analis';
+            $app_h->waktu =date('Y-m-d H:i:s');
+            $app_h->save();
+
             $hsl='success';
             return $hsl;
         }

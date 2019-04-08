@@ -505,14 +505,14 @@
     }
     function getjobunit(unitparse){
         var no=0;
-        var stre='';
-        var hal='';
-        var halk='';
-        var halks='';
+        var stre;
+        var hal;
+        var halk;
+        var halks;
         for (i = 0; i < unitparse.length; i++) {
             no++;
             console.log(unitparse[i].id_emp_cskt_ltext);
-            stre += "<div id='halsatu"+no+"' >"+
+            stre = "<div id='halsatu"+no+"' >"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<select class='js-data-example-ajax form-control workint-ajax' name='work[]'>"+
                                 "<option value='"+unitparse[i].id_emp_cskt_ltext+"'>"+unitparse[i].id_emp_cskt_ltext+"</option>"+
@@ -522,17 +522,17 @@
                             "<a href='javascript:void(0)' class='btn btn-primary' onclick='hapusworkint("+no+")' >Hapus</a>"+
                         "</div>"+
                     "</div>";
-            hal +=   "<div id='haldua"+no+"'>"+
+            hal =   "<div id='haldua"+no+"'>"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<textarea type='text' class='kolomindi"+no+" form-control' name='divhal[]'>"+unitparse[i].id_hal_internal+"</textarea>"+
                         "</div>"+
                     "</div>";
-            halk +=  "<div id='haltiga"+no+"'>"+
+            halk =  "<div id='haltiga"+no+"'>"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<textarea type='text' class='kolomindi"+no+" form-control' name='divhalk[]'>"+unitparse[i].id_eksternal+"</textarea>"+
                         "</div>"+
                     "</div>"; 
-            halks +=  "<div id='halempat"+no+"'>"+
+            halks =  "<div id='halempat"+no+"'>"+
                         "<div class='col-sm-11' style='margin-bottom:9px' >"+
                             "<textarea type='text' class='kolomindi"+no+" form-control' name='divhalks[]'>"+unitparse[i].id_hal_external+"</textarea>"+
                         "</div>"+

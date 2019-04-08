@@ -103,109 +103,109 @@ function validasimanagerod(id){
         });
         }
 }
-function view_job(id){
-    $.ajax({
-            url: "{{ url('ManagerOD/getjobdescreate') }}/"+id,
-            method: 'get',
-            success: function(data) {
-            console.log(data);
-            console.log(data.item);
-            console.log(data.job);
+// function view_job(id){
+//     $.ajax({
+//             url: "{{ url('ManagerOD/getjobdescreate') }}/"+id,
+//             method: 'get',
+//             success: function(data) {
+//             console.log(data);
+//             console.log(data.item);
+//             console.log(data.job);
             
 
-            //alert(data[0].id);
-             $('#nojabatan').val(data.item[0].no_jabatan);
-             $('#NameofPosition').val(data.item[0].name_jabatan);
-             $('#LvlOrg').val(data.item[0].gol_jabatan);
-             $('#NameofOrgUnitDinas').val(data.item[0].dinas);
-             $('#NameofOrgUnitDivisi').val(data.item[0].divisi);
-             $('#NameofOrgUnitSubDirektorat').val(data.item[0].subdirektorat);
-             $('#NameofOrgUnitDirektorat').val(data.item[0].direktorat);
+//             //alert(data[0].id);
+//              $('#nojabatan').val(data.item[0].no_jabatan);
+//              $('#NameofPosition').val(data.item[0].name_jabatan);
+//              $('#LvlOrg').val(data.item[0].gol_jabatan);
+//              $('#NameofOrgUnitDinas').val(data.item[0].dinas);
+//              $('#NameofOrgUnitDivisi').val(data.item[0].divisi);
+//              $('#NameofOrgUnitSubDirektorat').val(data.item[0].subdirektorat);
+//              $('#NameofOrgUnitDirektorat').val(data.item[0].direktorat);
 
-                // untuk mengambil table dari profil
-             $('#namajabatan').val(data.profil[0].namajabatan);
-             $('#golongan').val(data.profil[0].golongan);
-             $('#nojabatan').val(data.profil[0].nojabatan);
-             $('#noorg').val(data.profil[0].noorg);
-             $('#unitkerja').val(data.profil[0].unitkerja);
-             $('#jobgroup').val(data.profil[0].jobgroup);
+//                 // untuk mengambil table dari profil
+//              $('#namajabatan').val(data.profil[0].namajabatan);
+//              $('#golongan').val(data.profil[0].golongan);
+//              $('#nojabatan').val(data.profil[0].nojabatan);
+//              $('#noorg').val(data.profil[0].noorg);
+//              $('#unitkerja').val(data.profil[0].unitkerja);
+//              $('#jobgroup').val(data.profil[0].jobgroup);
 
-             console.log(data.job.length);
-             var no=0;
-             var html='';
-             for (i = 0; i < data.job.length; i++) {
-                no++;
-                html+='<tr><td>'+no+'</td><td>'+data.job[i].jabatanbawahanlangsung+'</td><td>'+data.job[i].jumlah+'</td></tr>';
-                }
-                $('#jbl').html(html);
+//              console.log(data.job.length);
+//              var no=0;
+//              var html='';
+//              for (i = 0; i < data.job.length; i++) {
+//                 no++;
+//                 html+='<tr><td>'+no+'</td><td>'+data.job[i].jabatanbawahanlangsung+'</td><td>'+data.job[i].jumlah+'</td></tr>';
+//                 }
+//                 $('#jbl').html(html);
 
-            var no2=0;
-            var html2='';
-            for (i = 0; i < data.jobres.length; i++) {
-                no++;
-                html2+='<tr><td>'+data.jobres[i].keterangan+'</td><td>'+data.jobres[i].object+'</td><td>'+data.jobres[i].indikator+'</td></tr>';
-                }
-                $('#uno').html(html2);
-                // }
+//             var no2=0;
+//             var html2='';
+//             for (i = 0; i < data.jobres.length; i++) {
+//                 no++;
+//                 html2+='<tr><td>'+data.jobres[i].keterangan+'</td><td>'+data.jobres[i].object+'</td><td>'+data.jobres[i].indikator+'</td></tr>';
+//                 }
+//                 $('#uno').html(html2);
+//                 // }
 
-            var no3=0;
-            var html3='';
-            for (i = 0; i < data.unit.length; i++) {
-                no++;
-                html3+='<tr><td>'+data.unit[i].id_emp_cskt_ltext+'</td><td>'+data.unit[i].id_hal_internal+'</td><td>'+data.unit[i].id_eksternal+'</td><td>'+data.unit[i].id_hal_external+'</td></tr>';
-                }
-                $('#wowo').html(html3);
+//             var no3=0;
+//             var html3='';
+//             for (i = 0; i < data.unit.length; i++) {
+//                 no++;
+//                 html3+='<tr><td>'+data.unit[i].id_emp_cskt_ltext+'</td><td>'+data.unit[i].id_hal_internal+'</td><td>'+data.unit[i].id_eksternal+'</td><td>'+data.unit[i].id_hal_external+'</td></tr>';
+//                 }
+//                 $('#wowo').html(html3);
 
-            var no4=0;
-            var html4='';
-            for (i = 0; i < data.tools.length; i++) {
-                no++;
-                html4+='<tr><td>'+data.tools[i].id_deskripsi+'</td></tr>';
-                }
-                $('#tools').html(html4);
+//             var no4=0;
+//             var html4='';
+//             for (i = 0; i < data.tools.length; i++) {
+//                 no++;
+//                 html4+='<tr><td>'+data.tools[i].id_deskripsi+'</td></tr>';
+//                 }
+//                 $('#tools').html(html4);
             
-            var no5=0;
-            var html5='';
-            for (i = 0; i < data.mat.length; i++) {
-                no++;
-                html5+='<tr><td>'+data.mat[i].id_deskripsi+'</td></tr>';
-                }
-                $('#mat').html(html5);
+//             var no5=0;
+//             var html5='';
+//             for (i = 0; i < data.mat.length; i++) {
+//                 no++;
+//                 html5+='<tr><td>'+data.mat[i].id_deskripsi+'</td></tr>';
+//                 }
+//                 $('#mat').html(html5);
             
-            var no6=0;
-            var html6='';
-            for (i = 0; i < data.co.length; i++) {
-                no++;
-                html6+='<tr><td>'+data.co[i].id_deskripsi+'</td></tr>';
-                }
-                $('#co').html(html6);
+//             var no6=0;
+//             var html6='';
+//             for (i = 0; i < data.co.length; i++) {
+//                 no++;
+//                 html6+='<tr><td>'+data.co[i].id_deskripsi+'</td></tr>';
+//                 }
+//                 $('#co').html(html6);
 
-            var no7=0;
-            var html7='';
-            for (i = 0; i < data.pen.length; i++) {
-                no++;
-                html7+='<tr><td>'+data.pen[i].id_jenjang+'</td></tr>';
-                }
-                $('#pen').html(html7);
+//             var no7=0;
+//             var html7='';
+//             for (i = 0; i < data.pen.length; i++) {
+//                 no++;
+//                 html7+='<tr><td>'+data.pen[i].id_jenjang+'</td></tr>';
+//                 }
+//                 $('#pen').html(html7);
             
-            var no8=0;
-            var html8='';
-            for (i = 0; i < data.ker.length; i++) {
-                no++;
-                html8+='<tr><td>'+data.ker[i].id_keterangan+'</td></tr>';
-                }
-                $('#ker').html(html8);
+//             var no8=0;
+//             var html8='';
+//             for (i = 0; i < data.ker.length; i++) {
+//                 no++;
+//                 html8+='<tr><td>'+data.ker[i].id_keterangan+'</td></tr>';
+//                 }
+//                 $('#ker').html(html8);
             
-            var no9=0;
-            var html9='';
-            for (i = 0; i < data.profil_d.length; i++) {
-                no9++;
-                html9+='<tr><td>'+no9+'</td><td>'+data.profil_d[i].groupaspek+'</td><td>'+data.profil_d[i].namakompetensi+'</td><td>'+data.profil_d[i].proficiency+'</td></tr>';
-                }
-                $('#profil_d').html(html9);
-           }
-        });
-}
+//             var no9=0;
+//             var html9='';
+//             for (i = 0; i < data.profil_d.length; i++) {
+//                 no9++;
+//                 html9+='<tr><td>'+no9+'</td><td>'+data.profil_d[i].groupaspek+'</td><td>'+data.profil_d[i].namakompetensi+'</td><td>'+data.profil_d[i].proficiency+'</td></tr>';
+//                 }
+//                 $('#profil_d').html(html9);
+//            }
+//         });
+// }
 </script>
 @endsection
 

@@ -118,134 +118,7 @@
         }
     }
 
-    function view_job(id) {
-        $.ajax({
-            url: "{{ url('AdminAnalystOD/getjobdescreate') }}/" + id,
-            method: 'get',
-            success: function (data) {
-                console.log(data);
-                console.log(data.item);
-                console.log(data.job);
-
-
-                //alert(data[0].id);
-                $('#nojabatan').val(data.item[0].no_jabatan);
-                $('#NameofPosition').val(data.item[0].name_jabatan);
-                $('#LvlOrg').val(data.item[0].gol_jabatan);
-                $('#NameofOrgUnitDinas').val(data.item[0].dinas);
-                $('#NameofOrgUnitDivisi').val(data.item[0].divisi);
-                $('#NameofOrgUnitSubDirektorat').val(data.item[0].subdirektorat);
-                $('#NameofOrgUnitDirektorat').val(data.item[0].direktorat);
-                $('#finansial').val(data.item[0].finansial);
-                $('#nonfinansial').val(data.item[0].nonfinansial);
-
-                // untuk mengambil table dari profil
-                $('#namajabatan').val(data.profil[0].namajabatan);
-                $('#golongan').val(data.profil[0].golongan);
-                $('#nojabatan').val(data.profil[0].nojabatan);
-                $('#noorg').val(data.profil[0].noorg);
-                $('#unitkerja').val(data.profil[0].unitkerja);
-                $('#jobgroup').val(data.profil[0].jobgroup);
-
-                console.log(data.job.length);
-                var no ='-';
-                var html = '';
-                    html+=':';
-                for (i = 0; i < data.job.length; i++) {
-                    //no++;
-                    html += ' <table width="100%"><tr><td>' + no + '</td><td>' + data.job[i].jabatanbawahanlangsung + '</td><td>' + data.job[i].jumlah + '</td></tr></table>';
-                }
-                $('#jbl').html(html);
-
-                var no2 = 0;
-                var html2 = '';
-                for (i = 0; i < data.jobres.length; i++) {
-                    no++;
-                    html2 += '<tr><td colspan="4">' + data.jobres[i].keterangan +' '+data.jobres[i].object +'</td><td colspan="3">' + data.jobres[i].indikator + '</td></tr>';
-                }
-                $('#uno').html(html2);
-                // }
-
-                var no3 = 0;
-                var int = '';
-                var halint='';
-                var eks='';
-                var haleks='';
-                for (i = 0; i < data.unit.length; i++) {
-                    no++;
-                    //html3 += '<tr><td>' + data.unit[i].id_emp_cskt_ltext + '</td><td>' + data.unit[i].id_hal_internal + '</td><td>' + data.unit[i].id_eksternal + '</td><td>' + data.unit[i].id_hal_external + '</td></tr>';
-                    int+='-'+data.unit[i].id_emp_cskt_ltext;
-                    halint+='-'+data.unit[i].id_hal_internal;
-                    eks+='-'+data.unit[i].id_hal_external;
-                    haleks+='-'+data.unit[i].id_eksternal;
-                }
-                $('#in').html(int);
-                $('#halin').html(halint);
-                $('#eks').html(eks);
-                $('#haleks').html(haleks);
-
-                var no4 = 0;
-                var html4 = '';
-                for (i = 0; i < data.tools.length; i++) {
-                    no++;
-                    //html4 += '<tr><td>' + data.tools[i].id_deskripsi + '</td></tr>';
-                    html4+='-'+data.tools[i].id_deskripsi;
-                }
-                $('#tools').html(html4);
-
-                var no5 = 0;
-                var html5 = '';
-                for (i = 0; i < data.mat.length; i++) {
-                    no++;
-                   // html5 += '<tr><td>' + data.mat[i].id_deskripsi + '</td></tr>';
-                    html5+='-'+data.mat[i].id_deskripsi;
-                }
-                $('#mat').html(html5);
-
-                var no6 = 0;
-                var html6 = '';
-                for (i = 0; i < data.co.length; i++) {
-                    no++;
-                    //html6 += '<tr><td>' + data.co[i].id_deskripsi + '</td></tr>';
-                    html6+='-'+data.co[i].id_deskripsi;
-                }
-                $('#co').html(html6);
-
-                var no7 = 0;
-                var html7 = '';
-                for (i = 0; i < data.pen.length; i++) {
-                    no++;
-                    html7 += '<tr><td>' + data.pen[i].id_jenjang + '</td></tr>';
-                }
-                $('#pen').html(html7);
-
-                var no8 = 0;
-                var html8 = '';
-                for (i = 0; i < data.ker.length; i++) {
-                    no++;
-                    html8 += '<tr><td>' + data.ker[i].id_keterangan + '</td></tr>';
-                }
-                $('#ker').html(html8);
-
-                var no9 = 0;
-                var html9 = '';
-                for (i = 0; i < data.profil_d.length; i++) {
-                    no9++;
-                    html9 += '<tr><td>' + no9 + '</td><td>' + data.profil_d[i].groupaspek + '</td><td>' + data.profil_d[i].namakompetensi + '</td><td>' + data.profil_d[i].proficiency + '</td></tr>';
-                }
-                $('#profil_d').html(html9);
-
-                var no10 = 0;
-                var html10 = '';
-                for (i = 0; i < data.fisik.length; i++) {
-                    no++;
-                    html10 += '<tr><td>' + data.fisik[i].id_persyaratan + '</td></tr>';
-                }
-                $('#fisik').html(html10);
-            }
-
-        });
-    }
+    
 </script>
 @endsection
 @section('content')
@@ -327,6 +200,8 @@
                             <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#modal-approval" onclick="showapproval({{$item}});"><i class="fa  fa-spinner" title="Menunggu validasi user/atasan"></i></a>
                             @elseif($item->posisiprogress==2)
                             <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#modal-approval" onclick="showapproval({{$item}});"><i class="fa  fa-spinner" title="Menunggu validasi manager odhcp"></i></a>
+                            @elseif($item->posisiprogress==0)
+                            <a class="btn btn-warning" href="#" data-toggle="modal" data-target="#modal-approval" onclick="showapproval({{$item}});"><i class="fa  fa-spinner" title="Draft"></i></a>
 
                             @elseif($item->posisiprogress==4)
                             <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#modal-approval" onclick="showapproval({{$item}});"><i class="fa    fa-briefcase" title="Status kadaluarsa tanggal : {{$item->tglkadaluarsa}}"></i></a>
@@ -342,10 +217,10 @@
                             {{-- <a class="glyphicon glyphicon-print" href="javascrpt:void(0)" onclick="printJS('print{{$item->id}}', 'html')"></a>
                             --}}
                             <a class="glyphicon glyphicon-print" href="{{ url('AdminAnalystOD/pdf',['id'=>$item->id]) }}"></a>
-                            @if($item->approveanalis==null && $item->konfirmvalidanalis==1)
+                            @if($item->approveanalis==0)
                             <a class="glyphicon glyphicon-thumbs-up" title="Klik di sini untuk validasi !" onclick="validasianalis({{ $item->id }});"></a>
                             @endif
-                            @if($item->posisiprogress==3)
+                            @if($item->posisiprogress==3 && Auth::user()->userid=='12610')
                             <a class="glyphicon glyphicon glyphicon-briefcase" title="Klik di sini sebagai kadaluarsa !"
                                 onclick="kadaluarsa({{ $item->id }});"></a>
                             @endif

@@ -20,7 +20,7 @@ class UserListJoblistController extends Controller
         ->where('status',0)
         ->count();
         $userid  = Auth::user()->userid;
-        $tj = jobdescreate::where('nikuser',$userid)->get();
+        $tj = jobdescreate::where('nikuser',$userid)->where('posisiprogress','>=',1)->get();
         $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
         return view('menu.UserSuptMgrGM.listjobdescreate',$data);
 
