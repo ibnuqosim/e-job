@@ -18,7 +18,7 @@ class ManagerController extends Controller
         $koreksi = history_pesan::where('nik',Auth::user()->userid)
         ->where('status',0)
         ->count();
-        $tj = jobdescreate::where('nikapprove',Auth::user()->userid)->get();
+        $tj = jobdescreate::where('nikapprove',Auth::user()->userid)->where('posisiprogress','>=',1)->get();
         $data = ['jobdescreate'=>'test','tj'=>$tj,'data'=>$tj,'koreksi'=>$koreksi];
         return view('menu.ManagerOD.Listmanagerod',$data);
         // return view('UserSuptMgrGM.ListJoblist');

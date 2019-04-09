@@ -10,7 +10,7 @@ function view_job(id) {
 
 
                 //alert(data[0].id);
-                $('#nojabatan').val(data.item[0].no_jabatan);
+                $('#nojabatantd').html(data.item[0].no_jabatan);
                 $('#NameofPosition').val(data.item[0].name_jabatan);
                 $('#LvlOrg').val(data.item[0].gol_jabatan);
                 $('#NameofOrgUnitDinas').val(data.item[0].dinas);
@@ -171,7 +171,7 @@ function view_job(id) {
                                         <tr class="isi">
                                             <td width="25%">No. Jabatan (Job No)</td>
                                             <td align="center" width="2%">:</td>
-                                            <td>{{$item->no_jabatan}}</td>
+                                            <td id="nojabatantd"></td>
                                             <td>Gol.Jabatan (Job Level) :</td>
                                             <td align="center">{{$item->gol_jabatan}}</td>
                                         </tr>
@@ -425,7 +425,7 @@ function view_job(id) {
                         <td width=50%>No Jabatan</td>
                         <td>:</td>
                         <td width=50%>    
-                            <input type="text" readonly class="form-control" id="nojabatan" name="nojabatan" value="{{$item->nojabatan}}" size="70px">
+                            <input type="text" readonly class="form-control" id="nojabatan" name="nojabatan" size="70px">
                         </td>
                     </tr>
                     <tr>

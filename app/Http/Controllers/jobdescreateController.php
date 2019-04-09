@@ -293,7 +293,7 @@ class jobdescreateController extends Controller
         $getjab                                     = $request->getjab;
         //dd($getjab);
         $LvlOrg                                     = $request->LvlOrg;
-        $NameofPosition                             = $request->NameofPosition;
+        $NameofPosition                             = preg_replace('/\s*\([a-zA-Z0-9]+\)/', '', $request->NameofPosition);
         $NameofOrgUnitDinas                         = $request->NameofOrgUnitDinas;
         $NameofOrgUnitDivisi                        = $request->NameofOrgUnitDivisi;
         $NameofOrgUnitSubDirektorat                 = $request->NameofOrgUnitSubDirektorat;
@@ -434,7 +434,7 @@ class jobdescreateController extends Controller
                     $job->save();
                 }
             }else{
-                echo "list kosong";
+                echo "";
                 die();
 
             }
@@ -457,6 +457,8 @@ class jobdescreateController extends Controller
                     $jobdescreate_res->id_met_kewenangan = isset($request->divwew[$i])?$request->divwew[$i]:'';
                     $jobdescreate_res->save();
                 }
+            }else{
+                echo "";
             }
 
             if($request->work || $request->divhal || $request->divhalk || $request->divhalks){
@@ -476,6 +478,8 @@ class jobdescreateController extends Controller
                     $jobdescreate_unitkerja->id_hal_external = isset($request->divhalks[$i])?$request->divhalks[$i]:NULL;
                     $jobdescreate_unitkerja->save();
                 }
+            }else{
+                echo "";
             }
 
             if($request->tools){
@@ -488,6 +492,8 @@ class jobdescreateController extends Controller
                     $jobdescreate_tools->id_deskripsi = isset($request->tools[$i])?$request->tools[$i]:NULL;
                     $jobdescreate_tools->save();
                 }
+            }else{
+                echo "";
             }
 
             if($request->materials){
@@ -500,6 +506,8 @@ class jobdescreateController extends Controller
                     $jobdescreate_materials->id_deskripsi = isset($request->materials[$i])?$request->materials[$i]:NULL;
                     $jobdescreate_materials->save();
                 }
+            }else{
+                echo "";
             }
 
             if($request->conditions){
@@ -512,6 +520,8 @@ class jobdescreateController extends Controller
                     $jobdescreate_conditions->id_deskripsi = isset($request->conditions[$i])?$request->conditions[$i]:NULL;
                     $jobdescreate_conditions->save();
                 }
+            }else{
+                echo "";
             }
 
             if($request->pen){
@@ -524,6 +534,8 @@ class jobdescreateController extends Controller
                     $jobdescreate_pen->id_jenjang = isset($request->pen[$i])?$request->pen[$i]:NULL;
                     $jobdescreate_pen->save();
                 }
+            }else{
+                echo "";
             }
 
             if($request->penga){
@@ -536,6 +548,8 @@ class jobdescreateController extends Controller
                     $jobdescreate_penga->id_keterangan = isset($request->penga[$i])?$request->penga[$i]:NULL;
                     $jobdescreate_penga->save();
                 }
+            }else{
+                echo "";
             }
 
             if($request->namajabatan || $request->noorg || $request->golongan || $request->unitkerja || $request->nojabatan || $request->job ){
@@ -557,6 +571,8 @@ class jobdescreateController extends Controller
                 $profil->jobgroup         = $jobgroup;
                 
                 $profil->save();
+            }else{
+                echo "";
             }
 
             if($request->groupaspek || $request->namakompetensi || $request->proficiency ){
@@ -574,6 +590,8 @@ class jobdescreateController extends Controller
                     $profil_detail->proficiency = isset($request->proficiency[$i])?$request->proficiency[$i]:'';
                     $profil_detail->save();
                 }
+            }else{
+                echo "";
             }
             
             if($request->fisik){
@@ -586,6 +604,8 @@ class jobdescreateController extends Controller
                     $jobdescreate_fisik->id_persyaratan = isset($request->fisik[$i])?$request->fisik[$i]:'';
                     $jobdescreate_fisik->save();
                 }
+            }else{
+                echo "";
             }
             
             return redirect('/AdminAnalystOD/listjobdescreate')->with('status', 'Berhasil di Simpan');

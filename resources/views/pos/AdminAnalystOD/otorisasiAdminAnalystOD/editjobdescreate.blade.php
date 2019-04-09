@@ -905,7 +905,7 @@
                         <div class="form-group" id="divindi">
                             <input class="form-control" name="id_met_indikatorvalue"  id="divresk" value="1" type="hidden" />
                         </div>
-                        <label>
+                        {{-- <label>
                             <h6>
                                 Melaksanakan setiap tugas dan tanggung jawab dengan memerhatikan aspek dan 
                                 kondisi keuangan perusahaan serta mendukung program penghematan perusahaan.
@@ -928,7 +928,13 @@
                             <h6>
                                 Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku
                             </h6>
-                        </label>
+                        </label> --}}
+                        <p>Melaksanakan setiap tugas dan tanggung jawab dengan memerhatikan aspek dan kondisi keuangan
+                            perusahaan serta mendukung program penghematan perusahaan.<br>Penghematan Unit Kerja</p><br>
+                        <p>Melaksanakan tugas sesuai dengan Sistem Manajemen Krakatau Steel (SMKS) dan 
+                            peraturan/kebijakan yang berlaku baik internal (Prosedur, WI, SOP, PKB) maupun eksternal
+                            (Perpres, Permen, Kepmen, dll) untuk menghasilkan kualitas kerja yang tinggi dan memenuhi 
+                            standar yang ditetapkan.<br> Pelaksanaan kerja sesuai proses bisnis perusahaan serta peraturan yang berlaku</p>
                     </div>
                 </div>
             </div>
