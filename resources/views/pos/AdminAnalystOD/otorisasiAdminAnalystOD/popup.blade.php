@@ -4,13 +4,23 @@ function view_job(id) {
             url: "{{ url('AdminAnalystOD/getjobdescreate') }}/" + id,
             method: 'get',
             success: function (data) {
-                console.log(data);
-                console.log(data.item);
-                console.log(data.job);
+                // console.log(data);
+                // console.log(data.item);
+                // console.log(data.job);
+                console.log(data.jobres);
 
 
                 //alert(data[0].id);
                 $('#nojabatantd').html(data.item[0].no_jabatan);
+                $('#goljabatantd').html(data.item[0].gol_jabatan);
+                $('#namajabatantd').html(data.item[0].name_jabatan);
+                $('#dinastd').html(data.item[0].dinas);
+                $('#divisitd').html(data.item[0].divisi);
+                $('#subdirtd').html(data.item[0].subdirektorat);
+                $('#jabatasantd').html(data.item[0].direktorat);
+                $('#jobroletd').html(data.item[0].jobrole);
+                
+                
                 $('#NameofPosition').val(data.item[0].name_jabatan);
                 $('#LvlOrg').val(data.item[0].gol_jabatan);
                 $('#NameofOrgUnitDinas').val(data.item[0].dinas);
@@ -46,7 +56,17 @@ function view_job(id) {
                 }
                 $('#uno').html(html2);
                 // }
-
+                //wewenang
+                var nowew =0;
+                var wewen ='';
+                wewen+='<table>';
+                for(i = 0; i < data.jobres.length; i++){
+                    nowew++;
+                    
+                    wewen+='<tr><td>'+nowew+'. </td><td> '+data.jobres[i].id_met_kewenangan+'</td></tr>';
+                }
+                wewen+='</table>';
+                $('#wewenang').html(wewen);
                 var no3 = 0;
                 var int = '';
                 var halint='';
@@ -172,35 +192,35 @@ function view_job(id) {
                                             <td width="25%">No. Jabatan (Job No)</td>
                                             <td align="center" width="2%">:</td>
                                             <td id="nojabatantd"></td>
-                                            <td>Gol.Jabatan (Job Level) :</td>
-                                            <td align="center">{{$item->gol_jabatan}}</td>
+                                            <td >Gol.Jabatan (Job Level) :</td>
+                                            <td align="center" id="goljabatantd"></td>
                                         </tr>
                                         <tr class="isi">
                                             <td width="25%">Nama Jabatan (Job Name)</td>
                                             <td align="center" width="2%">:</td>
-                                            <td colspan="3">{{$item->name_jabatan}}</td>
+                                            <td colspan="3" id="namajabatantd"></td>
                                         </tr>
                                         <tr class="isi">
                                             <td width="25%">Dinas (Official)</td>
                                             <td align="center" width="2%">:</td>
-                                            <td colspan="3">{{$item->dinas}}</td>
+                                            <td colspan="3" id="dinastd"></td>
                                         </tr>
                                         <tr class="isi">
                                             <td width="25%">Divisi (Division)</td>
                                             <td align="center" width="2%">:</td>
-                                            <td colspan="3">{{$item->divisi}}</td>
+                                            <td colspan="3" id="divisitd"></td>
                                         </tr>
                                         <tr class="isi">
                                             <td width="25%">Subdirektorat (Subdirectorate)</td>
                                             <td align="center" width="2%">:</td>
-                                            <td colspan="3">{{$item->subdirektorat}}</td>
+                                            <td colspan="3" id="subdirtd"></td>
                                         </tr>
                                         <tr>
                                             <td colspan="7">
                                                 <table width="100%">
                                                     <tr class="isi">
                                                         <td width="26%">Bertanggung jawab langsung kepada<br>(Directly Responsible to)</td>
-                                                        <td>: {{$item->job[0]->jabatanatasanlangsung}}</td>
+                                                        <td id="jabatasantd">:</td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -226,7 +246,7 @@ function view_job(id) {
                                 <td colspan="7" class="subjudul"><b>II.TUJUAN JABATAN (Primary Job Role)</b></td>
                             </tr>
                             <tr>
-                                <td colspan="7" class="isi">{{$item->jobrole}}</td>
+                                <td colspan="7" class="isi" id="jobroletd"></td>
                             </tr>
                             <tr>
                                 <td colspan="7" class="subjudul"><b>III.TANGGUNG JAWAB UTAMA (Main Responsibility)</b></td>
@@ -276,8 +296,8 @@ function view_job(id) {
                                     <td colspan="7" class="subjudul"><b>V. WEWENANG (Authorities)</b></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="7" class="isi">
-                                        <table width="100%" border="0">
+                                    <td colspan="7" class="isi" id="wewenang">
+                                        {{-- <table width="100%" border="0">
                                             <?php $no=1; ?>
                                             @foreach ($item->jobdescreate_res as $item3)
                             
@@ -287,7 +307,7 @@ function view_job(id) {
                                             </tr>
                                             <?php $no++; ?>
                                             @endforeach
-                                        </table>
+                                        </table> --}}
                                     </td>
                                 </tr>
                                 <tr>
