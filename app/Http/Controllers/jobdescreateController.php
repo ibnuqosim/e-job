@@ -1017,7 +1017,7 @@ class jobdescreateController extends Controller
     {   
         $arr = [];
         $ret = [];
-        $ret = file_get_contents('http://10.10.10.97:8000/api/zhrom0007');
+        $ret = file_get_contents('http://eos.krakatausteel.com/api/zhrom0007');
         $jess=json_decode($ret);
         $collection = collect($jess);
         $filtered = $collection->filter(function ($value, $key) use ($request) {
@@ -1048,7 +1048,7 @@ class jobdescreateController extends Controller
         //   ->groupBy('AbbrPosition')
         //   ->first();
         //$data = [];
-        $data    = file_get_contents('http://10.10.10.97:8000/api/zhrom0007/AbbrPosition/'.$jabatan);
+        $data    = file_get_contents('http://eos.krakatausteel.com/api/zhrom0007/AbbrPosition/'.$jabatan);
         $jessdata   =json_decode($data); 
         $collection = collect($jessdata);
         //dd($data);    
@@ -1063,7 +1063,7 @@ class jobdescreateController extends Controller
         //         ->where('nojabatan',$kode)
         //         ->get();
         // return $data;
-        $data    = file_get_contents('http://10.10.10.97:8000/api/zhrom0013/nojabatan/'.$kode);
+        $data    = file_get_contents('http://eos.krakatausteel.com/api/zhrom0013/nojabatan/'.$kode);
         $jessdata   =json_decode($data); 
         $collection = collect($jessdata);
         //dd($data);    
@@ -1076,7 +1076,7 @@ class jobdescreateController extends Controller
         // ->groupBy('nojabatan')
         // ->first();       
         // return $data;
-        $data    = file_get_contents('http://10.10.10.97:8000/api/zhrom0012/nojabatan/'.$un);
+        $data    = file_get_contents('http://eos.krakatausteel.com/api/zhrom0012/nojabatan/'.$un);
         $jessdata   =json_decode($data); 
         $collection = collect($jessdata);
         //dd($collection);    
@@ -1093,7 +1093,7 @@ class jobdescreateController extends Controller
         //         ->groupBy('namakompetensi')
         //         ->get();
         // return $data;
-        $data    = file_get_contents('http://10.10.10.97:8000/api/zhrom0012/nojabatan/'.$kode);
+        $data    = file_get_contents('http://eos.krakatausteel.com/api/zhrom0012/nojabatan/'.$kode);
         $jessdata   =json_decode($data); 
         $collection = collect($jessdata);
         //dd($data);    

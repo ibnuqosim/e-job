@@ -29,7 +29,6 @@ class SendApprovalEmailNotif
     public function handle(JobdescApproved $event)
     {
         $to = $event->jobdesc->nikapprove()->first();
-
         Mail::to($to->email)
             ->send(new JobdescEmailNotification($event->jobdesc));
     }
