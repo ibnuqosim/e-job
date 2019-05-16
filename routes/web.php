@@ -12,15 +12,9 @@
 */
 Auth::routes();
 
-Route::get('/', function () {
-    if(!Auth::user()){
-        return view('auth.login');
-    }else{
-        return redirect()->route('home');
-    }
+Route::group([ 'middleware' => 'auth' ], function (){ 
+    Route::get('/', 'HomeController@index')->name('home'); 
 });
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']], function () {
         

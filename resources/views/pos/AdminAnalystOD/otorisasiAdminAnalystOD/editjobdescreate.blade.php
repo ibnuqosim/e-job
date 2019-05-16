@@ -836,7 +836,7 @@
                     </tr>
                     <tr>
                         <td> 
-                            <input type="text" class="form-control" id="AbbrOrgUnitDivisi" value="x" name="AbbrOrgUnitDivisi" >
+                            <input type="hidden" class="form-control" id="AbbrOrgUnitDivisi" value="x" name="AbbrOrgUnitDivisi" >
                         </td>
                     </tr>
                 </table>

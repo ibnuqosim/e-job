@@ -51,6 +51,8 @@
     $('#AbbrPosition').on('select2:select', function (e) {
         
         var data = e.params.data;
+        console.log(data);
+        //return false;
         selectPosition(data); 
         nojabatan(data);
         abbdetail(data);
@@ -157,6 +159,7 @@
 
     function resjabatan() {
         var res = $('#res').val();
+        
         var stre;
 
         var gol =  $('#LvlOrg').val();
