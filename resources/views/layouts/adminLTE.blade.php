@@ -50,7 +50,7 @@
 
     <header class="main-header">
       <!-- Logo -->
-      <a href="{{ url('home/') }}" class="logo">
+      <a href="{{ url('/') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>E</b>_Job</span>
         <!-- logo for regular state and mobile devices -->
@@ -147,9 +147,9 @@
               @endguest
             </li>
             <!-- Control Sidebar Toggle Button -->
-            <li>
+            {{-- <li>
               <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-            </li>
+            </li> --}}
           </ul>
         </div>
       </nav>
@@ -169,7 +169,7 @@
           </div>
         </div>
         <!-- search form -->
-        <form action="#" method="get" class="sidebar-form">
+        {{-- <form action="#" method="get" class="sidebar-form">
           <div class="input-group">
             <input type="text" name="q" class="form-control" placeholder="Search...">
             <span class="input-group-btn">
@@ -177,7 +177,7 @@
               </button>
             </span>
           </div>
-        </form>
+        </form> --}}
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
@@ -297,7 +297,7 @@
       {{-- <div class="pull-right hidden-xs">
         <b>Version</b> 2.4.0
       </div> --}}
-      <strong>Copyright &copy; 2018-2019 <a href="http://e-job.site/home">Krakatau information Technology</a>.</strong> All
+      <strong>Copyright &copy; 2018-2019 <a href="#">Krakatau information Technology</a>.</strong> All
       rights reserved.
     </footer>
 
@@ -306,7 +306,7 @@
       <!-- Create the tabs -->
       <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
         <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+        {{-- <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li> --}}
       </ul>
       <!-- Tab panes -->
       <div class="tab-content">

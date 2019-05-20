@@ -22,14 +22,16 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers{
+        logout as performLogout;
+    }
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -40,6 +42,15 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function logout(Request $request)
+    {
+    // do the normal logout
+    $this->performLogout($request);
+    
+    // redirecto to sso
+    return redirect()->away('https://sso.krakatausteel.com');
+    }
+    
     public function programaticallyEmployeeLogin(Request $request, $personnel_no, $email)
     {
     $personnel_no = base64_decode($personnel_no);
@@ -76,12 +87,17 @@ class LoginController extends Controller
     // Programmatically login user
     $userlogin = users::where('userid', $personnel_no)->first();
     //dd($userlogin);
-    Auth::loginUsingId($userlogin->id);
-    return redirect()
-    ->route('home');
+    if(is_null($userlogin)){
+        return redirect('https://sso.krakatausteel.com');
+    }else{
+        Auth::loginUsingId($userlogin->id);
+        return redirect()
+        ->route('home');
+    }
+    
     } catch (ModelNotFoundException $e) {
     
-    return 'Employee not found!';
+    return redirect('https://sso.krakatausteel.com');
     }
 
     return $this->sendLoginResponse($request);
