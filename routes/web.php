@@ -11,6 +11,8 @@
 |
 */
 Auth::routes();
+Route::get('a/{personnel_no}/{email}', 'Auth\LoginController@programaticallyEmployeeLogin')
+->name('login.a');
 
 Route::group([ 'middleware' => 'auth' ], function (){ 
     Route::get('/', 'HomeController@index')->name('home'); 
