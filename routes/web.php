@@ -18,9 +18,7 @@ Route::group([ 'middleware' => 'auth' ], function (){
 
 Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']], function () {
         
-            Route::get('/', function(){
-                return redirect('AdminAnalystOD/listjobdescreate');
-            });
+            Route::get('/', 'jobdescreateController@index');
             Route::get('/list_bahankerja','bahankerjaController@index');
             Route::get('/fromAddbahankerja','bahankerjaController@fromAdd');
             Route::post('/storebahankerja','bahankerjaController@store'); 
@@ -87,7 +85,6 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
 
             //list jobs create
             Route::get('/listjobdescreate','jobdescreateController@index');
-            // Route::get('/listjobdescreate','jobdescreateController@showpopup');
             Route::get('/formjobdescreate','jobdescreateController@fromAdd');
             Route::post('/storejobdescreate','jobdescreateController@store');
             Route::get('/editjobdescreate/{id?}','jobdescreateController@edit');
@@ -156,9 +153,7 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
 
         Route::prefix('UserSuptMgrGM')->group(function(){
 
-            Route::get('/', function(){
-                return redirect('UserSuptMgrGM/listjobdescreate');
-            });
+            Route::get('/', 'UserListJoblistController@index');
             Route::get('/editing','editingJobController@index');
             Route::get('/listjobdescreate','UserListJoblistController@index');
             Route::get('/show-ajax','UserListJoblistController@ShowAjax');
@@ -175,9 +170,6 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
     Route::group(['middleware'=>['auth', 'role:ManagerOD']], function () {
         
         Route::prefix('ManagerOD')->group(function(){
-            Route::get('/', function(){
-                echo  "ManagerOD";
-            });
             Route::get('/Listmanagerod','ManagerController@index');
             Route::get('/show-ajax','ManagerController@ShowAjax');
             Route::get('/show-ajax','ManagerController@ShowAjax');
@@ -193,9 +185,6 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
     Route::group(['middleware'=>['auth', 'role:SpecialistHCD']], function () {
         
         Route::prefix('SpecialistHCD')->group(function(){
-            Route::get('/', function(){
-                echo  "SpecialistHCD";
-            });
             Route::get('/listSpecialist','SpecialistHCDController@index');
             Route::get('/show-ajax','SpecialistHCDController@ShowAjax');
             Route::get('/show-ajax','SpecialistHCDController@ShowAjax');
@@ -203,20 +192,5 @@ Route::group(['prefix'=>'AdminAnalystOD','middleware'=>['role:AdminAnalystOD']],
             Route::get('/show-historypesan/{id}','SpecialistHCDController@showhistorypesan');
         });
     });
-
-    Route::group(['middleware'=>['auth', 'role:InternalAuditor']], function () {
-        
-        Route::get('/InternalAuditor', function(){
-            echo  "InternalAuditor";
-        });
-        
-    });
-    Route::group(['middleware'=>['auth', 'role:AdministratorSMKS']], function () {
-        
-        Route::get('/AdministratorSMKS', function(){
-            return redirect('AdministratorSMKS');
-        });
-       
-});
 Route::get('/debug','debugController@index');
 Route::get('/cetakpdf/{id?}','jobdescreateController@cetakpdf');
