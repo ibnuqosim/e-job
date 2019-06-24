@@ -19,7 +19,18 @@ class debugController extends Controller
         // foreach ($data->structdisp as $key => $value) {
         //    var_dump($value->empname);
         // }
-        $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid.'/minManagerBoss');
+        $lokfile =storage_path()."\app\public\cacert.pem";
+       // dd($lokfile);
+        $arrContextOptions=array(
+          "ssl"=>array(
+            "cafile" => $lokfile,
+            "verify_peer"=> true,
+            "verify_peer_name"=> true,
+          ),
+        );
+        $ret = file_get_contents('https://portal.krakatausteel.com/eos/api/structdisp/'.$userid.'/minManagerBoss', false, stream_context_create($arrContextOptions));
+
+        //$ret = file_get_contents('https://portal.krakatausteel.com/eos/api/structdisp/'.$userid.'/minManagerBoss');
         $jess=json_decode($ret);
         return dd($jess);
    }

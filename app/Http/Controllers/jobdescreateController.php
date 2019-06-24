@@ -46,6 +46,13 @@ use File;
 
 class jobdescreateController extends Controller
 {
+    public $arrContextOptions=array(
+        "ssl"=>array(
+            "verify_peer"=> false,
+            "verify_peer_name"=> false,
+        ),
+      );
+
     public function index(Request $request)
     {
         $userid  = Auth::user()->userid;
@@ -313,7 +320,8 @@ class jobdescreateController extends Controller
         //cari nama jabatan analis
         
         $retjab    = [];
-        $retjab    = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid);
+        //$retjab    = file_get_contents('https://portal.krakatausteel.com/eos/api/structdisp/'.$userid);
+        $retjab = file_get_contents('https://portal.krakatausteel.com/eos/api/structdisp/'.$userid, false, stream_context_create($this->arrContextOptions));
         $jessjab   =json_decode($retjab);
         $jabanalis = $jessjab->position_name;
 
@@ -338,7 +346,8 @@ class jobdescreateController extends Controller
         //manajer odhcp
         
         $ret = [];
-        $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/'.$userid.'/minManagerBoss');
+        //$ret = file_get_contents('https://portal.krakatausteel.com/eos/api/structdisp/'.$userid.'/minManagerBoss');
+        $ret = file_get_contents('https://portal.krakatausteel.com/eos/api/structdisp/'.$userid.'/minManagerBoss', false, stream_context_create($this->arrContextOptions));
         $jess=json_decode($ret);
         //dd($jess);
         $nikapprove                                  = $jess->personnel_no;
@@ -814,7 +823,8 @@ class jobdescreateController extends Controller
         // return $ret;
         $arr = [];
         $ret = [];
-        $ret = file_get_contents('http://eos.krakatausteel.com/api/organization/level');
+        //$ret = file_get_contents('https://portal.krakatausteel.com/eos/api/organization/level');
+        $ret = file_get_contents('https://portal.krakatausteel.com/eos/api/organization/level', false, stream_context_create($this->arrContextOptions));
         $jess=json_decode($ret);
         $collection = collect($jess);
 
@@ -961,7 +971,8 @@ class jobdescreateController extends Controller
     {   
         $arr = [];
         $ret = [];
-        $ret = file_get_contents('http://eos.krakatausteel.com/api/structdisp/shortAbbrOrg/'.$id);
+        //$ret = file_get_contents('https://portal.krakatausteel.com/eos/api/structdisp/shortAbbrOrg/'.$id);
+        $ret = file_get_contents('https://portal.krakatausteel.com/eos/api/structdisp/shortAbbrOrg/'.$id, false, stream_context_create($this->arrContextOptions));
         $jess=json_decode($ret);
         $collection = collect($jess);
 
@@ -1017,7 +1028,8 @@ class jobdescreateController extends Controller
     {   
         $arr = [];
         $ret = [];
-        $ret = file_get_contents('http://eos.krakatausteel.com/api/zhrom0007');
+        //$ret = file_get_contents('https://portal.krakatausteel.com/eos/api/zhrom0007');
+        $ret = file_get_contents('https://portal.krakatausteel.com/eos/api/zhrom0007', false, stream_context_create($this->arrContextOptions));
         $jess=json_decode($ret);
         $collection = collect($jess);
         $filtered = $collection->filter(function ($value, $key) use ($request) {
@@ -1048,7 +1060,8 @@ class jobdescreateController extends Controller
         //   ->groupBy('AbbrPosition')
         //   ->first();
         //$data = [];
-        $data    = file_get_contents('http://eos.krakatausteel.com/api/zhrom0007/AbbrPosition/'.$jabatan);
+        //$data    = file_get_contents('https://portal.krakatausteel.com/eos/api/zhrom0007/AbbrPosition/'.$jabatan);
+        $data = file_get_contents('https://portal.krakatausteel.com/eos/api/zhrom0007/AbbrPosition/'.$jabatan, false, stream_context_create($this->arrContextOptions));
         $jessdata   =json_decode($data); 
         $collection = collect($jessdata);
         //dd($data);    
@@ -1063,7 +1076,8 @@ class jobdescreateController extends Controller
         //         ->where('nojabatan',$kode)
         //         ->get();
         // return $data;
-        $data    = file_get_contents('http://eos.krakatausteel.com/api/zhrom0013/nojabatan/'.$kode);
+        //$data    = file_get_contents('https://portal.krakatausteel.com/eos/api/zhrom0013/nojabatan/'.$kode);
+        $data = file_get_contents('https://portal.krakatausteel.com/eos/api/zhrom0013/nojabatan/'.$kode, false, stream_context_create($this->arrContextOptions));
         $jessdata   =json_decode($data); 
         $collection = collect($jessdata);
         //dd($data);    
@@ -1076,7 +1090,8 @@ class jobdescreateController extends Controller
         // ->groupBy('nojabatan')
         // ->first();       
         // return $data;
-        $data    = file_get_contents('http://eos.krakatausteel.com/api/zhrom0012/nojabatan/'.$un);
+        //$data    = file_get_contents('https://portal.krakatausteel.com/eos/api/zhrom0012/nojabatan/'.$un);
+        $data = file_get_contents('https://portal.krakatausteel.com/eos/api/zhrom0012/nojabatan/'.$un, false, stream_context_create($this->arrContextOptions));
         $jessdata   =json_decode($data); 
         $collection = collect($jessdata);
         //dd($collection);    
@@ -1093,7 +1108,8 @@ class jobdescreateController extends Controller
         //         ->groupBy('namakompetensi')
         //         ->get();
         // return $data;
-        $data    = file_get_contents('http://eos.krakatausteel.com/api/zhrom0012/nojabatan/'.$kode);
+        //$data    = file_get_contents('https://portal.krakatausteel.com/eos/api/zhrom0012/nojabatan/'.$kode);
+        $data = file_get_contents('https://portal.krakatausteel.com/eos/api/zhrom0012/nojabatan/'.$kode, false, stream_context_create($this->arrContextOptions));
         $jessdata   =json_decode($data); 
         $collection = collect($jessdata);
         //dd($data);    
